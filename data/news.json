@@ -1,0 +1,14 @@
+[
+  {
+    "title": "CDSP Article About MCP",
+    "date": "2026-03-26",
+    "summary": "A public article spotlighting MCP and its mentorship impact.",
+    "sourceUrl": "https://cdsp.wm.edu/about/news-events/news/you-belong-here-mentorship-program-empowers-female-physics-students.php"
+  },
+  {
+    "title": "MCP Annual Kickoff",
+    "date": "2026-02-27",
+    "summary": "A sample starter record showing how public news can live in JSON.",
+    "sourceUrl": "https://mcp.physics.wm.edu/"
+  }
+]

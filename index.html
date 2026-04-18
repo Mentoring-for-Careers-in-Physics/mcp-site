@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Mentoring for Careers in Physics at William & Mary."
+    />
+    <title>MCP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <div class="shell nav-shell">
+        <a class="brand" href="./index.html">MCP</a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="./index.html">Home</a>
+          <a href="./pages/mentors.html">Mentors</a>
+          <a href="./pages/news.html">News</a>
+          <a href="./pages/contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell hero-shell">
+          <div class="hero-copy">
+            <p class="eyebrow">William & Mary</p>
+            <h1 data-site-title>Mentoring for Careers in Physics</h1>
+            <p class="lede" data-site-summary>
+              A redesigned static home for MCP, built to be easy to preserve,
+              easy to host, and ready for future growth.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="./pages/mentors.html"
+                >Meet the mentors</a
+              >
+              <a class="button button-secondary" href="./pages/news.html"
+                >Read the latest</a
+              >
+            </div>
+          </div>
+
+          <aside class="hero-panel">
+            <p class="panel-label">Build direction</p>
+            <ul class="panel-list">
+              <li>Static now</li>
+              <li>Content in JSON</li>
+              <li>Database later if needed</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">Why This Structure</p>
+            <h2>Preserve the old system while building the new one cleanly</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <h3>Archive First</h3>
+              <p>
+                Keep the historical React and Express backup separate from the
+                new public experience.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Public by Default</h3>
+              <p>
+                The new site is pure HTML, CSS, JS, images, and JSON, which
+                makes GitHub Pages a strong fit.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Ready to Grow</h3>
+              <p>
+                If forms, admin editing, or a database are needed later, the
+                content layer can move without rewriting the front end.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-accent">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">News</p>
+            <h2>Recent public updates</h2>
+          </div>
+          <div class="card-grid" data-news-list></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">Leadership</p>
+            <h2>Core team</h2>
+          </div>
+          <div class="card-grid" data-team-list></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-shell">
+        <p>Mentoring for Careers in Physics</p>
+        <p>Static starter for the future GitHub Pages site.</p>
+      </div>
+    </footer>
+
+    <script src="./js/main.js" defer></script>
+  </body>
+</html>
