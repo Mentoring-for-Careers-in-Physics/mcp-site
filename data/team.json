@@ -1,12 +1,72 @@
 [
   {
     "name": "Ran Yang",
-    "role": "Co-Founder",
-    "bio": "Example starter record for the future team page."
+    "role": "Co-Founder & Director",
+    "bio": "Professor in the Physics Department and a co-founder and director of MCP.",
+    "linkedin": null,
+    "imageAlias": "ranheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/ran-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
   },
   {
     "name": "Chris Monahan",
-    "role": "Co-Founder",
-    "bio": "Example starter record for the future team page."
+    "role": "Co-Founder & Director",
+    "bio": "Assistant Professor in the Physics Department and a co-founder and director of MCP.",
+    "linkedin": null,
+    "imageAlias": "chrisheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/monahan-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Julia Rodrigues",
+    "role": "Program Assistant",
+    "bio": "Julia ('26) is our Program Assistant. She is studying Physics with an EPAD concentration and plans to pursue electrical engineering.",
+    "linkedin": null,
+    "imageAlias": "julia_rodrigues_headshot",
+    "image": "/assets/images/live-site/clearweb/home/Julia_Rodrigues_pic.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Kalea Wen",
+    "role": "Event Coordinator",
+    "bio": "Kalea is a junior majoring in physics and minoring in CS. She is our new event coordinator.",
+    "linkedin": null,
+    "imageAlias": "kalea_wen_headshot",
+    "image": "/assets/images/live-site/clearweb/assets/KaleaWen-headshot.jpeg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Erica Trindade",
+    "role": "Assistant Events Coordinator",
+    "bio": "Hi! I'm Erica and I am a sophomore majoring in physics who will hopefully pursue Mechanical Engineering in the future. I am so excited to be the assistant events coordinator!",
+    "linkedin": null,
+    "imageAlias": "erica_trindade_headshot",
+    "image": "/assets/images/live-site/clearweb/assets/ericaTrindade_headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Brielle Kirk",
+    "role": "Assistant PR Coordinator",
+    "bio": "Brielle (‘29) is our assistant PR coordinator. She plans to major in Physics and later pursue a PhD in Astrophysics.",
+    "linkedin": null,
+    "imageAlias": "brielle_kirk_headshot",
+    "image": "/assets/images/live-site/clearweb/assets/Brielle_Kirk.JPEG",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Alan Gonzalez Osorio",
+    "role": "Web Developer",
+    "bio": "Alan ('26) is the MCP web developer. He is a senior studying Computer Science and Applied Math",
+    "linkedin": null,
+    "imageAlias": "alanheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/alan-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
   }
 ]

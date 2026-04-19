@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Julia Merti",
+    "role": "Program Assistant",
+    "bio": "Julia ('24) was the Program Assistant for MCP and graduated with a Bachelor of Science in Physics-EPAD.",
+    "linkedin": null,
+    "imageAlias": "juliaheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/julia-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Min Kim",
+    "role": "Web Developer",
+    "bio": "Min ('24) was the web developer for MCP. He graduated with a degree Computer Science and Economics at W&M.",
+    "linkedin": null,
+    "imageAlias": "minheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/min-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Sophia Chen",
+    "role": "PR Coordinator & Social Media Designer",
+    "bio": "Sophia ('24) was the social media designer and PR coordinator for MCP. She studied Data Science at W&M.",
+    "linkedin": null,
+    "imageAlias": "sophiaheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/sophia-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Piero Panariello",
+    "role": "Web Developer",
+    "bio": "Piero ('23) was the formal web developer for MCP. He is studying computer science at W&M and works part-time for NASA.",
+    "linkedin": null,
+    "imageAlias": "pieroheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/piero-headshot.jpeg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Adi de la Guardia",
+    "role": "Director of Public Relations",
+    "bio": "Adi ('23) was the formal Director of Public Relations for MCP. She is a physics-EPAD major and Art minor.",
+    "linkedin": null,
+    "imageAlias": "adi_headshot",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Carson Stillman",
+    "role": "Program Assistant",
+    "bio": "Former MCP program assistant. Carson is in the Ph.D. program of the Computer Information Sciences and Engineering department at the University of Florida.",
+    "linkedin": null,
+    "imageAlias": "carsonheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/carson-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Jason LaPierre",
+    "role": "Web Developer",
+    "bio": "Jason ('25) was one of the former MCP web developers. He graduated with a B.S in Biology and a minor in Computer Science.",
+    "linkedin": null,
+    "imageAlias": "jasonheadshot",
+    "image": "/assets/images/live-site/clearweb/assets/jason-headshot.jpeg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Caitlin Devenie",
+    "role": "PR Coordinator",
+    "bio": "She was our PR coordinator.",
+    "linkedin": null,
+    "imageAlias": "caitlin_devenie_headshot",
+    "image": "/assets/images/live-site/clearweb/assets/CaitlinDevenie-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Georgia Stone",
+    "role": "Previous Team Member",
+    "bio": "I am very grateful to be a part of this community of women in physics, and am passionate about working towards uplifting fellow women in the field! I am planning to pursue an engineering masters degree, potentially in Mechanical Engineering.",
+    "linkedin": null,
+    "imageAlias": "georgia_stone_headshot",
+    "image": "/assets/images/live-site/clearweb/home/georgia_stone_headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  }
+]

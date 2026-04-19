@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Arcfield",
+    "website": "https://www.arcfield.com/",
+    "image": "/assets/images/live-site/clearweb/home/Arcfield.png"
+  },
+  {
+    "name": "Athena Theatrical",
+    "website": "https://www.athenatheatrical.com/",
+    "image": "/assets/images/live-site/clearweb/home/Athena_Theatrical.png"
+  },
+  {
+    "name": "BAE Systems",
+    "website": "https://www.baesystems.com/en/home",
+    "image": "/assets/images/live-site/clearweb/home/BAE.png"
+  },
+  {
+    "name": "Calspan",
+    "website": "https://calspan.com/",
+    "image": "/assets/images/live-site/clearweb/home/Calspan.png"
+  },
+  {
+    "name": "Case Western University",
+    "website": "https://case.edu/",
+    "image": "/assets/images/live-site/clearweb/home/Case_western.png"
+  },
+  {
+    "name": "Institute for Defense Analysis",
+    "website": "https://www.ida.org/",
+    "image": "/assets/images/live-site/clearweb/home/Defense_analysis.png"
+  },
+  {
+    "name": "U.S. Army Research Laboratory",
+    "website": "https://arl.devcom.army.mil/",
+    "image": "/assets/images/live-site/clearweb/home/Devcom.png"
+  },
+  {
+    "name": "Department of Defense",
+    "website": "https://www.defense.gov/",
+    "image": "/assets/images/live-site/clearweb/home/DOD.jpg"
+  },
+  {
+    "name": "Fannie Mae",
+    "website": "https://www.fanniemae.com/",
+    "image": "/assets/images/live-site/clearweb/home/FannieMae.png"
+  },
+  {
+    "name": "Honeywell",
+    "website": "https://www.honeywell.com/us/en",
+    "image": "/assets/images/live-site/clearweb/home/Honeywell.png"
+  },
+  {
+    "name": "ivWatch",
+    "website": "https://www.ivwatch.com/",
+    "image": "/assets/images/live-site/clearweb/home/ivwatch.png"
+  },
+  {
+    "name": "Jefferson Lab",
+    "website": "https://www.jlab.org/",
+    "image": "/assets/images/live-site/clearweb/home/Jefferson_Lab.png"
+  },
+  {
+    "name": "Luna Labs",
+    "website": "https://lunalabs.us/",
+    "image": "/assets/images/live-site/clearweb/home/Lunalabs.png"
+  },
+  {
+    "name": "Micron Technology",
+    "website": "https://www.micron.com/",
+    "image": "/assets/images/live-site/clearweb/home/Micron.png"
+  },
+  {
+    "name": "Microsoft",
+    "website": "https://www.microsoft.com/en-us/",
+    "image": "/assets/images/live-site/clearweb/home/Microsoft.png"
+  },
+  {
+    "name": "The MITRE Corp",
+    "website": "https://www.mitre.org/",
+    "image": "/assets/images/live-site/clearweb/home/Mitre.jpg"
+  },
+  {
+    "name": "Nasa Langley Research Center",
+    "website": "https://www.nasa.gov/langley/",
+    "image": "/assets/images/live-site/clearweb/home/NASA.jpg"
+  },
+  {
+    "name": "NASA",
+    "website": "https://www.nasa.gov/",
+    "image": "/assets/images/live-site/clearweb/home/NASA.png"
+  },
+  {
+    "name": "US Naval Research Lab",
+    "website": "https://www.nrl.navy.mil/",
+    "image": "/assets/images/live-site/clearweb/home/Naval_Research_Lab.png"
+  },
+  {
+    "name": "ProCure Treatment Centers",
+    "website": "https://www.procure.com/",
+    "image": "/assets/images/live-site/clearweb/home/Procure.png"
+  },
+  {
+    "name": "Psionic Technologies",
+    "website": "https://www.psionicnav.com/",
+    "image": "/assets/images/live-site/clearweb/home/Psionic.jpg"
+  },
+  {
+    "name": "Sandia National Lab",
+    "website": "https://www.sandia.gov/",
+    "image": "/assets/images/live-site/clearweb/home/Sandia.jpg"
+  },
+  {
+    "name": "Savannah River National Lab",
+    "website": "https://www.srnl.gov/",
+    "image": "/assets/images/live-site/clearweb/home/SRNL.png"
+  },
+  {
+    "name": "TingFire, Whisker Labs",
+    "website": "https://www.whiskerlabs.com/",
+    "image": "/assets/images/live-site/clearweb/home/Ting.png"
+  }
+]

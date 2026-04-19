@@ -3,61 +3,216 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Contact MCP for student, mentor, partner, or sponsorship inquiries."
+    />
     <title>Contact | MCP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
-  <body>
+  <body data-page="contact" data-root="..">
     <header class="site-header">
       <div class="shell nav-shell">
-        <a class="brand" href="../index.html">MCP</a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="../index.html">Home</a>
-          <a href="./mentors.html">Mentors</a>
-          <a href="./news.html">News</a>
-          <a href="./contact.html">Contact</a>
+        <a class="brand" href="../index.html" aria-label="MCP home">
+          <span class="brand-mark">MCP</span>
+          <span class="brand-text">
+            <strong>Mentoring for Careers in Physics</strong>
+            <small>William &amp; Mary</small>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          Menu
+        </button>
+
+        <nav class="nav-links" id="site-nav" aria-label="Primary navigation">
+          <a href="../index.html" data-nav-page="home">Home</a>
+          <a href="./mentors.html" data-nav-page="mentors">Mentors</a>
+          <a href="./team.html" data-nav-page="team">Leadership</a>
+          <a href="./news.html" data-nav-page="news">News</a>
+          <a href="./contact.html" data-nav-page="contact">Contact</a>
+          <a class="nav-cta" href="#" data-donate-link>Give</a>
         </nav>
       </div>
     </header>
 
-    <main class="page-main">
+    <main>
       <section class="page-hero">
-        <div class="shell">
-          <p class="eyebrow">Contact</p>
-          <h1>Keep this page static first.</h1>
-          <p class="lede">
-            Start with a contact email and external form link. Add a form
-            backend later only if MCP needs it.
-          </p>
+        <div class="shell page-hero__grid">
+          <div data-reveal>
+            <p class="section-kicker">Contact MCP</p>
+            <h1>Reach the program with clarity, confidence, and a direct path in.</h1>
+            <p class="hero-summary">
+              MCP offers clear ways for students, mentors, alumnae,
+              collaborators, and donors to get in touch and take the next step.
+            </p>
+          </div>
+
+          <aside class="statement-card statement-card--page" data-reveal>
+            <p class="micro-label">Best next step</p>
+            <p class="card-copy">
+              For student interest, the mentee form is the fastest route. For
+              mentors, donors, partnerships, or program questions, direct email
+              is the best immediate path.
+            </p>
+          </aside>
         </div>
       </section>
 
       <section class="section">
         <div class="shell contact-grid">
-          <article class="feature-card">
-            <h2>Email</h2>
-            <p>mcp.superuser@gmail.com</p>
-          </article>
-          <article class="feature-card">
-            <h2>Interest Form</h2>
+          <article class="contact-card" data-reveal>
+            <p class="micro-label">Email</p>
+            <h2>Direct program contact</h2>
             <p>
-              Link a public Google Form now, then replace it later if the site
-              needs a custom workflow.
+              Use email for donor conversations, partnership ideas, or program
+              questions that need a personal response.
             </p>
+            <a class="button button-primary" href="#" data-contact-email
+              >mcp.superuser@gmail.com</a
+            >
           </article>
+
+          <article class="contact-card" data-reveal>
+            <p class="micro-label">For Students</p>
+            <h2>Become a mentee</h2>
+            <p>
+              The current public interest form gives students a direct path into
+              MCP’s mentoring and event pipeline.
+            </p>
+            <a class="button button-secondary" href="#" data-mentee-link
+              >Open mentee interest form</a
+            >
+          </article>
+
+          <article class="contact-card" data-reveal>
+            <p class="micro-label">For Mentors</p>
+            <h2>Volunteer as a mentor</h2>
+            <p>
+              A dedicated Google Form can be added later. For now, mentors can
+              raise a hand directly through MCP email.
+            </p>
+            <a class="button button-secondary" href="#" data-mentor-link
+              >Express mentor interest</a
+            >
+          </article>
+
+          <article class="contact-card" data-reveal>
+            <p class="micro-label">Giving</p>
+            <h2>Give directly to MCP</h2>
+            <p>
+              Use the direct giving page to support mentorship, visibility, and
+              student-centered program growth.
+            </p>
+            <a class="button button-secondary" href="#" data-donate-link
+              >Give to MCP</a
+            >
+          </article>
+
+          <article class="contact-card" data-reveal>
+            <p class="micro-label">Social</p>
+            <h2>Follow MCP’s public voice</h2>
+            <p>
+              Keep up with program stories, announcements, and visibility across
+              MCP’s public channels.
+            </p>
+            <div class="social-list" data-footer-social></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="shell split-grid">
+          <div class="section-heading" data-reveal>
+            <p class="section-kicker">Who We Welcome</p>
+            <h2>Different audiences, one clear invitation.</h2>
+          </div>
+
+          <div class="narrative-stack">
+            <article class="narrative-card" data-reveal>
+              <p class="micro-label">Students</p>
+              <p>
+                Reach out if you want mentorship, visibility, or a stronger
+                sense of how physics can connect to the future you want to
+                build.
+              </p>
+            </article>
+
+            <article class="narrative-card" data-reveal>
+              <p class="micro-label">Mentors &amp; Alumnae</p>
+              <p>
+                MCP welcomes professionals who want to help students navigate
+                career pathways with generosity, candor, and encouragement.
+              </p>
+            </article>
+
+            <article class="narrative-card narrative-card--accent" data-reveal>
+              <p class="micro-label">Funders &amp; Partners</p>
+              <p>
+                If you want to invest in mentorship, belonging, and a stronger
+                leadership pipeline for physics students, MCP is ready for the
+                conversation.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="shell footer-shell">
+      <div class="shell footer-grid">
+        <div class="footer-brand-block">
+          <span class="brand-mark brand-mark--footer">MCP</span>
+          <p class="footer-summary">
+            Mentoring for Careers in Physics at William &amp; Mary.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Explore</p>
+          <div class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="./mentors.html">Mentors</a>
+            <a href="./team.html">Leadership</a>
+            <a href="./news.html">News</a>
+            <a href="./contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Connect</p>
+          <div class="footer-links">
+            <a class="footer-email" href="#" data-contact-email>mcp.superuser@gmail.com</a>
+            <a href="#" data-mentee-link>Become a mentee</a>
+            <a href="#" data-mentor-link>Become a mentor</a>
+            <a href="#" data-donate-link>Give to MCP</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Follow MCP</p>
+          <div class="social-list social-list--footer" data-footer-social></div>
+        </div>
+      </div>
+
+      <div class="shell footer-base">
         <p>Mentoring for Careers in Physics</p>
+        <p>&copy; <span data-current-year></span> William &amp; Mary</p>
       </div>
     </footer>
+
+    <script src="../js/main.js" defer></script>
   </body>
 </html>

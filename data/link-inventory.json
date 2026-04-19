@@ -1,0 +1,840 @@
+{
+  "publicRoutes": [
+    "/",
+    "/contact",
+    "/events/:eventName",
+    "/interest",
+    "/mentees",
+    "/mentors",
+    "/news",
+    "/privacypolicy",
+    "/retired"
+  ],
+  "publicPages": [
+    "/",
+    "/contact",
+    "/events/12-9-22",
+    "/events/:eventName",
+    "/interest",
+    "/mentees",
+    "/mentors",
+    "/news",
+    "/privacypolicy",
+    "/retired"
+  ],
+  "portalRoutes": [
+    "/portal/dashboard",
+    "/portal/login",
+    "/portal/register"
+  ],
+  "socialLinks": [
+    "https://www.instagram.com/wm_mcp",
+    "https://www.linkedin.com/company/wmmcp",
+    "https://twitter.com/wm_mcp",
+    "https://youtu.be/TqgStDcsD7g"
+  ],
+  "mentorLinkedIn": [
+    {
+      "label": "Janet Brewer",
+      "url": "https://www.linkedin.com/in/brewerjanet/"
+    },
+    {
+      "label": "Marisa Brown",
+      "url": "https://www.linkedin.com/in/marisabrown/"
+    },
+    {
+      "label": "Melissa Dolph",
+      "url": "https://www.linkedin.com/in/melissa-commisso-dolph-9b637729/"
+    },
+    {
+      "label": "Yulia Furletova",
+      "url": "https://www.linkedin.com/in/julia-furletova-83330531/"
+    },
+    {
+      "label": "Evalyn Gates",
+      "url": "https://www.linkedin.com/in/evalyn-gates/"
+    },
+    {
+      "label": "Kristina Kruglyak",
+      "url": "https://www.linkedin.com/in/kristinakruglyak/"
+    },
+    {
+      "label": "Julia M. Phillips",
+      "url": "https://www.linkedin.com/in/julia-phillips-8b08316/"
+    },
+    {
+      "label": "Holly Szumila-Vance",
+      "url": "https://www.linkedin.com/in/holly-szumila-vance-6b815b126/"
+    },
+    {
+      "label": "Karen Taminger",
+      "url": "https://www.linkedin.com/in/karen-taminger-5920761/"
+    },
+    {
+      "label": "Amber Ulbrich",
+      "url": "https://www.linkedin.com/in/amber-ulbrich-046a2b38/"
+    },
+    {
+      "label": "Liz Ward",
+      "url": "https://www.linkedin.com/in/lizward/"
+    },
+    {
+      "label": "Aye Myat Khine Win",
+      "url": "https://www.linkedin.com/in/aye-myat-khine-win-2412236b/?originalSubdomain=sg"
+    },
+    {
+      "label": "Yang Xu",
+      "url": "https://www.linkedin.com/in/yang-xu-205459b4/"
+    },
+    {
+      "label": "Marlyn Andino",
+      "url": "https://www.linkedin.com/in/marlynandino/"
+    },
+    {
+      "label": "Vanessa Aubuchon",
+      "url": "https://www.linkedin.com/in/vanessa-aubuchon-a98b4b54/"
+    },
+    {
+      "label": "Kristen Bishop",
+      "url": "https://www.linkedin.com/in/kristen-bishop-41468b78/"
+    },
+    {
+      "label": "Brandi Clark",
+      "url": "https://www.linkedin.com/in/clarkbrandi/"
+    },
+    {
+      "label": "Karina Colotl",
+      "url": "https://www.linkedin.com/in/karinacolotl/"
+    },
+    {
+      "label": "Jill Dahlburg",
+      "url": "https://www.linkedin.com/in/jill-dahlburg-a4a6088/"
+    },
+    {
+      "label": "Julissa de Guzman",
+      "url": "https://www.linkedin.com/in/julissa-de-guzman-3808b4b1/"
+    },
+    {
+      "label": "Barbara Hilton",
+      "url": "https://www.linkedin.com/in/barbara-bendkowski-hilton-22925a85/"
+    },
+    {
+      "label": "Jennifer Inman",
+      "url": "https://www.linkedin.com/in/jennifer-inman-2ba300276/"
+    },
+    {
+      "label": "Gabrielle Jawer",
+      "url": "https://www.linkedin.com/in/gabrielle-jawer-760a40142/"
+    },
+    {
+      "label": "Hee Yeon Keil",
+      "url": "https://www.linkedin.com/in/hee-yeon-keil-2a4465116/"
+    },
+    {
+      "label": "Tammi Klaco",
+      "url": "https://www.linkedin.com/in/tammi-klaco-761a43b/"
+    },
+    {
+      "label": "Mystique Owens",
+      "url": "https://www.linkedin.com/in/renee-mystique-owens/"
+    },
+    {
+      "label": "Sanghwa Park",
+      "url": "https://www.linkedin.com/in/sanghwa-park-2a71a7bb/"
+    },
+    {
+      "label": "Sandra Philpott",
+      "url": "https://www.linkedin.com/in/sandra-philpott-43690b1b/"
+    },
+    {
+      "label": "Carrie Rhoades",
+      "url": "https://www.linkedin.com/in/planepanther/"
+    },
+    {
+      "label": "Laura Treider",
+      "url": "https://www.linkedin.com/in/laura-treider/"
+    },
+    {
+      "label": "Brenda VanMil",
+      "url": "https://www.linkedin.com/in/brenda-vanmil-0022a436/"
+    },
+    {
+      "label": "Claudia Smith",
+      "url": "https://www.linkedin.com/in/claudia-smith1/"
+    },
+    {
+      "label": "Haley Bauser",
+      "url": "https://www.linkedin.com/in/haley-bauser-a25612195/"
+    },
+    {
+      "label": "Mi Zhang",
+      "url": "https://www.linkedin.com/in/mi-zhang-77510939/"
+    },
+    {
+      "label": "Sucheta Jawalkar",
+      "url": "https://www.linkedin.com/in/suchetajawalkar/"
+    }
+  ],
+  "companyLinks": [
+    {
+      "label": "Arcfield",
+      "url": "https://www.arcfield.com/"
+    },
+    {
+      "label": "Athena Theatrical",
+      "url": "https://www.athenatheatrical.com/"
+    },
+    {
+      "label": "BAE Systems",
+      "url": "https://www.baesystems.com/en/home"
+    },
+    {
+      "label": "Calspan",
+      "url": "https://calspan.com/"
+    },
+    {
+      "label": "Case Western University",
+      "url": "https://case.edu/"
+    },
+    {
+      "label": "Institute for Defense Analysis",
+      "url": "https://www.ida.org/"
+    },
+    {
+      "label": "U.S. Army Research Laboratory",
+      "url": "https://arl.devcom.army.mil/"
+    },
+    {
+      "label": "Department of Defense",
+      "url": "https://www.defense.gov/"
+    },
+    {
+      "label": "Fannie Mae",
+      "url": "https://www.fanniemae.com/"
+    },
+    {
+      "label": "Honeywell",
+      "url": "https://www.honeywell.com/us/en"
+    },
+    {
+      "label": "ivWatch",
+      "url": "https://www.ivwatch.com/"
+    },
+    {
+      "label": "Jefferson Lab",
+      "url": "https://www.jlab.org/"
+    },
+    {
+      "label": "Luna Labs",
+      "url": "https://lunalabs.us/"
+    },
+    {
+      "label": "Micron Technology",
+      "url": "https://www.micron.com/"
+    },
+    {
+      "label": "Microsoft",
+      "url": "https://www.microsoft.com/en-us/"
+    },
+    {
+      "label": "The MITRE Corp",
+      "url": "https://www.mitre.org/"
+    },
+    {
+      "label": "Nasa Langley Research Center",
+      "url": "https://www.nasa.gov/langley/"
+    },
+    {
+      "label": "NASA",
+      "url": "https://www.nasa.gov/"
+    },
+    {
+      "label": "US Naval Research Lab",
+      "url": "https://www.nrl.navy.mil/"
+    },
+    {
+      "label": "ProCure Treatment Centers",
+      "url": "https://www.procure.com/"
+    },
+    {
+      "label": "Psionic Technologies",
+      "url": "https://www.psionicnav.com/"
+    },
+    {
+      "label": "Sandia National Lab",
+      "url": "https://www.sandia.gov/"
+    },
+    {
+      "label": "Savannah River National Lab",
+      "url": "https://www.srnl.gov/"
+    },
+    {
+      "label": "TingFire, Whisker Labs",
+      "url": "https://www.whiskerlabs.com/"
+    }
+  ],
+  "newsLinks": [
+    {
+      "label": "CDSP Article About MCP",
+      "url": "https://mcp.physics.wm.edu/",
+      "source": "news-body"
+    },
+    {
+      "label": "CDSP Article About MCP",
+      "url": "https://advancement.wm.edu/volunteer-leadership/society-of-1918/",
+      "source": "news-body"
+    },
+    {
+      "label": "CDSP Article About MCP",
+      "url": "https://cdsp.wm.edu/about/news-events/news/you-belong-here-mentorship-program-empowers-female-physics-students.php",
+      "source": "news-body"
+    },
+    {
+      "label": "CDSP Article About MCP image",
+      "url": "https://cdsp.wm.edu/about/news-events/news/news-images/mcp-reception2.jpg",
+      "source": "news-image"
+    },
+    {
+      "label": "MCP Annual Kickoff image",
+      "url": "https://mcp.physics.wm.edu/static/media/annual_celebration.867e8b68b97aab71bd5f.png",
+      "source": "news-image"
+    },
+    {
+      "label": "New Tribe Funding Initiative",
+      "url": "https://i.vimeocdn.com/video/2077807422-c5dc3ae0a78167625a7058ad3ffcda8e9aeb7830bfdd8476510cd108d808b043-d?mw=1920&mh=1090&q=70",
+      "source": "news-body"
+    },
+    {
+      "label": "New Tribe Funding Initiative",
+      "url": "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
+      "source": "news-body"
+    },
+    {
+      "label": "New Tribe Funding Initiative image",
+      "url": "https://i.vimeocdn.com/video/2077807422-c5dc3ae0a78167625a7058ad3ffcda8e9aeb7830bfdd8476510cd108d808b043-d?mw=1920&mh=1090&q=70",
+      "source": "news-image"
+    },
+    {
+      "label": "APS Conference for Graduate Women & Gender Minorities in Physics",
+      "url": "https://info.aps.org/l/640833/2024-03-12/2r3gkm/640833/1710265335CDIPNSZj/GenderInclusiveComm_EmailHeader_600_x_200.jpg",
+      "source": "news-body"
+    },
+    {
+      "label": "APS Conference for Graduate Women & Gender Minorities in Physics",
+      "url": "https://info.aps.org/l/640833/2022-10-03/27cxyf/640833/1664823622NsCNcwAh/APSLogo_Tag_RGB.png",
+      "source": "news-body"
+    },
+    {
+      "label": "APS Conference for Graduate Women & Gender Minorities in Physics",
+      "url": "https://apsphysics.fillout.com/t/qGVLyebwkHus",
+      "source": "news-body"
+    },
+    {
+      "label": "APS Conference for Graduate Women & Gender Minorities in Physics image",
+      "url": "https://storage.pardot.com/640833/1664823622NsCNcwAh/APSLogo_Tag_RGB.png",
+      "source": "news-image"
+    },
+    {
+      "label": "NASA Trip 4/25",
+      "url": "https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg",
+      "source": "news-body"
+    },
+    {
+      "label": "NASA Trip 4/25 image",
+      "url": "https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg",
+      "source": "news-image"
+    },
+    {
+      "label": "October Updates",
+      "url": "https://i.imgur.com/ZvAImGz.png",
+      "source": "news-body"
+    },
+    {
+      "label": "October Updates",
+      "url": "https://i.imgur.com/hwabqSo.png",
+      "source": "news-body"
+    },
+    {
+      "label": "October Updates",
+      "url": "https://i.imgur.com/7LbT1Mw.png",
+      "source": "news-body"
+    },
+    {
+      "label": "October Updates image",
+      "url": "https://i.imgur.com/Qr6Uzcg.png",
+      "source": "news-image"
+    },
+    {
+      "label": "Mocktail Welcome Party",
+      "url": "https://i.imgur.com/CMJqcdt.jpeg",
+      "source": "news-body"
+    },
+    {
+      "label": "Mocktail Welcome Party",
+      "url": "https://i.imgur.com/mGRhHt5.jpeg",
+      "source": "news-body"
+    },
+    {
+      "label": "Mocktail Welcome Party",
+      "url": "https://i.imgur.com/sKPaxpd.jpeg",
+      "source": "news-body"
+    },
+    {
+      "label": "Mocktail Welcome Party",
+      "url": "https://i.imgur.com/fYWUVHx.jpeg",
+      "source": "news-body"
+    },
+    {
+      "label": "Mocktail Welcome Party",
+      "url": "https://i.imgur.com/UF8sTHe.jpeg",
+      "source": "news-body"
+    },
+    {
+      "label": "Mocktail Welcome Party",
+      "url": "https://i.imgur.com/gjHBZ3N.jpeg",
+      "source": "news-body"
+    },
+    {
+      "label": "Mocktail Welcome Party",
+      "url": "https://i.imgur.com/9uoGDqr.jpeg",
+      "source": "news-body"
+    },
+    {
+      "label": "Mocktail Welcome Party",
+      "url": "https://i.imgur.com/CPFQFMu.jpeg",
+      "source": "news-body"
+    },
+    {
+      "label": "Mocktail Welcome Party image",
+      "url": "https://i.imgur.com/zp3k9e7.jpeg",
+      "source": "news-image"
+    },
+    {
+      "label": "MCP Resource image",
+      "url": "https://drive.google.com/file/d/1Cd2jDJRGfCX6VqCamstN5HHudCfW3rid/preview?usp=sharing",
+      "source": "news-image"
+    },
+    {
+      "label": "W&M student co-authors prestigious astrophysics study",
+      "url": "https://news.wm.edu/2024/02/21/navigating-a-future-studying-stars-wm-student-co-authors-prestigious-astrophysics-study/?utm_source=wmdigest&utm_medium=email&utm_campaign=news/",
+      "source": "news-body"
+    },
+    {
+      "label": "W&M student co-authors prestigious astrophysics study image",
+      "url": "https://wmit-news-prod.s3.amazonaws.com/wp-content/uploads/2024/02/21095230/RahmanComputer.jpg",
+      "source": "news-image"
+    },
+    {
+      "label": "MCP Launch Event image",
+      "url": "https://i.postimg.cc/CxVpGP0q/Red-and-Yellow-Illustrated-Event-Classroom-Announcement-5.png",
+      "source": "news-image"
+    },
+    {
+      "label": "Applications & Opportunities Workshop image",
+      "url": "https://i.postimg.cc/vZFfsPNh/MCP-Workshop-Insta.png",
+      "source": "news-image"
+    },
+    {
+      "label": "W&M MCP Program Flyer image",
+      "url": "https://i.postimg.cc/8cyyYcSS/W-M-MCP-Program.png",
+      "source": "news-image"
+    },
+    {
+      "label": "W&M News Article ",
+      "url": "https://news.wm.edu/2022/10/06/mentoring-for-careers-in-physics-matches-undergraduate-women-with-established-professionals/",
+      "source": "news-body"
+    },
+    {
+      "label": "W&M News Article  image",
+      "url": "https://wmit-news-prod.s3.amazonaws.com/wp-content/uploads/2022/10/06095008/mentor_lead.jpg",
+      "source": "news-image"
+    },
+    {
+      "label": "MCP Fall Kickoff Video image",
+      "url": "https://flathatnews.com/wp-content/uploads/2019/09/40630244100_d7714973e7_b.jpg",
+      "source": "news-image"
+    }
+  ],
+  "currentTeamNames": [
+    "Ran Yang",
+    "Chris Monahan",
+    "Julia Rodrigues",
+    "Kalea Wen",
+    "Erica Trindade",
+    "Brielle Kirk",
+    "Alan Gonzalez Osorio"
+  ],
+  "retiredTeamNames": [
+    "Julia Merti",
+    "Min Kim",
+    "Sophia Chen",
+    "Piero Panariello",
+    "Adi de la Guardia",
+    "Carson Stillman",
+    "Jason LaPierre",
+    "Caitlin Devenie",
+    "Georgia Stone"
+  ],
+  "discoveredSourceLinks": [
+    {
+      "source": "homepage",
+      "url": "https://advancement.wm.edu/volunteer-leadership/society-of-1918/about/index.php"
+    },
+    {
+      "source": "homepage",
+      "url": "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation"
+    },
+    {
+      "source": "homepage",
+      "url": "https://forms.gle/fgZDYsyf5R3JFMtX8"
+    },
+    {
+      "source": "homepage",
+      "url": "https://forms.gle/snFdxAJYhdqCeTiPA"
+    },
+    {
+      "source": "homepage",
+      "url": "https://mcp.physics.wm.edu/contact"
+    },
+    {
+      "source": "homepage",
+      "url": "https://mcp.physics.wm.edu/interest"
+    },
+    {
+      "source": "homepage",
+      "url": "https://mcp.physics.wm.edu/mentors"
+    },
+    {
+      "source": "homepage",
+      "url": "https://mcp.physics.wm.edu/news"
+    },
+    {
+      "source": "homepage",
+      "url": "https://mcp.physics.wm.edu/retired"
+    },
+    {
+      "source": "homepage",
+      "url": "https://player.vimeo.com/video/1133269106?title=0&byline=0&portrait=0&autoplay=0"
+    },
+    {
+      "source": "homepage",
+      "url": "https://wmit-news-prod.s3.amazonaws.com/wp-content/uploads/2022/10/06095008/mentor_lead.jpg"
+    },
+    {
+      "source": "homepage",
+      "url": "https://www.wm.edu/as/physics/"
+    },
+    {
+      "source": "homepage",
+      "url": "https://www.youtube.com/embed/NavhhyamVLM?si=Syav_cHw1IWpVElQ"
+    },
+    {
+      "source": "homepage",
+      "url": "https://www.youtube.com/embed/pC6lz-GJFQA?si=26hiVMyfJx7isaY0"
+    },
+    {
+      "source": "homepage",
+      "url": "https://youtu.be/TqgStDcsD7g"
+    },
+    {
+      "source": "mentors",
+      "url": "https://arl.devcom.army.mil/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://calspan.com/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://case.edu/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://lunalabs.us/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.arcfield.com/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.athenatheatrical.com/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.baesystems.com/en/home"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.defense.gov/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.fanniemae.com/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.honeywell.com/us/en"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.ida.org/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.ivwatch.com/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.jlab.org/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/amber-ulbrich-046a2b38/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/aye-myat-khine-win-2412236b/?originalSubdomain=sg"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/barbara-bendkowski-hilton-22925a85/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/brenda-vanmil-0022a436/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/brewerjanet/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/clarkbrandi/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/claudia-smith1/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/evalyn-gates/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/gabrielle-jawer-760a40142/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/haley-bauser-a25612195/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/hee-yeon-keil-2a4465116/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/holly-szumila-vance-6b815b126/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/jennifer-inman-2ba300276/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/jill-dahlburg-a4a6088/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/julia-furletova-83330531/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/julia-phillips-8b08316/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/julissa-de-guzman-3808b4b1/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/karen-taminger-5920761/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/karinacolotl/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/kristen-bishop-41468b78/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/kristinakruglyak/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/laura-treider/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/lizward/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/marisabrown/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/marlynandino/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/melissa-commisso-dolph-9b637729/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/mi-zhang-77510939/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/planepanther/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/renee-mystique-owens/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/sandra-philpott-43690b1b/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/sanghwa-park-2a71a7bb/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/suchetajawalkar/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/tammi-klaco-761a43b/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/vanessa-aubuchon-a98b4b54/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.linkedin.com/in/yang-xu-205459b4/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.micron.com/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.microsoft.com/en-us/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.mitre.org/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.nasa.gov/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.nasa.gov/langley/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.nrl.navy.mil/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.procure.com/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.psionicnav.com/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.sandia.gov/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.srnl.gov/"
+    },
+    {
+      "source": "mentors",
+      "url": "https://www.whiskerlabs.com/"
+    },
+    {
+      "source": "mentees",
+      "url": "https://lunainc.com/"
+    },
+    {
+      "source": "mentees",
+      "url": "https://petdx.com/"
+    },
+    {
+      "source": "mentees",
+      "url": "https://www.honeywell.com/us/en"
+    },
+    {
+      "source": "mentees",
+      "url": "https://www.ivwatch.com/"
+    },
+    {
+      "source": "mentees",
+      "url": "https://www.jlab.org/"
+    },
+    {
+      "source": "mentees",
+      "url": "https://www.micron.com/"
+    },
+    {
+      "source": "mentees",
+      "url": "https://www.mitre.org/"
+    },
+    {
+      "source": "mentees",
+      "url": "https://www.nasa.gov/langley/"
+    },
+    {
+      "source": "mentees",
+      "url": "https://www.tiktok.com/en/"
+    },
+    {
+      "source": "footer",
+      "url": "http://www.w3.org/2000/svg"
+    },
+    {
+      "source": "footer",
+      "url": "https://twitter.com/wm_mcp"
+    },
+    {
+      "source": "footer",
+      "url": "https://www.instagram.com/wm_mcp"
+    },
+    {
+      "source": "footer",
+      "url": "https://www.linkedin.com/company/wmmcp"
+    },
+    {
+      "source": "footer",
+      "url": "https://youtu.be/TqgStDcsD7g"
+    },
+    {
+      "source": "interest",
+      "url": "https://forms.gle/zkuoy8HGdec81Y5o8"
+    },
+    {
+      "source": "interest",
+      "url": "https://mcp.physics.wm.edu/"
+    }
+  ]
+}

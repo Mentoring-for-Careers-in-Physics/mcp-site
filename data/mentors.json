@@ -1,12 +1,412 @@
 [
   {
-    "name": "Janet Brewer",
-    "role": "Chief People Officer, Arcfield",
-    "bio": "Example starter record for the future mentor directory."
+    "name": "Kelly Berns",
+    "role": "Advanced Cyber Security Engineer, Honeywell",
+    "bio": "After originally pursuing a business degree and a career in sales, I quickly learned that I was interested in something more technical. I began exploring a few options and immediately fell in love with cyber security. I developed a strong sense of passion and had tunnel vision to forge my career in this field. Since then, I have worked as a penetration tester at Honeywell. The most important quality for any engineer is to have a sense of curiosity, I love to see this working with my mentee.",
+    "linkedin": null,
+    "imageAlias": "kelly",
+    "image": "/assets/images/live-site/clearweb/assets/Kelly_Berns-square-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": true
   },
   {
-    "name": "Jayendrika Tiskumara",
-    "role": "RF Operations Engineer, Jefferson Lab",
-    "bio": "Included as a starter record because the live site currently contains a mentor asset not present in this backup."
+    "name": "Janet Brewer",
+    "role": "Chief People Officer, Arcfield",
+    "bio": "As chief people officer at Arcfield, Janet Brewer is responsible for developing and executing the company’s people- and marketing-related initiatives including organizational development, talent acquisition, total rewards, employee experience, diversity, equity and inclusion, and all internal and external marketing and communications activities. Janet has more than 20 years of experience in global human resources, leading large teams and managing business transformation through integration and scaling for growth. Throughout her career, her focus has been on maximizing the impact of companies, by effectively leveraging the power of communications, HR and technology to achieve sustainable business results. She is passionate about empowering people to perform at their best and love what they do every day. Prior to joining Arcfield, Janet was the vice president of human resources at Peraton, where she oversaw a 50-person team responsible for strategic human capital consulting and employee relations. Janet also held various roles of increasing responsibility at SAP, including SAP Concur and SAP SuccessFactors, as well as working at the company’s global headquarters in Germany for two years as an expat. Earlier in her career, Janet managed leadership development programs and delivered technical training at Freddie Mac, Experian and MicroStrategy. Janet earned a bachelor’s degree in physics from the College of William and Mary, a master’s degree in biomedical engineering from the University of Michigan, and an MBA from Marymount University.",
+    "linkedin": "https://www.linkedin.com/in/brewerjanet/",
+    "imageAlias": "brewer_headshot",
+    "image": "/assets/images/live-site/clearweb/assets/CTFV--Janet86782.png",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Marisa Brown",
+    "role": "Senior Biomedical Engineer, ivWatch LLC",
+    "bio": "Since 2017, Marisa has helped design optical biosensors and monitoring systems that detect IV infiltration as a part of the R&D team at ivWatch. She also runs clinical investigations at the company and is an ACRP Certified Professional. In her free time, Marisa enjoys learning through podcasts and encouraging students at William & Mary to reach their full potential.",
+    "linkedin": "https://www.linkedin.com/in/marisabrown/",
+    "imageAlias": "brown_headshot",
+    "image": "/assets/images/live-site/clearweb/assets/Marisa_Brown-square-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Melissa Dolph",
+    "role": "Principle Engineer, MITRE",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/melissa-commisso-dolph-9b637729/",
+    "imageAlias": "melissa",
+    "image": "/assets/images/live-site/clearweb/assets/Melissa_Dolph-square-headshot.jpg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Jennifer Dorand",
+    "role": "Senior Medical Physicist, ProCure Treatment Centers, Inc",
+    "bio": "Jennifer Dorand is a board-certified medical physicist working in proton therapy since 2017. She is a founding member of the team at the Connecticut Proton Therapy Center in Wallingford, CT, a joint venture between Yale New Haven Health and Hartford HealthCare, opening Fall 2026. After discovering medical physics through a Google search during her undergraduate studies, she developed a passion for outreach and supporting the next generation of medical physicists. In addition to her work in the clinic, she serves on multiple AAPM committees, including the Women’s Professional Subcommittee and the Working Group on Equity, Diversity, and Inclusion Committee Outreach and Social Media. Her desire to help others extends outside of medical physics to patient advocacy for those suffering from inflammatory bowel disease (IBD). Jennifer graduated from William & Mary with a BS in physics in 2009 and received her doctorate in physics at Wake Forest University in 2014. Following her graduate studies, she completed a fellowship in medical physics at the Mayo Clinic.",
+    "linkedin": null,
+    "imageAlias": "dorand_headshot",
+    "image": "/assets/images/live-site/clearweb/home/JED_Headshot_2023.jpg",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Yulia Furletova",
+    "role": "Nuclear Physicist, Jefferson Lab",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/julia-furletova-83330531/",
+    "imageAlias": "yulia",
+    "image": "/assets/images/live-site/clearweb/home/Yulia_Furletova_headshot.jpg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Evalyn Gates",
+    "role": "Adjunct Professor Manager, Case Western University",
+    "bio": "Evalyn Gates is a theoretical physicist and author who has spent most of her research career deep in the cosmos, happily searching for dark matter, dark energy, neutrinos and white dwarfs. She is also passionate about inviting every curious mind on planet Earth to explore the natural world around us, from our own backyards to the most distant galaxies -- and beyond. Her first book, Einstein’s Telescope: The Hunt for Dark Matter and Dark Energy in the Universe, was published by W.W. Norton in February 2009. Her trek through the academic world began at the College of William & Mary where she did her undergraduate work in physics, followed by an interesting detour through biomedical engineering. Unable to resist the call of the subatomic world, she dove back into physics -- earning her Ph.D. at CWRU before moving on to postdoctoral fellowships at Yale University and the University of Chicago, where she eventually joined the research faculty in the Department of Astronomy & Astrophysics and the Kavli Institute for Cosmological Physics. Gates has served as the Assistant Director of the Kavli Institute for Cosmological Physics at the University of Chicago; Executive Director & CEO of the Cleveland Museum of Natural History; and Vice President for Science & Education at Chicago's Adler Planetarium & Astronomy Museum. She is currently an Adjunct Professor of Physics at CWRU and serving on several committees and advisory panels working to address the underrepresentation of women and minorities in science, recognizing that we are missing the ideas, energy and creativity of too many talented individuals who should be encouraged and supported. Evalyn and her husband Eric have three grown children and live in the Rocky Mountains of Colorado where they spend as much time as possible hiking, skiing and exploring this incredible wilderness. She has summited 9 of Colorado's 14ers ... and counting.",
+    "linkedin": "https://www.linkedin.com/in/evalyn-gates/",
+    "imageAlias": "gates_headshot",
+    "image": "/assets/images/live-site/clearweb/home/gates_headshot.png",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Kristina Kruglyak",
+    "role": "Consultant, Self-Employed",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/kristinakruglyak/",
+    "imageAlias": "kristina",
+    "image": "/assets/images/live-site/clearweb/assets/Kristina_Kruglyak-square-headshot.jpg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Julia M. Phillips",
+    "role": "Executive Emeritus, Sandia National Laboratories, Retired",
+    "bio": "Julia M. Phillips retired from Sandia National Laboratories in 2015. She culminated her Sandia career by serving as Vice President and Chief Technology Officer. Prior to her time at Sandia, she spent 14 years at AT&T Bell Laboratories where she performed leading edge research in thin film epitaxial electronic materials and complex oxides. She received a B.S. degree in physics from the College of William and Mary and a Ph.D. in applied physics from Yale University. Phillips is a member of the National Academy of Engineering (NAE) and fellow of the American Academy of Arts and Sciences, Materials Research Society, American Association for the Advancement of Science (AAAS), and the American Physical Society (APS). She received the George E. Pake Prize from APS “for her leadership and pioneering research in materials physics for industrial and national security applications.” She has authored more than 100 journal publications and holds five patents. Phillips was appointed a member of the National Science Board in 2016 and reappointed to the class of 2022-2028.",
+    "linkedin": "https://www.linkedin.com/in/julia-phillips-8b08316/",
+    "imageAlias": "philips_headshot",
+    "image": "/assets/images/live-site/clearweb/home/philips_headshot.png",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Holly Szumila-Vance",
+    "role": "Hall A/C Staff Scientist, Jefferson Lab",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/holly-szumila-vance-6b815b126/",
+    "imageAlias": "holly",
+    "image": "/assets/images/live-site/clearweb/assets/Holly_Szumila-Vance-square-headshot.jpg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Karen Taminger",
+    "role": "Materials Research Engineer, NASA Langley Research Center",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/karen-taminger-5920761/",
+    "imageAlias": "karen",
+    "image": "/assets/images/live-site/clearweb/assets/Karen_Taminger-square-headshot.jpg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Amber Ulbrich",
+    "role": "Physicist, Quantum Technologies, Department of Defense",
+    "bio": "Dr. Ulbrich is an analyst studying quantum information science and technologies with the Department of Defense, with two decades of involvement in the field. She has worked in a variety of positions, including Senior Intelligence Officer for Technologies and Associate Chief Scientist, and as the Army representative to the Scientific and Technical Intelligence Committee (STIC). Her distinctions include the Exceptional Performance Award, signed by Ambassador Negroponte, Director of National Intelligence; the Joan A. Dempsey Award for Mentorship under the Intelligence and National Security Alliance; Civilian of the Year Award and Commander’s Award for Civilian Service; and three Distinguished Analysis Awards from the Deputy Director of National Intelligence for Analysis. She was a contributing author for the October 2021 White House report The Role of International Talent in Quantum Information Science (posted at www.quantum.gov). Dr. Ulbrich graduated magna cum laude with a Bachelor of Science in physics with a minor in mathematics from the College of William and Mary and received a Doctoral degree in physics from the University of Virginia. She has professional certifications in Quantum Computing Fundamentals (MIT), Quantum Computing Realities (MIT), and Machine Learning (Stanford) and is proficient in German and Spanish. In her free time, Amber enjoys spending time with her family and performing locally as a singer, piano player, and songwriter with her band Three To Go (ThreeToGo on Facebook). She has two albums of original music released under prior band Burley Maple and one under Take Two.",
+    "linkedin": "https://www.linkedin.com/in/amber-ulbrich-046a2b38/",
+    "imageAlias": "amber",
+    "image": "/assets/images/live-site/clearweb/assets/Amber_Ulbrich-square-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Liz Ward",
+    "role": "Principle Investigator, NASA Langley Research Center x CNU",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/lizward/",
+    "imageAlias": "ward_headshot",
+    "image": "/assets/images/live-site/clearweb/home/ward_headshot.png",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Aye Myat Khine Win",
+    "role": "Senior Engineer, Micron Technology",
+    "bio": "Win was born and raised in Yangon, Myanmar. Currently living in Singapore since 2007. Received B.Eng degree in Engineering Product Development (Magna Cum Laude) specialized in Mechanical Engineering Track from Singapore University of Technology and Design (Singapore, Singapore). I am currently working on Environmental Sustainability Emission and cost savings programs. Apart from work, I like to practice yoga. I also enjoy learning new language. Currently I can speak 4 languages (Myanmar, English, Mandarin, and Japanese). I like traveling and had been to a few countries. All these experiences make me able to adapt easily and also I could share my life journey with my mentees.",
+    "linkedin": "https://www.linkedin.com/in/aye-myat-khine-win-2412236b/?originalSubdomain=sg",
+    "imageAlias": "aye",
+    "image": "/assets/images/live-site/clearweb/home/Aye_Myat_headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Yang Xu",
+    "role": "Senior Research Scientist, Luna Innovations",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/yang-xu-205459b4/",
+    "imageAlias": "xu_headshot",
+    "image": "/assets/images/live-site/clearweb/assets/Yang_Xu_headshot.jpg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Marlyn Andino",
+    "role": "Research Aerospace Engineer, NASA Langley Research Center",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/marlynandino/",
+    "imageAlias": "marlynAndino",
+    "image": "/assets/images/live-site/clearweb/home/mentors/MarlynAndino.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Irina Winter Arboleda",
+    "role": "Internal Model Auditor, Fannie Mae",
+    "bio": "",
+    "linkedin": null,
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Vanessa Aubuchon",
+    "role": "Associate Project Manager, NASA Langley Research Center",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/vanessa-aubuchon-a98b4b54/",
+    "imageAlias": "vanessaAubuchon",
+    "image": "/assets/images/live-site/clearweb/home/mentors/VanessaAubuchon.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Kristen Bishop",
+    "role": "Research Staff Member, Institute for Defense Analysis",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/kristen-bishop-41468b78/",
+    "imageAlias": "kristenBishop",
+    "image": "/assets/images/live-site/clearweb/home/mentors/KristenBishop.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Brandi Clark",
+    "role": "R&D Manager, Savannah River National Laboratory",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/clarkbrandi/",
+    "imageAlias": "brandiClark",
+    "image": "/assets/images/live-site/clearweb/home/mentors/BrandiClark.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Karina Colotl",
+    "role": "Process Integration Engineer, Micron Technology",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/karinacolotl/",
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Jill Dahlburg",
+    "role": "Member/Writer, NASA Mission Critical Workforce, Infrastructure, and Technology/Self-Employed",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/jill-dahlburg-a4a6088/",
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Julissa de Guzman",
+    "role": "Senior Software Engineer, BAE Systems",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/julissa-de-guzman-3808b4b1/",
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Barbara Hilton",
+    "role": "Program Executive for the Planetary Science Division, NASA HQ Science Mission Directorate",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/barbara-bendkowski-hilton-22925a85/",
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Jennifer Hite",
+    "role": "Senior Materials Research Engineer, US Naval Research Laboratory",
+    "bio": "",
+    "linkedin": null,
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Jennifer Inman",
+    "role": "SCIFLI Project Manager, NASA Langley Research Center",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/jennifer-inman-2ba300276/",
+    "imageAlias": "jenniferInman",
+    "image": "/assets/images/live-site/clearweb/home/mentors/JenniferInman.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Gabrielle Jawer",
+    "role": "Ting Operations Engineer, Whisker Labs",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/gabrielle-jawer-760a40142/",
+    "imageAlias": "gabrielleJawer",
+    "image": "/assets/images/live-site/clearweb/home/mentors/GabrielleJawer.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Hee Yeon Keil",
+    "role": "Mechanical Engineer, Athena Theatrical",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/hee-yeon-keil-2a4465116/",
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Tammi Klaco",
+    "role": "Independent Consultant, Klaco Ventures - Freelance",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/tammi-klaco-761a43b/",
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Mystique Owens",
+    "role": "Mechanical Engineer I, Psionic Technologies",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/renee-mystique-owens/",
+    "imageAlias": "mystiqueOwens",
+    "image": "/assets/images/live-site/clearweb/home/mentors/MystiqueOwens.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Sanghwa Park",
+    "role": "Staff Scientist, Jefferson Lab",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/sanghwa-park-2a71a7bb/",
+    "imageAlias": "sanghwaPark",
+    "image": "/assets/images/live-site/clearweb/home/mentors/SanghwaPark.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Sandra Philpott",
+    "role": "Computer Scientist, Jefferson Lab",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/sandra-philpott-43690b1b/",
+    "imageAlias": "sandraPhilpott",
+    "image": "/assets/images/live-site/clearweb/home/mentors/SandraPhilpott.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "LeAnn Raczkowski",
+    "role": "Program Engineer Manager, BAE Systems",
+    "bio": "",
+    "linkedin": null,
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Carrie Rhoades",
+    "role": "Program Director, Advanced Solutions, Calspan",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/planepanther/",
+    "imageAlias": "carrieRhoades",
+    "image": "/assets/images/live-site/clearweb/home/mentors/CarrieRhoades.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Laura Treider",
+    "role": "PYE Lead Senior Engineer, Micron Technology",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/laura-treider/",
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Brenda VanMil",
+    "role": "Physicist, US Army Research Laboratory",
+    "bio": "",
+    "linkedin": "https://www.linkedin.com/in/brenda-vanmil-0022a436/",
+    "imageAlias": "brendaVanMill",
+    "image": "/assets/images/live-site/clearweb/home/mentors/BrendaVanMil.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Charlene Zhang",
+    "role": "Senior Software Engineer, Microsoft",
+    "bio": "",
+    "linkedin": null,
+    "imageAlias": "blank_profile",
+    "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
+    "hasBio": false,
+    "hasLongBio": false
+  },
+  {
+    "name": "Claudia Smith",
+    "role": "Associate Software Engineer, Capital One",
+    "bio": "Claudia graduated from William & Mary EPAD in 2024. After working on a software-related capstone project her senior year, she was inspired to begin her career at Capital One as an associate software engineer. In the year between graduation and landing her first full-time job, she worked part time as a K-12 tutor and a mechanical engineering intern. In her free time, she enjoys running, playing volleyball, baking, and hanging out with her cat.",
+    "linkedin": "https://www.linkedin.com/in/claudia-smith1/",
+    "imageAlias": "claudiaSmith",
+    "image": "/assets/images/live-site/clearweb/home/mentors/Claudia_Smith.jpg",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Haley Bauser",
+    "role": "Product Engineering Manager, Varda Space Industries",
+    "bio": "Haley is a Product Engineering Manager at Varda Space Industries where she leads the team responsible for developing drug crystallization processes for microgravity and hypergravity. Haley served as the pharma lead for Varda's first mission during which Varda's microgravity platform successfully executed the crystallization of ritonavir's metastable polymorph, then autonomously returned the crystalline API to Earth. Prior to her role at Varda, Haley received her Ph.D. in Applied Physics (2022) from Caltech where she worked in Harry Atwater’s lab. Her thesis focused on the design and fabrication of nanophotonic structures for scalable photovoltaics and solar fuels. Haley received her B.S. in Physics from William & Mary (2016). During her time at William & Mary, Haley worked in Irina Novikova’s lab where she completed an Honors Thesis on generating entangled Bell states via Four Wave Mixing.",
+    "linkedin": "https://www.linkedin.com/in/haley-bauser-a25612195/",
+    "imageAlias": "haleyBauser",
+    "image": "/assets/images/live-site/clearweb/home/mentors/Haley_Bauser.jpg",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Mi Zhang",
+    "role": "Optical Engineer, KLA Corporation",
+    "bio": "I got my Ph.D. in Physics from William & Mary, where I studied experimental quantum optics with Dr. Eugeniy E. Mikhailov. After graduation, I joined the semiconductor industry and now works as an Optical Engineer at KLA Corporation in Silicon Valley. My work focuses on developing advanced optical systems for semiconductor inspection tools.I’m passionate about bridging scientific research with real-world technology and enjoy helping students explore how a physics background can lead to diverse career paths. Outside of work, I love baking and exploring new cultures through travel and food. I’m excited to reconnect with the W&M community and look forward to mentoring the next generation of scientists and engineers.",
+    "linkedin": "https://www.linkedin.com/in/mi-zhang-77510939/",
+    "imageAlias": "miZhang",
+    "image": "/assets/images/live-site/clearweb/home/mentors/Mi_Zhang.jpg",
+    "hasBio": true,
+    "hasLongBio": true
+  },
+  {
+    "name": "Sucheta Jawalkar",
+    "role": "Physicist, AI/ML-at-Scale Expert",
+    "bio": "Sucheta is an experienced technical leader in AI-at-scale, with domain expertise in retail, healthcare, and federal government research. She has her Ph.D. in experimental Physics from William and Mary, was a post-doctoral fellow at Duke, and lecturer at Santa Clara University. She transitioned from academia to roles in Data science at Insight Data Science, Walmart Labs, and CVS Health. Sucheta's publications span traditional academic journals, corporate technical blogs and as a consultant on the CDC Covid Response team. Sucheta is currently self-employed and excited to work with students at W&M who may be interested in exploring careers outside traditional academia!",
+    "linkedin": "https://www.linkedin.com/in/suchetajawalkar/",
+    "imageAlias": "sucheta",
+    "image": "/assets/images/live-site/clearweb/home/mentors/SuchetaHeadshot.png",
+    "hasBio": true,
+    "hasLongBio": true
   }
 ]

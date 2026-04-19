@@ -1,14 +1,200 @@
 [
   {
+    "id": "69c5e75df0aa1403f2ef581b",
     "title": "CDSP Article About MCP",
-    "date": "2026-03-26",
-    "summary": "A public article spotlighting MCP and its mentorship impact.",
-    "sourceUrl": "https://cdsp.wm.edu/about/news-events/news/you-belong-here-mentorship-program-empowers-female-physics-students.php"
+    "date": "2026-03-26T04:00:00.000Z",
+    "bodyMarkdown": "# 'You Belong Here': Mentorship Program Empowers Female Physics Students\n\n*by Randy Ready | March 24, 2026*\n\n---\n\nWhen a talented young physics student walked into Professor Ran Yang's office in 2021 and wondered whether she belonged in the field, the moment lingered.\n\n\"She said, 'I love this, but I don't know if there's a place for me; you can't be what you can't see,'\" recalled Yang. \"She couldn't see herself in physics, not because she lacked talent, but because no one could show her what was possible.\"\n\nThat conversation sparked what would become [*Mentoring for Careers in Physics*](https://mcp.physics.wm.edu/) (MCP), an initiative that connects undergraduate women in physics with professional female mentors working across industry, research and government.\n\nFive years later, the program has supported more than 120 students, pairing them with mentors who are scientists, engineers, and executives in organizations like NASA, Jefferson Lab, Micron, and Microsoft.\n\n---\n\n## 'After every conversation, I walk away a little bit taller'\n\nSolana Neeley '27, a physics major who is concentrating in Engineering Physics and Applied Design, said being paired with Jennifer Inman, a William & Mary alum and a project manager for NASA, not only provided the resources to further her career, but a sense of belonging and direction that has shaped her path as a woman in science.\n\n\"I met Jennifer when I was a sophomore and I had just started my EPAD journey,\" she said. \"At the time, I was really insecure and unsure of myself – constantly questioning whether I truly belonged in physics and if it was something I could really do.\"\n\nFrom their first meeting, Jennifer created space for both professional guidance and personal connection. They discussed coursework and career paths, but also family, ambitions, and the everyday experiences of being a woman in a demanding field.\n\n\"She consistently encourages me to believe in my abilities,\" Neeley said. \"After every conversation, I walk away a little bit taller, thinking, maybe this is really for me – and I can do this.\"\n\nFor Inman, that kind of mentorship is deeply personal, rooted in her own experience and a desire to provide the guidance she lacked.\n\n\"I had a lot of misunderstandings and misperceptions about what was possible after graduation. I expected the path to be paved, but instead it felt like I was given a machete,\" stated Inman. \"I think I maybe vicariously am trying to reach back to some former version of myself and say hey, here are all things I wish I had known.\"\n\nYang said mentors like Inman are the heart of MCP, and the number of mentors keep growing, with most coming back to take on new mentees.\n\n\"These women don't come back for recognition, they came back because they remember the loneliness and they refuse to let another generation feel that,\" stated Yang. \"That is what MCP is – it's a promise passed from one generation of women to another.\"\n\nJulia Rodrigues '26, a program assistant for MCP and physics major, said having someone to look up to and lean on for advice helps students navigate challenging times.\n\n\"Seeing someone who looks like you is really meaningful,\" said Rodrigues. \"In those hard moments, where you're working a problem set and you're like, I don't know if I can do this, and you remember that you do have the support. It makes difference.\"\n\n---\n\n## A ripple effect across generations\n\nOne of the early champions of the MCP program was the [Society of 1918](https://advancement.wm.edu/volunteer-leadership/society-of-1918/), who was founded during the centennial celebration of the admission of women to William & Mary.\n\n\"They didn't back us because we had proof it would work,\" said Yang. \"They backed us because they remembered. They remembered what it feels like to be that student who couldn't see herself.\"\n\nAmanda Lindbom, Associate Director of Alumni Inclusive Excellence, said MCP embodies the mission of the Society of 1918 by strengthening connections between alumni and students and ensuring that women at William & Mary have support as they navigate their careers.\n\n\"Women supporting women shouldn't just be a catchy slogan — it's a strategy,\" said Lindbom. \"When women choose to invest in women through mentorship, philanthropy or leadership, the impact ripples outward across disciplines, careers and generations.\"\n\nLindbom said that while the students are the beneficiaries of the mentors' time, expertise, and networks, she reminds them that they are the future stewards of the program.\n\n\"I think one of the most powerful things about women's philanthropy is that it multiplies,\" stated Lindbom. \"Mentee will become an alumna, alumna will become a mentor, and a mentor becomes a philanthropist, and the cycle continues.\"\n\n---\n\n## 'You belong here'\n\nWhile MCP is celebrating their fifth anniversary, Yang said their work is only the beginning. The dedication of mentors will help ensure that no student walks into her office feeling as if she doesn't belong.\n\n\"To our mentors, you are changing lives — do not ever doubt it,\" Yang said. \"To our students, you belong here. Physics has a place for someone exactly like you.\"\n\nCheck out the original article here: [You Belong Here: Mentorship Program Empowers Female Physics Students](https://cdsp.wm.edu/about/news-events/news/you-belong-here-mentorship-program-empowers-female-physics-students.php)",
+    "imageUrl": "https://cdsp.wm.edu/about/news-events/news/news-images/mcp-reception2.jpg",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/69c5e75df0aa1403f2ef581b",
+    "links": [
+      "https://mcp.physics.wm.edu/",
+      "https://advancement.wm.edu/volunteer-leadership/society-of-1918/",
+      "https://cdsp.wm.edu/about/news-events/news/you-belong-here-mentorship-program-empowers-female-physics-students.php"
+    ],
+    "localImage": "/assets/images/live-site/news/69c5e75df0aa1403f2ef581b-cdsp-article-about-mcp.jpg",
+    "imageDownloadStatus": "downloaded"
   },
   {
+    "id": "69c1fe0980bb0df06c0c6c96",
     "title": "MCP Annual Kickoff",
-    "date": "2026-02-27",
-    "summary": "A sample starter record showing how public news can live in JSON.",
-    "sourceUrl": "https://mcp.physics.wm.edu/"
+    "date": "2026-02-27T05:00:00.000Z",
+    "bodyMarkdown": "# MCP Annunal Kickoff\n\n**February 27th, 2026**",
+    "imageUrl": "https://mcp.physics.wm.edu/static/media/annual_celebration.867e8b68b97aab71bd5f.png",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/69c1fe0980bb0df06c0c6c96",
+    "links": [],
+    "localImage": "/assets/images/live-site/news/69c1fe0980bb0df06c0c6c96-mcp-annual-kickoff.png",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "691395bd217bfde734182f80",
+    "title": "New Tribe Funding Initiative",
+    "date": "2025-11-11T19:59:57.052Z",
+    "bodyMarkdown": "![Header](https://i.vimeocdn.com/video/2077807422-c5dc3ae0a78167625a7058ad3ffcda8e9aeb7830bfdd8476510cd108d808b043-d?mw=1920&mh=1090&q=70)\n\n# Mentoring for Careers in Physics - Green Space Renovation\n- This initiative runs until **December 19th**\n- The goal of our project is to transform an existing study lounge on the 2nd floor of Small Hall into a regenerative, green and sensory-friendly quiet space for all undergraduate and graduate students.\n\n- Research consistently shows that access to natural, biophilic environments can reduce stress, improve focus and enhance overall well-being — key outcomes that directly support student success and retention. By redesigning this space with sustainable principles, we aim to create an inclusive environment that fosters both academic productivity and emotional restoration.\n\n- Our redesign will prioritize ethically sourced, environmentally responsible furniture from authorized suppliers and incorporate live plants to introduce calming natural elements. To promote community engagement and long-term sustainability, we will implement a plant adoption and donation program, allowing students to contribute to and care for the space. This initiative responds to strong student interest in green, wellness-oriented spaces on campus and will serve as a model for future sustainable renovations at W&M.\n\n- The funds raised would specifically be used for Mentoring for Careers in Physics and although the priority of this project is to transform this space all money can also be used to provide support to the mentoring for careers in physics fund at William & Mary.\n\n# Interested in **donating**? [Donate to this MCP initiative here](https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation)",
+    "imageUrl": "https://i.vimeocdn.com/video/2077807422-c5dc3ae0a78167625a7058ad3ffcda8e9aeb7830bfdd8476510cd108d808b043-d?mw=1920&mh=1090&q=70",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/691395bd217bfde734182f80",
+    "links": [
+      "https://i.vimeocdn.com/video/2077807422-c5dc3ae0a78167625a7058ad3ffcda8e9aeb7830bfdd8476510cd108d808b043-d?mw=1920&mh=1090&q=70",
+      "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation"
+    ],
+    "localImage": "/assets/images/live-site/news/691395bd217bfde734182f80-new-tribe-funding-initiative.jpg",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "687fa8350b331c3973be8289",
+    "title": "APS Conference for Graduate Women & Gender Minorities in Physics",
+    "date": "2025-07-22T15:03:17.756Z",
+    "bodyMarkdown": "![Conference Header](https://info.aps.org/l/640833/2024-03-12/2r3gkm/640833/1710265335CDIPNSZj/GenderInclusiveComm_EmailHeader_600_x_200.jpg)\n\n# Conference for Graduate Women and Gender Minorities in Physics\n\n**September 25-26, 2025**  \nGrand Hyatt Hotel, Washington, D.C.\n\n![APS Logo](https://info.aps.org/l/640833/2022-10-03/27cxyf/640833/1664823622NsCNcwAh/APSLogo_Tag_RGB.png)\n\n## Apply Today!\n\nHere's a reminder to encourage students and postdocs to apply to the [Conference for Graduate Women and Gender Minorities in Physics](https://apsphysics.fillout.com/t/qGVLyebwkHus) to create next-generation leaders. \n\n### What Attendees Will Experience:\n\n- Build relationships to supercharge future research and collaborations\n- Receive mentor, leadership, and professional development training\n- Develop skills to be an effective leader in the STEM workforce\n\n*This program is open to interested individuals of all gender identities and expressions.*\n\n## Program\n\nGrad students and postdocs will participate in dynamic, discussion-driven sessions and workshops designed to support their growth as a leader in physics. The program will explore topics related to:\n\n- Self-advocacy\n- Inclusive leadership\n- Professional resilience\n- Navigating academic culture\n\nSession details will be announced soon.\n\n## Eligibility\n\nConference programming will be tailored for all graduate students and postdocs in physics. We encourage the participation of women, gender diverse individuals, and those who may not always see themselves represented in STEM to attend. \n\n**Please note:** The Conference for Graduate Women and Gender Minorities is open to only those who currently reside in the U.S.\n\n## Most Costs Are Covered\n\nAPS is invested in future leaders' success!\n\n**What's Included:**\n- All meals during the conference will be provided\n- Hotel reservations for two nights at the Grand Hyatt Washington for accepted participants, will be made and paid for by APS\n\n**What Participants Pay:**\n- Travel costs\n- $45 non-refundable registration fee\n\n## Important Deadline\n\n**Applications are due by July 22, 2025**\n\nFor questions, email [gender@aps.org](mailto:gender@aps.org)\n\n---\n\n*© 2025 American Physical Society | All rights reserved*",
+    "imageUrl": "https://storage.pardot.com/640833/1664823622NsCNcwAh/APSLogo_Tag_RGB.png",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/687fa8350b331c3973be8289",
+    "links": [
+      "https://info.aps.org/l/640833/2024-03-12/2r3gkm/640833/1710265335CDIPNSZj/GenderInclusiveComm_EmailHeader_600_x_200.jpg",
+      "https://info.aps.org/l/640833/2022-10-03/27cxyf/640833/1664823622NsCNcwAh/APSLogo_Tag_RGB.png",
+      "https://apsphysics.fillout.com/t/qGVLyebwkHus"
+    ],
+    "localImage": "/assets/images/live-site/news/687fa8350b331c3973be8289-aps-conference-for-graduate-women-gender-minorities-in-physics.png",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "680c1e3a2162b543d6d3469d",
+    "title": "NASA Trip 4/25",
+    "date": "2025-04-25T04:00:00.000Z",
+    "bodyMarkdown": "Tour wind tunnels, gantry systems, and more!\n![image info](https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg)",
+    "imageUrl": "https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/680c1e3a2162b543d6d3469d",
+    "links": [
+      "https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg"
+    ],
+    "localImage": "/assets/images/live-site/news/680c1e3a2162b543d6d3469d-nasa-trip-4-25.svg",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "670abcd4c97b090012ff92d9",
+    "title": "October Updates",
+    "date": "2024-10-12T18:15:00.000Z",
+    "bodyMarkdown": "![Mentee Info](https://i.imgur.com/ZvAImGz.png)\n![Mentee Info](https://i.imgur.com/hwabqSo.png)\n![Mentee Info](https://i.imgur.com/7LbT1Mw.png)",
+    "imageUrl": "https://i.imgur.com/Qr6Uzcg.png",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/670abcd4c97b090012ff92d9",
+    "links": [
+      "https://i.imgur.com/ZvAImGz.png",
+      "https://i.imgur.com/hwabqSo.png",
+      "https://i.imgur.com/7LbT1Mw.png"
+    ],
+    "localImage": "/assets/images/live-site/news/670abcd4c97b090012ff92d9-october-updates.png",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "66fef17178d9860012185642",
+    "title": "Mocktail Welcome Party",
+    "date": "2024-10-03T19:33:05.815Z",
+    "bodyMarkdown": "Here are some pictures from our Mocktails & Mixer Welcome Party with Women in Physics. It was so great to see everyone, and we look forward to more fun events in the future!\n\n![image info](https://i.imgur.com/CMJqcdt.jpeg)\n![image info](https://i.imgur.com/mGRhHt5.jpeg)\n![image info](https://i.imgur.com/sKPaxpd.jpeg)\n![image info](https://i.imgur.com/fYWUVHx.jpeg)\n![image info](https://i.imgur.com/UF8sTHe.jpeg)\n![image info](https://i.imgur.com/gjHBZ3N.jpeg)\n![image info](https://i.imgur.com/9uoGDqr.jpeg)\n![image info](https://i.imgur.com/CPFQFMu.jpeg)",
+    "imageUrl": "https://i.imgur.com/zp3k9e7.jpeg",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/66fef17178d9860012185642",
+    "links": [
+      "https://i.imgur.com/CMJqcdt.jpeg",
+      "https://i.imgur.com/mGRhHt5.jpeg",
+      "https://i.imgur.com/sKPaxpd.jpeg",
+      "https://i.imgur.com/fYWUVHx.jpeg",
+      "https://i.imgur.com/UF8sTHe.jpeg",
+      "https://i.imgur.com/gjHBZ3N.jpeg",
+      "https://i.imgur.com/9uoGDqr.jpeg",
+      "https://i.imgur.com/CPFQFMu.jpeg"
+    ],
+    "localImage": "/assets/images/live-site/news/66fef17178d9860012185642-mocktail-welcome-party.jpeg",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "65dd762dd853c500122d7f14",
+    "title": "MCP Resource",
+    "date": "2024-02-27T05:00:00.000Z",
+    "bodyMarkdown": "<iframe width=\"800\" height=\"1500\" src=\"https://drive.google.com/file/d/1Cd2jDJRGfCX6VqCamstN5HHudCfW3rid/preview?usp=sharing\" ></iframe>",
+    "imageUrl": "https://drive.google.com/file/d/1Cd2jDJRGfCX6VqCamstN5HHudCfW3rid/preview?usp=sharing",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/65dd762dd853c500122d7f14",
+    "links": [],
+    "localImage": null,
+    "imageDownloadStatus": "skipped-text/html; charset=utf-8"
+  },
+  {
+    "id": "65de087edc27a90012db553d",
+    "title": "W&M student co-authors prestigious astrophysics study",
+    "date": "2024-02-27T05:00:00.000Z",
+    "bodyMarkdown": "**Navigating a future studying stars: W&M student co-authors prestigious astrophysics study**\nRead the article in *[W&M News](https://news.wm.edu/2024/02/21/navigating-a-future-studying-stars-wm-student-co-authors-prestigious-astrophysics-study/?utm_source=wmdigest&utm_medium=email&utm_campaign=news/)*",
+    "imageUrl": "https://wmit-news-prod.s3.amazonaws.com/wp-content/uploads/2024/02/21095230/RahmanComputer.jpg",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/65de087edc27a90012db553d",
+    "links": [
+      "https://news.wm.edu/2024/02/21/navigating-a-future-studying-stars-wm-student-co-authors-prestigious-astrophysics-study/?utm_source=wmdigest&utm_medium=email&utm_campaign=news/"
+    ],
+    "localImage": "/assets/images/live-site/news/65de087edc27a90012db553d-w-m-student-co-authors-prestigious-astrophysics-study.jpg",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "6568f8cb8b32b7004935aa4e",
+    "title": "MCP Launch Event",
+    "date": "2023-11-30T05:00:00.000Z",
+    "bodyMarkdown": "<img src = \"https://i.postimg.cc/CxVpGP0q/Red-and-Yellow-Illustrated-Event-Classroom-Announcement-5.png\" width=\"500\" height=\"500\"></img>",
+    "imageUrl": "https://i.postimg.cc/CxVpGP0q/Red-and-Yellow-Illustrated-Event-Classroom-Announcement-5.png",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/6568f8cb8b32b7004935aa4e",
+    "links": [],
+    "localImage": "/assets/images/live-site/news/6568f8cb8b32b7004935aa4e-mcp-launch-event.png",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "65638d268b32b7004935aa09",
+    "title": "Applications & Opportunities Workshop",
+    "date": "2023-11-26T05:00:00.000Z",
+    "bodyMarkdown": "<img src = \"https://i.postimg.cc/vZFfsPNh/MCP-Workshop-Insta.png\" width=\"500\" height=\"500\"></img>",
+    "imageUrl": "https://i.postimg.cc/vZFfsPNh/MCP-Workshop-Insta.png",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/65638d268b32b7004935aa09",
+    "links": [],
+    "localImage": "/assets/images/live-site/news/65638d268b32b7004935aa09-applications-opportunities-workshop.png",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "6503c119e87fa833128e4ea7",
+    "title": "W&M MCP Program Flyer",
+    "date": "2023-09-14T04:00:00.000Z",
+    "bodyMarkdown": "<img src = \"https://i.postimg.cc/8cyyYcSS/W-M-MCP-Program.png\" width=\"500\" height=\"500\"></img>",
+    "imageUrl": "https://i.postimg.cc/8cyyYcSS/W-M-MCP-Program.png",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/6503c119e87fa833128e4ea7",
+    "links": [],
+    "localImage": "/assets/images/live-site/news/6503c119e87fa833128e4ea7-w-m-mcp-program-flyer.png",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "638b93baa0c518c75d02f19f",
+    "title": "W&M News Article ",
+    "date": "2022-10-06T04:00:00.000Z",
+    "bodyMarkdown": "**Mentoring for Careers in Physics matches undergraduate women with established professionals**\nRead the article in *[W&M News](https://news.wm.edu/2022/10/06/mentoring-for-careers-in-physics-matches-undergraduate-women-with-established-professionals/)*",
+    "imageUrl": "https://wmit-news-prod.s3.amazonaws.com/wp-content/uploads/2022/10/06095008/mentor_lead.jpg",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/638b93baa0c518c75d02f19f",
+    "links": [
+      "https://news.wm.edu/2022/10/06/mentoring-for-careers-in-physics-matches-undergraduate-women-with-established-professionals/"
+    ],
+    "localImage": "/assets/images/live-site/news/638b93baa0c518c75d02f19f-w-m-news-article.jpg",
+    "imageDownloadStatus": "downloaded"
+  },
+  {
+    "id": "62bf1761c146ff8705094f4a",
+    "title": "MCP Fall Kickoff Video",
+    "date": "2022-06-27T00:00:00.000Z",
+    "bodyMarkdown": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/TqgStDcsD7g\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n\nThe Mentoring for careers in physics program kicked off our year at an event in December.\n\nWatch here to see some of the highlights and to learn more about the program.",
+    "imageUrl": "https://flathatnews.com/wp-content/uploads/2019/09/40630244100_d7714973e7_b.jpg",
+    "isClearweb": true,
+    "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/62bf1761c146ff8705094f4a",
+    "links": [],
+    "localImage": "/assets/images/live-site/news/62bf1761c146ff8705094f4a-mcp-fall-kickoff-video.jpg",
+    "imageDownloadStatus": "downloaded"
   }
 ]

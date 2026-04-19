@@ -1,6 +1,168 @@
 {
   "title": "Mentoring for Careers in Physics",
-  "summary": "A simpler public site for MCP at William & Mary, built for preservation now and flexibility later.",
+  "summary": "A one-to-one professional mentorship program for undergraduate students in physics and related STEM pathways at William & Mary.",
+  "mission": "Mentoring for Careers in Physics provides one-on-one professional mentoring for undergraduate students majoring in physics, or thinking about careers in STEM (Science, Technology, Engineering, and Mathematics). Our mentors work with students to cultivate a rewarding and educational experience by sharing their professional insights and experiences, providing career guidance and networking opportunities, and helping students identify and plan their future STEM careers. We welcome undergraduate students from gender minorities in physics.",
+  "story": "MCP was founded by Ran Yang and Chris Monahan, inspired by several students’ experience “…the accommodations and support you displayed towards our class meant the world to me and very much helped solidify my feeling secure as a woman in the field ”. Our pilot project launched on December 10, 2021.",
+  "supportersText": "Physics Department and The Society of 1918 . We are collaborating with Professor Pamela Eddy and Ph.D. student Jenny Carlos of the School of Education. The MCP website is made possible by a generous IDEA grant from the Diversity Endowment through the Office of Diversity & Inclusion.",
   "contactEmail": "mcp.superuser@gmail.com",
-  "interestFormUrl": "https://forms.gle/zkuoy8HGdec81Y5o8"
+  "interestFormUrl": "https://forms.gle/zkuoy8HGdec81Y5o8",
+  "menteeInterestFormUrl": "https://forms.gle/zkuoy8HGdec81Y5o8",
+  "mentorInterestFormUrl": "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
+  "givingUrl": "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
+  "socialLinks": [
+    "https://www.instagram.com/wm_mcp",
+    "https://www.linkedin.com/company/wmmcp",
+    "https://twitter.com/wm_mcp",
+    "https://youtu.be/TqgStDcsD7g"
+  ],
+  "publicRoutes": [
+    "/",
+    "/contact",
+    "/events/:eventName",
+    "/interest",
+    "/mentees",
+    "/mentors",
+    "/news",
+    "/privacypolicy",
+    "/retired"
+  ],
+  "publicPages": [
+    "/",
+    "/contact",
+    "/events/12-9-22",
+    "/events/:eventName",
+    "/interest",
+    "/mentees",
+    "/mentors",
+    "/news",
+    "/privacypolicy",
+    "/retired"
+  ],
+  "portalRoutes": [
+    "/portal/dashboard",
+    "/portal/login",
+    "/portal/register"
+  ],
+  "pageLinks": [
+    {
+      "url": "https://advancement.wm.edu/volunteer-leadership/society-of-1918/about/index.php"
+    },
+    {
+      "url": "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation"
+    },
+    {
+      "url": "https://forms.gle/fgZDYsyf5R3JFMtX8"
+    },
+    {
+      "url": "https://forms.gle/snFdxAJYhdqCeTiPA"
+    },
+    {
+      "url": "https://mcp.physics.wm.edu/contact"
+    },
+    {
+      "url": "https://mcp.physics.wm.edu/interest"
+    },
+    {
+      "url": "https://mcp.physics.wm.edu/mentors"
+    },
+    {
+      "url": "https://mcp.physics.wm.edu/news"
+    },
+    {
+      "url": "https://mcp.physics.wm.edu/retired"
+    },
+    {
+      "url": "https://player.vimeo.com/video/1133269106?title=0&byline=0&portrait=0&autoplay=0"
+    },
+    {
+      "url": "https://wmit-news-prod.s3.amazonaws.com/wp-content/uploads/2022/10/06095008/mentor_lead.jpg"
+    },
+    {
+      "url": "https://www.wm.edu/as/physics/"
+    },
+    {
+      "url": "https://www.youtube.com/embed/NavhhyamVLM?si=Syav_cHw1IWpVElQ"
+    },
+    {
+      "url": "https://www.youtube.com/embed/pC6lz-GJFQA?si=26hiVMyfJx7isaY0"
+    },
+    {
+      "url": "https://youtu.be/TqgStDcsD7g"
+    },
+    {
+      "url": "https://twitter.com/wm_mcp"
+    },
+    {
+      "url": "https://www.instagram.com/wm_mcp"
+    },
+    {
+      "url": "https://www.linkedin.com/company/wmmcp"
+    },
+    {
+      "url": "https://lunainc.com/"
+    },
+    {
+      "url": "https://petdx.com/"
+    },
+    {
+      "url": "https://www.honeywell.com/us/en"
+    },
+    {
+      "url": "https://www.ivwatch.com/"
+    },
+    {
+      "url": "https://www.jlab.org/"
+    },
+    {
+      "url": "https://www.micron.com/"
+    },
+    {
+      "url": "https://www.mitre.org/"
+    },
+    {
+      "url": "https://www.nasa.gov/langley/"
+    },
+    {
+      "url": "https://www.tiktok.com/en/"
+    }
+  ],
+  "events": [
+    {
+      "slug": "12-9-22",
+      "route": "/events/12-9-22",
+      "title": "MCP Event Materials: December 9, 2022",
+      "assets": [
+        {
+          "label": "MCP program",
+          "image": "/assets/images/live-site/clearweb/events/dec_9_2022_mcp_programv2.png"
+        },
+        {
+          "label": "MCP seating arrangement",
+          "image": "/assets/images/live-site/clearweb/events/dec_9_2022_mcp_seating_arrangement_v2.png"
+        }
+      ]
+    }
+  ],
+  "downloadedIcons": [
+    {
+      "sourceUrl": "https://mcp.physics.wm.edu/manifest.json",
+      "localPath": "/assets/icons/live-site/manifest.json"
+    },
+    {
+      "sourceUrl": "https://mcp.physics.wm.edu/favicon.ico",
+      "localPath": "/assets/icons/live-site/favicon.ico"
+    },
+    {
+      "sourceUrl": "https://mcp.physics.wm.edu/cypher_white-min.svg",
+      "localPath": "/assets/icons/live-site/cypher_white-min.svg"
+    },
+    {
+      "sourceUrl": "https://mcp.physics.wm.edu/android-chrome-192x192.png",
+      "localPath": "/assets/icons/live-site/android-chrome-192x192.png"
+    },
+    {
+      "sourceUrl": "https://mcp.physics.wm.edu/android-chrome-512x512.png",
+      "localPath": "/assets/icons/live-site/android-chrome-512x512.png"
+    }
+  ]
 }

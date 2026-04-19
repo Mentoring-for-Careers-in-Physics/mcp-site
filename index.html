@@ -7,117 +7,419 @@
       name="description"
       content="Mentoring for Careers in Physics at William & Mary."
     />
-    <title>MCP</title>
+    <title>MCP | Mentoring for Careers in Physics</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  <body data-page="home">
+  <body data-page="home" data-root=".">
     <header class="site-header">
       <div class="shell nav-shell">
-        <a class="brand" href="./index.html">MCP</a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="./index.html">Home</a>
-          <a href="./pages/mentors.html">Mentors</a>
-          <a href="./pages/news.html">News</a>
-          <a href="./pages/contact.html">Contact</a>
+        <a class="brand" href="./index.html" aria-label="MCP home">
+          <span class="brand-mark">MCP</span>
+          <span class="brand-text">
+            <strong>Mentoring for Careers in Physics</strong>
+            <small>William &amp; Mary</small>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          Menu
+        </button>
+
+        <nav class="nav-links" id="site-nav" aria-label="Primary navigation">
+          <a href="./index.html" data-nav-page="home">Home</a>
+          <a href="./pages/mentors.html" data-nav-page="mentors">Mentors</a>
+          <a href="./pages/team.html" data-nav-page="team">Leadership</a>
+          <a href="./pages/news.html" data-nav-page="news">News</a>
+          <a href="./pages/contact.html" data-nav-page="contact">Contact</a>
+          <a class="nav-cta" href="#" data-donate-link>Give</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="shell hero-shell">
-          <div class="hero-copy">
-            <p class="eyebrow">William & Mary</p>
-            <h1 data-site-title>Mentoring for Careers in Physics</h1>
-            <p class="lede" data-site-summary>
-              A redesigned static home for MCP, built to be easy to preserve,
-              easy to host, and ready for future growth.
+      <section class="hero hero--home">
+        <div class="shell hero-grid">
+          <div class="hero-copy" data-reveal>
+            <p class="section-kicker">
+              William &amp; Mary · Career Mentorship in Physics
+            </p>
+            <h1>
+              A mentorship network with the poise of an institution and the
+              energy of a movement.
+            </h1>
+            <p class="hero-summary" data-site-summary>
+              MCP connects undergraduate students with accomplished mentors
+              across research, industry, government, and alumni leadership.
+            </p>
+            <p class="hero-note">
+              Through mentoring, events, and alumnae engagement, MCP helps
+              students build confidence, career fluency, and a durable sense of
+              belonging in STEM.
             </p>
             <div class="hero-actions">
               <a class="button button-primary" href="./pages/mentors.html"
-                >Meet the mentors</a
+                >Explore the mentor network</a
               >
-              <a class="button button-secondary" href="./pages/news.html"
-                >Read the latest</a
+              <a class="button button-secondary" href="./pages/team.html"
+                >Meet the leadership team</a
               >
             </div>
           </div>
 
-          <aside class="hero-panel">
-            <p class="panel-label">Build direction</p>
-            <ul class="panel-list">
-              <li>Static now</li>
-              <li>Content in JSON</li>
-              <li>Database later if needed</li>
-            </ul>
-          </aside>
+          <div class="hero-aside">
+            <section class="statement-card" data-reveal>
+              <p class="micro-label">Program at a glance</p>
+              <div class="metric-grid">
+                <article class="metric">
+                  <strong data-stat-mentors>0</strong>
+                  <span>Mentors</span>
+                </article>
+                <article class="metric">
+                  <strong data-stat-companies>0</strong>
+                  <span>Organizations</span>
+                </article>
+                <article class="metric">
+                  <strong data-stat-news>0</strong>
+                  <span>Public updates</span>
+                </article>
+                <article class="metric">
+                  <strong data-stat-years>0</strong>
+                  <span>Years since launch</span>
+                </article>
+              </div>
+            </section>
+
+            <section class="portrait-cluster" data-featured-portraits data-reveal>
+              <div class="empty-state">Loading featured mentors…</div>
+            </section>
+
+            <blockquote class="pull-quote" data-reveal>
+              Mentorship that helps students see themselves in physics,
+              leadership, and the future of STEM.
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell split-grid">
+          <div class="section-heading" data-reveal>
+            <p class="section-kicker">Why MCP</p>
+            <h2>
+              Elegance, access, and belonging should coexist in every scientific
+              pipeline.
+            </h2>
+          </div>
+
+          <div class="narrative-stack">
+            <article class="narrative-card" data-reveal>
+              <p class="micro-label">Mission</p>
+              <p data-site-mission>
+                MCP provides one-to-one mentoring, professional visibility, and
+                long-horizon support for students finding their way in physics
+                and related STEM careers.
+              </p>
+            </article>
+
+            <article class="narrative-card narrative-card--accent" data-reveal>
+              <p class="micro-label">Story</p>
+              <p data-site-story>
+                The program began with a simple, urgent question: what becomes
+                possible when students can finally see themselves in the field
+                they love?
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell split-grid">
+          <div class="section-heading" data-reveal>
+            <p class="section-kicker">Impact &amp; Stewardship</p>
+            <h2>
+              A small program with a compounding effect on belonging,
+              leadership, and professional access.
+            </h2>
+          </div>
+
+          <div class="narrative-stack">
+            <article class="narrative-card" data-reveal>
+              <p class="micro-label">Momentum</p>
+              <p>
+                William &amp; Mary coverage published on March 24, 2026 reported
+                that MCP had already supported more than 120 students through
+                mentoring, visibility, and career-facing community.
+              </p>
+            </article>
+
+            <article class="narrative-card" data-reveal>
+              <p class="micro-label">Network Effect</p>
+              <p>
+                MCP brings students into conversation with scientists,
+                engineers, executives, and alumnae whose examples widen what
+                students believe is possible after physics.
+              </p>
+            </article>
+
+            <article class="narrative-card narrative-card--accent" data-reveal>
+              <p class="micro-label">Investment Lens</p>
+              <p>
+                Support for MCP translates into visible student confidence,
+                enduring professional relationships, and a program story worthy
+                of institutional pride and philanthropic trust.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="shell">
+          <div class="section-header" data-reveal>
+            <p class="section-kicker">Program Model</p>
+            <h2>Built for career imagination, professional access, and trust.</h2>
+          </div>
+
+          <div class="pillar-grid">
+            <article class="pillar-card" data-reveal>
+              <p class="micro-label">One-to-One</p>
+              <h3>Personal mentorship with real professional proximity</h3>
+              <p>
+                Students are connected with mentors who model many different
+                futures in physics, engineering, computing, research, policy,
+                and leadership.
+              </p>
+            </article>
+
+            <article class="pillar-card" data-reveal>
+              <p class="micro-label">Career Fluency</p>
+              <h3>From coursework to confidence to opportunity</h3>
+              <p>
+                MCP translates scientific training into practical career
+                pathways by opening conversations about roles, workplaces, and
+                choices that students may not otherwise encounter.
+              </p>
+            </article>
+
+            <article class="pillar-card" data-reveal>
+              <p class="micro-label">Intergenerational</p>
+              <h3>A network that compounds over time</h3>
+              <p>
+                Alumnae, professionals, faculty, and student leaders all shape
+                the culture. The result is not a one-off program, but a
+                strengthening ecosystem.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
       <section class="section">
         <div class="shell">
-          <div class="section-heading">
-            <p class="eyebrow">Why This Structure</p>
-            <h2>Preserve the old system while building the new one cleanly</h2>
+          <div class="section-header between" data-reveal>
+            <div>
+              <p class="section-kicker">Engage With MCP</p>
+              <h2>Three clear paths into the program and its future.</h2>
+            </div>
+            <a class="text-link" href="./pages/contact.html">See all contact options</a>
           </div>
 
-          <div class="feature-grid">
-            <article class="feature-card">
-              <h3>Archive First</h3>
+          <div class="contact-grid">
+            <article class="contact-card" data-reveal>
+              <p class="micro-label">For Students</p>
+              <h2>Become a mentee</h2>
               <p>
-                Keep the historical React and Express backup separate from the
-                new public experience.
+                Start with the public interest form to express interest in
+                mentorship, events, and program participation.
               </p>
+              <a class="button button-primary" href="#" data-mentee-link
+                >Open mentee interest form</a
+              >
             </article>
-            <article class="feature-card">
-              <h3>Public by Default</h3>
-              <p>
-                The new site is pure HTML, CSS, JS, images, and JSON, which
-                makes GitHub Pages a strong fit.
-              </p>
-            </article>
-            <article class="feature-card">
-              <h3>Ready to Grow</h3>
-              <p>
-                If forms, admin editing, or a database are needed later, the
-                content layer can move without rewriting the front end.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
 
-      <section class="section section-accent">
-        <div class="shell">
-          <div class="section-heading">
-            <p class="eyebrow">News</p>
-            <h2>Recent public updates</h2>
+            <article class="contact-card" data-reveal>
+              <p class="micro-label">For Mentors</p>
+              <h2>Volunteer as a mentor</h2>
+              <p>
+                A dedicated mentor form can be added later. For now, interested
+                mentors can reach MCP directly through a polished email pathway.
+              </p>
+              <a class="button button-secondary" href="#" data-mentor-link
+                >Express mentor interest</a
+              >
+            </article>
+
+            <article class="contact-card" data-reveal>
+              <p class="micro-label">For Supporters</p>
+              <h2>Give directly to MCP</h2>
+              <p>
+                The giving route now has an explicit place in the public
+                experience so supporters can move quickly from interest to
+                action.
+              </p>
+              <a class="button button-secondary" href="#" data-donate-link
+                >Give to MCP</a
+              >
+            </article>
           </div>
-          <div class="card-grid" data-news-list></div>
         </div>
       </section>
 
       <section class="section">
         <div class="shell">
-          <div class="section-heading">
-            <p class="eyebrow">Leadership</p>
-            <h2>Core team</h2>
+          <div class="section-header between" data-reveal>
+            <div>
+              <p class="section-kicker">Featured Mentors</p>
+              <h2>Experienced guides across labs, companies, and public service.</h2>
+            </div>
+            <a class="text-link" href="./pages/mentors.html"
+              >View the full mentor directory</a
+            >
           </div>
-          <div class="card-grid" data-team-list></div>
+
+          <div class="feature-grid feature-grid--profiles" data-home-mentor-highlights>
+            <div class="empty-state">Loading mentor highlights…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--deep">
+        <div class="shell">
+          <div class="section-header between" data-reveal>
+            <div>
+              <p class="section-kicker">Leadership</p>
+              <h2>The people stewarding MCP with care, visibility, and rigor.</h2>
+            </div>
+            <a class="text-link" href="./pages/team.html">See all leadership</a>
+          </div>
+
+          <div class="profile-grid profile-grid--compact" data-home-team>
+            <div class="empty-state">Loading leadership team…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="shell supporters-panel">
+          <div class="supporters-copy" data-reveal>
+            <p class="section-kicker">MCP Friends</p>
+            <h2>Institutional champions, mentors, and partners who extend the program’s reach.</h2>
+            <p data-supporters-text>
+              MCP is supported by faculty, alumnae, mentors, and allied partners
+              who help students experience physics as a field where they belong.
+            </p>
+          </div>
+
+          <div class="supporters-banner" data-reveal>
+            <img
+              src="/assets/images/live-site/clearweb/assets/So1918_banner.png"
+              alt="Society of 1918 banner"
+            />
+          </div>
+        </div>
+
+        <div class="shell">
+          <div class="logo-wall" data-company-grid>
+            <div class="empty-state">Loading partner organizations…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="shell">
+          <div class="section-header between" data-reveal>
+            <div>
+              <p class="section-kicker">Latest Insights</p>
+              <h2>Public storytelling, events, and momentum from the program.</h2>
+            </div>
+            <a class="text-link" href="./pages/news.html">Browse all news</a>
+          </div>
+
+          <div class="news-grid" data-home-news>
+            <div class="empty-state">Loading public updates…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--cta">
+        <div class="shell cta-panel" data-reveal>
+          <div>
+            <p class="section-kicker">Support The Work</p>
+            <h2>Invest in a mentoring model that deepens talent, confidence, and visibility.</h2>
+            <p>
+              Whether you are a student, mentor, alumna, collaborator, or
+              donor, MCP is ready to meet you with clarity, warmth, and a clear
+              next step.
+            </p>
+          </div>
+
+          <div class="cta-actions">
+            <a class="button button-primary" href="./pages/contact.html"
+              >Contact MCP</a
+            >
+            <a class="button button-secondary" href="#" data-mentee-link
+              >Become a mentee</a
+            >
+            <a class="button button-secondary" href="#" data-donate-link
+              >Give to MCP</a
+            >
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="shell footer-shell">
+      <div class="shell footer-grid">
+        <div class="footer-brand-block">
+          <span class="brand-mark brand-mark--footer">MCP</span>
+          <p class="footer-summary">
+            Mentoring for Careers in Physics at William &amp; Mary.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Explore</p>
+          <div class="footer-links">
+            <a href="./index.html">Home</a>
+            <a href="./pages/mentors.html">Mentors</a>
+            <a href="./pages/team.html">Leadership</a>
+            <a href="./pages/news.html">News</a>
+            <a href="./pages/contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Connect</p>
+          <div class="footer-links">
+            <a class="footer-email" href="#" data-contact-email>mcp.superuser@gmail.com</a>
+            <a href="#" data-mentee-link>Become a mentee</a>
+            <a href="#" data-mentor-link>Become a mentor</a>
+            <a href="#" data-donate-link>Give to MCP</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Follow MCP</p>
+          <div class="social-list social-list--footer" data-footer-social></div>
+        </div>
+      </div>
+
+      <div class="shell footer-base">
         <p>Mentoring for Careers in Physics</p>
-        <p>Static starter for the future GitHub Pages site.</p>
+        <p>&copy; <span data-current-year></span> William &amp; Mary</p>
       </div>
     </footer>
 

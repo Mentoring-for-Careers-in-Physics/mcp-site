@@ -1,0 +1,30 @@
+{
+  "publicRoutes": [
+    "/",
+    "/contact",
+    "/events/:eventName",
+    "/interest",
+    "/mentees",
+    "/mentors",
+    "/news",
+    "/privacypolicy",
+    "/retired"
+  ],
+  "publicPages": [
+    "/",
+    "/contact",
+    "/events/12-9-22",
+    "/events/:eventName",
+    "/interest",
+    "/mentees",
+    "/mentors",
+    "/news",
+    "/privacypolicy",
+    "/retired"
+  ],
+  "portalRoutes": [
+    "/portal/dashboard",
+    "/portal/login",
+    "/portal/register"
+  ]
+}

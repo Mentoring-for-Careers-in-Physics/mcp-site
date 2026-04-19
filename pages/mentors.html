@@ -3,52 +3,196 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Mentor directory for Mentoring for Careers in Physics."
+    />
     <title>Mentors | MCP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
-  <body data-page="mentors">
+  <body data-page="mentors" data-root="..">
     <header class="site-header">
       <div class="shell nav-shell">
-        <a class="brand" href="../index.html">MCP</a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="../index.html">Home</a>
-          <a href="./mentors.html">Mentors</a>
-          <a href="./news.html">News</a>
-          <a href="./contact.html">Contact</a>
+        <a class="brand" href="../index.html" aria-label="MCP home">
+          <span class="brand-mark">MCP</span>
+          <span class="brand-text">
+            <strong>Mentoring for Careers in Physics</strong>
+            <small>William &amp; Mary</small>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          Menu
+        </button>
+
+        <nav class="nav-links" id="site-nav" aria-label="Primary navigation">
+          <a href="../index.html" data-nav-page="home">Home</a>
+          <a href="./mentors.html" data-nav-page="mentors">Mentors</a>
+          <a href="./team.html" data-nav-page="team">Leadership</a>
+          <a href="./news.html" data-nav-page="news">News</a>
+          <a href="./contact.html" data-nav-page="contact">Contact</a>
+          <a class="nav-cta" href="#" data-donate-link>Give</a>
         </nav>
       </div>
     </header>
 
-    <main class="page-main">
+    <main>
       <section class="page-hero">
-        <div class="shell">
-          <p class="eyebrow">Mentors</p>
-          <h1>Build this page from structured content, not hardcoded JSX.</h1>
-          <p class="lede">
-            Each mentor can live in `data/mentors.json`, which makes the new
-            site easy to edit and later migrate to a database.
-          </p>
+        <div class="shell page-hero__grid">
+          <div data-reveal>
+            <p class="section-kicker">Mentor Directory</p>
+            <h1>Meet the mentors expanding how students imagine a future in physics.</h1>
+            <p class="hero-summary">
+              Explore the professionals, alumnae, researchers, and leaders who
+              help students see what is possible after physics.
+            </p>
+          </div>
+
+          <aside class="statement-card statement-card--page" data-reveal>
+            <p class="micro-label">Directory highlights</p>
+            <div class="metric-grid metric-grid--stacked">
+              <article class="metric">
+                <strong data-mentor-directory-count>0</strong>
+                <span>Total mentors</span>
+              </article>
+              <article class="metric">
+                <strong data-mentor-bio-count>0</strong>
+                <span>Detailed biographies</span>
+              </article>
+              <article class="metric">
+                <strong data-mentor-linkedin-count>0</strong>
+                <span>LinkedIn profiles</span>
+              </article>
+            </div>
+          </aside>
         </div>
       </section>
 
       <section class="section">
         <div class="shell">
-          <div class="card-grid" data-mentor-list></div>
+          <div class="directory-controls" data-reveal>
+            <label class="search-field">
+              <span>Search mentors</span>
+              <input
+                type="search"
+                placeholder="Search by name, role, company, or keyword"
+                data-mentor-search
+              />
+            </label>
+
+            <div class="filter-row" aria-label="Mentor filters">
+              <button
+                class="filter-button is-active"
+                type="button"
+                data-mentor-filter="all"
+              >
+                All
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-mentor-filter="bios"
+              >
+                Full biographies
+              </button>
+              <button
+                class="filter-button"
+                type="button"
+                data-mentor-filter="linkedin"
+              >
+                LinkedIn available
+              </button>
+            </div>
+          </div>
+
+          <div class="profile-grid" data-mentor-directory>
+            <div class="empty-state">Loading mentor directory…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft">
+        <div class="shell">
+          <div class="section-header" data-reveal>
+            <p class="section-kicker">Mentor Ecosystem</p>
+            <h2>Organizations represented across the MCP network.</h2>
+          </div>
+
+          <div class="logo-wall" data-company-grid>
+            <div class="empty-state">Loading organization logos…</div>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="shell footer-shell">
+      <div class="shell footer-grid">
+        <div class="footer-brand-block">
+          <span class="brand-mark brand-mark--footer">MCP</span>
+          <p class="footer-summary">
+            Mentoring for Careers in Physics at William &amp; Mary.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Explore</p>
+          <div class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="./mentors.html">Mentors</a>
+            <a href="./team.html">Leadership</a>
+            <a href="./news.html">News</a>
+            <a href="./contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Connect</p>
+          <div class="footer-links">
+            <a class="footer-email" href="#" data-contact-email>mcp.superuser@gmail.com</a>
+            <a href="#" data-mentee-link>Become a mentee</a>
+            <a href="#" data-mentor-link>Become a mentor</a>
+            <a href="#" data-donate-link>Give to MCP</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Follow MCP</p>
+          <div class="social-list social-list--footer" data-footer-social></div>
+        </div>
+      </div>
+
+      <div class="shell footer-base">
         <p>Mentoring for Careers in Physics</p>
+        <p>&copy; <span data-current-year></span> William &amp; Mary</p>
       </div>
     </footer>
+
+    <div class="modal-shell" data-modal hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <button class="modal-close" type="button" data-close-modal>
+          Close
+        </button>
+        <div class="modal-content" data-modal-content></div>
+      </div>
+    </div>
 
     <script src="../js/main.js" defer></script>
   </body>
