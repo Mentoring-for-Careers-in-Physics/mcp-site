@@ -15,12 +15,30 @@ This repo contains the new static MCP site built with plain HTML, CSS, and JavaS
 
 ## Homepage notes
 
-The homepage is intentionally shorter and more visual than the earlier draft.
+The homepage is intentionally shorter, more visual, and more stable across screen sizes than the earlier draft.
 
 - Mentor headshots appear directly in the hero area
 - Organization logos appear both near the top of the page and in the partner grid
-- The page keeps the main calls to action, but removes much of the long-form marketing copy
-- Content still comes from the JSON files in `data/`, so homepage cards and counts stay data-driven
+- Section titles and supporting copy are deliberately shorter and less wordy
+- Homepage cards and counts still come from the JSON files in `data/`
+
+## Design notes
+
+The current visual direction is meant to feel lighter, calmer, and more polished than the previous version.
+
+- Typography uses `Fraunces` for headings and `Public Sans` for interface and body text
+- The color palette leans toward soft stone, slate, and champagne tones instead of high-contrast burgundy
+- Mentor photos are cropped and framed more intentionally, with more whitespace around them
+- Buttons, cards, and logos use a quieter editorial treatment instead of a louder marketing look
+
+## Responsive behavior
+
+The homepage and shared styles were tuned specifically for tablet and mobile layouts.
+
+- The hero and portrait area now collapses cleanly instead of relying on fragile overlapping placement
+- Buttons stack more predictably on small screens
+- Stats, logos, and card grids rebalance at narrower widths to avoid cramped or broken layouts
+- The first screen no longer depends on animation timing to feel complete
 
 ## Site structure
 

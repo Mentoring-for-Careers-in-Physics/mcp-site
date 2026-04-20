@@ -83,6 +83,19 @@ function excerpt(text = "", maxLength = 180) {
   return `${plain.slice(0, maxLength).trim()}…`;
 }
 
+function organizationLabel(role = "", fallback = "Mentor") {
+  const parts = String(role)
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (parts.length > 1) {
+    return parts.slice(1).join(", ");
+  }
+
+  return role || fallback;
+}
+
 function sortByDateDesc(items = []) {
   return [...items].sort((left, right) => {
     const leftTime = new Date(left.date).getTime();
@@ -556,10 +569,13 @@ function renderPortraitCluster(mentors) {
     .map((mentor, index) => {
       return `
         <figure class="portrait-chip portrait-chip--${index + 1}">
-          <img src="${getProfileImage(mentor)}" alt="${escapeHtml(mentor.name)}" />
+          <div class="portrait-chip__media">
+            <img src="${getProfileImage(mentor)}" alt="${escapeHtml(mentor.name)}" />
+          </div>
           <figcaption>
+            <span class="portrait-chip__eyebrow">${index === 0 ? "Mentor spotlight" : "Mentor"}</span>
             <h3>${escapeHtml(mentor.name)}</h3>
-            <p>${escapeHtml(mentor.role || "Mentor")}</p>
+            <p>${escapeHtml(organizationLabel(mentor.role || "Mentor"))}</p>
           </figcaption>
         </figure>
       `;
@@ -723,7 +739,7 @@ function initHomePage({ site, mentors, team, news, companies }) {
 
   renderPortraitCluster(featuredMentors);
 
-  renderLogoWall("[data-home-logo-ribbon]", companies.slice(0, 6), {
+  renderLogoWall("[data-home-logo-ribbon]", companies.slice(0, 4), {
     compact: true,
   });
 
@@ -733,13 +749,13 @@ function initHomePage({ site, mentors, team, news, companies }) {
       .map((mentor) =>
         renderPersonCard(mentor, {
           prefix: "mentor",
-          metaLabel: "Featured Mentor",
+          metaLabel: "Mentor",
           categoryLabel: "Mentor",
           defaultRole: "Mentor",
           mode: "link",
           primaryHref: rootPath(`pages/mentors.html#mentor-${slugify(mentor.name)}`),
-          primaryLabel: "View full profile",
-          excerptLength: 160,
+          primaryLabel: "Full profile",
+          excerptLength: 120,
         }),
       )
       .join("");
@@ -758,14 +774,14 @@ function initHomePage({ site, mentors, team, news, companies }) {
         renderNewsCard(article, {
           mode: "link",
           hrefBuilder: (item) => rootPath(`pages/news.html#${item.id}`),
-          primaryLabel: "Open story",
-          excerptLength: 150,
+          primaryLabel: "Read",
+          excerptLength: 110,
         }),
       )
       .join("");
   }
 
-  renderLogoWall("[data-company-grid]", companies.slice(0, 12));
+  renderLogoWall("[data-company-grid]", companies.slice(0, 8));
 
   const foundedYear = 2021;
   const years = Math.max(new Date().getFullYear() - foundedYear, 1);
