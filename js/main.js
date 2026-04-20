@@ -1,5 +1,5 @@
-const BLANK_PROFILE = "/assets/images/live-site/clearweb/assets/blank-profile.jpeg";
-const SUPPORTERS_BANNER = "/assets/images/live-site/clearweb/assets/So1918_banner.png";
+const BLANK_PROFILE = "assets/images/live-site/clearweb/assets/blank-profile.jpeg";
+const SUPPORTERS_BANNER = "assets/images/live-site/clearweb/assets/So1918_banner.png";
 const PAGE = document.body.dataset.page || "home";
 const ROOT = document.body.dataset.root || ".";
 
@@ -7,7 +7,22 @@ let revealObserver = null;
 let activeModal = null;
 
 function rootPath(relativePath) {
-  return `${ROOT}/${relativePath}`;
+  const cleanPath = String(relativePath || "")
+    .replace(/^\/+/, "")
+    .replace(/^\.\//, "");
+  return `${ROOT}/${cleanPath}`;
+}
+
+function assetPath(value = "") {
+  if (!value) {
+    return "";
+  }
+
+  if (/^(https?:)?\/\//i.test(value) || /^(mailto:|tel:|#|data:)/i.test(value)) {
+    return value;
+  }
+
+  return rootPath(value);
 }
 
 async function loadJson(fileName) {
@@ -78,9 +93,9 @@ function sortByDateDesc(items = []) {
 
 function getProfileImage(item) {
   if (!item?.image) {
-    return BLANK_PROFILE;
+    return assetPath(BLANK_PROFILE);
   }
-  return item.image;
+  return assetPath(item.image);
 }
 
 function classifySocialLink(url) {
@@ -198,6 +213,10 @@ function populateGlobalContent(site) {
   document.querySelectorAll("[data-supporters-text]").forEach((node) => {
     node.textContent = site.supportersText || "";
   });
+
+  document.querySelectorAll("[data-supporters-banner-image]").forEach((node) => {
+    node.setAttribute("src", assetPath(SUPPORTERS_BANNER));
+  });
 }
 
 function setNavState() {
@@ -296,32 +315,37 @@ function wireModal() {
   });
 }
 
-function renderCompanyCard(company) {
-  const image = company.image || SUPPORTERS_BANNER;
+function renderCompanyCard(company, options = {}) {
+  const image = assetPath(company.image || SUPPORTERS_BANNER);
   const name = escapeHtml(company.name || "Organization");
   const website = company.website || "#";
+  const compactClass = options.compact ? " logo-card--compact" : "";
+  const label = options.compact ? "" : `<span>${name}</span>`;
 
   return `
     <a
-      class="logo-card"
+      class="logo-card${compactClass}"
       href="${website}"
       target="_blank"
       rel="noreferrer"
+      aria-label="${name}"
       data-reveal
     >
       <img src="${image}" alt="${name} logo" loading="lazy" />
-      <span>${name}</span>
+      ${label}
     </a>
   `;
 }
 
-function renderLogoWall(containerSelector, companies = []) {
+function renderLogoWall(containerSelector, companies = [], options = {}) {
   const container = document.querySelector(containerSelector);
   if (!container) {
     return;
   }
 
-  container.innerHTML = companies.map(renderCompanyCard).join("");
+  container.innerHTML = companies
+    .map((company) => renderCompanyCard(company, options))
+    .join("");
 }
 
 function renderSocialAction(url) {
@@ -419,7 +443,7 @@ function renderCompactTeamCard(person) {
 }
 
 function renderNewsCard(article, options = {}) {
-  const image = article.localImage || article.imageUrl || BLANK_PROFILE;
+  const image = assetPath(article.localImage || article.imageUrl || BLANK_PROFILE);
   const title = escapeHtml(article.title || "MCP update");
   const summary = escapeHtml(excerpt(article.bodyMarkdown || "", options.excerptLength || 190));
   const articleId = article.id || slugify(article.title || "article");
@@ -462,7 +486,7 @@ function renderFeaturedNews(article) {
     return `<div class="empty-state">No public news has been imported yet.</div>`;
   }
 
-  const image = article.localImage || article.imageUrl || BLANK_PROFILE;
+  const image = assetPath(article.localImage || article.imageUrl || BLANK_PROFILE);
   const title = escapeHtml(article.title || "Featured story");
   const summary = escapeHtml(excerpt(article.bodyMarkdown || "", 460));
 
@@ -493,14 +517,15 @@ function renderFeaturedNews(article) {
 function renderEventCard(event) {
   const assets = (event.assets || [])
     .map((asset) => {
+      const assetImage = assetPath(asset.image);
       return `
         <a
           class="event-card__asset"
-          href="${asset.image}"
+          href="${assetImage}"
           target="_blank"
           rel="noreferrer"
         >
-          <img src="${asset.image}" alt="${escapeHtml(asset.label)}" loading="lazy" />
+          <img src="${assetImage}" alt="${escapeHtml(asset.label)}" loading="lazy" />
           <span>${escapeHtml(asset.label)}</span>
         </a>
       `;
@@ -668,7 +693,7 @@ function renderMarkdown(markdown = "") {
 }
 
 function renderModalArticle(article) {
-  const image = article.localImage || article.imageUrl || "";
+  const image = assetPath(article.localImage || article.imageUrl || "");
   const imageHtml = image
     ? `
       <figure>
@@ -694,9 +719,13 @@ function renderModalArticle(article) {
 function initHomePage({ site, mentors, team, news, companies }) {
   const featuredMentors = mentors
     .filter((mentor) => mentor.bio && !getProfileImage(mentor).includes("blank-profile"))
-    .slice(0, 4);
+    .slice(0, 6);
 
   renderPortraitCluster(featuredMentors);
+
+  renderLogoWall("[data-home-logo-ribbon]", companies.slice(0, 6), {
+    compact: true,
+  });
 
   const mentorHighlights = document.querySelector("[data-home-mentor-highlights]");
   if (mentorHighlights) {

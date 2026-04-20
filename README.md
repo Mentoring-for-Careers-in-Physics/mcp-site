@@ -6,12 +6,21 @@ This repo contains the new static MCP site built with plain HTML, CSS, and JavaS
 
 ## What is in this repo
 
-- A redesigned public homepage
+- A simplified public homepage that foregrounds mentor photos and organization logos
 - A searchable mentor directory
 - Leadership and supporters pages
 - A public news archive
 - Contact and giving pathways
 - Imported assets and content recovered from the live MCP website and backup files
+
+## Homepage notes
+
+The homepage is intentionally shorter and more visual than the earlier draft.
+
+- Mentor headshots appear directly in the hero area
+- Organization logos appear both near the top of the page and in the partner grid
+- The page keeps the main calls to action, but removes much of the long-form marketing copy
+- Content still comes from the JSON files in `data/`, so homepage cards and counts stay data-driven
 
 ## Site structure
 
@@ -67,6 +76,16 @@ The site is driven by JSON files in `data/`.
 
 This keeps the public site fully static while still making the content easy to update.
 
+## Asset provenance
+
+Not every local asset was downloaded directly from `https://mcp.physics.wm.edu`.
+
+- Mentor headshots and most company logos in `assets/images/live-site/clearweb/` are copied from the recovered `MCP-Website-BACKUP` source tree
+- News images in `assets/images/live-site/news/` are downloaded from the live MCP site APIs
+- Site icons in `assets/icons/live-site/` are downloaded from the live site
+
+The import script combines both sources so the static site can run without depending on the old React app.
+
 ## Local preview
 
 Because the pages load local JSON, preview the site from a local web server instead of opening files directly.
@@ -99,6 +118,8 @@ That refreshes:
 - `data/link-inventory.json`
 - `assets/images/live-site/`
 - `assets/icons/live-site/`
+
+It also keeps local image paths aligned with the static site layout so the imported mentor photos, logos, and news media can be served directly from this repo.
 
 ## Current action links
 
