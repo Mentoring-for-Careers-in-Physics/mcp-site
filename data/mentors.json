@@ -7,7 +7,11 @@
     "imageAlias": "kelly",
     "image": "/assets/images/live-site/clearweb/assets/Kelly_Berns-square-headshot.jpg",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Advanced Cyber Security Engineer",
+    "organizations": [
+      "Honeywell"
+    ]
   },
   {
     "name": "Janet Brewer",
@@ -17,7 +21,11 @@
     "imageAlias": "brewer_headshot",
     "image": "/assets/images/live-site/clearweb/assets/CTFV--Janet86782.png",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Chief People Officer",
+    "organizations": [
+      "Arcfield"
+    ]
   },
   {
     "name": "Marisa Brown",
@@ -27,7 +35,11 @@
     "imageAlias": "brown_headshot",
     "image": "/assets/images/live-site/clearweb/assets/Marisa_Brown-square-headshot.jpg",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Senior Biomedical Engineer",
+    "organizations": [
+      "ivWatch LLC"
+    ]
   },
   {
     "name": "Melissa Dolph",
@@ -37,7 +49,11 @@
     "imageAlias": "melissa",
     "image": "/assets/images/live-site/clearweb/assets/Melissa_Dolph-square-headshot.jpg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Principal Engineer",
+    "organizations": [
+      "MITRE"
+    ]
   },
   {
     "name": "Jennifer Dorand",
@@ -47,7 +63,11 @@
     "imageAlias": "dorand_headshot",
     "image": "/assets/images/live-site/clearweb/home/JED_Headshot_2023.jpg",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Senior Medical Physicist",
+    "organizations": [
+      "ProCure Treatment Centers"
+    ]
   },
   {
     "name": "Yulia Furletova",
@@ -57,7 +77,11 @@
     "imageAlias": "yulia",
     "image": "/assets/images/live-site/clearweb/home/Yulia_Furletova_headshot.jpg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Nuclear Physicist",
+    "organizations": [
+      "Jefferson Lab"
+    ]
   },
   {
     "name": "Evalyn Gates",
@@ -67,7 +91,11 @@
     "imageAlias": "gates_headshot",
     "image": "/assets/images/live-site/clearweb/home/gates_headshot.png",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Adjunct Professor",
+    "organizations": [
+      "Case Western University"
+    ]
   },
   {
     "name": "Kristina Kruglyak",
@@ -77,7 +105,11 @@
     "imageAlias": "kristina",
     "image": "/assets/images/live-site/clearweb/assets/Kristina_Kruglyak-square-headshot.jpg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Consultant",
+    "organizations": [
+      "Self-Employed"
+    ]
   },
   {
     "name": "Julia M. Phillips",
@@ -87,7 +119,11 @@
     "imageAlias": "philips_headshot",
     "image": "/assets/images/live-site/clearweb/home/philips_headshot.png",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Executive Emeritus",
+    "organizations": [
+      "Sandia National Laboratories"
+    ]
   },
   {
     "name": "Holly Szumila-Vance",
@@ -97,7 +133,11 @@
     "imageAlias": "holly",
     "image": "/assets/images/live-site/clearweb/assets/Holly_Szumila-Vance-square-headshot.jpg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Hall A/C Staff Scientist",
+    "organizations": [
+      "Jefferson Lab"
+    ]
   },
   {
     "name": "Karen Taminger",
@@ -107,7 +147,11 @@
     "imageAlias": "karen",
     "image": "/assets/images/live-site/clearweb/assets/Karen_Taminger-square-headshot.jpg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Materials Research Engineer",
+    "organizations": [
+      "NASA Langley Research Center"
+    ]
   },
   {
     "name": "Amber Ulbrich",
@@ -117,7 +161,11 @@
     "imageAlias": "amber",
     "image": "/assets/images/live-site/clearweb/assets/Amber_Ulbrich-square-headshot.jpg",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Physicist, Quantum Technologies",
+    "organizations": [
+      "Department of Defense"
+    ]
   },
   {
     "name": "Liz Ward",
@@ -127,7 +175,12 @@
     "imageAlias": "ward_headshot",
     "image": "/assets/images/live-site/clearweb/home/ward_headshot.png",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Principal Investigator",
+    "organizations": [
+      "NASA Langley Research Center",
+      "Christopher Newport University"
+    ]
   },
   {
     "name": "Aye Myat Khine Win",
@@ -137,7 +190,11 @@
     "imageAlias": "aye",
     "image": "/assets/images/live-site/clearweb/home/Aye_Myat_headshot.jpg",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Senior Engineer",
+    "organizations": [
+      "Micron Technology"
+    ]
   },
   {
     "name": "Yang Xu",
@@ -147,7 +204,11 @@
     "imageAlias": "xu_headshot",
     "image": "/assets/images/live-site/clearweb/assets/Yang_Xu_headshot.jpg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Senior Research Scientist",
+    "organizations": [
+      "Luna Innovations"
+    ]
   },
   {
     "name": "Marlyn Andino",
@@ -157,7 +218,11 @@
     "imageAlias": "marlynAndino",
     "image": "/assets/images/live-site/clearweb/home/mentors/MarlynAndino.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Research Aerospace Engineer",
+    "organizations": [
+      "NASA Langley Research Center"
+    ]
   },
   {
     "name": "Irina Winter Arboleda",
@@ -167,7 +232,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Internal Model Auditor",
+    "organizations": [
+      "Fannie Mae"
+    ]
   },
   {
     "name": "Vanessa Aubuchon",
@@ -177,7 +246,11 @@
     "imageAlias": "vanessaAubuchon",
     "image": "/assets/images/live-site/clearweb/home/mentors/VanessaAubuchon.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Associate Project Manager",
+    "organizations": [
+      "NASA Langley Research Center"
+    ]
   },
   {
     "name": "Kristen Bishop",
@@ -187,7 +260,11 @@
     "imageAlias": "kristenBishop",
     "image": "/assets/images/live-site/clearweb/home/mentors/KristenBishop.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Research Staff Member",
+    "organizations": [
+      "Institute for Defense Analyses"
+    ]
   },
   {
     "name": "Brandi Clark",
@@ -197,7 +274,11 @@
     "imageAlias": "brandiClark",
     "image": "/assets/images/live-site/clearweb/home/mentors/BrandiClark.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "R&D Manager",
+    "organizations": [
+      "Savannah River National Laboratory"
+    ]
   },
   {
     "name": "Karina Colotl",
@@ -207,7 +288,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Process Integration Engineer",
+    "organizations": [
+      "Micron Technology"
+    ]
   },
   {
     "name": "Jill Dahlburg",
@@ -217,7 +302,12 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Member/Writer",
+    "organizations": [
+      "NASA",
+      "Self-Employed"
+    ]
   },
   {
     "name": "Julissa de Guzman",
@@ -227,7 +317,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Senior Software Engineer",
+    "organizations": [
+      "BAE Systems"
+    ]
   },
   {
     "name": "Barbara Hilton",
@@ -237,7 +331,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Program Executive for the Planetary Science Division",
+    "organizations": [
+      "NASA"
+    ]
   },
   {
     "name": "Jennifer Hite",
@@ -247,7 +345,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Senior Materials Research Engineer",
+    "organizations": [
+      "U.S. Naval Research Laboratory"
+    ]
   },
   {
     "name": "Jennifer Inman",
@@ -257,7 +359,11 @@
     "imageAlias": "jenniferInman",
     "image": "/assets/images/live-site/clearweb/home/mentors/JenniferInman.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "SCIFLI Project Manager",
+    "organizations": [
+      "NASA Langley Research Center"
+    ]
   },
   {
     "name": "Gabrielle Jawer",
@@ -267,7 +373,11 @@
     "imageAlias": "gabrielleJawer",
     "image": "/assets/images/live-site/clearweb/home/mentors/GabrielleJawer.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Ting Operations Engineer",
+    "organizations": [
+      "Whisker Labs"
+    ]
   },
   {
     "name": "Hee Yeon Keil",
@@ -277,7 +387,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Mechanical Engineer",
+    "organizations": [
+      "Athena Theatrical"
+    ]
   },
   {
     "name": "Tammi Klaco",
@@ -287,7 +401,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Independent Consultant",
+    "organizations": [
+      "Klaco Ventures"
+    ]
   },
   {
     "name": "Mystique Owens",
@@ -297,7 +415,11 @@
     "imageAlias": "mystiqueOwens",
     "image": "/assets/images/live-site/clearweb/home/mentors/MystiqueOwens.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Mechanical Engineer I",
+    "organizations": [
+      "Psionic Technologies"
+    ]
   },
   {
     "name": "Sanghwa Park",
@@ -307,7 +429,11 @@
     "imageAlias": "sanghwaPark",
     "image": "/assets/images/live-site/clearweb/home/mentors/SanghwaPark.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Staff Scientist",
+    "organizations": [
+      "Jefferson Lab"
+    ]
   },
   {
     "name": "Sandra Philpott",
@@ -317,7 +443,11 @@
     "imageAlias": "sandraPhilpott",
     "image": "/assets/images/live-site/clearweb/home/mentors/SandraPhilpott.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Computer Scientist",
+    "organizations": [
+      "Jefferson Lab"
+    ]
   },
   {
     "name": "LeAnn Raczkowski",
@@ -327,7 +457,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Program Engineer Manager",
+    "organizations": [
+      "BAE Systems"
+    ]
   },
   {
     "name": "Carrie Rhoades",
@@ -337,7 +471,11 @@
     "imageAlias": "carrieRhoades",
     "image": "/assets/images/live-site/clearweb/home/mentors/CarrieRhoades.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Program Director, Advanced Solutions",
+    "organizations": [
+      "Calspan"
+    ]
   },
   {
     "name": "Laura Treider",
@@ -347,7 +485,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "PYE Lead Senior Engineer",
+    "organizations": [
+      "Micron Technology"
+    ]
   },
   {
     "name": "Brenda VanMil",
@@ -357,7 +499,11 @@
     "imageAlias": "brendaVanMill",
     "image": "/assets/images/live-site/clearweb/home/mentors/BrendaVanMil.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Physicist",
+    "organizations": [
+      "U.S. Army Research Laboratory"
+    ]
   },
   {
     "name": "Charlene Zhang",
@@ -367,7 +513,11 @@
     "imageAlias": "blank_profile",
     "image": "/assets/images/live-site/clearweb/assets/blank-profile.jpeg",
     "hasBio": false,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "title": "Senior Software Engineer",
+    "organizations": [
+      "Microsoft"
+    ]
   },
   {
     "name": "Claudia Smith",
@@ -377,7 +527,11 @@
     "imageAlias": "claudiaSmith",
     "image": "/assets/images/live-site/clearweb/home/mentors/Claudia_Smith.jpg",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Associate Software Engineer",
+    "organizations": [
+      "Capital One"
+    ]
   },
   {
     "name": "Haley Bauser",
@@ -387,7 +541,11 @@
     "imageAlias": "haleyBauser",
     "image": "/assets/images/live-site/clearweb/home/mentors/Haley_Bauser.jpg",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Product Engineering Manager",
+    "organizations": [
+      "Varda Space Industries"
+    ]
   },
   {
     "name": "Mi Zhang",
@@ -397,7 +555,11 @@
     "imageAlias": "miZhang",
     "image": "/assets/images/live-site/clearweb/home/mentors/Mi_Zhang.jpg",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Optical Engineer",
+    "organizations": [
+      "KLA Corporation"
+    ]
   },
   {
     "name": "Sucheta Jawalkar",
@@ -407,6 +569,10 @@
     "imageAlias": "sucheta",
     "image": "/assets/images/live-site/clearweb/home/mentors/SuchetaHeadshot.png",
     "hasBio": true,
-    "hasLongBio": true
+    "hasLongBio": true,
+    "title": "Physicist",
+    "organizations": [
+      "Independent AI/ML-at-Scale Expert"
+    ]
   }
 ]

@@ -5,6 +5,7 @@ const ROOT = document.body.dataset.root || ".";
 
 let revealObserver = null;
 let activeModal = null;
+let companyDirectory = new Map();
 
 function rootPath(relativePath) {
   const cleanPath = String(relativePath || "")
@@ -47,6 +48,48 @@ function slugify(value = "") {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+function shuffleList(items = []) {
+  const shuffled = [...items];
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+  return shuffled;
+}
+
+function monogram(value = "") {
+  const ignored = new Set([
+    "and",
+    "at",
+    "for",
+    "in",
+    "of",
+    "the",
+    "to",
+    "llc",
+    "inc",
+    "corp",
+    "corporation",
+    "national",
+    "research",
+    "center",
+  ]);
+
+  const parts = String(value)
+    .replace(/&/g, " ")
+    .replace(/[^a-z0-9\s]/gi, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const significant = parts.filter((part) => !ignored.has(part.toLowerCase()));
+  const source = significant.length ? significant : parts;
+
+  return source
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("");
 }
 
 function formatDate(dateString) {
@@ -94,6 +137,35 @@ function organizationLabel(role = "", fallback = "Mentor") {
   }
 
   return role || fallback;
+}
+
+function setCompanyDirectory(companies = []) {
+  companyDirectory = new Map();
+
+  companies.forEach((company) => {
+    [company.name, ...(company.aliases || [])]
+      .filter(Boolean)
+      .forEach((value) => {
+        companyDirectory.set(String(value).toLowerCase(), company);
+      });
+  });
+}
+
+function getCompanyRecord(name = "") {
+  return companyDirectory.get(String(name).toLowerCase()) || null;
+}
+
+function getPersonTitle(person, fallback = "Mentor") {
+  return person?.title || person?.role || fallback;
+}
+
+function getPersonOrganizations(person) {
+  if (Array.isArray(person?.organizations) && person.organizations.length) {
+    return [...new Set(person.organizations.filter(Boolean))];
+  }
+
+  const fallback = organizationLabel(person?.role || "");
+  return fallback ? [fallback] : [];
 }
 
 function sortByDateDesc(items = []) {
@@ -329,24 +401,28 @@ function wireModal() {
 }
 
 function renderCompanyCard(company, options = {}) {
-  const image = assetPath(company.image || SUPPORTERS_BANNER);
+  const image = company.image ? assetPath(company.image) : "";
   const name = escapeHtml(company.name || "Organization");
-  const website = company.website || "#";
+  const website = company.website || "";
   const compactClass = options.compact ? " logo-card--compact" : "";
   const label = options.compact ? "" : `<span>${name}</span>`;
+  const inner = image
+    ? `<img src="${image}" alt="${name} logo" loading="lazy" />`
+    : `<span class="logo-card__monogram" aria-hidden="true">${escapeHtml(monogram(company.name || "MCP"))}</span>`;
+  const tagName = website ? "a" : "article";
+  const attrs = website
+    ? `href="${website}" target="_blank" rel="noreferrer" aria-label="${name}"`
+    : `aria-label="${name}"`;
 
   return `
-    <a
+    <${tagName}
       class="logo-card${compactClass}"
-      href="${website}"
-      target="_blank"
-      rel="noreferrer"
-      aria-label="${name}"
+      ${attrs}
       data-reveal
     >
-      <img src="${image}" alt="${name} logo" loading="lazy" />
+      ${inner}
       ${label}
-    </a>
+    </${tagName}>
   `;
 }
 
@@ -370,11 +446,37 @@ function renderSocialAction(url) {
   `;
 }
 
+function renderOrganizationPills(organizations = []) {
+  return organizations
+    .map((organization) => {
+      const company = getCompanyRecord(organization) || {};
+      const name = escapeHtml(company.name || organization);
+      const website = company.website || "";
+      const image = company.image ? assetPath(company.image) : "";
+      const media = image
+        ? `<img src="${image}" alt="" loading="lazy" />`
+        : `<span class="organization-pill__monogram" aria-hidden="true">${escapeHtml(monogram(company.name || organization))}</span>`;
+      const tagName = website ? "a" : "span";
+      const attrs = website
+        ? `href="${website}" target="_blank" rel="noreferrer"`
+        : "";
+
+      return `
+        <${tagName} class="organization-pill" ${attrs}>
+          ${media}
+          <span>${name}</span>
+        </${tagName}>
+      `;
+    })
+    .join("");
+}
+
 function renderPersonCard(person, options = {}) {
   const id = options.id || `${options.prefix || "card"}-${slugify(person.name)}`;
   const image = getProfileImage(person);
   const name = escapeHtml(person.name || "MCP profile");
-  const role = escapeHtml(person.role || options.defaultRole || "Mentor");
+  const title = escapeHtml(getPersonTitle(person, options.defaultRole || "Mentor"));
+  const organizations = getPersonOrganizations(person);
   const bio = escapeHtml(excerpt(person.bio || "", options.excerptLength || 200));
   const chips = [
     options.categoryLabel ? `<span class="chip">${escapeHtml(options.categoryLabel)}</span>` : "",
@@ -422,7 +524,8 @@ function renderPersonCard(person, options = {}) {
       <div class="profile-card__body">
         <span class="profile-card__meta">${escapeHtml(options.metaLabel || "Profile")}</span>
         <h3 class="profile-card__title">${name}</h3>
-        <p class="profile-card__role">${role}</p>
+        <p class="profile-card__role">${title}</p>
+        ${organizations.length ? `<div class="organization-pill-row">${renderOrganizationPills(organizations)}</div>` : ""}
         <div class="chip-row">${chips}</div>
         <p class="profile-card__excerpt">${bio || "Bio coming soon."}</p>
         <div class="profile-card__actions">
@@ -439,6 +542,7 @@ function renderCompactTeamCard(person) {
   const name = escapeHtml(person.name || "Team member");
   const role = escapeHtml(person.role || "Leadership Team");
   const bio = escapeHtml(excerpt(person.bio || "", 120));
+  const metaLabel = person.group === "advisor" ? "Advisor" : "Leadership";
 
   return `
     <article class="profile-card" data-reveal>
@@ -446,7 +550,7 @@ function renderCompactTeamCard(person) {
         <img src="${image}" alt="${name}" loading="lazy" />
       </div>
       <div class="profile-card__body">
-        <span class="profile-card__meta">Leadership</span>
+        <span class="profile-card__meta">${metaLabel}</span>
         <h3 class="profile-card__title">${name}</h3>
         <p class="profile-card__role">${role}</p>
         <p class="profile-card__excerpt">${bio || "Leadership profile."}</p>
@@ -565,8 +669,8 @@ function renderPortraitCluster(mentors) {
   }
 
   container.innerHTML = mentors
-    .slice(0, 3)
     .map((mentor, index) => {
+      const organizations = getPersonOrganizations(mentor);
       return `
         <figure class="portrait-chip portrait-chip--${index + 1}">
           <div class="portrait-chip__media">
@@ -575,7 +679,7 @@ function renderPortraitCluster(mentors) {
           <figcaption>
             <span class="portrait-chip__eyebrow">${index === 0 ? "Mentor spotlight" : "Mentor"}</span>
             <h3>${escapeHtml(mentor.name)}</h3>
-            <p>${escapeHtml(organizationLabel(mentor.role || "Mentor"))}</p>
+            <p>${escapeHtml(organizations[0] || "MCP mentor")}</p>
           </figcaption>
         </figure>
       `;
@@ -585,7 +689,8 @@ function renderPortraitCluster(mentors) {
 
 function renderModalProfile(person) {
   const name = escapeHtml(person.name || "MCP profile");
-  const role = escapeHtml(person.role || "Mentor");
+  const title = escapeHtml(getPersonTitle(person, "Mentor"));
+  const organizations = getPersonOrganizations(person);
   const bio = escapeHtml(person.bio || "Bio coming soon.").replace(/\n+/g, "<br /><br />");
 
   return `
@@ -597,7 +702,8 @@ function renderModalProfile(person) {
       <div class="modal-profile__content">
         <p class="section-kicker">Mentor Profile</p>
         <h2 id="modal-title">${name}</h2>
-        <p class="modal-profile__role">${role}</p>
+        <p class="modal-profile__role">${title}</p>
+        ${organizations.length ? `<div class="organization-pill-row organization-pill-row--modal">${renderOrganizationPills(organizations)}</div>` : ""}
         <div class="chip-row">
           ${person.hasLongBio ? `<span class="chip">Full biography</span>` : ""}
           ${person.linkedin ? `<span class="chip chip--soft">LinkedIn available</span>` : ""}
@@ -733,13 +839,20 @@ function renderModalArticle(article) {
 }
 
 function initHomePage({ site, mentors, team, news, companies }) {
-  const featuredMentors = mentors
-    .filter((mentor) => mentor.bio && !getProfileImage(mentor).includes("blank-profile"))
-    .slice(0, 6);
+  const visibleMentors = shuffleList(
+    mentors.filter(
+      (mentor) => mentor.bio && !getProfileImage(mentor).includes("blank-profile"),
+    ),
+  );
+  const portraitMentors = visibleMentors.slice(0, 3);
+  const featuredMentors =
+    visibleMentors.slice(3, 11).length >= 6
+      ? visibleMentors.slice(3, 11)
+      : visibleMentors.slice(0, 8);
 
-  renderPortraitCluster(featuredMentors);
+  renderPortraitCluster(portraitMentors);
 
-  renderLogoWall("[data-home-logo-ribbon]", companies.slice(0, 4), {
+  renderLogoWall("[data-home-logo-ribbon]", shuffleList(companies.filter((company) => company.image)).slice(0, 6), {
     compact: true,
   });
 
@@ -763,7 +876,11 @@ function initHomePage({ site, mentors, team, news, companies }) {
 
   const teamContainer = document.querySelector("[data-home-team]");
   if (teamContainer) {
-    teamContainer.innerHTML = team.slice(0, 4).map(renderCompactTeamCard).join("");
+    teamContainer.innerHTML = team
+      .filter((person) => person.group !== "advisor")
+      .slice(0, 4)
+      .map(renderCompactTeamCard)
+      .join("");
   }
 
   const newsContainer = document.querySelector("[data-home-news]");
@@ -781,7 +898,7 @@ function initHomePage({ site, mentors, team, news, companies }) {
       .join("");
   }
 
-  renderLogoWall("[data-company-grid]", companies.slice(0, 8));
+  renderLogoWall("[data-company-grid]", companies);
 
   const foundedYear = 2021;
   const years = Math.max(new Date().getFullYear() - foundedYear, 1);
@@ -831,7 +948,7 @@ function initMentorsPage({ mentors, companies }) {
   function applyFilters() {
     const query = (searchInput?.value || "").trim().toLowerCase();
     const filtered = mentors.filter((mentor) => {
-      const haystack = `${mentor.name} ${mentor.role} ${mentor.bio}`.toLowerCase();
+      const haystack = `${mentor.name} ${mentor.role} ${mentor.title || ""} ${(mentor.organizations || []).join(" ")} ${mentor.bio}`.toLowerCase();
       const matchesQuery = !query || haystack.includes(query);
       const matchesFilter =
         activeFilter === "all" ||
@@ -982,11 +1099,14 @@ function maybeOpenArticleFromHash(lookup) {
 
 function initTeamPage({ team, retiredTeam, companies, events }) {
   const currentTeam = document.querySelector("[data-team-directory]");
+  const advisorTeam = document.querySelector("[data-advisor-directory]");
   const retiredTeamNode = document.querySelector("[data-retired-team-directory]");
   const eventNode = document.querySelector("[data-events-list]");
+  const leadership = team.filter((person) => person.group !== "advisor");
+  const advisors = team.filter((person) => person.group === "advisor");
 
   if (currentTeam) {
-    currentTeam.innerHTML = team
+    currentTeam.innerHTML = leadership
       .map((person) =>
         renderPersonCard(person, {
           prefix: "team",
@@ -1000,6 +1120,25 @@ function initTeamPage({ team, retiredTeam, companies, events }) {
         }),
       )
       .join("");
+  }
+
+  if (advisorTeam) {
+    advisorTeam.innerHTML = advisors.length
+      ? advisors
+          .map((person) =>
+            renderPersonCard(person, {
+              prefix: "advisor",
+              metaLabel: "Advisor",
+              categoryLabel: "Co-founder",
+              defaultRole: "Advisor",
+              mode: "link",
+              primaryHref: rootPath("pages/contact.html"),
+              primaryLabel: "Contact MCP",
+              excerptLength: 150,
+            }),
+          )
+          .join("")
+      : `<div class="empty-state">Advisor profiles will appear here soon.</div>`;
   }
 
   if (retiredTeamNode) {
@@ -1026,10 +1165,12 @@ function initTeamPage({ team, retiredTeam, companies, events }) {
   renderLogoWall("[data-company-grid]", companies);
 
   const teamCount = document.querySelector("[data-team-count]");
+  const advisorCount = document.querySelector("[data-advisor-count]");
   const retiredCount = document.querySelector("[data-retired-count]");
   const companyCount = document.querySelector("[data-company-count]");
 
-  if (teamCount) teamCount.textContent = String(team.length);
+  if (teamCount) teamCount.textContent = String(leadership.length);
+  if (advisorCount) advisorCount.textContent = String(advisors.length);
   if (retiredCount) retiredCount.textContent = String(retiredTeam.length);
   if (companyCount) companyCount.textContent = String(companies.length);
 }
@@ -1063,6 +1204,7 @@ async function init() {
       loadJson("events.json"),
     ]);
     const newsByDate = sortByDateDesc(news);
+    setCompanyDirectory(companies);
 
     populateGlobalContent(site);
 

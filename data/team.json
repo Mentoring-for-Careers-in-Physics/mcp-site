@@ -7,17 +7,19 @@
     "imageAlias": "ranheadshot",
     "image": "/assets/images/live-site/clearweb/assets/ran-headshot.jpg",
     "hasBio": true,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "group": "leadership"
   },
   {
     "name": "Chris Monahan",
-    "role": "Co-Founder & Director",
-    "bio": "Assistant Professor in the Physics Department and a co-founder and director of MCP.",
+    "role": "Co-Founder & Advisor",
+    "bio": "Assistant Professor in the Physics Department and an MCP co-founder who now advises the program.",
     "linkedin": null,
     "imageAlias": "chrisheadshot",
     "image": "/assets/images/live-site/clearweb/assets/monahan-headshot.jpg",
     "hasBio": true,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "group": "advisor"
   },
   {
     "name": "Julia Rodrigues",
@@ -27,7 +29,8 @@
     "imageAlias": "julia_rodrigues_headshot",
     "image": "/assets/images/live-site/clearweb/home/Julia_Rodrigues_pic.jpg",
     "hasBio": true,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "group": "leadership"
   },
   {
     "name": "Kalea Wen",
@@ -37,7 +40,8 @@
     "imageAlias": "kalea_wen_headshot",
     "image": "/assets/images/live-site/clearweb/assets/KaleaWen-headshot.jpeg",
     "hasBio": true,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "group": "leadership"
   },
   {
     "name": "Erica Trindade",
@@ -47,7 +51,8 @@
     "imageAlias": "erica_trindade_headshot",
     "image": "/assets/images/live-site/clearweb/assets/ericaTrindade_headshot.jpg",
     "hasBio": true,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "group": "leadership"
   },
   {
     "name": "Brielle Kirk",
@@ -57,7 +62,8 @@
     "imageAlias": "brielle_kirk_headshot",
     "image": "/assets/images/live-site/clearweb/assets/Brielle_Kirk.JPEG",
     "hasBio": true,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "group": "leadership"
   },
   {
     "name": "Alan Gonzalez Osorio",
@@ -67,6 +73,7 @@
     "imageAlias": "alanheadshot",
     "image": "/assets/images/live-site/clearweb/assets/alan-headshot.jpg",
     "hasBio": true,
-    "hasLongBio": false
+    "hasLongBio": false,
+    "group": "leadership"
   }
 ]

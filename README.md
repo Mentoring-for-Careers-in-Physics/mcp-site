@@ -6,9 +6,9 @@ This repo contains the new static MCP site built with plain HTML, CSS, and JavaS
 
 ## What is in this repo
 
-- A simplified public homepage that foregrounds mentor photos and organization logos
+- A simplified public homepage that foregrounds mentor photos, mentor employers, and organization logos
 - A searchable mentor directory
-- Leadership and supporters pages
+- Leadership, advisor, supporters, and former-team pages
 - A public news archive
 - Contact and giving pathways
 - Imported assets and content recovered from the live MCP website and backup files
@@ -17,17 +17,19 @@ This repo contains the new static MCP site built with plain HTML, CSS, and JavaS
 
 The homepage is intentionally shorter, more visual, and more stable across screen sizes than the earlier draft.
 
-- Mentor headshots appear directly in the hero area
-- Organization logos appear both near the top of the page and in the partner grid
+- Three mentor spotlights appear directly in the hero area and rotate randomly on each load
+- The primary homepage mentor CTA now points clearly to the full mentor directory
+- A visible `Join us` CTA appears in both the top navigation and bottom call-to-action block
+- Organization logos appear both near the top of the page and in the full organization grid
 - Section titles and supporting copy are deliberately shorter and less wordy
-- Homepage cards and counts still come from the JSON files in `data/`
+- Homepage cards, counts, and rotating mentor selections still come from the JSON files in `data/`
 
 ## Design notes
 
 The current visual direction is meant to feel lighter, calmer, and more polished than the previous version.
 
-- Typography uses `Fraunces` for headings and `Public Sans` for interface and body text
-- The color palette leans toward soft stone, slate, and champagne tones instead of high-contrast burgundy
+- Typography uses `Cormorant Garamond` for headings and `Manrope` for interface and body text
+- The color palette leans toward warm blush, soft white, and deep charcoal instead of cooler slate/champagne tones
 - Mentor photos are cropped and framed more intentionally, with more whitespace around them
 - Buttons, cards, and logos use a quieter editorial treatment instead of a louder marketing look
 
@@ -80,13 +82,13 @@ The site is driven by JSON files in `data/`.
 - `data/site.json`
   General site settings, social links, public action links, and event metadata
 - `data/mentors.json`
-  Mentor names, roles, bios, LinkedIn links, and images
+  Mentor names, titles, working entities, bios, LinkedIn links, and images
 - `data/team.json`
-  Current MCP leadership/team members
+  Current MCP leadership/team members, including advisor grouping
 - `data/retired-team.json`
   Previous MCP team members
 - `data/companies.json`
-  Mentor company logos and links
+  Mentor organization names, aliases, logos, and links
 - `data/news.json`
   Public news archive with article bodies and images
 - `data/events.json`
@@ -101,8 +103,18 @@ Not every local asset was downloaded directly from `https://mcp.physics.wm.edu`.
 - Mentor headshots and most company logos in `assets/images/live-site/clearweb/` are copied from the recovered `MCP-Website-BACKUP` source tree
 - News images in `assets/images/live-site/news/` are downloaded from the live MCP site APIs
 - Site icons in `assets/icons/live-site/` are downloaded from the live site
+- Additional organization logos in `assets/images/company-logos/` were added from official organization sites when the backup copy did not include a usable local logo
 
 The import script combines both sources so the static site can run without depending on the old React app.
+
+## Mentor organization coverage
+
+The current mentor directory explicitly lists each mentor's working entity so the site can show a complete organization footprint.
+
+- `data/mentors.json` now stores normalized `title` and `organizations` fields for each mentor
+- `data/companies.json` includes alias matching so older role strings can still resolve to the correct organization card
+- Organizations without a suitable logo asset can still appear cleanly through text/monogram fallback cards
+- The leadership page now places Chris Monahan lower as `Co-Founder & Advisor`, while former team members remain in their own archive section
 
 ## Local preview
 
@@ -141,7 +153,7 @@ It also keeps local image paths aligned with the static site layout so the impor
 
 ## Current action links
 
-As of April 19, 2026:
+As of April 21, 2026:
 
 - `menteeInterestFormUrl` points to the live Google Form
 - `givingUrl` points to the direct William & Mary giving page
