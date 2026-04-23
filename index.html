@@ -246,8 +246,9 @@
       <!-- CTA -->
       <section class="section section--cta">
         <div class="shell" data-reveal>
-          <div class="cta-panel cta-panel--single" style="background:linear-gradient(135deg,var(--wine) 0%,#6b4e58 100%);color:white;border:none">
-            <div>
+          <div class="cta-panel cta-panel--single" style="background:linear-gradient(135deg,var(--wine) 0%,#6b4e58 100%);color:white;border:none;position:relative;overflow:hidden;">
+            <canvas class="cta-stars" aria-hidden="true"></canvas>
+            <div style="position:relative;z-index:1">
               <span class="kicker kicker-light">Support MCP</span>
               <h2 style="color:white;max-width:16ch;margin-bottom:1rem">Help us grow what's possible.</h2>
               <p style="color:rgba(255,255,255,0.7);line-height:1.7;max-width:48ch;font-size:0.95rem">
@@ -300,7 +301,7 @@
                 <a href="#" data-mentee-link>Join as a student</a>
                 <a href="#" data-mentor-link>Become a mentor</a>
                 <a href="#" data-give-page-link>Give to MCP</a>
-                <a href="./pages/contact.html" data-contact-email><span class="__cf_email__" data-cfemail="f39e9083dd808683968186809681b3949e929a9fdd909c9e">[email&#160;protected]</span></a>
+                <a href="./pages/contact.html" data-contact-email><span class="__cf_email__" data-cfemail="711c12015f02040114030402140331161c10181d5f121e1c">[email&#160;protected]</span></a>
               </div>
             </div>
 
@@ -328,5 +329,108 @@
     </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="./js/main.js" defer></script>
+
+    <!-- ✦ Soft polish layer -->
+    <script>
+    (() => {
+      // 1. Cursor glow orb
+      const orb = document.createElement('div');
+      orb.id = 'cursor-orb';
+      document.body.appendChild(orb);
+      let mx = -200, my = -200, ox = -200, oy = -200;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      (function lerp() {
+        ox += (mx - ox) * 0.09;
+        oy += (my - oy) * 0.09;
+        orb.style.transform = `translate(${ox}px, ${oy}px)`;
+        requestAnimationFrame(lerp);
+      })();
+
+      // 2. Hero aurora — mouse parallax on blobs
+      const heroSection = document.querySelector('.hero-section');
+      const blob1 = document.createElement('div');
+      const blob2 = document.createElement('div');
+      blob1.className = 'aurora-blob aurora-blob--1';
+      blob2.className = 'aurora-blob aurora-blob--2';
+      heroSection?.prepend(blob1, blob2);
+      document.addEventListener('mousemove', e => {
+        if (!heroSection) return;
+        const rx = (e.clientX / window.innerWidth - 0.5) * 28;
+        const ry = (e.clientY / window.innerHeight - 0.5) * 18;
+        blob1.style.transform = `translate(${rx * 0.6}px, ${ry * 0.6}px)`;
+        blob2.style.transform = `translate(${-rx * 0.4}px, ${-ry * 0.4}px)`;
+      });
+
+      // 3. Subtle glow pulse on primary button (no movement)
+      document.querySelectorAll('.btn-primary, .nav-give').forEach(btn => {
+        btn.classList.add('btn-glow');
+      });
+
+      // 4. Parallax spotlight card on scroll
+      const card = document.querySelector('.spotlight-wrap');
+      window.addEventListener('scroll', () => {
+        if (!card) return;
+        const y = window.scrollY * 0.06;
+        card.style.transform = `translateY(${-y}px)`;
+      }, { passive: true });
+
+      // 5. Nav glass on scroll
+      const nav = document.querySelector('.nav');
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY > 40;
+        nav?.classList.toggle('nav--scrolled', scrolled);
+      }, { passive: true });
+
+      // 6. Page fade in
+      document.documentElement.classList.add('page-ready');
+
+      // 7. CTA floating stars
+      const canvas = document.querySelector('.cta-stars');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let W, H, stars;
+        const resize = () => {
+          const panel = canvas.parentElement;
+          W = canvas.width = panel.offsetWidth;
+          H = canvas.height = panel.offsetHeight;
+          stars = Array.from({length: 48}, () => ({
+            x: Math.random() * W, y: Math.random() * H,
+            r: Math.random() * 1.8 + 0.4,
+            speed: Math.random() * 0.35 + 0.12,
+            drift: (Math.random() - 0.5) * 0.25,
+            opacity: Math.random() * 0.5 + 0.15,
+            twinkle: Math.random() * Math.PI * 2,
+            twinkleSpeed: Math.random() * 0.025 + 0.008,
+          }));
+        };
+        resize();
+        window.addEventListener('resize', resize);
+        (function draw() {
+          ctx.clearRect(0, 0, W, H);
+          stars.forEach(s => {
+            s.y -= s.speed;
+            s.x += s.drift;
+            s.twinkle += s.twinkleSpeed;
+            if (s.y < -4) { s.y = H + 4; s.x = Math.random() * W; }
+            if (s.x < -4 || s.x > W + 4) { s.x = Math.random() * W; }
+            const alpha = s.opacity * (0.6 + 0.4 * Math.sin(s.twinkle));
+            const grd = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 3.5);
+            grd.addColorStop(0, `rgba(255,240,245,${alpha})`);
+            grd.addColorStop(0.4, `rgba(255,220,235,${alpha * 0.5})`);
+            grd.addColorStop(1, `rgba(255,220,235,0)`);
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r * 3.5, 0, Math.PI * 2);
+            ctx.fillStyle = grd;
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+            ctx.fill();
+          });
+          requestAnimationFrame(draw);
+        })();
+      }
+    })();
+    </script>
   </body>
 </html>
