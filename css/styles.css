@@ -143,6 +143,13 @@ h3 { font-size:clamp(1.2rem,1.8vw,1.65rem); }
 
 /* SUPPORTERS */
 .supporter-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; }
+.support-story-card { display:grid; grid-template-columns:minmax(280px,0.95fr) 1.05fr; gap:0; border-radius:var(--r-xl); overflow:hidden; border:1px solid var(--border); background:white; box-shadow:0 12px 36px rgba(74,53,64,0.07); margin-bottom:1.4rem; }
+.support-story-card__media { background:var(--blush); min-height:260px; }
+.support-story-card__media img { width:100%; height:100%; object-fit:cover; object-position:center 32%; }
+.support-story-card__body { padding:2rem 2.15rem; display:flex; flex-direction:column; justify-content:center; }
+.support-story-card__title { font-family:var(--f-display); font-size:clamp(1.5rem,2.5vw,2.15rem); line-height:1.05; margin-bottom:0.9rem; }
+.support-story-card__text { font-size:0.94rem; color:var(--muted); line-height:1.7; max-width:54ch; }
+.support-story-card__actions { display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.25rem; }
 .supporter-card { border-radius:var(--r-xl); overflow:hidden; border:1px solid var(--border); background:white; box-shadow:0 10px 30px rgba(74,53,64,0.06); transition:transform 0.22s var(--ease),box-shadow 0.22s; }
 .supporter-card:hover { transform:translateY(-4px); box-shadow:0 20px 50px rgba(74,53,64,0.12); }
 .supporter-card__media { min-height:110px; padding:1.25rem 1.5rem; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,var(--snow) 0%,white 100%); border-bottom:1px solid var(--border); }
@@ -236,6 +243,11 @@ body.modal-open { overflow:hidden; }
 .featured-article__body { padding:2.5rem; }
 .featured-article__title { font-family:var(--f-display); font-size:clamp(1.5rem,2.5vw,2.25rem); line-height:1.05; margin-bottom:0.9rem; }
 .featured-article__summary { font-size:0.95rem; color:var(--muted); line-height:1.7; }
+.featured-article--poster { display:flex; flex-wrap:wrap; align-items:center; gap:1.75rem; padding:1.5rem; }
+.featured-article--poster .featured-article__media { flex:0 1 300px; width:min(100%,300px); min-height:0; overflow:visible; background:transparent; }
+.featured-article__poster-card { width:100%; border-radius:22px; overflow:hidden; border:1px solid var(--border); box-shadow:0 18px 38px rgba(74,53,64,0.12); }
+.featured-article__poster-card img { width:100%; height:auto; display:block; object-fit:contain; object-position:center; }
+.featured-article--poster .featured-article__body { flex:1 1 320px; padding:0; }
 
 /* ARTICLE BODY (modal) */
 .article-body { font-size:0.95rem; color:var(--ink); line-height:1.75; padding:1.75rem; }
@@ -363,6 +375,7 @@ body.modal-open { overflow:hidden; }
   .company-grid { grid-template-columns:repeat(2,1fr); }
   .news-grid { grid-template-columns:repeat(2,1fr); }
   .supporter-grid { grid-template-columns:repeat(2,1fr); }
+  .support-story-card { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr 1fr; }
   .cta-panel { grid-template-columns:1fr; }
   .info-grid { grid-template-columns:1fr; }
@@ -371,6 +384,8 @@ body.modal-open { overflow:hidden; }
   .give-reason-grid { grid-template-columns:repeat(2,1fr); }
   .feature-grid,.feature-grid--profiles { grid-template-columns:repeat(2,1fr); }
   .featured-article { grid-template-columns:1fr; }
+  .featured-article--poster { padding:1.25rem; }
+  .featured-article--poster .featured-article__media { flex-basis:260px; width:min(100%,260px); }
   .spotlight-card { grid-template-columns:1fr; }
   .spotlight-card__media { min-height:360px; }
   .portrait-cluster { grid-template-columns:1fr 1fr; }
@@ -379,6 +394,7 @@ body.modal-open { overflow:hidden; }
   .nav-join,.nav-give { display:none; }
   .nav-actions { gap:0; }
   .pillar-grid,.profile-grid,.profile-grid-4,.company-grid,.news-grid,.footer-grid,.contact-grid,.supporter-grid { grid-template-columns:1fr; }
+  .support-story-card__body { padding:1.5rem; }
   .feature-grid,.feature-grid--profiles { grid-template-columns:1fr; }
   .section,.section--soft,.section-soft { padding:4rem 0; }
   .modal-header,.modal-profile { grid-template-columns:1fr; }

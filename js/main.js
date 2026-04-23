@@ -518,6 +518,42 @@ function renderSupporterGrid(containerSelector, supporters = []) {
     : `<div class="empty-state">Supporters will appear here soon.</div>`;
 }
 
+function renderSupportStoryCard(article) {
+  if (!article) {
+    return `<div class="empty-state">Featured story coming soon.</div>`;
+  }
+
+  const title = escapeHtml(article.title || "Featured story");
+  const image = assetPath(article.localImage || article.imageUrl || BLANK_PROFILE);
+  const summary = escapeHtml(excerpt(article.bodyMarkdown || "", 280));
+  const externalUrl =
+    article.primaryExternalUrl ||
+    (Array.isArray(article.resourceLinks) && article.resourceLinks[0]?.url) ||
+    (Array.isArray(article.links) && article.links.find((link) => /cdsp\.wm\.edu/i.test(link))) ||
+    "";
+
+  return `
+    <article class="support-story-card" data-reveal>
+      <div class="support-story-card__media">
+        <img src="${image}" alt="${title}" loading="lazy" />
+      </div>
+      <div class="support-story-card__body">
+        <span class="kicker">In The News</span>
+        <h3 class="support-story-card__title">${title}</h3>
+        <p class="support-story-card__text">${summary}</p>
+        <div class="support-story-card__actions">
+          ${
+            externalUrl
+              ? `<a class="button button-primary" href="${externalUrl}" target="_blank" rel="noreferrer">Read this news</a>`
+              : ""
+          }
+          <a class="button button-ghost" href="${rootPath(`pages/news.html#${article.id}`)}">See MCP news</a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 function renderCompanyShowcaseCard(company = {}) {
   const category = escapeHtml(companyCategory(company));
   const name = escapeHtml(company.name || "Partner organization");
@@ -733,10 +769,24 @@ function renderFeaturedNews(article, options = {}) {
   const title = escapeHtml(article.title || "Featured story");
   const summary = escapeHtml(excerpt(article.bodyMarkdown || "", 460));
   const mediaBackground = escapeHtml(article.imageBackground || "var(--blush)");
-  const imageStyle =
+  const featuredClass =
     article.imageFit === "contain"
-      ? `style="object-fit:contain;padding:1rem;background:${mediaBackground};"`
-      : "";
+      ? "featured-article featured-article--poster"
+      : "featured-article";
+  const mediaHtml =
+    article.imageFit === "contain"
+      ? `
+        <div class="featured-article__media">
+          <div class="featured-article__poster-card" style="background:${mediaBackground};">
+            <img src="${image}" alt="${title}" loading="lazy" />
+          </div>
+        </div>
+      `
+      : `
+        <div class="featured-article__media">
+          <img src="${image}" alt="${title}" loading="lazy" />
+        </div>
+      `;
   const primaryAction =
     options.mode === "link"
       ? `
@@ -763,10 +813,8 @@ function renderFeaturedNews(article, options = {}) {
       : "";
 
   return `
-    <article class="featured-article" data-reveal>
-      <div class="featured-article__media">
-        <img src="${image}" alt="${title}" loading="lazy" ${imageStyle} />
-      </div>
+    <article class="${featuredClass}" data-reveal>
+      ${mediaHtml}
       <div class="featured-article__body">
         <p class="section-kicker">Featured Story</p>
         <h2 class="featured-article__title">${title}</h2>
@@ -1019,6 +1067,14 @@ function initHomePage({ site, mentors, team, news, companies }) {
       secondaryHref: rootPath("pages/news.html"),
       secondaryLabel: "See all news",
     });
+  }
+
+  const cdspStory =
+    news.find((article) => article.primaryExternalUrl && /cdsp\.wm\.edu/i.test(article.primaryExternalUrl)) ||
+    news.find((article) => /you belong here/i.test(article.title || ""));
+  const supportStoryContainer = document.querySelector("[data-home-support-story]");
+  if (supportStoryContainer) {
+    supportStoryContainer.innerHTML = renderSupportStoryCard(cdspStory);
   }
 
   renderSupporterGrid("[data-home-supporters]", site.supporters || []);

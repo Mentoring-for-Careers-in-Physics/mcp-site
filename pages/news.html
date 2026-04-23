@@ -51,6 +51,10 @@ function articleResourceLinks(article) {
   }));
 }
 
+function articlePrimaryUrl(article) {
+  return article?.primaryExternalUrl || "";
+}
+
 function Nav({ links }) {
   const [open, setOpen] = useState(false);
   return (
@@ -162,6 +166,28 @@ function Footer({ links }) {
 function NewsCard({ article, onOpen }) {
   const imageFit = article.imageFit === "contain" ? "contain" : "cover";
   const imageBackground = article.imageBackground || "var(--blush)";
+  const primaryUrl = articlePrimaryUrl(article);
+
+  if (primaryUrl) {
+    return (
+      <a className="news-card" href={primaryUrl} target="_blank" rel="noreferrer noopener">
+        <div className="news-thumb">
+          {article.image
+            ? <img src={article.image} alt={article.title} style={{ width:"100%", height:"100%", objectFit:imageFit, background:imageBackground, padding:imageFit === "contain" ? "0.85rem" : undefined }} />
+            : <div style={{ width:"100%", height:"100%", background:"linear-gradient(160deg,var(--blush),var(--rose))", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <span style={{ fontFamily:"var(--f-display)", fontSize:"1rem", color:"var(--wine)", opacity:0.4, textTransform:"uppercase", letterSpacing:"0.1em" }}>MCP</span>
+              </div>
+          }
+        </div>
+        <div className="news-body">
+          <div className="news-date">{article.formattedDate}</div>
+          <div className="news-title">{article.title}</div>
+          <div className="news-summary">{article.summary}</div>
+          <div style={{ marginTop:"1rem", fontSize:"0.78rem", fontWeight:600, color:"var(--wine)" }}>Read original article →</div>
+        </div>
+      </a>
+    );
+  }
 
   return (
     <div className="news-card" role="button" tabIndex={0} onClick={() => onOpen(article)} onKeyDown={(event) => event.key === "Enter" && onOpen(article)}>
@@ -263,6 +289,46 @@ function App() {
   const featured = news[0];
   const archive = news.slice(1);
   const yearRange = news.length ? `${news[news.length - 1].year}–${news[0].year}` : "";
+  const featuredIsContainedPoster = featured?.imageFit === "contain";
+  const featuredCardStyle = {
+    borderRadius:"var(--r-xl)",
+    overflow:"hidden",
+    border:"1px solid var(--border)",
+    background:"white",
+    boxShadow:"0 12px 36px rgba(74,53,64,0.07)",
+    display: featuredIsContainedPoster ? "flex" : "grid",
+    flexWrap: featuredIsContainedPoster ? "wrap" : undefined,
+    alignItems: featuredIsContainedPoster ? "center" : undefined,
+    gap: featuredIsContainedPoster ? "1.75rem" : undefined,
+    gridTemplateColumns: featuredIsContainedPoster ? undefined : "1fr 1fr",
+    padding: featuredIsContainedPoster ? "1.5rem" : undefined,
+    marginBottom:"2rem",
+    cursor:"pointer",
+  };
+  const featuredMediaStyle = {
+    overflow: featuredIsContainedPoster ? "visible" : "hidden",
+    background: featuredIsContainedPoster ? "transparent" : (featured?.imageBackground || "var(--blush)"),
+    flex: featuredIsContainedPoster ? "0 1 300px" : undefined,
+    width: featuredIsContainedPoster ? "min(100%, 300px)" : undefined,
+  };
+  const featuredPosterCardStyle = featuredIsContainedPoster ? {
+    width:"100%",
+    borderRadius:"22px",
+    overflow:"hidden",
+    border:"1px solid var(--border)",
+    boxShadow:"0 18px 38px rgba(74,53,64,0.12)",
+    background: featured?.imageBackground || "var(--blush)",
+  } : null;
+  const featuredImageStyle = {
+    width:"100%",
+    height: featuredIsContainedPoster ? "auto" : "100%",
+    display: featuredIsContainedPoster ? "block" : undefined,
+    objectFit: featuredIsContainedPoster ? "contain" : "cover",
+    objectPosition:"center 30%",
+  };
+  const featuredBodyStyle = featuredIsContainedPoster
+    ? { flex:"1 1 320px", padding:"0" }
+    : { padding:"2.5rem" };
 
   return (
     <>
@@ -293,14 +359,16 @@ function App() {
               <div className="empty-state">{status.error}</div>
             ) : featured ? (
               <>
-                <div role="button" tabIndex={0} onClick={() => openArticle(featured)} onKeyDown={(event) => event.key === "Enter" && openArticle(featured)} style={{ borderRadius:"var(--r-xl)", overflow:"hidden", border:"1px solid var(--border)", background:"white", boxShadow:"0 12px 36px rgba(74,53,64,0.07)", display:"grid", gridTemplateColumns:"1fr 1fr", marginBottom:"2rem", cursor:"pointer" }}>
-                  <div style={{ overflow:"hidden", background:"var(--blush)" }}>
+                <div role="button" tabIndex={0} onClick={() => openArticle(featured)} onKeyDown={(event) => event.key === "Enter" && openArticle(featured)} style={featuredCardStyle}>
+                  <div style={featuredMediaStyle}>
                     {featured.image
-                      ? <img src={featured.image} alt={featured.title} style={{ width:"100%", height:"100%", objectFit:featured.imageFit === "contain" ? "contain" : "cover", objectPosition:"center 30%", background:featured.imageBackground || "var(--blush)", padding:featured.imageFit === "contain" ? "1rem" : undefined }} />
+                      ? featuredIsContainedPoster
+                        ? <div style={featuredPosterCardStyle}><img src={featured.image} alt={featured.title} style={featuredImageStyle} /></div>
+                        : <img src={featured.image} alt={featured.title} style={featuredImageStyle} />
                       : <div style={{ width:"100%", height:"100%", background:"linear-gradient(160deg,var(--blush),var(--rose))" }} />
                     }
                   </div>
-                  <div style={{ padding:"2.5rem" }}>
+                  <div style={featuredBodyStyle}>
                     <div style={{ fontSize:"0.78rem", color:"var(--muted)", marginBottom:"1rem" }}>{featured.formattedDate}</div>
                     <h2 style={{ marginBottom:"1rem", lineHeight:1.05 }}>{featured.title}</h2>
                     <p style={{ fontSize:"0.95rem", color:"var(--muted)", lineHeight:1.7 }}>{featured.summary}</p>
