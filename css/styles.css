@@ -53,6 +53,7 @@ button { font:inherit; cursor:pointer; border:none; background:none; }
 .shell { width:var(--shell); margin:0 auto; }
 .section { padding:5.5rem 0; }
 .section--soft,.section-soft { background:linear-gradient(180deg,var(--snow) 0%,var(--pearl) 100%); }
+#friends { scroll-margin-top: 88px; }
 .kicker,.section-kicker { font-size:0.68rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--wine-mid); margin-bottom:0.85rem; display:block; }
 .kicker-light { color:rgba(255,255,255,0.5); }
 .micro-label { font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--wine-mid); margin-bottom:0.5rem; display:block; }
