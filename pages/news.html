@@ -35,6 +35,22 @@ const NAV_LINKS = [
 ];
 const CURRENT_YEAR = new Date().getFullYear();
 
+function articleResourceLinks(article) {
+  if (Array.isArray(article?.resourceLinks) && article.resourceLinks.length) {
+    return article.resourceLinks
+      .filter((item) => item?.url)
+      .map((item) => ({
+        label: item.label || socialLabel(item.url),
+        url: item.url,
+      }));
+  }
+
+  return (article?.externalLinks || []).map((url) => ({
+    label: socialLabel(url),
+    url,
+  }));
+}
+
 function Nav({ links }) {
   const [open, setOpen] = useState(false);
   return (
@@ -69,6 +85,10 @@ function Nav({ links }) {
 }
 
 function ArticleModal({ article, onClose }) {
+  const resourceLinks = articleResourceLinks(article);
+  const imageFit = article.imageFit === "contain" ? "contain" : "cover";
+  const imageBackground = article.imageBackground || "var(--blush)";
+
   useEffect(() => {
     const handleKey = (event) => {
       if (event.key === "Escape") {
@@ -90,7 +110,7 @@ function ArticleModal({ article, onClose }) {
         <div className="modal-close-row"><button className="modal-close-btn" onClick={onClose}>Close ✕</button></div>
         <div className="modal-header" style={{ gridTemplateColumns:"1fr" }}>
           {article.image
-            ? <img className="modal-img" src={article.image} alt={article.title} style={{ aspectRatio:"1.8", objectPosition:"center 35%" }} />
+            ? <img className="modal-img" src={article.image} alt={article.title} style={{ aspectRatio:"1.8", objectFit:imageFit, objectPosition:"center 35%", background:imageBackground, padding:imageFit === "contain" ? "1rem" : undefined }} />
             : <div className="modal-img" style={{ aspectRatio:"1.8", background:"linear-gradient(160deg,var(--blush),var(--rose))" }} />
           }
           <div className="modal-header-info" style={{ gap:"0.7rem" }}>
@@ -104,10 +124,10 @@ function ArticleModal({ article, onClose }) {
             ? article.paragraphs.map((paragraph, index) => <p key={index} className="modal-bio">{paragraph}</p>)
             : <p className="modal-bio">Full article text coming soon.</p>
           }
-          {article.externalLinks.length ? (
+          {resourceLinks.length ? (
             <div className="modal-actions">
-              {article.externalLinks.slice(0, 3).map((link) => (
-                <a key={link} className="btn btn-secondary btn-sm" href={link} target="_blank" rel="noreferrer noopener">{socialLabel(link)} →</a>
+              {resourceLinks.map((link) => (
+                <a key={link.url} className="btn btn-secondary btn-sm" href={link.url} target="_blank" rel="noreferrer noopener">{link.label} →</a>
               ))}
             </div>
           ) : null}
@@ -140,11 +160,14 @@ function Footer({ links }) {
 }
 
 function NewsCard({ article, onOpen }) {
+  const imageFit = article.imageFit === "contain" ? "contain" : "cover";
+  const imageBackground = article.imageBackground || "var(--blush)";
+
   return (
     <div className="news-card" role="button" tabIndex={0} onClick={() => onOpen(article)} onKeyDown={(event) => event.key === "Enter" && onOpen(article)}>
       <div className="news-thumb">
         {article.image
-          ? <img src={article.image} alt={article.title} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
+          ? <img src={article.image} alt={article.title} style={{ width:"100%", height:"100%", objectFit:imageFit, background:imageBackground, padding:imageFit === "contain" ? "0.85rem" : undefined }} />
           : <div style={{ width:"100%", height:"100%", background:"linear-gradient(160deg,var(--blush),var(--rose))", display:"flex", alignItems:"center", justifyContent:"center" }}>
               <span style={{ fontFamily:"var(--f-display)", fontSize:"1rem", color:"var(--wine)", opacity:0.4, textTransform:"uppercase", letterSpacing:"0.1em" }}>MCP</span>
             </div>
@@ -198,6 +221,45 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!news.length) {
+      return undefined;
+    }
+
+    const syncModalToHash = () => {
+      const articleId = window.location.hash.replace(/^#/, "");
+
+      if (!articleId) {
+        setModal(null);
+        return;
+      }
+
+      const matchedArticle = news.find((article) => article.id === articleId);
+      if (matchedArticle) {
+        setModal(matchedArticle);
+      }
+    };
+
+    syncModalToHash();
+    window.addEventListener("hashchange", syncModalToHash);
+    return () => {
+      window.removeEventListener("hashchange", syncModalToHash);
+    };
+  }, [news]);
+
+  const openArticle = (article) => {
+    setModal(article);
+    if (article?.id) {
+      window.history.replaceState(null, "", `#${article.id}`);
+    }
+  };
+
+  const closeArticle = () => {
+    setModal(null);
+    const baseUrl = `${window.location.pathname}${window.location.search}`;
+    window.history.replaceState(null, "", baseUrl);
+  };
+
   const featured = news[0];
   const archive = news.slice(1);
   const yearRange = news.length ? `${news[news.length - 1].year}–${news[0].year}` : "";
@@ -231,10 +293,10 @@ function App() {
               <div className="empty-state">{status.error}</div>
             ) : featured ? (
               <>
-                <div role="button" tabIndex={0} onClick={() => setModal(featured)} onKeyDown={(event) => event.key === "Enter" && setModal(featured)} style={{ borderRadius:"var(--r-xl)", overflow:"hidden", border:"1px solid var(--border)", background:"white", boxShadow:"0 12px 36px rgba(74,53,64,0.07)", display:"grid", gridTemplateColumns:"1fr 1fr", marginBottom:"2rem", cursor:"pointer" }}>
+                <div role="button" tabIndex={0} onClick={() => openArticle(featured)} onKeyDown={(event) => event.key === "Enter" && openArticle(featured)} style={{ borderRadius:"var(--r-xl)", overflow:"hidden", border:"1px solid var(--border)", background:"white", boxShadow:"0 12px 36px rgba(74,53,64,0.07)", display:"grid", gridTemplateColumns:"1fr 1fr", marginBottom:"2rem", cursor:"pointer" }}>
                   <div style={{ overflow:"hidden", background:"var(--blush)" }}>
                     {featured.image
-                      ? <img src={featured.image} alt={featured.title} style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 30%" }} />
+                      ? <img src={featured.image} alt={featured.title} style={{ width:"100%", height:"100%", objectFit:featured.imageFit === "contain" ? "contain" : "cover", objectPosition:"center 30%", background:featured.imageBackground || "var(--blush)", padding:featured.imageFit === "contain" ? "1rem" : undefined }} />
                       : <div style={{ width:"100%", height:"100%", background:"linear-gradient(160deg,var(--blush),var(--rose))" }} />
                     }
                   </div>
@@ -250,7 +312,7 @@ function App() {
                   <div><span className="kicker">Archive</span><h2>All MCP updates.</h2></div>
                 </div>
                 <div className="news-grid">
-                  {archive.map((article) => <NewsCard key={article.id} article={article} onOpen={setModal} />)}
+                  {archive.map((article) => <NewsCard key={article.id} article={article} onOpen={openArticle} />)}
                 </div>
               </>
             ) : (
@@ -260,7 +322,7 @@ function App() {
         </section>
       </main>
       <Footer links={links} />
-      {modal ? <ArticleModal article={modal} onClose={() => setModal(null)} /> : null}
+      {modal ? <ArticleModal article={modal} onClose={closeArticle} /> : null}
     </>
   );
 }

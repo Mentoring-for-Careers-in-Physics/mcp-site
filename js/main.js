@@ -685,6 +685,11 @@ function renderNewsCard(article, options = {}) {
   const title = escapeHtml(article.title || "MCP update");
   const summary = escapeHtml(excerpt(article.bodyMarkdown || "", options.excerptLength || 190));
   const articleId = article.id || slugify(article.title || "article");
+  const mediaBackground = escapeHtml(article.imageBackground || "var(--blush)");
+  const imageStyle =
+    article.imageFit === "contain"
+      ? `style="object-fit:contain;padding:0.85rem;background:${mediaBackground};"`
+      : "";
   const action =
     options.mode === "link"
       ? `
@@ -705,7 +710,7 @@ function renderNewsCard(article, options = {}) {
   return `
     <article class="news-card" id="article-${articleId}" data-reveal>
       <div class="news-card__media">
-        <img src="${image}" alt="${title}" loading="lazy" />
+        <img src="${image}" alt="${title}" loading="lazy" ${imageStyle} />
       </div>
       <div class="news-card__body">
         <span class="news-card__eyebrow">${formatDate(article.date)}</span>
@@ -727,6 +732,11 @@ function renderFeaturedNews(article, options = {}) {
   const image = assetPath(article.localImage || article.imageUrl || BLANK_PROFILE);
   const title = escapeHtml(article.title || "Featured story");
   const summary = escapeHtml(excerpt(article.bodyMarkdown || "", 460));
+  const mediaBackground = escapeHtml(article.imageBackground || "var(--blush)");
+  const imageStyle =
+    article.imageFit === "contain"
+      ? `style="object-fit:contain;padding:1rem;background:${mediaBackground};"`
+      : "";
   const primaryAction =
     options.mode === "link"
       ? `
@@ -755,7 +765,7 @@ function renderFeaturedNews(article, options = {}) {
   return `
     <article class="featured-article" data-reveal>
       <div class="featured-article__media">
-        <img src="${image}" alt="${title}" loading="lazy" />
+        <img src="${image}" alt="${title}" loading="lazy" ${imageStyle} />
       </div>
       <div class="featured-article__body">
         <p class="section-kicker">Featured Story</p>
@@ -996,16 +1006,13 @@ function initHomePage({ site, mentors, team, news, companies }) {
   const featuredMentors = visibleMentors
     .filter((mentor) => mentor.name !== spotlightMentor?.name)
     .slice(0, 3);
-  const kickoffArticle =
-    news.find((article) => /annual kickoff/i.test(article.title || "")) ||
-    news.find((article) => String(article.date || "").startsWith("2026-02-27")) ||
-    news[0];
+  const featuredArticle = news[0];
 
   renderSpotlightMentor(spotlightMentor);
 
   const currentNewsContainer = document.querySelector("[data-home-current-news]");
   if (currentNewsContainer) {
-    currentNewsContainer.innerHTML = renderFeaturedNews(kickoffArticle, {
+    currentNewsContainer.innerHTML = renderFeaturedNews(featuredArticle, {
       mode: "link",
       hrefBuilder: (item) => rootPath(`pages/news.html#${item.id}`),
       primaryLabel: "Read update",

@@ -60,16 +60,49 @@
   },
   {
     "id": "680c1e3a2162b543d6d3469d",
-    "title": "NASA Trip 4/25",
-    "date": "2025-04-25T04:00:00.000Z",
-    "bodyMarkdown": "Tour wind tunnels, gantry systems, and more!\n![image info](https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg)",
-    "imageUrl": "https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg",
+    "title": "NASA Langley + Yorktown Trip",
+    "date": "2026-04-24T04:00:00.000Z",
+    "bodyMarkdown": "MCP's NASA Langley + Yorktown trip is set for **Friday, April 24, 2026**. Open to all students, the day is designed to connect STEM exploration with civic and historical reflection through a visit to [NASA Langley Research Center](https://www.nasa.gov/langley/), a picnic lunch at Yorktown Beach, and time at the [American Revolution Museum at Yorktown](https://www.jyfmuseums.org/visit/american-revolution-museum-at-yorktown).\n\nThe flyer highlights a tour of NASA Langley's wind tunnels, flight hangar, and more, alongside the museum stop in Yorktown. Together, the itinerary brings aerospace research, public institutions, and the history of American independence into one shared MCP experience.\n\nThat makes the trip a strong fit for William & Mary's [Year of Civic Leadership](https://www.wm.edu/sites/yearofcivicleadership/), which centers service, public stewardship, and leadership for the common good. It also aligns with W&M's [250th Anniversary of America](https://www.wm.edu/sites/america250/) work and the broader [America250](https://america250.org/) commemoration as students think about how scientific work, citizenship, and public memory shape the future.\n\n## Event highlights\n- Tour NASA Langley wind tunnels, the flight hangar, and more.\n- Picnic lunch at Yorktown Beach.\n- Visit the American Revolution Museum at Yorktown.\n- Open to all students.\n\nThe original flyer listed an RSVP deadline of **April 13**.\n\n## Why it matters for MCP\n- Students can explore how physics and engineering careers connect to public-serving institutions.\n- The Yorktown stop adds historical context and civic reflection to a STEM-focused trip.\n- Together, the day bridges career imagination, civic leadership, and the 250-year story of the United States.\n\n## Official context and links\n- [NASA Langley Research Center](https://www.nasa.gov/langley/)\n- [American Revolution Museum at Yorktown](https://www.jyfmuseums.org/visit/american-revolution-museum-at-yorktown)\n- [W&M Year of Civic Leadership](https://www.wm.edu/sites/yearofcivicleadership/)\n- [W&M 250th Anniversary of America](https://www.wm.edu/sites/america250/)\n- [America250](https://america250.org/)\n- [Flyer RSVP form](https://forms.gle/yvwspUKQEAZ5KqtZ7)",
+    "imageUrl": "",
     "isClearweb": true,
     "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/680c1e3a2162b543d6d3469d",
     "links": [
-      "https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg"
+      "https://www.nasa.gov/langley/",
+      "https://www.jyfmuseums.org/visit/american-revolution-museum-at-yorktown",
+      "https://www.wm.edu/sites/yearofcivicleadership/",
+      "https://www.wm.edu/sites/america250/",
+      "https://america250.org/",
+      "https://forms.gle/yvwspUKQEAZ5KqtZ7"
     ],
-    "localImage": "/assets/images/live-site/news/680c1e3a2162b543d6d3469d-nasa-trip-4-25.svg",
+    "imageFit": "contain",
+    "imageBackground": "#433a62",
+    "resourceLinks": [
+      {
+        "label": "NASA Langley Research Center",
+        "url": "https://www.nasa.gov/langley/"
+      },
+      {
+        "label": "American Revolution Museum at Yorktown",
+        "url": "https://www.jyfmuseums.org/visit/american-revolution-museum-at-yorktown"
+      },
+      {
+        "label": "W&M Year of Civic Leadership",
+        "url": "https://www.wm.edu/sites/yearofcivicleadership/"
+      },
+      {
+        "label": "W&M 250th Anniversary of America",
+        "url": "https://www.wm.edu/sites/america250/"
+      },
+      {
+        "label": "America250",
+        "url": "https://america250.org/"
+      },
+      {
+        "label": "Flyer RSVP form",
+        "url": "https://forms.gle/yvwspUKQEAZ5KqtZ7"
+      }
+    ],
+    "localImage": "/assets/images/live-site/news/680c1e3a2162b543d6d3469d-nasa-langley-yorktown-trip.png",
     "imageDownloadStatus": "downloaded"
   },
   {
