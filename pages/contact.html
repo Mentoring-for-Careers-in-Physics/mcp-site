@@ -19,8 +19,8 @@ const { useEffect, useMemo, useState } = React;
 const {
   DEFAULT_EXTERNAL_LINKS,
   buildExternalLinks,
+  buildSocialLinks,
   loadJson,
-  socialLabel,
 } = window.MCPSubpages;
 
 const ROOT = "..";
@@ -82,7 +82,7 @@ function Footer({ links }) {
           </div>
           <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}</div></div>
           <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={links.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={links.mentor}>Become a mentor</a><a href={links.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
-          <div><div className="footer-heading">Connect</div><div className="footer-links">{links.socialLinks.map((link) => <a key={link} href={link} target="_blank" rel="noreferrer">{socialLabel(link)}</a>)}<a href={`mailto:${links.email}`}>{links.email}</a></div></div>
+          <div><div className="footer-heading">Connect</div><div className="footer-links"><div className="social-list social-list--footer" dangerouslySetInnerHTML={{ __html: buildSocialLinks(links.socialLinks) }} /><a href={`mailto:${links.email}`}>{links.email}</a></div></div>
         </div>
         <div className="footer-base"><p>Mentoring for Careers in Physics · William &amp; Mary</p><p>© {CURRENT_YEAR} William &amp; Mary</p></div>
       </div>
@@ -221,11 +221,11 @@ function App() {
                   </div>
                   <div>
                     <div className="contact-item-label">Social</div>
-                    <div style={{ display:"flex", gap:"0.6rem", flexWrap:"wrap", marginTop:"0.35rem" }}>
-                      {links.socialLinks.map((link) => (
-                        <a key={link} href={link} target="_blank" rel="noreferrer" style={{ padding:"0.5rem 0.9rem", borderRadius:"999px", border:"1px solid var(--border)", fontSize:"0.82rem", fontWeight:600, color:"var(--wine)", background:"white" }}>{socialLabel(link)}</a>
-                      ))}
-                    </div>
+                    <div
+                      className="social-list"
+                      style={{ marginTop:"0.35rem" }}
+                      dangerouslySetInnerHTML={{ __html: buildSocialLinks(links.socialLinks, { className:"social-chip", labelVisible:true }) }}
+                    />
                   </div>
                 </div>
                 <div style={{ padding:"1.75rem", borderRadius:"var(--r-xl)", background:"var(--wine)", color:"white", border:"none" }}>

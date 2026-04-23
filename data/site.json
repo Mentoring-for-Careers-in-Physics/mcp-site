@@ -3,7 +3,6 @@
   "summary": "One-to-one mentorship for William & Mary students exploring physics and STEM careers.",
   "mission": "Mentoring for Careers in Physics provides one-on-one professional mentoring for undergraduate students majoring in physics, or thinking about careers in STEM (Science, Technology, Engineering, and Mathematics). Our mentors work with students to cultivate a rewarding and educational experience by sharing their professional insights and experiences, providing career guidance and networking opportunities, and helping students identify and plan their future STEM careers. We welcome undergraduate students from gender minorities in physics.",
   "story": "MCP was founded by Ran Yang and Chris Monahan, inspired by several students’ experience “…the accommodations and support you displayed towards our class meant the world to me and very much helped solidify my feeling secure as a woman in the field ”. Our pilot project launched on December 10, 2021.",
-  "supportersText": "MCP is supported by William & Mary's Department of Physics, the Society of 1918, and the School of Computing, Data Sciences & Physics.",
   "contactEmail": "mcp.superuser@gmail.com",
   "interestFormUrl": "https://forms.gle/zkuoy8HGdec81Y5o8",
   "menteeInterestFormUrl": "https://forms.gle/zkuoy8HGdec81Y5o8",
@@ -25,7 +24,8 @@
       "subtitle": "William & Mary",
       "description": "MCP was built in the William & Mary physics community, where students find faculty support, research context, and a strong home base.",
       "website": "https://www.wm.edu/as/physics/",
-      "image": "/assets/images/supporters/wm-vertical-single-line.svg"
+      "image": "/assets/images/supporters/wm-vertical-single-line.svg",
+      "mediaBackground": "#115740"
     },
     {
       "name": "School of Computing, Data Sciences & Physics",

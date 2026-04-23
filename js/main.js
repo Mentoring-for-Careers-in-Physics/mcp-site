@@ -206,24 +206,83 @@ function getProfileImage(item) {
   return assetPath(item.image);
 }
 
-function classifySocialLink(url) {
-  if (url.includes("instagram.com")) return "Instagram";
-  if (url.includes("linkedin.com")) return "LinkedIn";
-  if (url.includes("twitter.com")) return "X";
-  if (url.includes("youtu")) return "YouTube";
+function socialPlatform(url = "") {
+  const value = String(url).toLowerCase();
+  if (value.includes("instagram.com")) return "instagram";
+  if (value.includes("linkedin.com")) return "linkedin";
+  if (value.includes("twitter.com") || value.includes("x.com")) return "x";
+  if (value.includes("youtu")) return "youtube";
+  return "website";
+}
+
+function classifySocialLink(url = "") {
+  const platform = socialPlatform(url);
+  if (platform === "instagram") return "Instagram";
+  if (platform === "linkedin") return "LinkedIn";
+  if (platform === "x") return "X";
+  if (platform === "youtube") return "YouTube";
   return "Website";
 }
 
-function buildSocialLinks(urls = []) {
-  return urls
-    .map((url) => {
+function socialIconMarkup(platform = "website") {
+  switch (platform) {
+    case "instagram":
       return `
-        <a class="social-pill" href="${url}" target="_blank" rel="noreferrer">
-          ${classifySocialLink(url)}
-        </a>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.25" stroke="currentColor" stroke-width="1.9"/>
+          <circle cx="12" cy="12" r="4.15" stroke="currentColor" stroke-width="1.9"/>
+          <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/>
+        </svg>
       `;
-    })
-    .join("");
+    case "linkedin":
+      return `
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="3.25" stroke="currentColor" stroke-width="1.9"/>
+          <rect x="7.1" y="10.15" width="2.55" height="6.75" rx="1.1" fill="currentColor"/>
+          <circle cx="8.38" cy="7.8" r="1.35" fill="currentColor"/>
+          <path d="M12.2 16.9v-6.75h2.45v1.05c.54-.77 1.4-1.23 2.58-1.23 2.02 0 3.17 1.26 3.17 3.76v3.17h-2.55v-2.88c0-1.18-.43-1.82-1.42-1.82-1.05 0-1.68.74-1.68 2.02v2.68H12.2Z" fill="currentColor"/>
+        </svg>
+      `;
+    case "x":
+      return `
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 4.5h3.7l4.1 5.5 4.5-5.5H19l-5.3 6.45L19.5 19h-3.7l-4.4-5.9L6.35 19H5l5.73-6.98L5 4.5Z" fill="currentColor"/>
+        </svg>
+      `;
+    case "youtube":
+      return `
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 12c0 2.72-.3 4.45-.75 5.2-.22.37-.53.66-.91.83-.94.42-3.75.72-7.34.72s-6.4-.3-7.34-.72a2.07 2.07 0 0 1-.91-.83C3.3 16.45 3 14.72 3 12s.3-4.45.75-5.2c.22-.37.53-.66.91-.83.94-.42 3.75-.72 7.34-.72s6.4.3 7.34.72c.38.17.69.46.91.83.45.75.75 2.48.75 5.2Z" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M10.25 8.85 15.75 12l-5.5 3.15v-6.3Z" fill="currentColor"/>
+        </svg>
+      `;
+    default:
+      return `
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="8.75" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M3.8 12h16.4M12 3.25c2.3 2.4 3.45 5.32 3.45 8.75S14.3 18.35 12 20.75c-2.3-2.4-3.45-5.32-3.45-8.75S9.7 5.65 12 3.25Z" stroke="currentColor" stroke-width="1.7"/>
+        </svg>
+      `;
+  }
+}
+
+function buildSocialLink(url, options = {}) {
+  const platform = socialPlatform(url);
+  const label = classifySocialLink(url);
+  const baseClass = options.className || "social-pill";
+  const classes = [baseClass, "social-link", `social-link--${platform}`].filter(Boolean).join(" ");
+  const labelHtml = options.labelVisible ? `<span class="social-link__label">${label}</span>` : "";
+
+  return `
+    <a class="${classes}" href="${escapeHtml(url)}" target="_blank" rel="noreferrer" aria-label="${label}" title="${label}">
+      <span class="social-link__icon" aria-hidden="true">${socialIconMarkup(platform)}</span>
+      ${labelHtml}
+    </a>
+  `;
+}
+
+function buildSocialLinks(urls = [], options = {}) {
+  return urls.map((url) => buildSocialLink(url, options)).join("");
 }
 
 function linkMap(site) {
@@ -337,10 +396,6 @@ function populateGlobalContent(site) {
   if (summaryNode && site.summary) {
     summaryNode.textContent = site.summary;
   }
-
-  document.querySelectorAll("[data-supporters-text]").forEach((node) => {
-    node.textContent = site.supportersText || "";
-  });
 
   document.querySelectorAll("[data-supporters-banner-image]").forEach((node) => {
     node.setAttribute("src", assetPath(SUPPORTERS_BANNER));
@@ -486,6 +541,9 @@ function renderSupporterCard(supporter = {}) {
   const description = escapeHtml(supporter.description || "Supporting MCP at William & Mary.");
   const website = supporter.website || "";
   const image = supporter.image ? assetPath(supporter.image) : "";
+  const mediaStyle = supporter.mediaBackground
+    ? ` style="background:${escapeHtml(supporter.mediaBackground)}"`
+    : "";
   const media = image
     ? `<img src="${image}" alt="${name} logo" loading="lazy" />`
     : `<span class="supporter-card__monogram" aria-hidden="true">${escapeHtml(monogram(supporter.name || "MCP"))}</span>`;
@@ -496,7 +554,7 @@ function renderSupporterCard(supporter = {}) {
 
   return `
     <${tagName} class="supporter-card" ${attrs} data-reveal>
-      <div class="supporter-card__media">${media}</div>
+      <div class="supporter-card__media"${mediaStyle}>${media}</div>
       <div class="supporter-card__body">
         <span class="profile-card__meta">${subtitle}</span>
         <h3 class="profile-card__title">${name}</h3>
@@ -596,12 +654,7 @@ function renderCompanyShowcaseGrid(containerSelector, companies = []) {
 }
 
 function renderSocialAction(url) {
-  const label = classifySocialLink(url);
-  return `
-    <a class="social-pill" href="${url}" target="_blank" rel="noreferrer">
-      ${label}
-    </a>
-  `;
+  return buildSocialLink(url);
 }
 
 function renderOrganizationPills(organizations = []) {

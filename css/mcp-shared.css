@@ -163,6 +163,22 @@ h3 { font-size:clamp(1.2rem,1.8vw,1.65rem); }
 .footer-links { display:flex; flex-direction:column; gap:0.5rem; }
 .footer-links a { font-size:0.88rem; color:var(--muted); transition:color 0.15s; }
 .footer-links a:hover { color:var(--wine); }
+.social-link { --social-brand:var(--wine); display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; color:var(--wine); text-decoration:none; }
+.social-link__icon { width:1.05rem; height:1.05rem; color:var(--social-brand); display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
+.social-link__icon svg { width:100%; height:100%; display:block; }
+.social-link__label { font-size:0.82rem; font-weight:600; line-height:1; }
+.social-link--instagram { --social-brand:#e4405f; }
+.social-link--linkedin { --social-brand:#0a66c2; }
+.social-link--x { --social-brand:#111111; }
+.social-link--youtube { --social-brand:#ff0033; }
+.social-pill { width:2.75rem; height:2.75rem; border-radius:999px; border:1px solid var(--border); background:white; box-shadow:0 4px 14px rgba(74,53,64,0.05); transition:transform 0.15s,box-shadow 0.15s,background 0.15s; }
+.social-pill:hover { background:var(--blush); transform:translateY(-1px); box-shadow:0 8px 18px rgba(74,53,64,0.08); }
+.social-chip { padding:0.58rem 0.92rem; border-radius:999px; border:1px solid var(--border); background:white; box-shadow:0 4px 12px rgba(74,53,64,0.04); transition:transform 0.15s,box-shadow 0.15s,border-color 0.15s; }
+.social-chip:hover { transform:translateY(-1px); box-shadow:0 8px 18px rgba(74,53,64,0.08); border-color:var(--rose-mid); }
+.social-list { display:flex; flex-wrap:wrap; gap:0.5rem; }
+.social-list--footer { margin-top:0.25rem; }
+.social-action-link { display:inline-flex; align-items:center; gap:0.5rem; }
+.social-action-link .social-link__icon { width:0.95rem; height:0.95rem; color:currentColor; }
 .footer-base { display:flex; justify-content:space-between; padding-top:1.25rem; border-top:1px solid var(--border); }
 .footer-base p { font-size:0.8rem; color:var(--muted); }
 .empty-state { padding:3rem; text-align:center; color:var(--muted); font-size:0.92rem; border:1px dashed var(--border); border-radius:var(--r-xl); }

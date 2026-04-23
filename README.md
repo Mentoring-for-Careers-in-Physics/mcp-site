@@ -10,6 +10,8 @@ This directory is meant to contain the production static site only. Design scrat
 
 - `index.html`
   Homepage
+- `pages/give.html`
+  Giving and support page
 - `pages/mentors.html`
   Mentor directory
 - `pages/industry.html`
@@ -38,6 +40,9 @@ The site is currently a hybrid static setup:
 Important note:
 
 - The homepage is data-driven from `data/`
+- The homepage currently surfaces `Current News`, then the `Friends helping MCP grow` section, then `How MCP Works`
+- The friends/supporters area includes a featured support story card plus supporter cards sourced from `data/site.json`
+- Social media links now render with platform icons across the homepage footer and redesigned inner pages
 - The redesigned inner pages currently keep their content directly inside each page file
 - Running the import script updates the JSON content pack and assets, but it does not automatically rewrite the React page content in `pages/*.html`
 
@@ -54,6 +59,7 @@ mcp-site/
   js/
     main.js
   pages/
+    give.html
     mentors.html
     industry.html
     team.html
@@ -84,7 +90,7 @@ There are no tracked design-reference pages in this repo layout anymore. The goa
 Files in `data/` still matter, especially for the homepage and imported asset inventory:
 
 - `data/site.json`
-  Global summary text, public action links, social links, and event metadata
+  Global summary text, supporters, public action links, social links, and event metadata
 - `data/mentors.json`
   Imported mentor dataset used by the data-driven homepage flows
 - `data/team.json`
@@ -100,6 +106,7 @@ Files in `data/` still matter, especially for the homepage and imported asset in
 
 For the current redesigned subpages, content edits usually happen directly in:
 
+- `pages/give.html`
 - `pages/mentors.html`
 - `pages/industry.html`
 - `pages/team.html`
@@ -124,18 +131,21 @@ Recommended smoke test before pushing:
 1. Start the local server.
 2. Load:
    `/`
+   `/pages/give.html`
    `/pages/mentors.html`
    `/pages/industry.html`
    `/pages/team.html`
    `/pages/news.html`
    `/pages/contact.html`
 3. Confirm the mentor modal opens and closes on `pages/mentors.html`.
-4. Confirm the contact form reaches its confirmation state on `pages/contact.html`.
-5. Check a phone-sized viewport to make sure there is no horizontal scrolling.
+4. Confirm the front-page `Current News` and `Friends helping MCP grow` sections render in the intended order and load their cards.
+5. Confirm the contact form reaches its confirmation state on `pages/contact.html`.
+6. Check a phone-sized viewport to make sure there is no horizontal scrolling.
 
 Latest verified locally on April 22, 2026:
 
 - Desktop smoke test passed for all public pages
+- Homepage news/friends ordering and support-story rendering updated
 - Mentor modal open/close interaction passed
 - Contact form confirmation flow passed
 - Mobile checks passed for home, mentors, and contact without horizontal overflow
@@ -173,13 +183,24 @@ The current public actions point to:
 - student interest form:
   `https://forms.gle/zkuoy8HGdec81Y5o8`
 - mentor interest:
-  `mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest`
+  `mailto:rxyan2@wm.edu?subject=MCP%20Mentor%20Inquiry`
 - giving page:
-  `https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation`
+  `https://donate.wm.edu/`
 - Instagram:
   `https://www.instagram.com/wm_mcp`
 - LinkedIn:
   `https://www.linkedin.com/company/wmmcp`
+- X:
+  `https://twitter.com/wm_mcp`
+- YouTube:
+  `https://youtu.be/TqgStDcsD7g`
+
+## Recent content updates
+
+- The homepage news feature now highlights the newest news item from `data/news.json`
+- The front page includes a `Friends` anchor section and nav link for supporter content
+- The CDSP article about MCP links out to the original story and uses the MCP student group photo in the friends section
+- The NASA Langley + Yorktown article and flyer assets are included in the news data pack
 
 ## Deployment
 
