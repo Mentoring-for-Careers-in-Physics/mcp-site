@@ -35,7 +35,7 @@
 
   const DEFAULT_EXTERNAL_LINKS = {
     mentee: "https://forms.gle/zkuoy8HGdec81Y5o8",
-    mentor: "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
+    mentor: "mailto:rxyan2@wm.edu?subject=MCP%20Mentor%20Inquiry",
     giving: "https://donate.wm.edu/",
     linkedin: "https://www.linkedin.com/company/wmmcp",
     instagram: "https://www.instagram.com/wm_mcp",

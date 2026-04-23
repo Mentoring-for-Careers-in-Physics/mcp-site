@@ -101,6 +101,22 @@
         </div>
       </section>
 
+      <!-- CURRENT NEWS -->
+      <section class="section section--soft" style="padding-top:3.25rem;padding-bottom:3.25rem">
+        <div class="shell">
+          <div class="section-head" data-reveal>
+            <div>
+              <span class="kicker">Current News</span>
+              <h2>Our latest big MCP moment.</h2>
+            </div>
+            <a class="btn btn-secondary btn-sm" href="./pages/news.html">See all news</a>
+          </div>
+          <div data-home-current-news>
+            <div class="empty-state">Loading current news…</div>
+          </div>
+        </div>
+      </section>
+
       <!-- SUPPORTERS -->
       <section style="padding:2.75rem 0;border-bottom:1px solid var(--border)">
         <div class="shell">
@@ -127,7 +143,9 @@
               <span class="kicker">How MCP Works</span>
               <h2>What students gain.</h2>
             </div>
-            <a class="text-link" href="./pages/contact.html">Ask about MCP →</a>
+            <div class="section-actions">
+              <a class="btn btn-secondary btn-sm" href="#" data-mentee-link>Join MCP</a>
+            </div>
           </div>
           <div class="pillar-grid">
             <div class="pillar-card" data-reveal>
@@ -150,6 +168,10 @@
             <div>
               <span class="kicker">Shared Value</span>
               <h2>What mentors and participating entities gain.</h2>
+            </div>
+            <div class="section-actions">
+              <a class="btn btn-secondary btn-sm" href="#" data-mentor-link>Become a mentor</a>
+              <a class="btn btn-secondary btn-sm" href="#" data-director-link>Contact the director</a>
             </div>
           </div>
           <div class="pillar-grid">
@@ -178,9 +200,12 @@
           <div class="section-head" data-reveal>
             <div>
               <span class="kicker">Meet the Mentors</span>
-              <h2>See the full mentor community.</h2>
+              <h2>Meet the women widening what a physics future can look like.</h2>
             </div>
-            <a class="text-link" href="./pages/mentors.html">Browse the full directory →</a>
+            <div class="section-actions">
+              <a class="text-link" href="./pages/mentors.html">Browse the full directory →</a>
+              <a class="btn btn-secondary btn-sm" href="#" data-mentor-link>Become a mentor</a>
+            </div>
           </div>
           <div class="feature-grid feature-grid--profiles" data-home-mentor-highlights>
             <div class="empty-state">Loading mentor highlights…</div>
@@ -207,7 +232,7 @@
       <!-- CTA -->
       <section class="section">
         <div class="shell" data-reveal>
-          <div class="cta-panel" style="background:linear-gradient(135deg,var(--wine) 0%,#6b4e58 100%);color:white;border:none">
+          <div class="cta-panel cta-panel--single" style="background:linear-gradient(135deg,var(--wine) 0%,#6b4e58 100%);color:white;border:none">
             <div>
               <span class="kicker kicker-light">Support MCP</span>
               <h2 style="color:white;max-width:16ch;margin-bottom:1rem">Help us grow what's possible.</h2>
@@ -220,26 +245,6 @@
                 <a class="btn btn-outline-light" href="#" data-give-page-link>Give to MCP</a>
               </div>
             </div>
-            <div style="flex-shrink:0">
-              <img src="./assets/images/live-site/clearweb/assets/annual_celebration.png" alt="MCP annual celebration"
-                style="border-radius:var(--r-xl);width:220px;height:180px;object-fit:cover;box-shadow:0 24px 60px rgba(0,0,0,0.25);border:2px solid rgba(255,255,255,0.15)" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- LATEST NEWS -->
-      <section class="section section--soft">
-        <div class="shell">
-          <div class="section-head" data-reveal>
-            <div>
-              <span class="kicker">Latest News</span>
-              <h2>Recent updates.</h2>
-            </div>
-            <a class="text-link" href="./pages/news.html">Browse all news →</a>
-          </div>
-          <div class="news-grid" data-home-news>
-            <div class="empty-state">Loading public updates…</div>
           </div>
         </div>
       </section>

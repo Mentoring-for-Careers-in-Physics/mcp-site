@@ -241,6 +241,7 @@ function linkMap(site) {
     interestLink: site.interestFormUrl || "#",
     menteeLink: site.menteeInterestFormUrl || site.interestFormUrl || "#",
     mentorLink: site.mentorInterestFormUrl || "",
+    directorLink: site.directorMailtoUrl || site.mentorInterestFormUrl || "",
     contactEmail: site.contactEmail || "mcp.superuser@gmail.com",
   };
 }
@@ -292,6 +293,10 @@ function populateGlobalContent(site) {
 
   document.querySelectorAll("[data-mentor-link]").forEach((node) => {
     applyExternalAction(node, links.mentorLink);
+  });
+
+  document.querySelectorAll("[data-director-link]").forEach((node) => {
+    applyExternalAction(node, links.directorLink);
   });
 
   document.querySelectorAll("[data-donate-link]").forEach((node) => {
@@ -714,7 +719,7 @@ function renderNewsCard(article, options = {}) {
   `;
 }
 
-function renderFeaturedNews(article) {
+function renderFeaturedNews(article, options = {}) {
   if (!article) {
     return `<div class="empty-state">No public news has been imported yet.</div>`;
   }
@@ -722,6 +727,30 @@ function renderFeaturedNews(article) {
   const image = assetPath(article.localImage || article.imageUrl || BLANK_PROFILE);
   const title = escapeHtml(article.title || "Featured story");
   const summary = escapeHtml(excerpt(article.bodyMarkdown || "", 460));
+  const primaryAction =
+    options.mode === "link"
+      ? `
+        <a class="button button-primary" href="${options.hrefBuilder(article)}">
+          ${escapeHtml(options.primaryLabel || "Read update")}
+        </a>
+      `
+      : `
+        <button
+          class="button button-primary"
+          type="button"
+          data-open-article="${article.id}"
+        >
+          ${escapeHtml(options.primaryLabel || "Open article")}
+        </button>
+      `;
+  const secondaryAction =
+    options.secondaryHref
+      ? `
+        <a class="button button-ghost" href="${options.secondaryHref}">
+          ${escapeHtml(options.secondaryLabel || "See all news")}
+        </a>
+      `
+      : "";
 
   return `
     <article class="featured-article" data-reveal>
@@ -734,13 +763,8 @@ function renderFeaturedNews(article) {
         <p class="featured-article__summary">${summary}</p>
         <div class="news-card__footer">
           <span class="chip">${formatDate(article.date)}</span>
-          <button
-            class="button button-primary"
-            type="button"
-            data-open-article="${article.id}"
-          >
-            Open article
-          </button>
+          ${primaryAction}
+          ${secondaryAction}
         </div>
       </div>
     </article>
@@ -972,8 +996,24 @@ function initHomePage({ site, mentors, team, news, companies }) {
   const featuredMentors = visibleMentors
     .filter((mentor) => mentor.name !== spotlightMentor?.name)
     .slice(0, 3);
+  const kickoffArticle =
+    news.find((article) => /annual kickoff/i.test(article.title || "")) ||
+    news.find((article) => String(article.date || "").startsWith("2026-02-27")) ||
+    news[0];
 
   renderSpotlightMentor(spotlightMentor);
+
+  const currentNewsContainer = document.querySelector("[data-home-current-news]");
+  if (currentNewsContainer) {
+    currentNewsContainer.innerHTML = renderFeaturedNews(kickoffArticle, {
+      mode: "link",
+      hrefBuilder: (item) => rootPath(`pages/news.html#${item.id}`),
+      primaryLabel: "Read update",
+      secondaryHref: rootPath("pages/news.html"),
+      secondaryLabel: "See all news",
+    });
+  }
+
   renderSupporterGrid("[data-home-supporters]", site.supporters || []);
 
   const mentorHighlights = document.querySelector("[data-home-mentor-highlights]");
@@ -1000,21 +1040,6 @@ function initHomePage({ site, mentors, team, news, companies }) {
       .filter((person) => person.group !== "advisor")
       .slice(0, 4)
       .map(renderCompactTeamCard)
-      .join("");
-  }
-
-  const newsContainer = document.querySelector("[data-home-news]");
-  if (newsContainer) {
-    newsContainer.innerHTML = news
-      .slice(0, 3)
-      .map((article) =>
-        renderNewsCard(article, {
-          mode: "link",
-          hrefBuilder: (item) => rootPath(`pages/news.html#${item.id}`),
-          primaryLabel: "Read",
-          excerptLength: 110,
-        }),
-      )
       .join("");
   }
 
