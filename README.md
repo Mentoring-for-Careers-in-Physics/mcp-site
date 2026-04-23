@@ -4,6 +4,8 @@ Public website for `Mentoring for Careers in Physics` at William & Mary.
 
 This repo hosts the current static MCP site from the repository root. It is designed to run on a simple static host such as GitHub Pages without a build step.
 
+This directory is meant to contain the production static site only. Design scratch files and alternate mock pages are intentionally kept out of the tracked site.
+
 ## Public pages
 
 - `index.html`
@@ -20,6 +22,8 @@ This repo hosts the current static MCP site from the repository root. It is desi
   Contact and engagement page
 - `404.html`
   Static not-found page
+
+Only these production pages should live in `mcp-site/`. Extra mockups or `*-design.html` drafts are not part of the shipped site.
 
 ## How the site is built
 
@@ -72,6 +76,8 @@ mcp-site/
     import-live-site-content.mjs
   .nojekyll
 ```
+
+There are no tracked design-reference pages in this repo layout anymore. The goal is to keep `mcp-site/` limited to the actual static website.
 
 ## Data and content
 
