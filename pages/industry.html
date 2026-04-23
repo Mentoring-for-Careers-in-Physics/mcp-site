@@ -14,7 +14,7 @@
 </head>
 <body>
 <script type="text/babel">
-const { useState } = React;
+const { useEffect, useMemo, useState } = React;
 
 const NAV_LINKS = [
   { label:"Home", href:"../index.html" },
@@ -33,23 +33,163 @@ const EXTERNAL_LINKS = {
   instagram: "https://www.instagram.com/wm_mcp",
 };
 const CURRENT_YEAR = new Date().getFullYear();
+const ROOT = "..";
+const FILTER_ORDER = ["All", "Industry", "Government", "National Lab", "Academia"];
+const SECTOR_OVERRIDES = {
+  "Arcfield": "Industry",
+  "Athena Theatrical": "Industry",
+  "BAE Systems": "Industry",
+  "Calspan": "Industry",
+  "Capital One": "Industry",
+  "Case Western University": "Academia",
+  "Christopher Newport University": "Academia",
+  "Department of Defense": "Government",
+  "Fannie Mae": "Industry",
+  "Honeywell": "Industry",
+  "Independent AI/ML-at-Scale Expert": "Independent",
+  "Institute for Defense Analyses": "Government",
+  "ivWatch LLC": "Industry",
+  "Jefferson Lab": "National Lab",
+  "KLA Corporation": "Industry",
+  "Klaco Ventures": "Independent",
+  "Luna Innovations": "Industry",
+  "Micron Technology": "Industry",
+  "Microsoft": "Industry",
+  "MITRE": "Government",
+  "NASA": "Government",
+  "NASA Langley Research Center": "Government",
+  "ProCure Treatment Centers": "Industry",
+  "Psionic Technologies": "Industry",
+  "Sandia National Laboratories": "National Lab",
+  "Savannah River National Laboratory": "National Lab",
+  "Self-Employed": "Independent",
+  "U.S. Army Research Laboratory": "National Lab",
+  "U.S. Naval Research Laboratory": "National Lab",
+  "Varda Space Industries": "Industry",
+  "Whisker Labs": "Industry",
+};
 
-const COMPANIES = [
-  { name:"NASA Langley Research Center", sector:"Government / Aerospace", url:"https://www.nasa.gov/langley", img:"../assets/images/company-logos/christopher-newport-university.png", mentors:["Karen Taminger","Liz Ward","Marlyn Andino","Jennifer Inman","Vanessa Aubuchon"], desc:"One of NASA's premier research centers, Langley works on aeronautics, atmospheric science, and space exploration technology." },
-  { name:"Jefferson Lab", sector:"Research / National Lab", url:"https://www.jlab.org", img:null, mentors:["Holly Szumila-Vance","Sanghwa Park","Sandra Philpott","Yulia Furletova"], desc:"Thomas Jefferson National Accelerator Facility advances nuclear physics research and accelerator technology." },
-  { name:"Capital One", sector:"Industry / Finance", url:"https://www.capitalone.com", img:"../assets/images/company-logos/capital-one.svg", mentors:["Claudia Smith"], desc:"Capital One combines finance with cutting-edge technology, employing physicists in data science, engineering, and software roles." },
-  { name:"KLA Corporation", sector:"Industry / Semiconductor", url:"https://www.kla.com", img:"../assets/images/company-logos/kla-corporation.png", mentors:["Mi Zhang"], desc:"KLA is a global leader in semiconductor process control and yield management equipment, relying heavily on optics and physics expertise." },
-  { name:"Luna Innovations", sector:"Research / Industry", url:"https://www.lunainc.com", img:"../assets/images/company-logos/luna-innovations.png", mentors:["Yang Xu"], desc:"Luna Innovations develops advanced technology solutions in fiber optics, sensing, and photonics." },
-  { name:"Varda Space Industries", sector:"Industry / Space", url:"https://varda.com", img:"../assets/images/company-logos/varda-space-industries.svg", mentors:["Haley Bauser"], desc:"Varda Space is pioneering in-space manufacturing and pharmaceutical crystallization in microgravity." },
-  { name:"Honeywell", sector:"Industry / Aerospace", url:"https://www.honeywell.com", img:null, mentors:["Kelly Berns"], desc:"A diversified technology and manufacturing leader, Honeywell employs physicists across aerospace, safety, and cybersecurity." },
-  { name:"MITRE", sector:"Research / National Security", url:"https://www.mitre.org", img:null, mentors:["Melissa Dolph"], desc:"MITRE is a not-for-profit organization operating federally funded R&D centers addressing national security challenges." },
-  { name:"Sandia National Laboratories", sector:"Government / National Lab", url:"https://www.sandia.gov", img:null, mentors:["Julia M. Phillips"], desc:"Sandia is a multi-mission national laboratory developing science-based solutions for national security." },
-  { name:"Department of Defense", sector:"Government", url:"https://www.defense.gov", img:null, mentors:["Amber Ulbrich"], desc:"The DoD employs physicists across a wide range of programs including quantum technologies, materials research, and intelligence analysis." },
-  { name:"Arcfield", sector:"Industry / Defense Tech", url:"https://www.arcfield.com", img:null, mentors:["Janet Brewer"], desc:"Arcfield provides mission-critical national security solutions to government customers." },
-  { name:"ivWatch LLC", sector:"Industry / Medical", url:"https://ivwatch.com", img:null, mentors:["Marisa Brown"], desc:"ivWatch develops optical patient monitoring technologies that detect IV infiltration in real time." },
-];
+function rootPath(relativePath = "") {
+  const cleanPath = String(relativePath || "")
+    .replace(/^\/+/, "")
+    .replace(/^\.\//, "");
+  return `${ROOT}/${cleanPath}`;
+}
 
-const SECTORS = ["All","Government","Research","Industry","National Lab"];
+function assetPath(value = "") {
+  if (!value) {
+    return "";
+  }
+
+  if (/^(https?:)?\/\//i.test(value) || /^(mailto:|tel:|#|data:)/i.test(value)) {
+    return value;
+  }
+
+  return rootPath(value);
+}
+
+async function loadJson(fileName) {
+  const response = await fetch(rootPath(`data/${fileName}`));
+  if (!response.ok) {
+    throw new Error(`Could not load ${fileName}`);
+  }
+  return response.json();
+}
+
+function normalizeOrgName(value = "") {
+  return String(value)
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function monogram(value = "") {
+  const ignored = new Set([
+    "and",
+    "at",
+    "for",
+    "in",
+    "of",
+    "the",
+    "to",
+    "llc",
+    "inc",
+    "corp",
+    "corporation",
+    "national",
+    "research",
+    "center",
+  ]);
+
+  const parts = String(value)
+    .replace(/&/g, " ")
+    .replace(/[^a-z0-9\s]/gi, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const significant = parts.filter((part) => !ignored.has(part.toLowerCase()));
+  const source = significant.length ? significant : parts;
+
+  return source
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("");
+}
+
+function companySector(name = "") {
+  return SECTOR_OVERRIDES[name] || "Industry";
+}
+
+function websiteHost(value = "") {
+  if (!value) {
+    return "";
+  }
+
+  try {
+    return new URL(value).hostname.replace(/^www\./, "");
+  } catch (error) {
+    return value.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/$/, "");
+  }
+}
+
+function mentorSummary(company) {
+  if (!company.mentors.length) {
+    return "This organization is part of the MCP network.";
+  }
+
+  if (company.mentors.length === 1) {
+    return `1 MCP mentor works at ${company.name}.`;
+  }
+
+  return `${company.mentors.length} MCP mentors work across ${company.name}.`;
+}
+
+function buildCompanyDirectory(companies = [], mentors = []) {
+  return companies
+    .map((company) => {
+      const organizationKeys = new Set(
+        [company.name, ...(company.aliases || [])].map((value) => normalizeOrgName(value)),
+      );
+      const matchedMentors = mentors
+        .filter((mentor) =>
+          (mentor.organizations || []).some((organization) =>
+            organizationKeys.has(normalizeOrgName(organization)),
+          ),
+        )
+        .map((mentor) => mentor.name)
+        .sort((left, right) => left.localeCompare(right));
+
+      return {
+        ...company,
+        image: assetPath(company.image),
+        mentors: [...new Set(matchedMentors)],
+        sector: companySector(company.name),
+        websiteHost: websiteHost(company.website),
+      };
+    })
+    .sort((left, right) => left.name.localeCompare(right.name));
+}
 
 function Nav() {
   const [open, setOpen] = useState(false);
@@ -106,9 +246,106 @@ function Footer() {
   );
 }
 
+function CompanyCard({ company, linked }) {
+  const content = (
+    <>
+      <div>
+        <div className="company-sector">{company.sector}</div>
+        <div style={{ marginTop:"1rem" }}>
+          {company.image
+            ? <div className="company-logo-wrap"><img src={company.image} alt={`${company.name} logo`} /></div>
+            : <div className="company-monogram" aria-hidden="true">{monogram(company.name)}</div>
+          }
+        </div>
+      </div>
+      <div className="company-name">{company.name}</div>
+      <div className="company-desc">
+        {mentorSummary(company)}
+        {company.websiteHost ? ` Visit ${company.websiteHost} for the official homepage.` : " Official homepage not listed in the current MCP data."}
+      </div>
+      <div style={{ marginTop:"auto" }}>
+        <div style={{ fontSize:"0.72rem", fontWeight:600, color:"var(--wine-mid)", letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"0.4rem" }}>MCP Mentors</div>
+        <div style={{ display:"flex", flexWrap:"wrap", gap:"0.4rem" }}>
+          {company.mentors.length
+            ? company.mentors.map((mentor) => (
+                <span key={mentor} style={{ fontSize:"0.78rem", background:"var(--blush)", color:"var(--wine)", padding:"0.28rem 0.65rem", borderRadius:"999px", fontWeight:500 }}>{mentor}</span>
+              ))
+            : <span style={{ fontSize:"0.82rem", color:"var(--muted)" }}>Mentor listing coming soon.</span>
+          }
+        </div>
+      </div>
+      <div style={{ display:"flex", alignItems:"center", gap:"0.35rem", fontSize:"0.82rem", fontWeight:600, color:"var(--wine)" }}>
+        {linked ? "Visit homepage →" : "Official homepage unavailable"}
+      </div>
+    </>
+  );
+
+  if (!linked) {
+    return <article className="company-card">{content}</article>;
+  }
+
+  return (
+    <a className="company-card" href={company.website} target="_blank" rel="noreferrer noopener" style={{ textDecoration:"none" }}>
+      {content}
+    </a>
+  );
+}
+
 function App() {
   const [filter, setFilter] = useState("All");
-  const filtered = filter === "All" ? COMPANIES : COMPANIES.filter(c => c.sector.includes(filter));
+  const [directory, setDirectory] = useState([]);
+  const [status, setStatus] = useState({ loading:true, error:"" });
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadDirectory() {
+      try {
+        const [companies, mentors] = await Promise.all([
+          loadJson("companies.json"),
+          loadJson("mentors.json"),
+        ]);
+
+        if (!active) {
+          return;
+        }
+
+        setDirectory(buildCompanyDirectory(companies, mentors));
+        setStatus({ loading:false, error:"" });
+      } catch (error) {
+        if (!active) {
+          return;
+        }
+
+        setStatus({ loading:false, error:"Could not load the organization directory right now." });
+      }
+    }
+
+    loadDirectory();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const linkedCompanies = useMemo(
+    () => directory.filter((company) => company.website),
+    [directory],
+  );
+  const independentCompanies = useMemo(
+    () => directory.filter((company) => !company.website),
+    [directory],
+  );
+  const availableFilters = useMemo(
+    () => FILTER_ORDER.filter((sector) => sector === "All" || linkedCompanies.some((company) => company.sector === sector)),
+    [linkedCompanies],
+  );
+  const filtered = useMemo(
+    () => (filter === "All" ? linkedCompanies : linkedCompanies.filter((company) => company.sector === filter)),
+    [filter, linkedCompanies],
+  );
+  const representedSectors = new Set(linkedCompanies.map((company) => company.sector)).size;
+  const mentorCount = new Set(linkedCompanies.flatMap((company) => company.mentors)).size;
 
   return (
     <>
@@ -120,12 +357,13 @@ function App() {
               <div>
                 <span className="kicker">Partner Organizations</span>
                 <h1>Where mentors work.</h1>
-                <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>MCP mentors work across government, national laboratories, industry, and academia. Explore the organizations represented in our network.</p>
+                <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>This page now pulls from the full MCP organization directory, including labs, companies, agencies, and universities represented across the mentor network.</p>
               </div>
               <div className="hero-stat-card">
                 <span className="kicker">Network</span>
-                <div className="metric"><strong>{COMPANIES.length}</strong><span>Partner organizations</span></div>
-                <div className="metric"><strong>{[...new Set(COMPANIES.map(c=>c.sector.split(" / ")[0]))].length}</strong><span>Sectors represented</span></div>
+                <div className="metric"><strong>{linkedCompanies.length}</strong><span>Organizations with homepage links</span></div>
+                <div className="metric"><strong>{representedSectors}</strong><span>Sectors represented</span></div>
+                <div className="metric"><strong>{mentorCount}</strong><span>Mentors mapped to organizations</span></div>
               </div>
             </div>
           </div>
@@ -133,37 +371,51 @@ function App() {
 
         <section className="section">
           <div className="shell">
-            <div className="filter-row">
-              {SECTORS.map(s => <button key={s} className={`filter-chip${filter===s?" active":""}`} onClick={()=>setFilter(s)}>{s}</button>)}
+            <div className="section-head">
+              <div>
+                <span className="kicker">Official Organization Directory</span>
+                <h2>All linked organizations in MCP.</h2>
+              </div>
+              <div style={{fontSize:"0.88rem",color:"var(--muted)"}}>{filtered.length} shown</div>
             </div>
-            <div className="company-grid">
-              {filtered.map(c => (
-                <a key={c.name} className="company-card" href={c.url} target="_blank" rel="noopener" style={{textDecoration:"none"}}>
-                  <div>
-                    <div className="company-sector">{c.sector}</div>
-                    <div style={{marginTop:"1rem"}}>
-                      {c.img
-                        ? <div className="company-logo-wrap"><img src={c.img} alt={c.name} /></div>
-                        : <div className="company-monogram">{c.name[0]}</div>
-                      }
-                    </div>
+
+            {status.loading ? (
+              <div className="empty-state">Loading organizations and mentor matches…</div>
+            ) : status.error ? (
+              <div className="empty-state">{status.error}</div>
+            ) : (
+              <>
+                <div className="filter-row">
+                  {availableFilters.map((sector) => <button key={sector} className={`filter-chip${filter===sector?" active":""}`} onClick={() => setFilter(sector)}>{sector}</button>)}
+                </div>
+                {filtered.length ? (
+                  <div className="company-grid">
+                    {filtered.map((company) => <CompanyCard key={company.name} company={company} linked />)}
                   </div>
-                  <div className="company-name">{c.name}</div>
-                  <div className="company-desc">{c.desc}</div>
-                  <div style={{marginTop:"auto"}}>
-                    <div style={{fontSize:"0.72rem",fontWeight:600,color:"var(--wine-mid)",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:"0.4rem"}}>MCP Mentors</div>
-                    <div style={{display:"flex",flexWrap:"wrap",gap:"0.4rem"}}>
-                      {c.mentors.map(m => (
-                        <span key={m} style={{fontSize:"0.78rem",background:"var(--blush)",color:"var(--wine)",padding:"0.28rem 0.65rem",borderRadius:"999px",fontWeight:500}}>{m}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div style={{display:"flex",alignItems:"center",gap:"0.35rem",fontSize:"0.82rem",fontWeight:600,color:"var(--wine)"}}>Visit site →</div>
-                </a>
-              ))}
-            </div>
+                ) : (
+                  <div className="empty-state">No organizations matched that filter.</div>
+                )}
+              </>
+            )}
           </div>
         </section>
+
+        {!status.loading && !status.error && independentCompanies.length ? (
+          <section className="section section-soft">
+            <div className="shell">
+              <div className="section-head">
+                <div>
+                  <span className="kicker">Independent Practices</span>
+                  <h2>Consulting and self-employed mentors.</h2>
+                </div>
+                <div style={{fontSize:"0.88rem",color:"var(--muted)",maxWidth:"30ch",textAlign:"right"}}>These entries are part of the MCP network, but the current data does not include an official company homepage or logo.</div>
+              </div>
+              <div className="company-grid">
+                {independentCompanies.map((company) => <CompanyCard key={company.name} company={company} linked={false} />)}
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section className="section section-soft">
           <div className="shell">

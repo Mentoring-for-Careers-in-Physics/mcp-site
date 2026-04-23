@@ -8,14 +8,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/mcp-shared.css" />
+  <script src="../js/mcp-subpages.js"></script>
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
 <script type="text/babel">
-const { useState } = React;
+const { useEffect, useState } = React;
+const {
+  DEFAULT_EXTERNAL_LINKS,
+  assetPath,
+  buildExternalLinks,
+  buildTeamDirectory,
+  loadJson,
+  monogram,
+} = window.MCPSubpages;
 
+const ROOT = "..";
+const SUPPORTERS_BANNER = "assets/images/live-site/clearweb/assets/So1918_banner.png";
 const NAV_LINKS = [
   { label:"Home", href:"../index.html" },
   { label:"Mentors", href:"./mentors.html" },
@@ -24,30 +35,9 @@ const NAV_LINKS = [
   { label:"News", href:"./news.html" },
   { label:"Contact", href:"./contact.html" },
 ];
-
-const EXTERNAL_LINKS = {
-  mentee: "https://forms.gle/zkuoy8HGdec81Y5o8",
-  mentor: "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
-  giving: "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
-  linkedin: "https://www.linkedin.com/company/wmmcp",
-  instagram: "https://www.instagram.com/wm_mcp",
-};
 const CURRENT_YEAR = new Date().getFullYear();
 
-const TEAM = [
-  { name:"Ran Yang", role:"Co-Founder & Director", group:"leadership", bio:"Professor in the Physics Department and a co-founder and director of MCP. Ran leads the program's vision, mentor relationships, and long-term growth.", img:"../assets/images/live-site/clearweb/assets/ran-headshot.jpg" },
-  { name:"Julia Rodrigues", role:"Program Assistant", group:"leadership", bio:"Julia ('26) is studying Physics with an EPAD concentration and plans to pursue electrical engineering.", img:"../assets/images/live-site/clearweb/home/Julia_Rodrigues_pic.jpg" },
-  { name:"Kalea Wen", role:"Event Coordinator", group:"leadership", bio:"Kalea is a junior majoring in physics and minoring in CS. She coordinates MCP events and student programming.", img:"../assets/images/live-site/clearweb/assets/KaleaWen-headshot.jpeg" },
-  { name:"Erica Trindade", role:"Assistant Events Coordinator", group:"leadership", bio:"Erica is a sophomore majoring in physics who plans to pursue Mechanical Engineering. She supports event coordination across the program.", img:"../assets/images/live-site/clearweb/assets/ericaTrindade_headshot.jpg" },
-  { name:"Brielle Kirk", role:"Assistant PR Coordinator", group:"leadership", bio:"Brielle ('29) handles MCP's public relations and communications. She plans to major in Physics and pursue a PhD in Astrophysics.", img:"../assets/images/live-site/clearweb/assets/Brielle_Kirk.JPEG" },
-  { name:"Alan Gonzalez Osorio", role:"Web Developer", group:"leadership", bio:"Alan ('26) built and maintains the MCP website. He is a senior studying Computer Science and Applied Math.", img:"../assets/images/live-site/clearweb/assets/alan-headshot.jpg" },
-];
-
-const ADVISORS = [
-  { name:"Chris Monahan", role:"Co-Founder & Advisor", group:"advisor", bio:"Assistant Professor in the Physics Department and an MCP co-founder who now advises the program on research mentorship and faculty partnerships.", img:"../assets/images/live-site/clearweb/assets/monahan-headshot.jpg" },
-];
-
-function Nav() {
+function Nav({ links }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -58,88 +48,108 @@ function Nav() {
             <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
           </a>
           <div className="nav-links">
-            {NAV_LINKS.map(l => <a key={l.label} className={`nav-link${l.label==="Leadership"?" active":""}`} href={l.href}>{l.label}</a>)}
+            {NAV_LINKS.map((link) => <a key={link.label} className={`nav-link${link.label==="Leadership" ? " active" : ""}`} href={link.href}>{link.label}</a>)}
           </div>
           <div className="nav-actions">
-            <a className="nav-join" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
-            <a className="nav-give" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
-            <button className="nav-hamburger" onClick={() => setOpen(o=>!o)} aria-label="Menu">
+            <a className="nav-join" href={links.mentee} target="_blank" rel="noreferrer">Join</a>
+            <a className="nav-give" href={links.giving} target="_blank" rel="noreferrer">Give</a>
+            <button className="nav-hamburger" onClick={() => setOpen((value) => !value)} aria-label="Menu">
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
             </button>
           </div>
         </div>
       </nav>
-      <div className={`nav-mobile ${open?"open":""}`}>
-        {NAV_LINKS.map(l => <a key={l.label} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+      <div className={`nav-mobile ${open ? "open" : ""}`}>
+        {NAV_LINKS.map((link) => <a key={link.label} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
         <div className="nav-mobile-actions">
-          <a className="btn btn-ghost btn-sm" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
-          <a className="btn btn-primary btn-sm" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
+          <a className="btn btn-ghost btn-sm" href={links.mentee} target="_blank" rel="noreferrer">Join</a>
+          <a className="btn btn-primary btn-sm" href={links.giving} target="_blank" rel="noreferrer">Give</a>
         </div>
       </div>
     </>
   );
 }
 
-function PersonCard({ person, wide }) {
-  const [open, setOpen] = useState(false);
+function PersonModal({ person, onClose }) {
+  useEffect(() => {
+    const handleKey = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
   return (
-    <>
-      <div className="profile-card" onClick={() => setOpen(true)} role="button" tabIndex={0} onKeyDown={e=>e.key==="Enter"&&setOpen(true)}>
-        <div className="profile-photo" style={{aspectRatio: wide ? "1.1" : "0.9"}}>
-          {person.img
-            ? <img src={person.img} alt={person.name} />
-            : <div style={{width:"100%",height:"100%",background:"linear-gradient(160deg,var(--blush),var(--rose))",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <span style={{fontFamily:"var(--f-display)",fontSize:"3rem",color:"var(--wine)",opacity:0.25}}>{person.name[0]}</span>
+    <div className="modal-overlay" onClick={(event) => event.target === event.currentTarget && onClose()}>
+      <div className="modal-box">
+        <div className="modal-close-row"><button className="modal-close-btn" onClick={onClose}>Close ✕</button></div>
+        <div className="modal-header">
+          {person.image
+            ? <img className="modal-img" src={person.image} alt={person.name} />
+            : <div className="modal-img" style={{ background:"var(--blush)", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <span style={{ fontFamily:"var(--f-display)", fontSize:"3rem", color:"var(--wine)", opacity:0.3 }}>{monogram(person.name)}</span>
               </div>
           }
-        </div>
-        <div className="profile-body">
-          <div className="profile-name">{person.name}</div>
-          <div className="profile-role">{person.role}</div>
-          <div className="profile-hint">Read bio →</div>
-        </div>
-      </div>
-      {open && (
-        <div className="modal-overlay" onClick={e=>e.target===e.currentTarget&&setOpen(false)}>
-          <div className="modal-box">
-            <div className="modal-close-row"><button className="modal-close-btn" onClick={()=>setOpen(false)}>Close ✕</button></div>
-            <div className="modal-header">
-              {person.img
-                ? <img className="modal-img" src={person.img} alt={person.name} />
-                : <div className="modal-img" style={{background:"var(--blush)",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                    <span style={{fontFamily:"var(--f-display)",fontSize:"3rem",color:"var(--wine)",opacity:0.3}}>{person.name[0]}</span>
-                  </div>
-              }
-              <div className="modal-header-info">
-                <h2 style={{fontSize:"clamp(1.4rem,3vw,2rem)"}}>{person.name}</h2>
-                <p style={{fontSize:"0.9rem",color:"var(--wine-mid)",fontWeight:500}}>{person.role}</p>
-              </div>
-            </div>
-            <div className="modal-body">
-              <p className="modal-bio">{person.bio}</p>
-            </div>
+          <div className="modal-header-info">
+            <span className="kicker">{person.group === "advisor" ? "Advisor" : person.group === "archive" ? "Program Archive" : "Leadership"}</span>
+            <h2 style={{ fontSize:"clamp(1.4rem,3vw,2rem)" }}>{person.name}</h2>
+            <p style={{ fontSize:"0.9rem", color:"var(--wine-mid)", fontWeight:500 }}>{person.role}</p>
           </div>
         </div>
-      )}
-    </>
+        <div className="modal-body">
+          <p className="modal-bio">{person.bio || "Profile details coming soon."}</p>
+          {person.linkedin ? <div className="modal-actions"><a className="btn btn-primary btn-sm" href={person.linkedin} target="_blank" rel="noreferrer noopener">LinkedIn →</a></div> : null}
+        </div>
+      </div>
+    </div>
   );
 }
 
-function Footer() {
+function PersonCard({ person, onOpen }) {
+  const label = person.group === "advisor" ? "Advisor" : person.group === "archive" ? "Program Archive" : "Leadership";
+  return (
+    <div className="profile-card" onClick={() => onOpen(person)} role="button" tabIndex={0} onKeyDown={(event) => event.key === "Enter" && onOpen(person)}>
+      <div className="profile-photo" style={{ aspectRatio:"0.9" }}>
+        {person.image
+          ? <img src={person.image} alt={person.name} />
+          : <div style={{ width:"100%", height:"100%", background:"linear-gradient(160deg,var(--blush),var(--rose))", display:"flex", alignItems:"center", justifyContent:"center" }}>
+              <span style={{ fontFamily:"var(--f-display)", fontSize:"3rem", color:"var(--wine)", opacity:0.25 }}>{monogram(person.name)}</span>
+            </div>
+        }
+      </div>
+      <div className="profile-body">
+        <div className="profile-sector">{label}</div>
+        <div className="profile-name">{person.name}</div>
+        <div className="profile-role">{person.role}</div>
+        <p style={{ fontSize:"0.86rem", color:"var(--muted)", lineHeight:1.6, marginTop:"0.65rem" }}>{person.bio || "Profile details coming soon."}</p>
+        <div className="profile-hint">Read bio →</div>
+      </div>
+    </div>
+  );
+}
+
+function Footer({ links }) {
   return (
     <footer className="footer">
       <div className="shell">
         <div className="footer-grid">
           <div>
-            <a className="brand" href="../index.html" style={{marginBottom:"0.9rem",display:"inline-flex"}}>
+            <a className="brand" href="../index.html" style={{ marginBottom:"0.9rem", display:"inline-flex" }}>
               <div className="brand-mark">MCP</div>
               <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
             </a>
-            <p style={{fontSize:"0.88rem",color:"var(--muted)",lineHeight:1.65,maxWidth:"28ch",marginTop:"0.75rem"}}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
+            <p style={{ fontSize:"0.88rem", color:"var(--muted)", lineHeight:1.65, maxWidth:"28ch", marginTop:"0.75rem" }}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
           </div>
-          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map(l=><a key={l.label} href={l.href}>{l.label}</a>)}</div></div>
-          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={EXTERNAL_LINKS.mentor}>Become a mentor</a><a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
-          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer">Instagram</a><a href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a></div></div>
+          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}</div></div>
+          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={links.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={links.mentor}>Become a mentor</a><a href={links.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
+          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={links.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={`mailto:${links.email}`}>{links.email}</a></div></div>
         </div>
         <div className="footer-base"><p>Mentoring for Careers in Physics · William &amp; Mary</p><p>© {CURRENT_YEAR} William &amp; Mary</p></div>
       </div>
@@ -147,10 +157,76 @@ function Footer() {
   );
 }
 
+function EventArchive({ events }) {
+  if (!events.length) {
+    return <div className="empty-state">Event materials will appear here soon.</div>;
+  }
+
+  return (
+    <div className="company-grid">
+      {events.flatMap((event) => event.assets.map((asset) => ({ ...asset, title:event.title }))).map((asset) => (
+        <a key={`${asset.title}-${asset.label}`} className="company-card" href={asset.image} target="_blank" rel="noreferrer noopener" style={{ textDecoration:"none" }}>
+          <div className="company-sector">Event Archive</div>
+          <div className="company-name">{asset.label}</div>
+          <div className="company-desc">{asset.title}</div>
+          <img src={asset.image} alt={asset.label} style={{ width:"100%", borderRadius:"var(--r-lg)", border:"1px solid var(--border)" }} />
+          <div style={{ fontSize:"0.82rem", fontWeight:600, color:"var(--wine)" }}>Open material →</div>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 function App() {
+  const [links, setLinks] = useState(DEFAULT_EXTERNAL_LINKS);
+  const [directory, setDirectory] = useState({ current:[], advisors:[], retired:[] });
+  const [events, setEvents] = useState([]);
+  const [supportersText, setSupportersText] = useState("");
+  const [modal, setModal] = useState(null);
+  const [status, setStatus] = useState({ loading:true, error:"" });
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadPage() {
+      try {
+        const [site, team, retiredTeam, eventData] = await Promise.all([
+          loadJson("site.json", ROOT),
+          loadJson("team.json", ROOT),
+          loadJson("retired-team.json", ROOT),
+          loadJson("events.json", ROOT),
+        ]);
+
+        if (!active) {
+          return;
+        }
+
+        setLinks(buildExternalLinks(site));
+        setSupportersText(site.supportersText || "");
+        setDirectory(buildTeamDirectory(team, retiredTeam, ROOT));
+        setEvents(eventData.map((event) => ({
+          ...event,
+          assets: (event.assets || []).map((asset) => ({ ...asset, image: assetPath(asset.image, ROOT) })),
+        })));
+        setStatus({ loading:false, error:"" });
+      } catch (error) {
+        if (!active) {
+          return;
+        }
+
+        setStatus({ loading:false, error:"Could not load the leadership page right now." });
+      }
+    }
+
+    loadPage();
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <>
-      <Nav />
+      <Nav links={links} />
       <main>
         <section className="page-hero">
           <div className="shell">
@@ -158,13 +234,13 @@ function App() {
               <div>
                 <span className="kicker">Leadership &amp; Team</span>
                 <h1>The people caring for MCP.</h1>
-                <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>Meet the current student team, faculty director, and founding advisor who keep MCP running and growing.</p>
+                <p style={{ fontSize:"1rem", color:"var(--muted)", lineHeight:1.7, maxWidth:"46ch", marginTop:"1rem" }}>This page now reflects the full current team, advisor listing, and retired-team archive from the shared MCP data files.</p>
               </div>
               <div className="hero-stat-card">
                 <span className="kicker">Team</span>
-                <div className="metric"><strong>{TEAM.length}</strong><span>Current team members</span></div>
-                <div className="metric"><strong>{ADVISORS.length}</strong><span>Faculty advisors</span></div>
-                <div className="metric"><strong>2019</strong><span>Year founded</span></div>
+                <div className="metric"><strong>{directory.current.length}</strong><span>Current team members</span></div>
+                <div className="metric"><strong>{directory.advisors.length}</strong><span>Faculty advisors</span></div>
+                <div className="metric"><strong>{directory.retired.length}</strong><span>Archive members</span></div>
               </div>
             </div>
           </div>
@@ -172,47 +248,80 @@ function App() {
 
         <section className="section">
           <div className="shell">
-            <div className="section-head">
-              <div><span className="kicker">Current Team</span><h2>Running the program now.</h2></div>
-              <a className="text-link" href="./contact.html">Contact leadership →</a>
-            </div>
-            <div className="profile-grid">
-              {TEAM.map(p => <PersonCard key={p.name} person={p} />)}
-            </div>
+            {status.loading ? (
+              <div className="empty-state">Loading leadership profiles…</div>
+            ) : status.error ? (
+              <div className="empty-state">{status.error}</div>
+            ) : (
+              <>
+                <div className="section-head">
+                  <div><span className="kicker">Current Team</span><h2>Running the program now.</h2></div>
+                  <a className="text-link" href="./contact.html">Contact leadership →</a>
+                </div>
+                <div className="profile-grid">
+                  {directory.current.map((person) => <PersonCard key={person.name} person={person} onOpen={setModal} />)}
+                </div>
+              </>
+            )}
           </div>
         </section>
 
-        <section className="section section-soft">
-          <div className="shell">
-            <div className="section-head">
-              <div><span className="kicker">Founders &amp; Advisors</span><h2>The founding perspective.</h2></div>
-            </div>
-            <div style={{maxWidth:"600px"}}>
-              {ADVISORS.map(p => <PersonCard key={p.name} person={p} wide />)}
-            </div>
-          </div>
-        </section>
+        {!status.loading && !status.error ? (
+          <>
+            <section className="section section-soft">
+              <div className="shell">
+                <div className="section-head">
+                  <div><span className="kicker">Founders &amp; Advisors</span><h2>The founding perspective.</h2></div>
+                </div>
+                <div className="profile-grid">
+                  {directory.advisors.map((person) => <PersonCard key={person.name} person={person} onOpen={setModal} />)}
+                </div>
+              </div>
+            </section>
 
-        <section className="section">
-          <div className="shell">
-            <div style={{borderRadius:"var(--r-xl)",background:"var(--snow)",border:"1px solid var(--border)",padding:"3rem",display:"grid",gridTemplateColumns:"1fr 1fr",gap:"3rem",alignItems:"center"}}>
-              <div>
-                <span className="kicker">Society of 1918</span>
-                <h2 style={{marginBottom:"1rem"}}>MCP Friends &amp; Supporters.</h2>
-                <p style={{fontSize:"0.95rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"44ch"}}>MCP is strengthened by faculty, collaborators, and institutional champions — including the Society of 1918 — who help sustain the program and extend its reach to more students each year.</p>
+            <section className="section">
+              <div className="shell">
+                <div className="section-head">
+                  <div><span className="kicker">Program Archive</span><h2>Previous student leaders.</h2></div>
+                </div>
+                <div className="profile-grid-4">
+                  {directory.retired.map((person) => <PersonCard key={person.name} person={person} onOpen={setModal} />)}
+                </div>
               </div>
-              <div>
-                <img src="../assets/images/live-site/clearweb/assets/So1918_banner.png" alt="Society of 1918"
-                  style={{borderRadius:"var(--r-lg)",objectFit:"cover",height:"160px",width:"100%"}} />
+            </section>
+
+            <section className="section section-soft">
+              <div className="shell">
+                <div className="section-head">
+                  <div><span className="kicker">Event Materials</span><h2>Shared program archive.</h2></div>
+                </div>
+                <EventArchive events={events} />
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
+
+            <section className="section">
+              <div className="shell">
+                <div style={{ borderRadius:"var(--r-xl)", background:"var(--snow)", border:"1px solid var(--border)", padding:"3rem", display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", alignItems:"center" }}>
+                  <div>
+                    <span className="kicker">Society of 1918</span>
+                    <h2 style={{ marginBottom:"1rem" }}>MCP Friends &amp; Supporters.</h2>
+                    <p style={{ fontSize:"0.95rem", color:"var(--muted)", lineHeight:1.7, maxWidth:"44ch" }}>{supportersText || "MCP is strengthened by faculty, collaborators, and institutional champions who help sustain the program and extend its reach to more students each year."}</p>
+                  </div>
+                  <div>
+                    <img src={assetPath(SUPPORTERS_BANNER, ROOT)} alt="Society of 1918" style={{ borderRadius:"var(--r-lg)", objectFit:"cover", height:"160px", width:"100%" }} />
+                  </div>
+                </div>
+              </div>
+            </section>
+          </>
+        ) : null}
       </main>
-      <Footer />
+      <Footer links={links} />
+      {modal ? <PersonModal person={modal} onClose={() => setModal(null)} /> : null}
     </>
   );
 }
+
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 </script>
 <div id="root"></div>

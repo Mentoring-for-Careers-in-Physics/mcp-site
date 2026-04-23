@@ -8,14 +8,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/mcp-shared.css" />
+  <script src="../js/mcp-subpages.js"></script>
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
 <script type="text/babel">
-const { useState } = React;
+const { useEffect, useState } = React;
+const {
+  DEFAULT_EXTERNAL_LINKS,
+  buildExternalLinks,
+  buildNewsFeed,
+  loadJson,
+  socialLabel,
+} = window.MCPSubpages;
 
+const ROOT = "..";
 const NAV_LINKS = [
   { label:"Home", href:"../index.html" },
   { label:"Mentors", href:"./mentors.html" },
@@ -24,26 +33,9 @@ const NAV_LINKS = [
   { label:"News", href:"./news.html" },
   { label:"Contact", href:"./contact.html" },
 ];
-
-const EXTERNAL_LINKS = {
-  mentee: "https://forms.gle/zkuoy8HGdec81Y5o8",
-  mentor: "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
-  giving: "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
-  linkedin: "https://www.linkedin.com/company/wmmcp",
-  instagram: "https://www.instagram.com/wm_mcp",
-};
 const CURRENT_YEAR = new Date().getFullYear();
 
-const NEWS = [
-  { date:"March 2025", tag:"Event", title:"Annual Celebration Brings Alumni and Students Together", summary:"The 2025 gathering drew over sixty attendees for an evening of stories, mentoring, and possibility. Alumni and current students shared meals, advice, and the particular warmth that comes from being in a room full of people who understand exactly what it means to be a woman in physics.", img:"../assets/images/live-site/clearweb/assets/annual_celebration.png" },
-  { date:"February 2025", tag:"Program", title:"New Mentor Cohort Joins from Industry and National Labs", summary:"Twelve accomplished physicists joined the MCP network this spring, expanding our reach into new sectors including semiconductor manufacturing, space biotech, and national security.", img:null },
-  { date:"January 2025", tag:"Program", title:"MCP Launches Extended Mentoring Format", summary:"Pilot mentor-mentee pairs will now meet across an entire academic year, allowing for deeper, longer-term mentoring relationships that track students through their career decision points.", img:null },
-  { date:"November 2024", tag:"Recognition", title:"MCP Featured in William & Mary Physics Newsletter", summary:"The department spotlighted MCP as a model for peer-led mentoring initiatives, noting the program's rapid mentor network growth since 2019.", img:null },
-  { date:"September 2024", tag:"Event", title:"Fall Kickoff Connects New Students with Returning Mentors", summary:"The fall kickoff event welcomed twelve new mentee-mentor pairs, with returning mentors sharing reflections on how the program has shaped their own perspective on career mentorship.", img:null },
-  { date:"May 2024", tag:"Milestone", title:"MCP Surpasses 30 Active Mentors in Network", summary:"A major milestone for the program: over 30 mentors now committed to the MCP network, representing government labs, private industry, academia, and nonprofit leadership.", img:null },
-];
-
-function Nav() {
+function Nav({ links }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -54,43 +46,92 @@ function Nav() {
             <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
           </a>
           <div className="nav-links">
-            {NAV_LINKS.map(l => <a key={l.label} className={`nav-link${l.label==="News"?" active":""}`} href={l.href}>{l.label}</a>)}
+            {NAV_LINKS.map((link) => <a key={link.label} className={`nav-link${link.label==="News" ? " active" : ""}`} href={link.href}>{link.label}</a>)}
           </div>
           <div className="nav-actions">
-            <a className="nav-join" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
-            <a className="nav-give" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
-            <button className="nav-hamburger" onClick={() => setOpen(o=>!o)} aria-label="Menu">
+            <a className="nav-join" href={links.mentee} target="_blank" rel="noreferrer">Join</a>
+            <a className="nav-give" href={links.giving} target="_blank" rel="noreferrer">Give</a>
+            <button className="nav-hamburger" onClick={() => setOpen((value) => !value)} aria-label="Menu">
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
             </button>
           </div>
         </div>
       </nav>
-      <div className={`nav-mobile ${open?"open":""}`}>
-        {NAV_LINKS.map(l => <a key={l.label} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+      <div className={`nav-mobile ${open ? "open" : ""}`}>
+        {NAV_LINKS.map((link) => <a key={link.label} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
         <div className="nav-mobile-actions">
-          <a className="btn btn-ghost btn-sm" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
-          <a className="btn btn-primary btn-sm" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
+          <a className="btn btn-ghost btn-sm" href={links.mentee} target="_blank" rel="noreferrer">Join</a>
+          <a className="btn btn-primary btn-sm" href={links.giving} target="_blank" rel="noreferrer">Give</a>
         </div>
       </div>
     </>
   );
 }
 
-function Footer() {
+function ArticleModal({ article, onClose }) {
+  useEffect(() => {
+    const handleKey = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div className="modal-overlay" onClick={(event) => event.target === event.currentTarget && onClose()}>
+      <div className="modal-box">
+        <div className="modal-close-row"><button className="modal-close-btn" onClick={onClose}>Close ✕</button></div>
+        <div className="modal-header" style={{ gridTemplateColumns:"1fr" }}>
+          {article.image
+            ? <img className="modal-img" src={article.image} alt={article.title} style={{ aspectRatio:"1.8", objectPosition:"center 35%" }} />
+            : <div className="modal-img" style={{ aspectRatio:"1.8", background:"linear-gradient(160deg,var(--blush),var(--rose))" }} />
+          }
+          <div className="modal-header-info" style={{ gap:"0.7rem" }}>
+            <span className="kicker">Program Update</span>
+            <h2 style={{ fontSize:"clamp(1.4rem,3vw,2rem)", lineHeight:1.05 }}>{article.title}</h2>
+            <p style={{ fontSize:"0.82rem", color:"var(--muted)" }}>{article.formattedDate}</p>
+          </div>
+        </div>
+        <div className="modal-body">
+          {article.paragraphs.length
+            ? article.paragraphs.map((paragraph, index) => <p key={index} className="modal-bio">{paragraph}</p>)
+            : <p className="modal-bio">Full article text coming soon.</p>
+          }
+          {article.externalLinks.length ? (
+            <div className="modal-actions">
+              {article.externalLinks.slice(0, 3).map((link) => (
+                <a key={link} className="btn btn-secondary btn-sm" href={link} target="_blank" rel="noreferrer noopener">{socialLabel(link)} →</a>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Footer({ links }) {
   return (
     <footer className="footer">
       <div className="shell">
         <div className="footer-grid">
           <div>
-            <a className="brand" href="../index.html" style={{marginBottom:"0.9rem",display:"inline-flex"}}>
+            <a className="brand" href="../index.html" style={{ marginBottom:"0.9rem", display:"inline-flex" }}>
               <div className="brand-mark">MCP</div>
               <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
             </a>
-            <p style={{fontSize:"0.88rem",color:"var(--muted)",lineHeight:1.65,maxWidth:"28ch",marginTop:"0.75rem"}}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
+            <p style={{ fontSize:"0.88rem", color:"var(--muted)", lineHeight:1.65, maxWidth:"28ch", marginTop:"0.75rem" }}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
           </div>
-          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map(l=><a key={l.label} href={l.href}>{l.label}</a>)}</div></div>
-          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={EXTERNAL_LINKS.mentor}>Become a mentor</a><a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
-          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer">Instagram</a><a href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a></div></div>
+          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}</div></div>
+          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={links.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={links.mentor}>Become a mentor</a><a href={links.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
+          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={links.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={`mailto:${links.email}`}>{links.email}</a></div></div>
         </div>
         <div className="footer-base"><p>Mentoring for Careers in Physics · William &amp; Mary</p><p>© {CURRENT_YEAR} William &amp; Mary</p></div>
       </div>
@@ -98,70 +139,132 @@ function Footer() {
   );
 }
 
+function NewsCard({ article, onOpen }) {
+  return (
+    <div className="news-card" role="button" tabIndex={0} onClick={() => onOpen(article)} onKeyDown={(event) => event.key === "Enter" && onOpen(article)}>
+      <div className="news-thumb">
+        {article.image
+          ? <img src={article.image} alt={article.title} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
+          : <div style={{ width:"100%", height:"100%", background:"linear-gradient(160deg,var(--blush),var(--rose))", display:"flex", alignItems:"center", justifyContent:"center" }}>
+              <span style={{ fontFamily:"var(--f-display)", fontSize:"1rem", color:"var(--wine)", opacity:0.4, textTransform:"uppercase", letterSpacing:"0.1em" }}>MCP</span>
+            </div>
+        }
+      </div>
+      <div className="news-body">
+        <div className="news-date">{article.formattedDate}</div>
+        <div className="news-title">{article.title}</div>
+        <div className="news-summary">{article.summary}</div>
+        <div style={{ marginTop:"1rem", fontSize:"0.78rem", fontWeight:600, color:"var(--wine)" }}>Read update →</div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
-  const featured = NEWS[0];
-  const rest = NEWS.slice(1);
+  const [links, setLinks] = useState(DEFAULT_EXTERNAL_LINKS);
+  const [news, setNews] = useState([]);
+  const [status, setStatus] = useState({ loading:true, error:"" });
+  const [modal, setModal] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadPage() {
+      try {
+        const [site, newsItems] = await Promise.all([
+          loadJson("site.json", ROOT),
+          loadJson("news.json", ROOT),
+        ]);
+
+        if (!active) {
+          return;
+        }
+
+        setLinks(buildExternalLinks(site));
+        setNews(buildNewsFeed(newsItems, ROOT));
+        setStatus({ loading:false, error:"" });
+      } catch (error) {
+        if (!active) {
+          return;
+        }
+
+        setStatus({ loading:false, error:"Could not load the news archive right now." });
+      }
+    }
+
+    loadPage();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const featured = news[0];
+  const archive = news.slice(1);
+  const yearRange = news.length ? `${news[news.length - 1].year}–${news[0].year}` : "";
 
   return (
     <>
-      <Nav />
+      <Nav links={links} />
       <main>
         <section className="page-hero">
           <div className="shell">
-            <span className="kicker">Program Updates</span>
-            <h1>News &amp; announcements.</h1>
-            <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>Stay up to date with events, new mentors, program milestones, and stories from the MCP community.</p>
+            <div className="page-hero-grid">
+              <div>
+                <span className="kicker">Program Updates</span>
+                <h1>News &amp; announcements.</h1>
+                <p style={{ fontSize:"1rem", color:"var(--muted)", lineHeight:1.7, maxWidth:"46ch", marginTop:"1rem" }}>This page now pulls from the full MCP news archive so the latest and historical updates stay in sync with the shared data files.</p>
+              </div>
+              <div className="hero-stat-card">
+                <span className="kicker">Archive</span>
+                <div className="metric"><strong>{news.length}</strong><span>Total updates</span></div>
+                <div className="metric"><strong>{yearRange || "—"}</strong><span>Archive range</span></div>
+              </div>
+            </div>
           </div>
         </section>
 
         <section className="section">
           <div className="shell">
-            <div style={{borderRadius:"var(--r-xl)",overflow:"hidden",border:"1px solid var(--border)",background:"white",boxShadow:"0 12px 36px rgba(74,53,64,0.07)",display:"grid",gridTemplateColumns:"1fr 1fr",marginBottom:"2rem"}}>
-              <div style={{overflow:"hidden",background:"var(--blush)"}}>
-                {featured.img
-                  ? <img src={featured.img} alt={featured.title} style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center 30%"}} />
-                  : <div style={{width:"100%",height:"100%",background:"linear-gradient(160deg,var(--blush),var(--rose))"}} />
-                }
-              </div>
-              <div style={{padding:"2.5rem"}}>
-                <div style={{display:"flex",gap:"0.5rem",alignItems:"center",marginBottom:"1.25rem"}}>
-                  <span style={{fontSize:"0.68rem",fontWeight:600,textTransform:"uppercase",letterSpacing:"0.14em",background:"var(--blush)",color:"var(--wine)",padding:"0.3rem 0.7rem",borderRadius:"999px"}}>{featured.tag}</span>
-                  <span style={{fontSize:"0.78rem",color:"var(--muted)"}}>{featured.date}</span>
-                </div>
-                <h2 style={{marginBottom:"1rem",lineHeight:1.05}}>{featured.title}</h2>
-                <p style={{fontSize:"0.95rem",color:"var(--muted)",lineHeight:1.7}}>{featured.summary}</p>
-              </div>
-            </div>
-
-            <div className="news-grid">
-              {rest.map((n,i) => (
-                <div key={i} className="news-card">
-                  <div className="news-thumb">
-                    {n.img
-                      ? <img src={n.img} alt={n.title} style={{width:"100%",height:"100%",objectFit:"cover"}} />
-                      : <div style={{width:"100%",height:"100%",background:"linear-gradient(160deg,var(--blush),var(--rose))",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                          <span style={{fontFamily:"var(--f-display)",fontSize:"1rem",color:"var(--wine)",opacity:0.4,textTransform:"uppercase",letterSpacing:"0.1em"}}>{n.tag}</span>
-                        </div>
+            {status.loading ? (
+              <div className="empty-state">Loading program updates…</div>
+            ) : status.error ? (
+              <div className="empty-state">{status.error}</div>
+            ) : featured ? (
+              <>
+                <div role="button" tabIndex={0} onClick={() => setModal(featured)} onKeyDown={(event) => event.key === "Enter" && setModal(featured)} style={{ borderRadius:"var(--r-xl)", overflow:"hidden", border:"1px solid var(--border)", background:"white", boxShadow:"0 12px 36px rgba(74,53,64,0.07)", display:"grid", gridTemplateColumns:"1fr 1fr", marginBottom:"2rem", cursor:"pointer" }}>
+                  <div style={{ overflow:"hidden", background:"var(--blush)" }}>
+                    {featured.image
+                      ? <img src={featured.image} alt={featured.title} style={{ width:"100%", height:"100%", objectFit:"cover", objectPosition:"center 30%" }} />
+                      : <div style={{ width:"100%", height:"100%", background:"linear-gradient(160deg,var(--blush),var(--rose))" }} />
                     }
                   </div>
-                  <div className="news-body">
-                    <div style={{display:"flex",gap:"0.5rem",alignItems:"center",marginBottom:"0.5rem"}}>
-                      <span style={{fontSize:"0.64rem",fontWeight:600,textTransform:"uppercase",letterSpacing:"0.12em",background:"var(--blush)",color:"var(--wine)",padding:"0.25rem 0.6rem",borderRadius:"999px"}}>{n.tag}</span>
-                      <span className="news-date">{n.date}</span>
-                    </div>
-                    <div className="news-title">{n.title}</div>
-                    <div className="news-summary">{n.summary}</div>
+                  <div style={{ padding:"2.5rem" }}>
+                    <div style={{ fontSize:"0.78rem", color:"var(--muted)", marginBottom:"1rem" }}>{featured.formattedDate}</div>
+                    <h2 style={{ marginBottom:"1rem", lineHeight:1.05 }}>{featured.title}</h2>
+                    <p style={{ fontSize:"0.95rem", color:"var(--muted)", lineHeight:1.7 }}>{featured.summary}</p>
+                    <div style={{ marginTop:"1.25rem", fontSize:"0.82rem", fontWeight:600, color:"var(--wine)" }}>Read featured update →</div>
                   </div>
                 </div>
-              ))}
-            </div>
+
+                <div className="section-head">
+                  <div><span className="kicker">Archive</span><h2>All MCP updates.</h2></div>
+                </div>
+                <div className="news-grid">
+                  {archive.map((article) => <NewsCard key={article.id} article={article} onOpen={setModal} />)}
+                </div>
+              </>
+            ) : (
+              <div className="empty-state">No news items are available yet.</div>
+            )}
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer links={links} />
+      {modal ? <ArticleModal article={modal} onClose={() => setModal(null)} /> : null}
     </>
   );
 }
+
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 </script>
 <div id="root"></div>

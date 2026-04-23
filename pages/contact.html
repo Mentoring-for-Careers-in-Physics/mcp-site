@@ -8,14 +8,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/mcp-shared.css" />
+  <script src="../js/mcp-subpages.js"></script>
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
 <script type="text/babel">
-const { useState } = React;
+const { useEffect, useMemo, useState } = React;
+const {
+  DEFAULT_EXTERNAL_LINKS,
+  buildExternalLinks,
+  loadJson,
+  socialLabel,
+} = window.MCPSubpages;
 
+const ROOT = "..";
 const NAV_LINKS = [
   { label:"Home", href:"../index.html" },
   { label:"Mentors", href:"./mentors.html" },
@@ -24,23 +32,9 @@ const NAV_LINKS = [
   { label:"News", href:"./news.html" },
   { label:"Contact", href:"./contact.html" },
 ];
-
-const EXTERNAL_LINKS = {
-  mentee: "https://forms.gle/zkuoy8HGdec81Y5o8",
-  mentor: "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
-  giving: "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
-  linkedin: "https://www.linkedin.com/company/wmmcp",
-  instagram: "https://www.instagram.com/wm_mcp",
-};
 const CURRENT_YEAR = new Date().getFullYear();
 
-const WAYS = [
-  { title:"Join as a student", kicker:"Mentees", desc:"W&M physics students can apply to be matched with a mentor for guided career conversations.", action:"Apply now", color:"var(--blush)", href:EXTERNAL_LINKS.mentee },
-  { title:"Become a mentor", kicker:"Mentors", desc:"Accomplished women in physics and engineering — join the network and guide the next generation.", action:"Volunteer", color:"var(--snow)", href:EXTERNAL_LINKS.mentor },
-  { title:"Give to MCP", kicker:"Donors", desc:"Support program events, operational costs, and the expansion of mentoring access to more students.", action:"Donate", color:"var(--wine)", href:EXTERNAL_LINKS.giving },
-];
-
-function Nav() {
+function Nav({ links }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -51,43 +45,43 @@ function Nav() {
             <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
           </a>
           <div className="nav-links">
-            {NAV_LINKS.map(l => <a key={l.label} className={`nav-link${l.label==="Contact"?" active":""}`} href={l.href}>{l.label}</a>)}
+            {NAV_LINKS.map((link) => <a key={link.label} className={`nav-link${link.label==="Contact" ? " active" : ""}`} href={link.href}>{link.label}</a>)}
           </div>
           <div className="nav-actions">
-            <a className="nav-join" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
-            <a className="nav-give" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
-            <button className="nav-hamburger" onClick={() => setOpen(o=>!o)} aria-label="Menu">
+            <a className="nav-join" href={links.mentee} target="_blank" rel="noreferrer">Join</a>
+            <a className="nav-give" href={links.giving} target="_blank" rel="noreferrer">Give</a>
+            <button className="nav-hamburger" onClick={() => setOpen((value) => !value)} aria-label="Menu">
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
             </button>
           </div>
         </div>
       </nav>
-      <div className={`nav-mobile ${open?"open":""}`}>
-        {NAV_LINKS.map(l => <a key={l.label} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+      <div className={`nav-mobile ${open ? "open" : ""}`}>
+        {NAV_LINKS.map((link) => <a key={link.label} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
         <div className="nav-mobile-actions">
-          <a className="btn btn-ghost btn-sm" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
-          <a className="btn btn-primary btn-sm" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
+          <a className="btn btn-ghost btn-sm" href={links.mentee} target="_blank" rel="noreferrer">Join</a>
+          <a className="btn btn-primary btn-sm" href={links.giving} target="_blank" rel="noreferrer">Give</a>
         </div>
       </div>
     </>
   );
 }
 
-function Footer() {
+function Footer({ links }) {
   return (
     <footer className="footer">
       <div className="shell">
         <div className="footer-grid">
           <div>
-            <a className="brand" href="../index.html" style={{marginBottom:"0.9rem",display:"inline-flex"}}>
+            <a className="brand" href="../index.html" style={{ marginBottom:"0.9rem", display:"inline-flex" }}>
               <div className="brand-mark">MCP</div>
               <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
             </a>
-            <p style={{fontSize:"0.88rem",color:"var(--muted)",lineHeight:1.65,maxWidth:"28ch",marginTop:"0.75rem"}}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
+            <p style={{ fontSize:"0.88rem", color:"var(--muted)", lineHeight:1.65, maxWidth:"28ch", marginTop:"0.75rem" }}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
           </div>
-          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map(l=><a key={l.label} href={l.href}>{l.label}</a>)}</div></div>
-          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={EXTERNAL_LINKS.mentor}>Become a mentor</a><a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
-          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer">Instagram</a><a href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a></div></div>
+          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}</div></div>
+          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={links.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={links.mentor}>Become a mentor</a><a href={links.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
+          <div><div className="footer-heading">Connect</div><div className="footer-links">{links.socialLinks.map((link) => <a key={link} href={link} target="_blank" rel="noreferrer">{socialLabel(link)}</a>)}<a href={`mailto:${links.email}`}>{links.email}</a></div></div>
         </div>
         <div className="footer-base"><p>Mentoring for Careers in Physics · William &amp; Mary</p><p>© {CURRENT_YEAR} William &amp; Mary</p></div>
       </div>
@@ -99,16 +93,21 @@ function ContactForm() {
   const [form, setForm] = useState({ name:"", email:"", role:"student", message:"" });
   const [sent, setSent] = useState(false);
 
-  const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-  const submit = e => { e.preventDefault(); setSent(true); };
+  const handle = (event) => setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
+  const submit = (event) => {
+    event.preventDefault();
+    setSent(true);
+  };
 
-  if (sent) return (
-    <div style={{padding:"3rem",textAlign:"center",borderRadius:"var(--r-xl)",border:"1px solid var(--border)",background:"white"}}>
-      <div style={{fontFamily:"var(--f-display)",fontSize:"2rem",color:"var(--wine)",marginBottom:"0.75rem"}}>Thank you.</div>
-      <p style={{color:"var(--muted)",fontSize:"0.95rem",lineHeight:1.7}}>We've received your message and will be in touch soon at <strong>{form.email}</strong>.</p>
-      <button className="btn btn-ghost btn-sm" style={{marginTop:"1.5rem"}} onClick={() => { setSent(false); setForm({name:"",email:"",role:"student",message:""}); }}>Send another</button>
-    </div>
-  );
+  if (sent) {
+    return (
+      <div style={{ padding:"3rem", textAlign:"center", borderRadius:"var(--r-xl)", border:"1px solid var(--border)", background:"white" }}>
+        <div style={{ fontFamily:"var(--f-display)", fontSize:"2rem", color:"var(--wine)", marginBottom:"0.75rem" }}>Thank you.</div>
+        <p style={{ color:"var(--muted)", fontSize:"0.95rem", lineHeight:1.7 }}>We&apos;ve received your message and will be in touch soon at <strong>{form.email}</strong>.</p>
+        <button className="btn btn-ghost btn-sm" style={{ marginTop:"1.5rem" }} onClick={() => { setSent(false); setForm({ name:"", email:"", role:"student", message:"" }); }}>Send another</button>
+      </div>
+    );
+  }
 
   return (
     <form className="contact-form" onSubmit={submit}>
@@ -132,23 +131,57 @@ function ContactForm() {
       </div>
       <div className="form-group">
         <label className="form-label" htmlFor="contact-message">Message</label>
-        <textarea className="form-textarea" id="contact-message" name="message" value={form.message} onChange={handle} placeholder="Tell us how we can help, or what you'd like to know about MCP…" required />
+        <textarea className="form-textarea" id="contact-message" name="message" value={form.message} onChange={handle} placeholder="Tell us how we can help, or what you&apos;d like to know about MCP…" required />
       </div>
-      <button className="btn btn-primary" type="submit" style={{marginTop:"0.25rem"}}>Send message →</button>
+      <button className="btn btn-primary" type="submit" style={{ marginTop:"0.25rem" }}>Send message →</button>
     </form>
   );
 }
 
 function App() {
+  const [links, setLinks] = useState(DEFAULT_EXTERNAL_LINKS);
+  const [site, setSite] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadPage() {
+      try {
+        const siteData = await loadJson("site.json", ROOT);
+        if (!active) {
+          return;
+        }
+
+        setSite(siteData);
+        setLinks(buildExternalLinks(siteData));
+      } catch (error) {
+        if (!active) {
+          return;
+        }
+      }
+    }
+
+    loadPage();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const ways = useMemo(() => [
+    { title:"Join as a student", kicker:"Mentees", desc:"W&M physics students can apply to be matched with a mentor for guided career conversations.", action:"Apply now", color:"var(--blush)", href:links.mentee },
+    { title:"Become a mentor", kicker:"Mentors", desc:"Accomplished women in physics and engineering can join the network and guide the next generation.", action:"Volunteer", color:"var(--snow)", href:links.mentor },
+    { title:"Give to MCP", kicker:"Donors", desc:"Support program events, operational costs, and the expansion of mentoring access to more students.", action:"Donate", color:"var(--wine)", href:links.giving },
+  ], [links]);
+
   return (
     <>
-      <Nav />
+      <Nav links={links} />
       <main>
         <section className="page-hero">
           <div className="shell">
             <span className="kicker">Get in Touch</span>
-            <h1>Let's connect.</h1>
-            <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>Whether you're a student looking for a mentor, a professional ready to give back, or a donor wanting to support our work — we'd love to hear from you.</p>
+            <h1>Let&apos;s connect.</h1>
+            <p style={{ fontSize:"1rem", color:"var(--muted)", lineHeight:1.7, maxWidth:"48ch", marginTop:"1rem" }}>{site?.summary || "Whether you&apos;re a student looking for a mentor, a professional ready to give back, or a donor wanting to support our work, we&apos;d love to hear from you."}</p>
           </div>
         </section>
 
@@ -158,31 +191,28 @@ function App() {
               <div><span className="kicker">Ways to Engage</span><h2>How would you like to be involved?</h2></div>
             </div>
             <div className="engagement-grid">
-              {WAYS.map(w => (
-                <div key={w.title} style={{padding:"2rem",borderRadius:"var(--r-xl)",border:"1px solid var(--border)",
-                  background: w.color === "var(--wine)" ? "var(--wine)" : "white",
-                  color: w.color === "var(--wine)" ? "white" : "var(--ink)",
-                  boxShadow:"0 8px 28px rgba(74,53,64,0.07)",display:"flex",flexDirection:"column",gap:"0.85rem"}}>
-                  <span style={{fontSize:"0.66rem",fontWeight:600,letterSpacing:"0.16em",textTransform:"uppercase",color: w.color==="var(--wine)"?"rgba(255,255,255,0.55)":"var(--wine-mid)"}}>{w.kicker}</span>
-                  <h3 style={{color: w.color==="var(--wine)"?"white":"var(--ink)"}}>{w.title}</h3>
-                  <p style={{fontSize:"0.9rem",lineHeight:1.65,color: w.color==="var(--wine)"?"rgba(255,255,255,0.7)":"var(--muted)",flex:1}}>{w.desc}</p>
-                  <a href={w.href} className="text-link" style={{color: w.color==="var(--wine)"?"rgba(255,255,255,0.8)":"var(--wine)"}} target={w.href.startsWith("mailto:") ? undefined : "_blank"} rel={w.href.startsWith("mailto:") ? undefined : "noreferrer"}>{w.action} →</a>
+              {ways.map((way) => (
+                <div key={way.title} style={{ padding:"2rem", borderRadius:"var(--r-xl)", border:"1px solid var(--border)", background: way.color === "var(--wine)" ? "var(--wine)" : "white", color: way.color === "var(--wine)" ? "white" : "var(--ink)", boxShadow:"0 8px 28px rgba(74,53,64,0.07)", display:"flex", flexDirection:"column", gap:"0.85rem" }}>
+                  <span style={{ fontSize:"0.66rem", fontWeight:600, letterSpacing:"0.16em", textTransform:"uppercase", color: way.color === "var(--wine)" ? "rgba(255,255,255,0.55)" : "var(--wine-mid)" }}>{way.kicker}</span>
+                  <h3 style={{ color: way.color === "var(--wine)" ? "white" : "var(--ink)" }}>{way.title}</h3>
+                  <p style={{ fontSize:"0.9rem", lineHeight:1.65, color: way.color === "var(--wine)" ? "rgba(255,255,255,0.7)" : "var(--muted)", flex:1 }}>{way.desc}</p>
+                  <a href={way.href} className="text-link" style={{ color: way.color === "var(--wine)" ? "rgba(255,255,255,0.8)" : "var(--wine)" }} target={way.href.startsWith("mailto:") ? undefined : "_blank"} rel={way.href.startsWith("mailto:") ? undefined : "noreferrer"}>{way.action} →</a>
                 </div>
               ))}
             </div>
 
             <div className="contact-grid">
               <ContactForm />
-              <div style={{display:"flex",flexDirection:"column",gap:"1.1rem"}}>
+              <div style={{ display:"flex", flexDirection:"column", gap:"1.1rem" }}>
                 <div className="contact-info">
                   <div>
                     <div className="contact-item-label">Email</div>
-                    <a className="contact-item-value" href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a>
+                    <a className="contact-item-value" href={`mailto:${links.email}`}>{links.email}</a>
                   </div>
                   <div>
                     <div className="contact-item-label">Program</div>
                     <div className="contact-item-value">Mentoring for Careers in Physics</div>
-                    <div style={{fontSize:"0.85rem",color:"var(--muted)",marginTop:"0.2rem"}}>William &amp; Mary Physics Department</div>
+                    <div style={{ fontSize:"0.85rem", color:"var(--muted)", marginTop:"0.2rem" }}>William &amp; Mary Physics Department</div>
                   </div>
                   <div>
                     <div className="contact-item-label">Location</div>
@@ -190,26 +220,28 @@ function App() {
                   </div>
                   <div>
                     <div className="contact-item-label">Social</div>
-                    <div style={{display:"flex",gap:"0.6rem",marginTop:"0.35rem"}}>
-                      <a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer" style={{padding:"0.5rem 0.9rem",borderRadius:"999px",border:"1px solid var(--border)",fontSize:"0.82rem",fontWeight:600,color:"var(--wine)",background:"white"}}>LinkedIn</a>
-                      <a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer" style={{padding:"0.5rem 0.9rem",borderRadius:"999px",border:"1px solid var(--border)",fontSize:"0.82rem",fontWeight:600,color:"var(--wine)",background:"white"}}>Instagram</a>
+                    <div style={{ display:"flex", gap:"0.6rem", flexWrap:"wrap", marginTop:"0.35rem" }}>
+                      {links.socialLinks.map((link) => (
+                        <a key={link} href={link} target="_blank" rel="noreferrer" style={{ padding:"0.5rem 0.9rem", borderRadius:"999px", border:"1px solid var(--border)", fontSize:"0.82rem", fontWeight:600, color:"var(--wine)", background:"white" }}>{socialLabel(link)}</a>
+                      ))}
                     </div>
                   </div>
                 </div>
-                <div style={{padding:"1.75rem",borderRadius:"var(--r-xl)",background:"var(--wine)",color:"white",border:"none"}}>
-                  <div style={{fontFamily:"var(--f-display)",fontSize:"1.5rem",marginBottom:"0.65rem",lineHeight:1.05}}>Ready to give to MCP?</div>
-                  <p style={{fontSize:"0.88rem",color:"rgba(255,255,255,0.65)",lineHeight:1.65,marginBottom:"1.25rem"}}>Your support helps fund events, program operations, and expanding mentorship access to more students each year.</p>
-                  <a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer" className="btn btn-full" style={{background:"white",color:"var(--wine)",fontWeight:700}}>Donate to MCP →</a>
+                <div style={{ padding:"1.75rem", borderRadius:"var(--r-xl)", background:"var(--wine)", color:"white", border:"none" }}>
+                  <div style={{ fontFamily:"var(--f-display)", fontSize:"1.5rem", marginBottom:"0.65rem", lineHeight:1.05 }}>Ready to give to MCP?</div>
+                  <p style={{ fontSize:"0.88rem", color:"rgba(255,255,255,0.65)", lineHeight:1.65, marginBottom:"1.25rem" }}>{site?.supportersText || "Your support helps fund events, program operations, and expanding mentorship access to more students each year."}</p>
+                  <a href={links.giving} target="_blank" rel="noreferrer" className="btn btn-full" style={{ background:"white", color:"var(--wine)", fontWeight:700 }}>Donate to MCP →</a>
                 </div>
               </div>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer links={links} />
     </>
   );
 }
+
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 </script>
 <div id="root"></div>

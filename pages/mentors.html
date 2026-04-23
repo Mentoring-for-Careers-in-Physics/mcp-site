@@ -8,14 +8,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/mcp-shared.css" />
+  <script src="../js/mcp-subpages.js"></script>
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
 <script type="text/babel">
-const { useState, useEffect, useMemo } = React;
+const { useEffect, useMemo, useState } = React;
+const {
+  DEFAULT_EXTERNAL_LINKS,
+  buildExternalLinks,
+  buildMentorDirectory,
+  loadJson,
+  monogram,
+} = window.MCPSubpages;
 
+const ROOT = "..";
+const FILTER_ORDER = ["All", "Industry", "Government", "National Lab", "Academia", "Independent"];
 const NAV_LINKS = [
   { label:"Home", href:"../index.html" },
   { label:"Mentors", href:"./mentors.html" },
@@ -24,43 +34,10 @@ const NAV_LINKS = [
   { label:"News", href:"./news.html" },
   { label:"Contact", href:"./contact.html" },
 ];
-
-const EXTERNAL_LINKS = {
-  mentee: "https://forms.gle/zkuoy8HGdec81Y5o8",
-  mentor: "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
-  giving: "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
-  linkedin: "https://www.linkedin.com/company/wmmcp",
-  instagram: "https://www.instagram.com/wm_mcp",
-};
 const CURRENT_YEAR = new Date().getFullYear();
 
-const MENTORS = [
-  { name:"Evalyn Gates", title:"Adjunct Professor", org:"Case Western University", sector:"Academia", bio:"Evalyn Gates is a theoretical physicist and author who spent her career searching for dark matter, dark energy, and neutrinos. She served as Executive Director & CEO of the Cleveland Museum of Natural History and VP for Science & Education at the Adler Planetarium. She currently advises multiple committees addressing underrepresentation of women in science.", linkedin:"https://www.linkedin.com/in/evalyn-gates/", img:"../assets/images/live-site/clearweb/assets/Evalyn_Gates-square-headshot.jpg" },
-  { name:"Kristina Kruglyak", title:"Consultant", org:"Self-Employed", sector:"Industry", bio:"Kristina brings deep expertise from a career spanning engineering and consulting. She is passionate about supporting women in STEM fields and shares practical career wisdom with MCP students.", linkedin:"https://www.linkedin.com/in/kristinakruglyak/", img:"../assets/images/live-site/clearweb/assets/Kristina_Kruglyak-square-headshot.jpg" },
-  { name:"Amber Ulbrich", title:"Physicist, Quantum Technologies", org:"Department of Defense", sector:"Government", bio:"Dr. Ulbrich is an analyst studying quantum information science with the Department of Defense, with two decades in the field. Her distinctions include the Joan A. Dempsey Award for Mentorship from the Intelligence and National Security Alliance. She holds certifications in Quantum Computing Fundamentals (MIT) and Machine Learning (Stanford).", linkedin:"https://www.linkedin.com/in/amber-ulbrich-046a2b38/", img:"../assets/images/live-site/clearweb/assets/Amber_Ulbrich-square-headshot.jpg" },
-  { name:"Marisa Brown", title:"Senior Biomedical Engineer", org:"ivWatch LLC", sector:"Industry", bio:"Since 2017, Marisa has helped design optical biosensors and monitoring systems that detect IV infiltration as part of the R&D team at ivWatch. She also runs clinical investigations and is an ACRP Certified Professional.", linkedin:"https://www.linkedin.com/in/marisabrown/", img:"../assets/images/live-site/clearweb/assets/Marisa_Brown-square-headshot.jpg" },
-  { name:"Melissa Dolph", title:"Principal Engineer", org:"MITRE", sector:"Research", bio:"Melissa is a principal engineer at MITRE, bringing physics expertise to applied research and national security challenges.", linkedin:"https://www.linkedin.com/in/melissa-commisso-dolph-9b637729/", img:"../assets/images/live-site/clearweb/assets/Melissa_Dolph-square-headshot.jpg" },
-  { name:"Holly Szumila-Vance", title:"Hall A/C Staff Scientist", org:"Jefferson Lab", sector:"Research", bio:"Holly is a staff scientist at Jefferson Lab working on nuclear physics experiments. She is committed to expanding representation of women in experimental physics.", linkedin:"https://www.linkedin.com/in/holly-szumila-vance-6b815b126/", img:"../assets/images/live-site/clearweb/assets/Holly_Szumila-Vance-square-headshot.jpg" },
-  { name:"Karen Taminger", title:"Materials Research Engineer", org:"NASA Langley Research Center", sector:"Government", bio:"Karen is a materials research engineer at NASA Langley, working on advanced manufacturing processes for aerospace applications.", linkedin:"https://www.linkedin.com/in/karen-taminger-5920761/", img:"../assets/images/live-site/clearweb/assets/Karen_Taminger-square-headshot.jpg" },
-  { name:"Kelly Berns", title:"Advanced Cyber Security Engineer", org:"Honeywell", sector:"Industry", bio:"After originally pursuing a business degree, Kelly discovered her passion for cybersecurity and built a career as a penetration tester at Honeywell. She believes curiosity is the most important quality for any engineer.", linkedin:null, img:"../assets/images/live-site/clearweb/assets/Kelly_Berns-square-headshot.jpg" },
-  { name:"Yang Xu", title:"Senior Research Scientist", org:"Luna Innovations", sector:"Research", bio:"Yang is a senior research scientist at Luna Innovations, applying physics expertise to photonics and sensing technologies.", linkedin:"https://www.linkedin.com/in/yang-xu-205459b4/", img:"../assets/images/live-site/clearweb/assets/Yang_Xu_headshot.jpg" },
-  { name:"Liz Ward", title:"Principal Investigator", org:"NASA Langley / CNU", sector:"Research", bio:"Liz leads research at the intersection of NASA Langley and Christopher Newport University. She advocates strongly for undergraduate research experiences.", linkedin:"https://www.linkedin.com/in/lizward/", img:"../assets/images/live-site/clearweb/assets/Liz_Ward-square-headshot.jpg" },
-  { name:"Julia M. Phillips", title:"Executive Emeritus", org:"Sandia National Laboratories", sector:"Government", bio:"Julia Phillips retired from Sandia as VP and Chief Technology Officer. She is a member of the National Academy of Engineering and received the George E. Pake Prize from APS for leadership in materials physics.", linkedin:"https://www.linkedin.com/in/julia-phillips-8b08316/", img:null },
-  { name:"Haley Bauser", title:"Product Engineering Manager", org:"Varda Space Industries", sector:"Industry", bio:"Haley leads drug crystallization processes for microgravity at Varda Space Industries. She received her Ph.D. in Applied Physics from Caltech and her B.S. in Physics from William & Mary.", linkedin:"https://www.linkedin.com/in/haley-bauser-a25612195/", img:null },
-  { name:"Janet Brewer", title:"Chief People Officer", org:"Arcfield", sector:"Industry", bio:"Janet has 20+ years in global HR and holds a BS in Physics from William & Mary and an MBA from Marymount. She oversees talent, DEI, and all people initiatives at Arcfield.", linkedin:"https://www.linkedin.com/in/brewerjanet/", img:null },
-  { name:"Marlyn Andino", title:"Research Aerospace Engineer", org:"NASA Langley Research Center", sector:"Government", bio:"Marlyn is a research aerospace engineer at NASA Langley, contributing to cutting-edge aeronautics research.", linkedin:"https://www.linkedin.com/in/marlynandino/", img:null },
-  { name:"Sucheta Jawalkar", title:"Physicist, AI/ML Expert", org:"Independent", sector:"Industry", bio:"Sucheta is an experienced technical leader in AI-at-scale with domain expertise in retail, healthcare, and federal government. She has a Ph.D. in experimental Physics from William & Mary.", linkedin:"https://www.linkedin.com/in/suchetajawalkar/", img:null },
-  { name:"Mi Zhang", title:"Optical Engineer", org:"KLA Corporation", sector:"Industry", bio:"Mi received her Ph.D. in Physics from William & Mary and now develops advanced optical systems for semiconductor inspection tools at KLA Corporation in Silicon Valley.", linkedin:"https://www.linkedin.com/in/mi-zhang-77510939/", img:null },
-  { name:"Claudia Smith", title:"Associate Software Engineer", org:"Capital One", sector:"Industry", bio:"Claudia graduated from William & Mary in 2024. After working on a software capstone project, she joined Capital One as an associate software engineer.", linkedin:"https://www.linkedin.com/in/claudia-smith1/", img:null },
-  { name:"Jennifer Dorand", title:"Senior Medical Physicist", org:"ProCure Treatment Centers", sector:"Research", bio:"Jennifer is a board-certified medical physicist working in proton therapy since 2017. She graduated from William & Mary with a BS in Physics in 2009 and earned her doctorate at Wake Forest.", linkedin:null, img:null },
-  { name:"Sanghwa Park", title:"Staff Scientist", org:"Jefferson Lab", sector:"Research", bio:"Sanghwa is a staff scientist at Jefferson Lab, contributing to nuclear and particle physics experiments.", linkedin:"https://www.linkedin.com/in/sanghwa-park-2a71a7bb/", img:null },
-  { name:"Brenda VanMil", title:"Physicist", org:"U.S. Army Research Laboratory", sector:"Government", bio:"Brenda is a physicist at the U.S. Army Research Laboratory, applying materials physics to defense-relevant problems.", linkedin:"https://www.linkedin.com/in/brenda-vanmil-0022a436/", img:null },
-];
-
-const SECTORS = ["All", "Industry", "Government", "Research", "Academia"];
-
-function Nav() {
-  const [open, setOpen] = React.useState(false);
+function Nav({ links }) {
+  const [open, setOpen] = useState(false);
   return (
     <>
       <nav className="nav">
@@ -70,22 +47,22 @@ function Nav() {
             <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
           </a>
           <div className="nav-links">
-            {NAV_LINKS.map(l => <a key={l.label} className={`nav-link${l.label==="Mentors"?" active":""}`} href={l.href}>{l.label}</a>)}
+            {NAV_LINKS.map((link) => <a key={link.label} className={`nav-link${link.label==="Mentors" ? " active" : ""}`} href={link.href}>{link.label}</a>)}
           </div>
           <div className="nav-actions">
-            <a className="nav-join" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
-            <a className="nav-give" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
-            <button className="nav-hamburger" onClick={() => setOpen(o=>!o)} aria-label="Menu">
+            <a className="nav-join" href={links.mentee} target="_blank" rel="noreferrer">Join</a>
+            <a className="nav-give" href={links.giving} target="_blank" rel="noreferrer">Give</a>
+            <button className="nav-hamburger" onClick={() => setOpen((value) => !value)} aria-label="Menu">
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
             </button>
           </div>
         </div>
       </nav>
-      <div className={`nav-mobile ${open?"open":""}`}>
-        {NAV_LINKS.map(l => <a key={l.label} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+      <div className={`nav-mobile ${open ? "open" : ""}`}>
+        {NAV_LINKS.map((link) => <a key={link.label} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}
         <div className="nav-mobile-actions">
-          <a className="btn btn-ghost btn-sm" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
-          <a className="btn btn-primary btn-sm" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
+          <a className="btn btn-ghost btn-sm" href={links.mentee} target="_blank" rel="noreferrer">Join</a>
+          <a className="btn btn-primary btn-sm" href={links.giving} target="_blank" rel="noreferrer">Give</a>
         </div>
       </div>
     </>
@@ -94,33 +71,51 @@ function Nav() {
 
 function MentorModal({ mentor, onClose }) {
   useEffect(() => {
-    const h = e => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", h);
+    const handleKey = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", h); document.body.style.overflow = ""; };
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
   }, [onClose]);
+
+  const linkedCompanies = mentor.companies.filter((company) => company.website);
+
   return (
-    <div className="modal-overlay" onClick={e => e.target===e.currentTarget && onClose()}>
+    <div className="modal-overlay" onClick={(event) => event.target === event.currentTarget && onClose()}>
       <div className="modal-box">
         <div className="modal-close-row"><button className="modal-close-btn" onClick={onClose}>Close ✕</button></div>
         <div className="modal-header">
-          {mentor.img
-            ? <img className="modal-img" src={mentor.img} alt={mentor.name} />
-            : <div className="modal-img" style={{background:"var(--blush)",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <span style={{fontFamily:"var(--f-display)",fontSize:"3rem",color:"var(--wine)",opacity:0.3}}>{mentor.name[0]}</span>
+          {mentor.image
+            ? <img className="modal-img" src={mentor.image} alt={mentor.name} />
+            : <div className="modal-img" style={{ background:"var(--blush)", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <span style={{ fontFamily:"var(--f-display)", fontSize:"3rem", color:"var(--wine)", opacity:0.3 }}>{monogram(mentor.name)}</span>
               </div>
           }
           <div className="modal-header-info">
-            <span className="kicker">{mentor.sector}</span>
-            <h2 style={{fontSize:"clamp(1.4rem,3vw,2rem)"}}>{mentor.name}</h2>
-            <p style={{fontSize:"0.88rem",color:"var(--wine-mid)",fontWeight:500}}>{mentor.title}</p>
-            <p style={{fontSize:"0.82rem",color:"var(--muted)"}}>{mentor.org}</p>
+            <span className="kicker">{mentor.sectorLabel}</span>
+            <h2 style={{ fontSize:"clamp(1.4rem,3vw,2rem)" }}>{mentor.name}</h2>
+            <p style={{ fontSize:"0.88rem", color:"var(--wine-mid)", fontWeight:500 }}>{mentor.title}</p>
+            <div style={{ display:"flex", flexWrap:"wrap", gap:"0.45rem", marginTop:"0.35rem" }}>
+              {mentor.organizations.map((organization) => (
+                <span key={organization} style={{ fontSize:"0.78rem", background:"white", color:"var(--wine)", border:"1px solid var(--border)", padding:"0.28rem 0.65rem", borderRadius:"999px", fontWeight:500 }}>{organization}</span>
+              ))}
+            </div>
           </div>
         </div>
         <div className="modal-body">
           <p className="modal-bio">{mentor.bio || "Full biography coming soon."}</p>
           <div className="modal-actions">
-            {mentor.linkedin && <a className="btn btn-primary btn-sm" href={mentor.linkedin} target="_blank" rel="noopener">LinkedIn →</a>}
+            {mentor.linkedin ? <a className="btn btn-primary btn-sm" href={mentor.linkedin} target="_blank" rel="noreferrer noopener">LinkedIn →</a> : null}
+            {linkedCompanies.map((company) => (
+              <a key={company.name} className="btn btn-secondary btn-sm" href={company.website} target="_blank" rel="noreferrer noopener">Visit {company.name} →</a>
+            ))}
           </div>
         </div>
       </div>
@@ -128,21 +123,21 @@ function MentorModal({ mentor, onClose }) {
   );
 }
 
-function Footer() {
+function Footer({ links }) {
   return (
     <footer className="footer">
       <div className="shell">
         <div className="footer-grid">
           <div>
-            <a className="brand" href="../index.html" style={{marginBottom:"0.9rem",display:"inline-flex"}}>
+            <a className="brand" href="../index.html" style={{ marginBottom:"0.9rem", display:"inline-flex" }}>
               <div className="brand-mark">MCP</div>
               <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
             </a>
-            <p style={{fontSize:"0.88rem",color:"var(--muted)",lineHeight:1.65,maxWidth:"28ch",marginTop:"0.75rem"}}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
+            <p style={{ fontSize:"0.88rem", color:"var(--muted)", lineHeight:1.65, maxWidth:"28ch", marginTop:"0.75rem" }}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
           </div>
-          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map(l=><a key={l.label} href={l.href}>{l.label}</a>)}</div></div>
-          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={EXTERNAL_LINKS.mentor}>Become a mentor</a><a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
-          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer">Instagram</a><a href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a></div></div>
+          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}</div></div>
+          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={links.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={links.mentor}>Become a mentor</a><a href={links.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
+          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={links.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={`mailto:${links.email}`}>{links.email}</a></div></div>
         </div>
         <div className="footer-base"><p>Mentoring for Careers in Physics · William &amp; Mary</p><p>© {CURRENT_YEAR} William &amp; Mary</p></div>
       </div>
@@ -150,21 +145,94 @@ function Footer() {
   );
 }
 
-function App() {
-  const [query, setQuery] = React.useState("");
-  const [sector, setSector] = React.useState("All");
-  const [modal, setModal] = React.useState(null);
+function MentorCard({ mentor, onOpen }) {
+  return (
+    <div className="profile-card" onClick={() => onOpen(mentor)} role="button" tabIndex={0} onKeyDown={(event) => event.key === "Enter" && onOpen(mentor)}>
+      <div className="profile-photo" style={{ aspectRatio:"0.85" }}>
+        {mentor.image
+          ? <img src={mentor.image} alt={mentor.name} />
+          : <div style={{ width:"100%", height:"100%", background:"linear-gradient(160deg,var(--blush),var(--rose))", display:"flex", alignItems:"center", justifyContent:"center" }}>
+              <span style={{ fontFamily:"var(--f-display)", fontSize:"3.5rem", color:"var(--wine)", opacity:0.25 }}>{monogram(mentor.name)}</span>
+            </div>
+        }
+      </div>
+      <div className="profile-body">
+        <div className="profile-sector">{mentor.sectorLabel} · {mentor.organizationLabel}</div>
+        <div className="profile-name">{mentor.name}</div>
+        <div className="profile-role">{mentor.title}</div>
+        <p style={{ fontSize:"0.86rem", color:"var(--muted)", lineHeight:1.6, marginTop:"0.65rem" }}>{mentor.excerpt}</p>
+        <div className="profile-hint">View full profile{mentor.linkedin ? " & LinkedIn" : ""} →</div>
+      </div>
+    </div>
+  );
+}
 
-  const filtered = useMemo(() => MENTORS.filter(m => {
-    const q = query.toLowerCase();
-    const matchQ = !q || m.name.toLowerCase().includes(q) || m.title.toLowerCase().includes(q) || m.org.toLowerCase().includes(q);
-    const matchS = sector === "All" || m.sector === sector;
-    return matchQ && matchS;
-  }), [query, sector]);
+function App() {
+  const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState("All");
+  const [directory, setDirectory] = useState([]);
+  const [modal, setModal] = useState(null);
+  const [links, setLinks] = useState(DEFAULT_EXTERNAL_LINKS);
+  const [status, setStatus] = useState({ loading:true, error:"" });
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadPage() {
+      try {
+        const [site, mentors, companies] = await Promise.all([
+          loadJson("site.json", ROOT),
+          loadJson("mentors.json", ROOT),
+          loadJson("companies.json", ROOT),
+        ]);
+
+        if (!active) {
+          return;
+        }
+
+        setLinks(buildExternalLinks(site));
+        setDirectory(buildMentorDirectory(mentors, companies, ROOT));
+        setStatus({ loading:false, error:"" });
+      } catch (error) {
+        if (!active) {
+          return;
+        }
+
+        setStatus({ loading:false, error:"Could not load the mentor directory right now." });
+      }
+    }
+
+    loadPage();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const availableFilters = useMemo(
+    () => FILTER_ORDER.filter((sector) => sector === "All" || directory.some((mentor) => mentor.sectors.includes(sector))),
+    [directory],
+  );
+
+  const filtered = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+    return directory.filter((mentor) => {
+      const matchesQuery =
+        !normalizedQuery ||
+        mentor.name.toLowerCase().includes(normalizedQuery) ||
+        mentor.title.toLowerCase().includes(normalizedQuery) ||
+        mentor.organizations.join(" ").toLowerCase().includes(normalizedQuery) ||
+        mentor.bio.toLowerCase().includes(normalizedQuery);
+      const matchesFilter = filter === "All" || mentor.sectors.includes(filter);
+      return matchesQuery && matchesFilter;
+    });
+  }, [directory, filter, query]);
+
+  const linkedInCount = directory.filter((mentor) => mentor.linkedin).length;
+  const organizationCount = new Set(directory.flatMap((mentor) => mentor.organizations)).size;
 
   return (
     <>
-      <Nav />
+      <Nav links={links} />
       <main>
         <section className="page-hero">
           <div className="shell">
@@ -172,13 +240,13 @@ function App() {
               <div>
                 <span className="kicker">Mentor Directory</span>
                 <h1>Meet every mentor.</h1>
-                <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>Search and explore the full directory of accomplished women guiding MCP students across every career path.</p>
+                <p style={{ fontSize:"1rem", color:"var(--muted)", lineHeight:1.7, maxWidth:"46ch", marginTop:"1rem" }}>This page now pulls from the full MCP mentor dataset, including the full organization matches and every currently tracked mentor profile.</p>
               </div>
               <div className="hero-stat-card">
                 <span className="kicker">Directory</span>
-                <div className="metric"><strong>{MENTORS.length}</strong><span>Total mentors</span></div>
-                <div className="metric"><strong>{MENTORS.filter(m=>m.linkedin).length}</strong><span>LinkedIn profiles</span></div>
-                <div className="metric"><strong>{[...new Set(MENTORS.map(m=>m.org))].length}</strong><span>Organizations</span></div>
+                <div className="metric"><strong>{directory.length}</strong><span>Total mentors</span></div>
+                <div className="metric"><strong>{linkedInCount}</strong><span>LinkedIn profiles</span></div>
+                <div className="metric"><strong>{organizationCount}</strong><span>Organizations represented</span></div>
               </div>
             </div>
           </div>
@@ -186,41 +254,34 @@ function App() {
 
         <section className="section">
           <div className="shell">
-            <input className="search-bar" type="search" placeholder="Search by name, role, or organization…" value={query} onChange={e=>setQuery(e.target.value)} />
-            <div className="filter-row">
-              {SECTORS.map(s => <button key={s} className={`filter-chip${sector===s?" active":""}`} onClick={()=>setSector(s)}>{s}</button>)}
-            </div>
-            {filtered.length === 0
-              ? <div className="empty-state">No mentors match your search. Try a different keyword or filter.</div>
-              : <div className="profile-grid">
-                  {filtered.map(m => (
-                    <div key={m.name} className="profile-card" onClick={() => setModal(m)} role="button" tabIndex={0} onKeyDown={e=>e.key==="Enter"&&setModal(m)}>
-                      <div className="profile-photo" style={{aspectRatio:"0.85"}}>
-                        {m.img
-                          ? <img src={m.img} alt={m.name} />
-                          : <div style={{width:"100%",height:"100%",background:"linear-gradient(160deg,var(--blush),var(--rose))",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                              <span style={{fontFamily:"var(--f-display)",fontSize:"3.5rem",color:"var(--wine)",opacity:0.25}}>{m.name[0]}</span>
-                            </div>
-                        }
-                      </div>
-                      <div className="profile-body">
-                        <div className="profile-sector">{m.sector} · {m.org}</div>
-                        <div className="profile-name">{m.name}</div>
-                        <div className="profile-role">{m.title}</div>
-                        <div className="profile-hint">View bio{m.linkedin?" & LinkedIn":""} →</div>
-                      </div>
-                    </div>
-                  ))}
+            {status.loading ? (
+              <div className="empty-state">Loading mentor profiles…</div>
+            ) : status.error ? (
+              <div className="empty-state">{status.error}</div>
+            ) : (
+              <>
+                <input className="search-bar" type="search" placeholder="Search by name, role, organization, or keyword…" value={query} onChange={(event) => setQuery(event.target.value)} />
+                <div className="filter-row">
+                  {availableFilters.map((sector) => <button key={sector} className={`filter-chip${filter===sector ? " active" : ""}`} onClick={() => setFilter(sector)}>{sector}</button>)}
                 </div>
-            }
+                {filtered.length ? (
+                  <div className="profile-grid">
+                    {filtered.map((mentor) => <MentorCard key={mentor.name} mentor={mentor} onOpen={setModal} />)}
+                  </div>
+                ) : (
+                  <div className="empty-state">No mentors match your search. Try a different keyword or filter.</div>
+                )}
+              </>
+            )}
           </div>
         </section>
       </main>
-      <Footer />
-      {modal && <MentorModal mentor={modal} onClose={() => setModal(null)} />}
+      <Footer links={links} />
+      {modal ? <MentorModal mentor={modal} onClose={() => setModal(null)} /> : null}
     </>
   );
 }
+
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 </script>
 <div id="root"></div>
