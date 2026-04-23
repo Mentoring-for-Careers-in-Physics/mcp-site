@@ -139,6 +139,29 @@ function organizationLabel(role = "", fallback = "Mentor") {
   return role || fallback;
 }
 
+function companyCategory(company = {}) {
+  const name = String(company.name || "");
+
+  if (/(national lab|laborator|jefferson lab|research center|research laboratory)/i.test(name)) {
+    return "Research";
+  }
+
+  if (/(department|nasa|defense|naval|army|mitre)/i.test(name)) {
+    return "Government";
+  }
+
+  if (/(university|college)/i.test(name)) {
+    return "Academia";
+  }
+
+  return "Industry";
+}
+
+function companySummary(company = {}) {
+  const category = companyCategory(company).toLowerCase();
+  return `Mentors from ${company.name} bring ${category} perspective into MCP conversations.`;
+}
+
 function setCompanyDirectory(companies = []) {
   companyDirectory = new Map();
 
@@ -209,9 +232,12 @@ function linkMap(site) {
     site.givingUrl ||
     pageLinks.find((item) => item.url.includes("donate.wm.edu"))?.url ||
     "#";
+  const givePageLink = site.givingPagePath ? rootPath(site.givingPagePath) : "#";
 
   return {
     donateLink,
+    givePageLink,
+    givingFundCode: site.givingFundCode || "",
     interestLink: site.interestFormUrl || "#",
     menteeLink: site.menteeInterestFormUrl || site.interestFormUrl || "#",
     mentorLink: site.mentorInterestFormUrl || "",
@@ -234,7 +260,7 @@ function applyExternalAction(node, url) {
   }
 
   node.setAttribute("href", url);
-  if (/^(mailto:|tel:)/i.test(url)) {
+  if (/^(mailto:|tel:)/i.test(url) || /^(\/|\.\/|\.\.\/)/.test(url)) {
     node.removeAttribute("target");
     node.removeAttribute("rel");
   } else {
@@ -270,6 +296,18 @@ function populateGlobalContent(site) {
 
   document.querySelectorAll("[data-donate-link]").forEach((node) => {
     applyExternalAction(node, links.donateLink);
+  });
+
+  document.querySelectorAll("[data-give-page-link]").forEach((node) => {
+    applyExternalAction(node, links.givePageLink);
+  });
+
+  document.querySelectorAll("[data-giving-portal-link]").forEach((node) => {
+    applyExternalAction(node, links.donateLink);
+  });
+
+  document.querySelectorAll("[data-giving-fund-code]").forEach((node) => {
+    node.textContent = links.givingFundCode;
   });
 
   document.querySelectorAll("[data-footer-social]").forEach((node) => {
@@ -435,6 +473,84 @@ function renderLogoWall(containerSelector, companies = [], options = {}) {
   container.innerHTML = companies
     .map((company) => renderCompanyCard(company, options))
     .join("");
+}
+
+function renderSupporterCard(supporter = {}) {
+  const name = escapeHtml(supporter.name || "Supporter");
+  const subtitle = escapeHtml(supporter.subtitle || "MCP supporter");
+  const description = escapeHtml(supporter.description || "Supporting MCP at William & Mary.");
+  const website = supporter.website || "";
+  const image = supporter.image ? assetPath(supporter.image) : "";
+  const media = image
+    ? `<img src="${image}" alt="${name} logo" loading="lazy" />`
+    : `<span class="supporter-card__monogram" aria-hidden="true">${escapeHtml(monogram(supporter.name || "MCP"))}</span>`;
+  const tagName = website ? "a" : "article";
+  const attrs = website
+    ? `href="${website}" target="_blank" rel="noreferrer" aria-label="${name}"`
+    : `aria-label="${name}"`;
+
+  return `
+    <${tagName} class="supporter-card" ${attrs} data-reveal>
+      <div class="supporter-card__media">${media}</div>
+      <div class="supporter-card__body">
+        <span class="profile-card__meta">${subtitle}</span>
+        <h3 class="profile-card__title">${name}</h3>
+        <p class="profile-card__excerpt">${description}</p>
+        ${website ? `<span class="profile-hint">Visit website →</span>` : ""}
+      </div>
+    </${tagName}>
+  `;
+}
+
+function renderSupporterGrid(containerSelector, supporters = []) {
+  const container = document.querySelector(containerSelector);
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = supporters.length
+    ? supporters.map((supporter) => renderSupporterCard(supporter)).join("")
+    : `<div class="empty-state">Supporters will appear here soon.</div>`;
+}
+
+function renderCompanyShowcaseCard(company = {}) {
+  const category = escapeHtml(companyCategory(company));
+  const name = escapeHtml(company.name || "Partner organization");
+  const website = company.website || "";
+  const image = company.image ? assetPath(company.image) : "";
+  const media = image
+    ? `<div class="company-logo-wrap"><img src="${image}" alt="${name} logo" loading="lazy" /></div>`
+    : `<div class="company-monogram" aria-hidden="true">${escapeHtml(monogram(company.name || "MCP"))}</div>`;
+  const action = website
+    ? `<a class="button button-ghost" href="${website}" target="_blank" rel="noreferrer">Visit website</a>`
+    : `<span class="chip chip--soft">Website coming soon</span>`;
+
+  return `
+    <article class="company-card" data-reveal>
+      <div>
+        <div class="company-sector">${category}</div>
+        <div style="margin-top:1rem">${media}</div>
+      </div>
+      <div>
+        <h3 class="company-name">${name}</h3>
+        <p class="company-desc">${escapeHtml(companySummary(company))}</p>
+      </div>
+      <div class="profile-card__actions">
+        ${action}
+      </div>
+    </article>
+  `;
+}
+
+function renderCompanyShowcaseGrid(containerSelector, companies = []) {
+  const container = document.querySelector(containerSelector);
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = companies.length
+    ? companies.map((company) => renderCompanyShowcaseCard(company)).join("")
+    : `<div class="empty-state">Partner organizations will appear here soon.</div>`;
 }
 
 function renderSocialAction(url) {
@@ -662,29 +778,37 @@ function renderEventCard(event) {
   `;
 }
 
-function renderPortraitCluster(mentors) {
-  const container = document.querySelector("[data-featured-portraits]");
+function renderSpotlightMentor(mentor) {
+  const container = document.querySelector("[data-spotlight-mentor]");
   if (!container) {
     return;
   }
 
-  container.innerHTML = mentors
-    .map((mentor, index) => {
-      const organizations = getPersonOrganizations(mentor);
-      return `
-        <figure class="portrait-chip portrait-chip--${index + 1}">
-          <div class="portrait-chip__media">
-            <img src="${getProfileImage(mentor)}" alt="${escapeHtml(mentor.name)}" />
-          </div>
-          <figcaption>
-            <span class="portrait-chip__eyebrow">${index === 0 ? "Mentor spotlight" : "Mentor"}</span>
-            <h3>${escapeHtml(mentor.name)}</h3>
-            <p>${escapeHtml(organizations[0] || "MCP mentor")}</p>
-          </figcaption>
-        </figure>
-      `;
-    })
-    .join("");
+  if (!mentor) {
+    container.innerHTML = `<div class="empty-state">Spotlight mentor coming soon.</div>`;
+    return;
+  }
+
+  const organizations = getPersonOrganizations(mentor);
+  const spotlightLink = rootPath(`pages/mentors.html#mentor-${slugify(mentor.name)}`);
+
+  container.innerHTML = `
+    <article class="spotlight-card" data-reveal>
+      <div class="spotlight-card__media">
+        <img src="${getProfileImage(mentor)}" alt="${escapeHtml(mentor.name)}" loading="lazy" />
+      </div>
+      <div class="spotlight-card__body">
+        <span class="spotlight-card__eyebrow">Spotlight mentor</span>
+        <h2 class="spotlight-card__title">${escapeHtml(mentor.name)}</h2>
+        <p class="spotlight-card__role">${escapeHtml(getPersonTitle(mentor, "Mentor"))}</p>
+        ${organizations.length ? `<div class="organization-pill-row">${renderOrganizationPills(organizations.slice(0, 2))}</div>` : ""}
+        <p class="spotlight-card__summary">${escapeHtml(excerpt(mentor.bio || "", 170) || "MCP mentor profile coming soon.")}</p>
+        <div class="spotlight-card__actions">
+          <a class="button button-primary" href="${spotlightLink}">View full profile</a>
+        </div>
+      </div>
+    </article>
+  `;
 }
 
 function renderModalProfile(person) {
@@ -844,17 +968,13 @@ function initHomePage({ site, mentors, team, news, companies }) {
       (mentor) => mentor.bio && !getProfileImage(mentor).includes("blank-profile"),
     ),
   );
-  const portraitMentors = visibleMentors.slice(0, 3);
-  const featuredMentors =
-    visibleMentors.slice(3, 11).length >= 6
-      ? visibleMentors.slice(3, 11)
-      : visibleMentors.slice(0, 8);
+  const spotlightMentor = visibleMentors[0] || mentors[0];
+  const featuredMentors = visibleMentors
+    .filter((mentor) => mentor.name !== spotlightMentor?.name)
+    .slice(0, 3);
 
-  renderPortraitCluster(portraitMentors);
-
-  renderLogoWall("[data-home-logo-ribbon]", shuffleList(companies.filter((company) => company.image)).slice(0, 6), {
-    compact: true,
-  });
+  renderSpotlightMentor(spotlightMentor);
+  renderSupporterGrid("[data-home-supporters]", site.supporters || []);
 
   const mentorHighlights = document.querySelector("[data-home-mentor-highlights]");
   if (mentorHighlights) {
@@ -898,7 +1018,10 @@ function initHomePage({ site, mentors, team, news, companies }) {
       .join("");
   }
 
-  renderLogoWall("[data-company-grid]", companies);
+  renderCompanyShowcaseGrid(
+    "[data-home-company-highlights]",
+    shuffleList(companies.filter((company) => company.name && (company.image || company.website))).slice(0, 3),
+  );
 
   const foundedYear = 2021;
   const years = Math.max(new Date().getFullYear() - foundedYear, 1);
@@ -906,7 +1029,6 @@ function initHomePage({ site, mentors, team, news, companies }) {
   const statMap = {
     "[data-stat-mentors]": mentors.length,
     "[data-stat-companies]": companies.length,
-    "[data-stat-news]": news.length,
     "[data-stat-years]": years,
   };
 

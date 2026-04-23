@@ -34,7 +34,7 @@
 
           <div class="nav-actions">
             <a class="nav-join" href="#" data-mentee-link>Join us</a>
-            <a class="nav-give" href="#" data-donate-link>Give</a>
+            <a class="nav-give" href="#" data-give-page-link>Give</a>
             <button class="nav-hamburger" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
               <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
                 <rect width="18" height="2" rx="1" fill="currentColor"/>
@@ -55,7 +55,7 @@
         <a href="./pages/contact.html" data-nav-page="contact">Contact</a>
         <div class="nav-mobile-actions">
           <a class="btn btn-ghost btn-sm" href="#" data-mentee-link>Join us</a>
-          <a class="btn btn-primary btn-sm" href="#" data-donate-link>Give</a>
+          <a class="btn btn-primary btn-sm" href="#" data-give-page-link>Give</a>
         </div>
       </div>
     </header>
@@ -70,11 +70,11 @@
           <h1 style="font-size:clamp(3rem,7.5vw,6rem);line-height:0.92;letter-spacing:-0.03em;margin-bottom:2.5rem;max-width:18ch">
             See your future in<br><em style="font-style:italic;color:var(--rose-mid)">physics &amp; engineering.</em>
           </h1>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start" data-reveal>
-            <div class="portrait-cluster" data-featured-portraits>
-              <div class="empty-state">Loading featured mentors…</div>
+          <div class="hero-grid" data-reveal>
+            <div class="spotlight-wrap" data-spotlight-mentor>
+              <div class="empty-state">Loading spotlight mentor…</div>
             </div>
-            <div style="display:flex;flex-direction:column;justify-content:center;gap:1.5rem;padding-left:1rem">
+            <div class="hero-copy">
               <p data-site-summary style="font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:44ch">
                 MCP connects undergraduate students with accomplished mentors across research, industry, government, and alumni leadership.
               </p>
@@ -95,22 +95,26 @@
                   <span class="stat-num" data-stat-years>0</span>
                   <span class="stat-label">Years active</span>
                 </div>
-                <div class="stat-pill">
-                  <span class="stat-num" data-stat-news>0</span>
-                  <span class="stat-label">Updates</span>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- WHERE MENTORS WORK (logo ribbon) -->
-      <section style="padding:2.5rem 0;border-bottom:1px solid var(--border)">
+      <!-- SUPPORTERS -->
+      <section style="padding:2.75rem 0;border-bottom:1px solid var(--border)">
         <div class="shell">
-          <p class="micro-label" style="margin-bottom:1rem">Where Mentors Work</p>
-          <div class="logo-ribbon" data-home-logo-ribbon>
-            <div class="empty-state">Loading organizations…</div>
+          <div class="section-head" data-reveal style="margin-bottom:1.5rem">
+            <div>
+              <span class="kicker">Supported By</span>
+              <h2>Friends helping MCP grow.</h2>
+            </div>
+            <p data-supporters-text style="max-width:40ch;font-size:0.95rem;line-height:1.7;color:var(--muted)">
+              MCP is supported by a growing community of institutional partners and champions.
+            </p>
+          </div>
+          <div class="supporter-grid" data-home-supporters>
+            <div class="empty-state">Loading supporters…</div>
           </div>
         </div>
       </section>
@@ -142,6 +146,29 @@
               <p>Seeing women and gender minorities thriving in STEM changes what feels possible. That shift is the point.</p>
             </div>
           </div>
+          <div class="section-head section-head--sub" data-reveal>
+            <div>
+              <span class="kicker">Shared Value</span>
+              <h2>What mentors and participating entities gain.</h2>
+            </div>
+          </div>
+          <div class="pillar-grid">
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">01</span>
+              <h3>Stronger Talent Pipelines</h3>
+              <p>Organizations build earlier relationships with thoughtful physics students who are exploring research, engineering, data, and technical careers.</p>
+            </div>
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">02</span>
+              <h3>Meaningful Community Impact</h3>
+              <p>Mentors get to invest in the next generation while staying connected to a mission grounded in access, visibility, and belonging.</p>
+            </div>
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">03</span>
+              <h3>Closer W&amp;M Connections</h3>
+              <p>Participating entities deepen ties with William &amp; Mary through alumni engagement, student conversations, and future collaboration.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -166,13 +193,37 @@
         <div class="shell">
           <div class="section-head" data-reveal>
             <div>
-              <span class="kicker">Partner Organizations</span>
-              <h2>Every mentor working entity, in one place.</h2>
+              <span class="kicker">Where Mentors Work</span>
+              <h2>Across industry, research &amp; government.</h2>
             </div>
-            <a class="text-link" href="./pages/industry.html">Browse all organizations →</a>
+            <a class="text-link" href="./pages/industry.html">See all partner organizations →</a>
           </div>
-          <div class="logo-wall" data-company-grid>
+          <div class="company-grid" data-home-company-highlights>
             <div class="empty-state">Loading partner organizations…</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section">
+        <div class="shell" data-reveal>
+          <div class="cta-panel" style="background:linear-gradient(135deg,var(--wine) 0%,#6b4e58 100%);color:white;border:none">
+            <div>
+              <span class="kicker kicker-light">Support MCP</span>
+              <h2 style="color:white;max-width:16ch;margin-bottom:1rem">Help us grow what's possible.</h2>
+              <p style="color:rgba(255,255,255,0.7);line-height:1.7;max-width:48ch;font-size:0.95rem">
+                MCP thrives because mentors, students, alumni, faculty, and friends choose to invest in what's next. Support helps sustain mentoring matches, events, student opportunities, and the long-term future of the program.
+              </p>
+              <div class="cta-actions">
+                <a class="btn" href="#" data-mentee-link style="background:white;color:var(--wine);font-weight:700">Join as a student</a>
+                <a class="btn btn-outline-light" href="#" data-mentor-link>Become a mentor</a>
+                <a class="btn btn-outline-light" href="#" data-give-page-link>Give to MCP</a>
+              </div>
+            </div>
+            <div style="flex-shrink:0">
+              <img src="./assets/images/live-site/clearweb/assets/annual_celebration.png" alt="MCP annual celebration"
+                style="border-radius:var(--r-xl);width:220px;height:180px;object-fit:cover;box-shadow:0 24px 60px rgba(0,0,0,0.25);border:2px solid rgba(255,255,255,0.15)" />
+            </div>
           </div>
         </div>
       </section>
@@ -183,36 +234,12 @@
           <div class="section-head" data-reveal>
             <div>
               <span class="kicker">Latest News</span>
-              <h2>Recent program updates.</h2>
+              <h2>Recent updates.</h2>
             </div>
             <a class="text-link" href="./pages/news.html">Browse all news →</a>
           </div>
           <div class="news-grid" data-home-news>
             <div class="empty-state">Loading public updates…</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="section">
-        <div class="shell" data-reveal>
-          <div class="cta-panel" style="background:linear-gradient(135deg,var(--wine) 0%,#6b4e58 100%);color:white;border:none">
-            <div>
-              <span class="kicker kicker-light">Join MCP</span>
-              <h2 style="color:white;max-width:16ch;margin-bottom:1rem">Help us grow what's possible.</h2>
-              <p style="color:rgba(255,255,255,0.7);line-height:1.7;max-width:48ch;font-size:0.95rem">
-                MCP is a student-run program at William &amp; Mary. Join us as a student, volunteer as a mentor, or support our work with a gift.
-              </p>
-              <div class="cta-actions">
-                <a class="btn" href="#" data-mentee-link style="background:white;color:var(--wine);font-weight:700">Join as a student</a>
-                <a class="btn btn-outline-light" href="#" data-mentor-link>Become a mentor</a>
-                <a class="btn btn-outline-light" href="#" data-donate-link>Give to MCP</a>
-              </div>
-            </div>
-            <div style="flex-shrink:0">
-              <img src="./assets/images/live-site/clearweb/assets/annual_celebration.png" alt="MCP annual celebration"
-                style="border-radius:var(--r-xl);width:220px;height:180px;object-fit:cover;box-shadow:0 24px 60px rgba(0,0,0,0.25);border:2px solid rgba(255,255,255,0.15)" />
-            </div>
           </div>
         </div>
       </section>
@@ -252,7 +279,7 @@
             <div class="footer-links">
               <a href="#" data-mentee-link>Join as a student</a>
               <a href="#" data-mentor-link>Become a mentor</a>
-              <a href="#" data-donate-link>Give to MCP</a>
+              <a href="#" data-give-page-link>Give to MCP</a>
               <a href="./pages/contact.html" data-contact-email>mcp.superuser@gmail.com</a>
             </div>
           </div>
