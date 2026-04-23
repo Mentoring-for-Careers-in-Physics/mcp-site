@@ -525,6 +525,7 @@ function renderSupportStoryCard(article) {
 
   const title = escapeHtml(article.title || "Featured story");
   const image = assetPath(article.localImage || article.imageUrl || BLANK_PROFILE);
+  const imageAlt = escapeHtml(article.imageAlt || article.title || "Featured story");
   const summary = escapeHtml(excerpt(article.bodyMarkdown || "", 280));
   const externalUrl =
     article.primaryExternalUrl ||
@@ -535,7 +536,7 @@ function renderSupportStoryCard(article) {
   return `
     <article class="support-story-card" data-reveal>
       <div class="support-story-card__media">
-        <img src="${image}" alt="${title}" loading="lazy" />
+        <img src="${image}" alt="${imageAlt}" loading="lazy" />
       </div>
       <div class="support-story-card__body">
         <span class="kicker">In The News</span>
