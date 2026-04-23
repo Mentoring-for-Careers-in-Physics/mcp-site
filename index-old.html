@@ -65,22 +65,22 @@
     <main>
 
       <!-- HERO -->
-      <section class="hero-section">
+      <section style="background:var(--pearl);padding:4.5rem 0 4rem;overflow:hidden;position:relative">
         <div class="hero-bg"></div>
-        <div class="shell hero-shell">
+        <div class="shell" style="position:relative;z-index:1">
+          <span class="kicker">Mentoring for Careers in Physics — William &amp; Mary</span>
+          <h1 style="font-size:clamp(3rem,7.5vw,6rem);line-height:0.92;letter-spacing:-0.03em;margin-bottom:2.5rem;max-width:18ch">
+            See your future in<br><em style="font-style:italic;color:var(--rose-mid)">physics &amp; engineering.</em>
+          </h1>
           <div class="hero-grid" data-reveal>
             <div class="spotlight-wrap" data-spotlight-mentor>
               <div class="empty-state">Loading spotlight mentor…</div>
             </div>
             <div class="hero-copy">
-              <div class="hero-eyebrow">MCP</div>
-              <h1 class="hero-h1">
-                See your future in<br><em>physics &amp; engineering.</em>
-              </h1>
-              <p data-site-summary class="hero-summary">
+              <p data-site-summary style="font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:44ch">
                 MCP connects undergraduate students with accomplished mentors across research, industry, government, and alumni leadership.
               </p>
-              <div class="hero-actions">
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
                 <a class="btn btn-primary" href="./pages/mentors.html">Meet all mentors</a>
                 <a class="btn btn-secondary" href="#" data-mentee-link>Join the program</a>
               </div>
@@ -94,8 +94,8 @@
                   <span class="stat-label">Organizations</span>
                 </div>
                 <div class="stat-pill">
-                  <span class="stat-num">2021</span>
-                  <span class="stat-label">Established</span>
+                  <span class="stat-num" data-stat-years>0</span>
+                  <span class="stat-label">Years active</span>
                 </div>
               </div>
             </div>
@@ -104,12 +104,12 @@
       </section>
 
       <!-- CURRENT NEWS -->
-      <section class="section section--news">
+      <section class="section section--soft" style="padding-top:3.25rem;padding-bottom:3.25rem">
         <div class="shell">
           <div class="section-head" data-reveal>
             <div>
               <span class="kicker">Current News</span>
-              <h2>The latest from MCP.</h2>
+              <h2>Our latest big MCP moment.</h2>
             </div>
             <a class="btn btn-secondary btn-sm" href="./pages/news.html">See all news</a>
           </div>
@@ -120,7 +120,7 @@
       </section>
 
       <!-- SUPPORTERS -->
-      <section id="friends" class="section section--friends">
+      <section id="friends" style="padding:2.75rem 0;border-bottom:1px solid var(--border)">
         <div class="shell">
           <div class="section-head" data-reveal style="margin-bottom:1.5rem">
             <div>
@@ -138,78 +138,66 @@
       </section>
 
       <!-- HOW MCP WORKS -->
-      <section class="section section--works">
+      <section class="section" data-reveal>
         <div class="shell">
-
-          <!-- Student value -->
-          <div class="works-header" data-reveal>
+          <div class="section-head">
             <div>
               <span class="kicker">How MCP Works</span>
               <h2>What students gain.</h2>
             </div>
-            <a class="btn btn-primary btn-sm" href="#" data-mentee-link>Join MCP</a>
-          </div>
-
-          <div class="works-grid" data-reveal>
-            <div class="works-card works-card--accent">
-              <div class="works-num">01</div>
-              <div class="works-body">
-                <h3>1:1 Matching</h3>
-                <p>Conversations stay practical, personal, and career-facing — matched to what each student is weighing.</p>
-              </div>
-            </div>
-            <div class="works-card">
-              <div class="works-num">02</div>
-              <div class="works-body">
-                <h3>Career Fluency</h3>
-                <p>Students hear how physics translates into real roles, from national labs to startups to public service.</p>
-              </div>
-            </div>
-            <div class="works-card">
-              <div class="works-num">03</div>
-              <div class="works-body">
-                <h3>Belonging</h3>
-                <p>Seeing women and gender minorities thriving in STEM changes what feels possible. That shift is the point.</p>
-              </div>
+            <div class="section-actions">
+              <a class="btn btn-secondary btn-sm" href="#" data-mentee-link>Join MCP</a>
             </div>
           </div>
-
-          <!-- Mentor/org value — dark panel -->
-          <div class="works-dark-panel" data-reveal>
-            <div class="works-dark-header">
-              <div>
-                <span class="kicker kicker-light">Shared Value</span>
-                <h2 style="color:white">What mentors &amp; organizations gain.</h2>
-              </div>
-              <div class="section-actions">
-                <a class="btn btn-outline-light btn-sm" href="#" data-mentor-link>Become a mentor</a>
-                <a class="btn btn-outline-light btn-sm" href="#" data-director-link>Contact director</a>
-              </div>
+          <div class="pillar-grid">
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">01</span>
+              <h3>1:1 Matching</h3>
+              <p>Conversations stay practical, personal, and career-facing — matched to what each student is weighing.</p>
             </div>
-            <div class="works-dark-grid">
-              <div class="works-dark-card" data-reveal>
-                <div class="works-dark-num">01</div>
-                <h3>Stronger Talent Pipelines</h3>
-                <p>Organizations build earlier relationships with thoughtful physics students exploring research, engineering, data, and technical careers.</p>
-              </div>
-              <div class="works-dark-card" data-reveal>
-                <div class="works-dark-num">02</div>
-                <h3>Meaningful Community Impact</h3>
-                <p>Mentors invest in the next generation while staying connected to a mission grounded in access, visibility, and belonging.</p>
-              </div>
-              <div class="works-dark-card" data-reveal>
-                <div class="works-dark-num">03</div>
-                <h3>Closer W&amp;M Connections</h3>
-                <p>Participating entities deepen ties with William &amp; Mary through alumni engagement, student conversations, and future collaboration.</p>
-              </div>
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">02</span>
+              <h3>Career Fluency</h3>
+              <p>Students hear how physics translates into real roles, from national labs to startups to public service.</p>
+            </div>
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">03</span>
+              <h3>Belonging</h3>
+              <p>Seeing women and gender minorities thriving in STEM changes what feels possible. That shift is the point.</p>
             </div>
           </div>
-
+          <div class="section-head section-head--sub" data-reveal>
+            <div>
+              <span class="kicker">Shared Value</span>
+              <h2>What mentors and participating entities gain.</h2>
+            </div>
+            <div class="section-actions">
+              <a class="btn btn-secondary btn-sm" href="#" data-mentor-link>Become a mentor</a>
+              <a class="btn btn-secondary btn-sm" href="#" data-director-link>Contact the director</a>
+            </div>
+          </div>
+          <div class="pillar-grid">
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">01</span>
+              <h3>Stronger Talent Pipelines</h3>
+              <p>Organizations build earlier relationships with thoughtful physics students who are exploring research, engineering, data, and technical careers.</p>
+            </div>
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">02</span>
+              <h3>Meaningful Community Impact</h3>
+              <p>Mentors get to invest in the next generation while staying connected to a mission grounded in access, visibility, and belonging.</p>
+            </div>
+            <div class="pillar-card" data-reveal>
+              <span class="pillar-num">03</span>
+              <h3>Closer W&amp;M Connections</h3>
+              <p>Participating entities deepen ties with William &amp; Mary through alumni engagement, student conversations, and future collaboration.</p>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- MENTOR SPOTLIGHT -->
-      <section class="section section--soft section--mentors">
+      <section class="section section--soft">
         <div class="shell">
           <div class="section-head" data-reveal>
             <div>
@@ -228,7 +216,7 @@
       </section>
 
       <!-- PARTNER ORGANIZATIONS -->
-      <section class="section section--partners">
+      <section class="section">
         <div class="shell">
           <div class="section-head" data-reveal>
             <div>
@@ -244,7 +232,7 @@
       </section>
 
       <!-- CTA -->
-      <section class="section section--cta">
+      <section class="section">
         <div class="shell" data-reveal>
           <div class="cta-panel cta-panel--single" style="background:linear-gradient(135deg,var(--wine) 0%,#6b4e58 100%);color:white;border:none">
             <div>
@@ -266,55 +254,53 @@
     </main>
 
     <footer class="footer">
-      <div class="footer-main">
-        <div class="shell">
-          <div class="footer-grid">
-            <div class="footer-brand-block">
-              <div class="brand">
-                <div class="brand-mark">MCP</div>
-                <div class="brand-text">
-                  <strong>Mentoring for Careers in Physics</strong>
-                  <small>William &amp; Mary</small>
-                </div>
-              </div>
-              <p class="footer-summary">
-                Connecting undergraduate students with accomplished mentors across research, industry, and government.
-              </p>
-            </div>
-
-            <div>
-              <p class="footer-heading">Explore</p>
-              <div class="footer-links">
-                <a href="./index.html">Home</a>
-                <a href="./pages/mentors.html">Mentors</a>
-                <a href="./pages/industry.html">Industry</a>
-                <a href="./pages/team.html">Leadership</a>
-                <a href="./pages/news.html">News</a>
-                <a href="./pages/contact.html">Contact</a>
+      <div class="shell">
+        <div class="footer-grid">
+          <div class="footer-brand-block">
+            <div class="brand">
+              <div class="brand-mark">MCP</div>
+              <div class="brand-text">
+                <strong>Mentoring for Careers in Physics</strong>
+                <small>William &amp; Mary</small>
               </div>
             </div>
+            <p class="footer-summary">
+              Connecting undergraduate students with accomplished mentors across research, industry, and government.
+            </p>
+          </div>
 
-            <div>
-              <p class="footer-heading">Get Involved</p>
-              <div class="footer-links">
-                <a href="#" data-mentee-link>Join as a student</a>
-                <a href="#" data-mentor-link>Become a mentor</a>
-                <a href="#" data-give-page-link>Give to MCP</a>
-                <a href="./pages/contact.html" data-contact-email><span class="__cf_email__" data-cfemail="f39e9083dd808683968186809681b3949e929a9fdd909c9e">[email&#160;protected]</span></a>
-              </div>
-            </div>
-
-            <div>
-              <p class="footer-heading">Follow MCP</p>
-              <div class="social-list social-list--footer" data-footer-social></div>
+          <div>
+            <p class="footer-heading">Explore</p>
+            <div class="footer-links">
+              <a href="./index.html">Home</a>
+              <a href="./pages/mentors.html">Mentors</a>
+              <a href="./pages/industry.html">Industry</a>
+              <a href="./pages/team.html">Leadership</a>
+              <a href="./pages/news.html">News</a>
+              <a href="./pages/contact.html">Contact</a>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="footer-base">
-        <p>Mentoring for Careers in Physics · William &amp; Mary</p>
-        <p>&copy; <span data-current-year></span> William &amp; Mary</p>
+          <div>
+            <p class="footer-heading">Get Involved</p>
+            <div class="footer-links">
+              <a href="#" data-mentee-link>Join as a student</a>
+              <a href="#" data-mentor-link>Become a mentor</a>
+              <a href="#" data-give-page-link>Give to MCP</a>
+              <a href="./pages/contact.html" data-contact-email>mcp.superuser@gmail.com</a>
+            </div>
+          </div>
+
+          <div>
+            <p class="footer-heading">Follow MCP</p>
+            <div class="social-list social-list--footer" data-footer-social></div>
+          </div>
+        </div>
+
+        <div class="footer-base">
+          <p>Mentoring for Careers in Physics · William &amp; Mary</p>
+          <p>&copy; <span data-current-year></span> William &amp; Mary</p>
+        </div>
       </div>
     </footer>
 
@@ -327,6 +313,6 @@
       </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="./js/main.js" defer></script>
+    <script src="./js/main.js" defer></script>
   </body>
 </html>
