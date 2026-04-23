@@ -2,58 +2,56 @@
 
 Public website for `Mentoring for Careers in Physics` at William & Mary.
 
-This repo contains the new static MCP site built with plain HTML, CSS, and JavaScript. It replaces the old live site with a simpler structure that is easier to host on GitHub Pages, easier to edit, and easier to preserve.
+This repo hosts the current static MCP site from the repository root. It is designed to run on a simple static host such as GitHub Pages without a build step.
 
-## What is in this repo
+## Public pages
 
-- A simplified public homepage that foregrounds mentor photos, mentor employers, and organization logos
-- A searchable mentor directory
-- Leadership, advisor, supporters, and former-team pages
-- A public news archive
-- Contact and giving pathways
-- Imported assets and content recovered from the live MCP website and backup files
+- `index.html`
+  Homepage
+- `pages/mentors.html`
+  Mentor directory
+- `pages/industry.html`
+  Partner organization / industry page
+- `pages/team.html`
+  Leadership and advisor page
+- `pages/news.html`
+  News and announcements
+- `pages/contact.html`
+  Contact and engagement page
+- `404.html`
+  Static not-found page
 
-## Homepage notes
+## How the site is built
 
-The homepage is intentionally shorter, more visual, and more stable across screen sizes than the earlier draft.
+The site is currently a hybrid static setup:
 
-- Three mentor spotlights appear directly in the hero area and rotate randomly on each load
-- The primary homepage mentor CTA now points clearly to the full mentor directory
-- A visible `Join us` CTA appears in both the top navigation and bottom call-to-action block
-- Organization logos appear both near the top of the page and in the full organization grid
-- Section titles and supporting copy are deliberately shorter and less wordy
-- Homepage cards, counts, and rotating mentor selections still come from the JSON files in `data/`
+- `index.html` uses plain HTML plus `js/main.js`
+- `js/main.js` loads JSON from `data/` and fills the homepage, footer links, news cards, company grids, and other shared content blocks
+- `css/styles.css` styles the homepage and shared home components
+- `pages/*.html` are redesigned inner pages that render self-contained React components in the browser
+- `css/mcp-shared.css` provides the shared design system used by those inner pages
 
-## Design notes
+Important note:
 
-The current visual direction is meant to feel lighter, calmer, and more polished than the previous version.
+- The homepage is data-driven from `data/`
+- The redesigned inner pages currently keep their content directly inside each page file
+- Running the import script updates the JSON content pack and assets, but it does not automatically rewrite the React page content in `pages/*.html`
 
-- Typography uses `Cormorant Garamond` for headings and `Manrope` for interface and body text
-- The color palette leans toward warm blush, soft white, and deep charcoal instead of cooler slate/champagne tones
-- Mentor photos are cropped and framed more intentionally, with more whitespace around them
-- Buttons, cards, and logos use a quieter editorial treatment instead of a louder marketing look
-
-## Responsive behavior
-
-The homepage and shared styles were tuned specifically for tablet and mobile layouts.
-
-- The hero and portrait area now collapses cleanly instead of relying on fragile overlapping placement
-- Buttons stack more predictably on small screens
-- Stats, logos, and card grids rebalance at narrower widths to avoid cramped or broken layouts
-- The first screen no longer depends on animation timing to feel complete
-
-## Site structure
+## Repo structure
 
 ```text
 mcp-site/
   index.html
   404.html
+  README.md
   css/
     styles.css
+    mcp-shared.css
   js/
     main.js
   pages/
     mentors.html
+    industry.html
     team.html
     news.html
     contact.html
@@ -68,68 +66,81 @@ mcp-site/
     routes.json
     link-inventory.json
   assets/
-    images/live-site/
-    icons/live-site/
+    images/
+    icons/
   scripts/
     import-live-site-content.mjs
   .nojekyll
 ```
 
-## Content model
+## Data and content
 
-The site is driven by JSON files in `data/`.
+Files in `data/` still matter, especially for the homepage and imported asset inventory:
 
 - `data/site.json`
-  General site settings, social links, public action links, and event metadata
+  Global summary text, public action links, social links, and event metadata
 - `data/mentors.json`
-  Mentor names, titles, working entities, bios, LinkedIn links, and images
+  Imported mentor dataset used by the data-driven homepage flows
 - `data/team.json`
-  Current MCP leadership/team members, including advisor grouping
+  Current team dataset from the imported content pack
 - `data/retired-team.json`
-  Previous MCP team members
+  Former team dataset
 - `data/companies.json`
-  Mentor organization names, aliases, logos, and links
+  Imported organization dataset and logo metadata
 - `data/news.json`
-  Public news archive with article bodies and images
+  Imported news archive
 - `data/events.json`
-  Recovered event materials
+  Event materials and public archive content
 
-This keeps the public site fully static while still making the content easy to update.
+For the current redesigned subpages, content edits usually happen directly in:
 
-## Asset provenance
-
-Not every local asset was downloaded directly from `https://mcp.physics.wm.edu`.
-
-- Mentor headshots and most company logos in `assets/images/live-site/clearweb/` are copied from the recovered `MCP-Website-BACKUP` source tree
-- News images in `assets/images/live-site/news/` are downloaded from the live MCP site APIs
-- Site icons in `assets/icons/live-site/` are downloaded from the live site
-- Additional organization logos in `assets/images/company-logos/` were added from official organization sites when the backup copy did not include a usable local logo
-
-The import script combines both sources so the static site can run without depending on the old React app.
-
-## Mentor organization coverage
-
-The current mentor directory explicitly lists each mentor's working entity so the site can show a complete organization footprint.
-
-- `data/mentors.json` now stores normalized `title` and `organizations` fields for each mentor
-- `data/companies.json` includes alias matching so older role strings can still resolve to the correct organization card
-- Organizations without a suitable logo asset can still appear cleanly through text/monogram fallback cards
-- The leadership page now places Chris Monahan lower as `Co-Founder & Advisor`, while former team members remain in their own archive section
+- `pages/mentors.html`
+- `pages/industry.html`
+- `pages/team.html`
+- `pages/news.html`
+- `pages/contact.html`
 
 ## Local preview
 
-Because the pages load local JSON, preview the site from a local web server instead of opening files directly.
+Because the homepage fetches local JSON, serve the site from a local web server instead of opening the files directly.
 
 ```bash
 cd mcp-site
 python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000`.
+Then open `http://127.0.0.1:8000`.
 
-## Reimporting live content
+## Testing
 
-The import script pulls content from the live MCP site and recovered backup assets, then rewrites the JSON content pack used by the static site.
+Recommended smoke test before pushing:
+
+1. Start the local server.
+2. Load:
+   `/`
+   `/pages/mentors.html`
+   `/pages/industry.html`
+   `/pages/team.html`
+   `/pages/news.html`
+   `/pages/contact.html`
+3. Confirm the mentor modal opens and closes on `pages/mentors.html`.
+4. Confirm the contact form reaches its confirmation state on `pages/contact.html`.
+5. Check a phone-sized viewport to make sure there is no horizontal scrolling.
+
+Latest verified locally on April 22, 2026:
+
+- Desktop smoke test passed for all public pages
+- Mentor modal open/close interaction passed
+- Contact form confirmation flow passed
+- Mobile checks passed for home, mentors, and contact without horizontal overflow
+
+Current known implementation note:
+
+- The inner React pages use in-browser Babel from a CDN, which produces a console warning in development and static hosting. The pages still render correctly, but this is a future cleanup opportunity if the site moves to a build step
+
+## Reimporting content
+
+The import script pulls content from the live MCP site and recovered backup assets, then refreshes the local JSON and downloaded media used by this repo.
 
 ```bash
 node scripts/import-live-site-content.mjs
@@ -146,21 +157,26 @@ That refreshes:
 - `data/events.json`
 - `data/routes.json`
 - `data/link-inventory.json`
-- `assets/images/live-site/`
-- `assets/icons/live-site/`
+- downloaded assets inside `assets/images/live-site/`
+- downloaded icons inside `assets/icons/live-site/`
 
-It also keeps local image paths aligned with the static site layout so the imported mentor photos, logos, and news media can be served directly from this repo.
+## External action links
 
-## Current action links
+The current public actions point to:
 
-As of April 21, 2026:
-
-- `menteeInterestFormUrl` points to the live Google Form
-- `givingUrl` points to the direct William & Mary giving page
-- `mentorInterestFormUrl` currently uses a `mailto:` fallback until a dedicated mentor Google Form is finalized
+- student interest form:
+  `https://forms.gle/zkuoy8HGdec81Y5o8`
+- mentor interest:
+  `mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest`
+- giving page:
+  `https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation`
+- Instagram:
+  `https://www.instagram.com/wm_mcp`
+- LinkedIn:
+  `https://www.linkedin.com/company/wmmcp`
 
 ## Deployment
 
-This repo is intended to be deployed as a static site from the repository root, including GitHub Pages if desired.
+Deploy from the repository root as a static site.
 
-If custom domain setup is used again, place the final domain in `CNAME`.
+If a custom domain is used again, add the final value to `CNAME`.

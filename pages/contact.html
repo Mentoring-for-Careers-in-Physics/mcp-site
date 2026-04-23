@@ -1,218 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Contact MCP for student, mentor, partner, or sponsorship inquiries."
-    />
-    <title>Contact | MCP</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/styles.css" />
-  </head>
-  <body data-page="contact" data-root="..">
-    <header class="site-header">
-      <div class="shell nav-shell">
-        <a class="brand" href="../index.html" aria-label="MCP home">
-          <span class="brand-mark">MCP</span>
-          <span class="brand-text">
-            <strong>Mentoring for Careers in Physics</strong>
-            <small>William &amp; Mary</small>
-          </span>
-        </a>
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Contact Mentoring for Careers in Physics." />
+  <title>Contact | MCP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/mcp-shared.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<script type="text/babel">
+const { useState } = React;
 
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-nav"
-          data-nav-toggle
-        >
-          Menu
-        </button>
+const NAV_LINKS = [
+  { label:"Home", href:"../index.html" },
+  { label:"Mentors", href:"./mentors.html" },
+  { label:"Industry", href:"./industry.html" },
+  { label:"Leadership", href:"./team.html" },
+  { label:"News", href:"./news.html" },
+  { label:"Contact", href:"./contact.html" },
+];
 
-        <nav class="nav-links" id="site-nav" aria-label="Primary navigation">
-          <a href="../index.html" data-nav-page="home">Home</a>
-          <a href="./mentors.html" data-nav-page="mentors">Mentors</a>
-          <a href="./team.html" data-nav-page="team">Leadership</a>
-          <a href="./news.html" data-nav-page="news">News</a>
-          <a href="./contact.html" data-nav-page="contact">Contact</a>
-          <a class="nav-cta" href="#" data-mentee-link>Join us</a>
-        </nav>
-      </div>
-    </header>
+const EXTERNAL_LINKS = {
+  mentee: "https://forms.gle/zkuoy8HGdec81Y5o8",
+  mentor: "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
+  giving: "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
+  linkedin: "https://www.linkedin.com/company/wmmcp",
+  instagram: "https://www.instagram.com/wm_mcp",
+};
+const CURRENT_YEAR = new Date().getFullYear();
 
-    <main>
-      <section class="page-hero">
-        <div class="shell page-hero__grid">
-          <div data-reveal>
-            <p class="section-kicker">Contact MCP</p>
-            <h1>Reach the program directly.</h1>
-            <p class="hero-summary">
-              MCP offers clear ways for students, mentors, alumnae,
-              collaborators, and donors to get in touch and take the next step.
-            </p>
+const WAYS = [
+  { title:"Join as a student", kicker:"Mentees", desc:"W&M physics students can apply to be matched with a mentor for guided career conversations.", action:"Apply now", color:"var(--blush)", href:EXTERNAL_LINKS.mentee },
+  { title:"Become a mentor", kicker:"Mentors", desc:"Accomplished women in physics and engineering — join the network and guide the next generation.", action:"Volunteer", color:"var(--snow)", href:EXTERNAL_LINKS.mentor },
+  { title:"Give to MCP", kicker:"Donors", desc:"Support program events, operational costs, and the expansion of mentoring access to more students.", action:"Donate", color:"var(--wine)", href:EXTERNAL_LINKS.giving },
+];
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <nav className="nav">
+        <div className="nav-inner">
+          <a className="brand" href="../index.html">
+            <div className="brand-mark">MCP</div>
+            <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
+          </a>
+          <div className="nav-links">
+            {NAV_LINKS.map(l => <a key={l.label} className={`nav-link${l.label==="Contact"?" active":""}`} href={l.href}>{l.label}</a>)}
           </div>
-
-          <aside class="statement-card statement-card--page" data-reveal>
-            <p class="micro-label">Best next step</p>
-            <p class="card-copy">
-              For student interest, the mentee form is the fastest route. For
-              mentors, donors, partnerships, or program questions, direct email
-              is the best immediate path.
-            </p>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="shell contact-grid">
-          <article class="contact-card" data-reveal>
-            <p class="micro-label">Email</p>
-            <h2>Direct contact</h2>
-            <p>
-              Use email for donor conversations, partnership ideas, or program
-              questions that need a personal response.
-            </p>
-            <a class="button button-primary" href="#" data-contact-email
-              >mcp.superuser@gmail.com</a
-            >
-          </article>
-
-          <article class="contact-card" data-reveal>
-            <p class="micro-label">For Students</p>
-            <h2>Join as a mentee</h2>
-            <p>
-              The current public interest form gives students a direct path into
-              MCP’s mentoring and event pipeline.
-            </p>
-            <a class="button button-secondary" href="#" data-mentee-link
-              >Join us</a
-            >
-          </article>
-
-          <article class="contact-card" data-reveal>
-            <p class="micro-label">For Mentors</p>
-            <h2>Volunteer as a mentor</h2>
-            <p>
-              A dedicated Google Form can be added later. For now, mentors can
-              raise a hand directly through MCP email.
-            </p>
-            <a class="button button-secondary" href="#" data-mentor-link
-              >Express mentor interest</a
-            >
-          </article>
-
-          <article class="contact-card" data-reveal>
-            <p class="micro-label">Giving</p>
-            <h2>Give directly to MCP</h2>
-            <p>
-              Use the direct giving page to support mentorship, visibility, and
-              student-centered program growth.
-            </p>
-            <a class="button button-secondary" href="#" data-donate-link
-              >Give to MCP</a
-            >
-          </article>
-
-          <article class="contact-card" data-reveal>
-            <p class="micro-label">Social</p>
-            <h2>Follow MCP’s public voice</h2>
-            <p>
-              Keep up with program stories, announcements, and visibility across
-              MCP’s public channels.
-            </p>
-            <div class="social-list" data-footer-social></div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section section--soft">
-        <div class="shell split-grid">
-          <div class="section-heading" data-reveal>
-            <p class="section-kicker">Who We Welcome</p>
-            <h2>Different audiences, one clear invitation.</h2>
-          </div>
-
-          <div class="narrative-stack">
-            <article class="narrative-card" data-reveal>
-              <p class="micro-label">Students</p>
-              <p>
-                Reach out if you want mentorship, visibility, or a stronger
-                sense of how physics can connect to the future you want to
-                build.
-              </p>
-            </article>
-
-            <article class="narrative-card" data-reveal>
-              <p class="micro-label">Mentors &amp; Alumnae</p>
-              <p>
-                MCP welcomes professionals who want to help students navigate
-                career pathways with generosity, candor, and encouragement.
-              </p>
-            </article>
-
-            <article class="narrative-card narrative-card--accent" data-reveal>
-              <p class="micro-label">Funders &amp; Partners</p>
-              <p>
-                If you want to invest in mentorship, belonging, and a stronger
-                leadership pipeline for physics students, MCP is ready for the
-                conversation.
-              </p>
-            </article>
+          <div className="nav-actions">
+            <a className="nav-join" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
+            <a className="nav-give" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
+            <button className="nav-hamburger" onClick={() => setOpen(o=>!o)} aria-label="Menu">
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
+            </button>
           </div>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-grid">
-        <div class="footer-brand-block">
-          <span class="brand-mark brand-mark--footer">MCP</span>
-          <p class="footer-summary">
-            Mentoring for Careers in Physics at William &amp; Mary.
-          </p>
-        </div>
-
-        <div>
-          <p class="footer-heading">Explore</p>
-          <div class="footer-links">
-            <a href="../index.html">Home</a>
-            <a href="./mentors.html">Mentors</a>
-            <a href="./team.html">Leadership</a>
-            <a href="./news.html">News</a>
-            <a href="./contact.html">Contact</a>
-          </div>
-        </div>
-
-        <div>
-          <p class="footer-heading">Connect</p>
-          <div class="footer-links">
-            <a class="footer-email" href="#" data-contact-email>mcp.superuser@gmail.com</a>
-            <a href="#" data-mentee-link>Join us</a>
-            <a href="#" data-mentor-link>Become a mentor</a>
-            <a href="#" data-donate-link>Give to MCP</a>
-          </div>
-        </div>
-
-        <div>
-          <p class="footer-heading">Follow MCP</p>
-          <div class="social-list social-list--footer" data-footer-social></div>
+      </nav>
+      <div className={`nav-mobile ${open?"open":""}`}>
+        {NAV_LINKS.map(l => <a key={l.label} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+        <div className="nav-mobile-actions">
+          <a className="btn btn-ghost btn-sm" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
+          <a className="btn btn-primary btn-sm" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
         </div>
       </div>
+    </>
+  );
+}
 
-      <div class="shell footer-base">
-        <p>Mentoring for Careers in Physics</p>
-        <p>&copy; <span data-current-year></span> William &amp; Mary</p>
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="shell">
+        <div className="footer-grid">
+          <div>
+            <a className="brand" href="../index.html" style={{marginBottom:"0.9rem",display:"inline-flex"}}>
+              <div className="brand-mark">MCP</div>
+              <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
+            </a>
+            <p style={{fontSize:"0.88rem",color:"var(--muted)",lineHeight:1.65,maxWidth:"28ch",marginTop:"0.75rem"}}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
+          </div>
+          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map(l=><a key={l.label} href={l.href}>{l.label}</a>)}</div></div>
+          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={EXTERNAL_LINKS.mentor}>Become a mentor</a><a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
+          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer">Instagram</a><a href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a></div></div>
+        </div>
+        <div className="footer-base"><p>Mentoring for Careers in Physics · William &amp; Mary</p><p>© {CURRENT_YEAR} William &amp; Mary</p></div>
       </div>
     </footer>
+  );
+}
 
-    <script src="../js/main.js" defer></script>
-  </body>
+function ContactForm() {
+  const [form, setForm] = useState({ name:"", email:"", role:"student", message:"" });
+  const [sent, setSent] = useState(false);
+
+  const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const submit = e => { e.preventDefault(); setSent(true); };
+
+  if (sent) return (
+    <div style={{padding:"3rem",textAlign:"center",borderRadius:"var(--r-xl)",border:"1px solid var(--border)",background:"white"}}>
+      <div style={{fontFamily:"var(--f-display)",fontSize:"2rem",color:"var(--wine)",marginBottom:"0.75rem"}}>Thank you.</div>
+      <p style={{color:"var(--muted)",fontSize:"0.95rem",lineHeight:1.7}}>We've received your message and will be in touch soon at <strong>{form.email}</strong>.</p>
+      <button className="btn btn-ghost btn-sm" style={{marginTop:"1.5rem"}} onClick={() => { setSent(false); setForm({name:"",email:"",role:"student",message:""}); }}>Send another</button>
+    </div>
+  );
+
+  return (
+    <form className="contact-form" onSubmit={submit}>
+      <div className="form-group">
+        <label className="form-label" htmlFor="contact-name">Your name</label>
+        <input className="form-input" id="contact-name" name="name" value={form.name} onChange={handle} placeholder="Full name" required />
+      </div>
+      <div className="form-group">
+        <label className="form-label" htmlFor="contact-email">Email address</label>
+        <input className="form-input" id="contact-email" type="email" name="email" value={form.email} onChange={handle} placeholder="your@email.com" required />
+      </div>
+      <div className="form-group">
+        <label className="form-label" htmlFor="contact-role">I am a…</label>
+        <select className="form-input" id="contact-role" name="role" value={form.role} onChange={handle}>
+          <option value="student">W&amp;M Physics student</option>
+          <option value="mentor">Potential mentor</option>
+          <option value="donor">Donor / supporter</option>
+          <option value="faculty">Faculty / collaborator</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label className="form-label" htmlFor="contact-message">Message</label>
+        <textarea className="form-textarea" id="contact-message" name="message" value={form.message} onChange={handle} placeholder="Tell us how we can help, or what you'd like to know about MCP…" required />
+      </div>
+      <button className="btn btn-primary" type="submit" style={{marginTop:"0.25rem"}}>Send message →</button>
+    </form>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Nav />
+      <main>
+        <section className="page-hero">
+          <div className="shell">
+            <span className="kicker">Get in Touch</span>
+            <h1>Let's connect.</h1>
+            <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>Whether you're a student looking for a mentor, a professional ready to give back, or a donor wanting to support our work — we'd love to hear from you.</p>
+          </div>
+        </section>
+
+        <section className="section section-soft">
+          <div className="shell">
+            <div className="section-head">
+              <div><span className="kicker">Ways to Engage</span><h2>How would you like to be involved?</h2></div>
+            </div>
+            <div className="engagement-grid">
+              {WAYS.map(w => (
+                <div key={w.title} style={{padding:"2rem",borderRadius:"var(--r-xl)",border:"1px solid var(--border)",
+                  background: w.color === "var(--wine)" ? "var(--wine)" : "white",
+                  color: w.color === "var(--wine)" ? "white" : "var(--ink)",
+                  boxShadow:"0 8px 28px rgba(74,53,64,0.07)",display:"flex",flexDirection:"column",gap:"0.85rem"}}>
+                  <span style={{fontSize:"0.66rem",fontWeight:600,letterSpacing:"0.16em",textTransform:"uppercase",color: w.color==="var(--wine)"?"rgba(255,255,255,0.55)":"var(--wine-mid)"}}>{w.kicker}</span>
+                  <h3 style={{color: w.color==="var(--wine)"?"white":"var(--ink)"}}>{w.title}</h3>
+                  <p style={{fontSize:"0.9rem",lineHeight:1.65,color: w.color==="var(--wine)"?"rgba(255,255,255,0.7)":"var(--muted)",flex:1}}>{w.desc}</p>
+                  <a href={w.href} className="text-link" style={{color: w.color==="var(--wine)"?"rgba(255,255,255,0.8)":"var(--wine)"}} target={w.href.startsWith("mailto:") ? undefined : "_blank"} rel={w.href.startsWith("mailto:") ? undefined : "noreferrer"}>{w.action} →</a>
+                </div>
+              ))}
+            </div>
+
+            <div className="contact-grid">
+              <ContactForm />
+              <div style={{display:"flex",flexDirection:"column",gap:"1.1rem"}}>
+                <div className="contact-info">
+                  <div>
+                    <div className="contact-item-label">Email</div>
+                    <a className="contact-item-value" href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a>
+                  </div>
+                  <div>
+                    <div className="contact-item-label">Program</div>
+                    <div className="contact-item-value">Mentoring for Careers in Physics</div>
+                    <div style={{fontSize:"0.85rem",color:"var(--muted)",marginTop:"0.2rem"}}>William &amp; Mary Physics Department</div>
+                  </div>
+                  <div>
+                    <div className="contact-item-label">Location</div>
+                    <div className="contact-item-value">Williamsburg, Virginia</div>
+                  </div>
+                  <div>
+                    <div className="contact-item-label">Social</div>
+                    <div style={{display:"flex",gap:"0.6rem",marginTop:"0.35rem"}}>
+                      <a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer" style={{padding:"0.5rem 0.9rem",borderRadius:"999px",border:"1px solid var(--border)",fontSize:"0.82rem",fontWeight:600,color:"var(--wine)",background:"white"}}>LinkedIn</a>
+                      <a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer" style={{padding:"0.5rem 0.9rem",borderRadius:"999px",border:"1px solid var(--border)",fontSize:"0.82rem",fontWeight:600,color:"var(--wine)",background:"white"}}>Instagram</a>
+                    </div>
+                  </div>
+                </div>
+                <div style={{padding:"1.75rem",borderRadius:"var(--r-xl)",background:"var(--wine)",color:"white",border:"none"}}>
+                  <div style={{fontFamily:"var(--f-display)",fontSize:"1.5rem",marginBottom:"0.65rem",lineHeight:1.05}}>Ready to give to MCP?</div>
+                  <p style={{fontSize:"0.88rem",color:"rgba(255,255,255,0.65)",lineHeight:1.65,marginBottom:"1.25rem"}}>Your support helps fund events, program operations, and expanding mentorship access to more students each year.</p>
+                  <a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer" className="btn btn-full" style={{background:"white",color:"var(--wine)",fontWeight:700}}>Donate to MCP →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+<div id="root"></div>
+</body>
 </html>

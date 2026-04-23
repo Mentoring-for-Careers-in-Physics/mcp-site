@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Partner organizations for Mentoring for Careers in Physics." />
+  <title>Industry | MCP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/mcp-shared.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<script type="text/babel">
+const { useState } = React;
+
+const NAV_LINKS = [
+  { label:"Home", href:"../index.html" },
+  { label:"Mentors", href:"./mentors.html" },
+  { label:"Industry", href:"./industry.html" },
+  { label:"Leadership", href:"./team.html" },
+  { label:"News", href:"./news.html" },
+  { label:"Contact", href:"./contact.html" },
+];
+
+const EXTERNAL_LINKS = {
+  mentee: "https://forms.gle/zkuoy8HGdec81Y5o8",
+  mentor: "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
+  giving: "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
+  linkedin: "https://www.linkedin.com/company/wmmcp",
+  instagram: "https://www.instagram.com/wm_mcp",
+};
+const CURRENT_YEAR = new Date().getFullYear();
+
+const COMPANIES = [
+  { name:"NASA Langley Research Center", sector:"Government / Aerospace", url:"https://www.nasa.gov/langley", img:"../assets/images/company-logos/christopher-newport-university.png", mentors:["Karen Taminger","Liz Ward","Marlyn Andino","Jennifer Inman","Vanessa Aubuchon"], desc:"One of NASA's premier research centers, Langley works on aeronautics, atmospheric science, and space exploration technology." },
+  { name:"Jefferson Lab", sector:"Research / National Lab", url:"https://www.jlab.org", img:null, mentors:["Holly Szumila-Vance","Sanghwa Park","Sandra Philpott","Yulia Furletova"], desc:"Thomas Jefferson National Accelerator Facility advances nuclear physics research and accelerator technology." },
+  { name:"Capital One", sector:"Industry / Finance", url:"https://www.capitalone.com", img:"../assets/images/company-logos/capital-one.svg", mentors:["Claudia Smith"], desc:"Capital One combines finance with cutting-edge technology, employing physicists in data science, engineering, and software roles." },
+  { name:"KLA Corporation", sector:"Industry / Semiconductor", url:"https://www.kla.com", img:"../assets/images/company-logos/kla-corporation.png", mentors:["Mi Zhang"], desc:"KLA is a global leader in semiconductor process control and yield management equipment, relying heavily on optics and physics expertise." },
+  { name:"Luna Innovations", sector:"Research / Industry", url:"https://www.lunainc.com", img:"../assets/images/company-logos/luna-innovations.png", mentors:["Yang Xu"], desc:"Luna Innovations develops advanced technology solutions in fiber optics, sensing, and photonics." },
+  { name:"Varda Space Industries", sector:"Industry / Space", url:"https://varda.com", img:"../assets/images/company-logos/varda-space-industries.svg", mentors:["Haley Bauser"], desc:"Varda Space is pioneering in-space manufacturing and pharmaceutical crystallization in microgravity." },
+  { name:"Honeywell", sector:"Industry / Aerospace", url:"https://www.honeywell.com", img:null, mentors:["Kelly Berns"], desc:"A diversified technology and manufacturing leader, Honeywell employs physicists across aerospace, safety, and cybersecurity." },
+  { name:"MITRE", sector:"Research / National Security", url:"https://www.mitre.org", img:null, mentors:["Melissa Dolph"], desc:"MITRE is a not-for-profit organization operating federally funded R&D centers addressing national security challenges." },
+  { name:"Sandia National Laboratories", sector:"Government / National Lab", url:"https://www.sandia.gov", img:null, mentors:["Julia M. Phillips"], desc:"Sandia is a multi-mission national laboratory developing science-based solutions for national security." },
+  { name:"Department of Defense", sector:"Government", url:"https://www.defense.gov", img:null, mentors:["Amber Ulbrich"], desc:"The DoD employs physicists across a wide range of programs including quantum technologies, materials research, and intelligence analysis." },
+  { name:"Arcfield", sector:"Industry / Defense Tech", url:"https://www.arcfield.com", img:null, mentors:["Janet Brewer"], desc:"Arcfield provides mission-critical national security solutions to government customers." },
+  { name:"ivWatch LLC", sector:"Industry / Medical", url:"https://ivwatch.com", img:null, mentors:["Marisa Brown"], desc:"ivWatch develops optical patient monitoring technologies that detect IV infiltration in real time." },
+];
+
+const SECTORS = ["All","Government","Research","Industry","National Lab"];
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <nav className="nav">
+        <div className="nav-inner">
+          <a className="brand" href="../index.html">
+            <div className="brand-mark">MCP</div>
+            <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
+          </a>
+          <div className="nav-links">
+            {NAV_LINKS.map(l => <a key={l.label} className={`nav-link${l.label==="Industry"?" active":""}`} href={l.href}>{l.label}</a>)}
+          </div>
+          <div className="nav-actions">
+            <a className="nav-join" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
+            <a className="nav-give" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
+            <button className="nav-hamburger" onClick={() => setOpen(o=>!o)} aria-label="Menu">
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+      <div className={`nav-mobile ${open?"open":""}`}>
+        {NAV_LINKS.map(l => <a key={l.label} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+        <div className="nav-mobile-actions">
+          <a className="btn btn-ghost btn-sm" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
+          <a className="btn btn-primary btn-sm" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="shell">
+        <div className="footer-grid">
+          <div>
+            <a className="brand" href="../index.html" style={{marginBottom:"0.9rem",display:"inline-flex"}}>
+              <div className="brand-mark">MCP</div>
+              <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
+            </a>
+            <p style={{fontSize:"0.88rem",color:"var(--muted)",lineHeight:1.65,maxWidth:"28ch",marginTop:"0.75rem"}}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
+          </div>
+          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map(l=><a key={l.label} href={l.href}>{l.label}</a>)}</div></div>
+          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={EXTERNAL_LINKS.mentor}>Become a mentor</a><a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
+          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer">Instagram</a><a href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a></div></div>
+        </div>
+        <div className="footer-base"><p>Mentoring for Careers in Physics · William &amp; Mary</p><p>© {CURRENT_YEAR} William &amp; Mary</p></div>
+      </div>
+    </footer>
+  );
+}
+
+function App() {
+  const [filter, setFilter] = useState("All");
+  const filtered = filter === "All" ? COMPANIES : COMPANIES.filter(c => c.sector.includes(filter));
+
+  return (
+    <>
+      <Nav />
+      <main>
+        <section className="page-hero">
+          <div className="shell">
+            <div className="page-hero-grid">
+              <div>
+                <span className="kicker">Partner Organizations</span>
+                <h1>Where mentors work.</h1>
+                <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>MCP mentors work across government, national laboratories, industry, and academia. Explore the organizations represented in our network.</p>
+              </div>
+              <div className="hero-stat-card">
+                <span className="kicker">Network</span>
+                <div className="metric"><strong>{COMPANIES.length}</strong><span>Partner organizations</span></div>
+                <div className="metric"><strong>{[...new Set(COMPANIES.map(c=>c.sector.split(" / ")[0]))].length}</strong><span>Sectors represented</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="shell">
+            <div className="filter-row">
+              {SECTORS.map(s => <button key={s} className={`filter-chip${filter===s?" active":""}`} onClick={()=>setFilter(s)}>{s}</button>)}
+            </div>
+            <div className="company-grid">
+              {filtered.map(c => (
+                <a key={c.name} className="company-card" href={c.url} target="_blank" rel="noopener" style={{textDecoration:"none"}}>
+                  <div>
+                    <div className="company-sector">{c.sector}</div>
+                    <div style={{marginTop:"1rem"}}>
+                      {c.img
+                        ? <div className="company-logo-wrap"><img src={c.img} alt={c.name} /></div>
+                        : <div className="company-monogram">{c.name[0]}</div>
+                      }
+                    </div>
+                  </div>
+                  <div className="company-name">{c.name}</div>
+                  <div className="company-desc">{c.desc}</div>
+                  <div style={{marginTop:"auto"}}>
+                    <div style={{fontSize:"0.72rem",fontWeight:600,color:"var(--wine-mid)",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:"0.4rem"}}>MCP Mentors</div>
+                    <div style={{display:"flex",flexWrap:"wrap",gap:"0.4rem"}}>
+                      {c.mentors.map(m => (
+                        <span key={m} style={{fontSize:"0.78rem",background:"var(--blush)",color:"var(--wine)",padding:"0.28rem 0.65rem",borderRadius:"999px",fontWeight:500}}>{m}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div style={{display:"flex",alignItems:"center",gap:"0.35rem",fontSize:"0.82rem",fontWeight:600,color:"var(--wine)"}}>Visit site →</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section section-soft">
+          <div className="shell">
+            <div className="cta-panel" style={{background:"linear-gradient(135deg,var(--wine),#6b4e58)",color:"white",border:"none"}}>
+              <div>
+                <span className="kicker kicker-light">Work at one of these organizations?</span>
+                <h2 style={{color:"white",maxWidth:"18ch",marginBottom:"1rem"}}>Become a mentor.</h2>
+                <p style={{color:"rgba(255,255,255,0.7)",lineHeight:1.7,maxWidth:"46ch",fontSize:"0.95rem"}}>If you're an alumna or professional in physics or engineering, we'd love to have you join the MCP mentor network.</p>
+                <div className="cta-actions">
+                  <a className="btn" href="./contact.html" style={{background:"white",color:"var(--wine)",fontWeight:700}}>Get in touch</a>
+                  <a className="btn" style={{background:"rgba(255,255,255,0.12)",color:"white",border:"1px solid rgba(255,255,255,0.28)"}} href="./mentors.html">Browse mentors</a>
+                </div>
+              </div>
+              <div>
+                <img src="../assets/images/live-site/clearweb/assets/annual_celebration.png" alt="MCP celebration"
+                  style={{borderRadius:"var(--r-xl)",width:"220px",height:"180px",objectFit:"cover",boxShadow:"0 24px 60px rgba(0,0,0,0.25)",border:"2px solid rgba(255,255,255,0.15)"}} />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+<div id="root"></div>
+</body>
+</html>

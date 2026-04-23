@@ -1,224 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Leadership, team members, supporters, and program network for MCP."
-    />
-    <title>Leadership | MCP</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/styles.css" />
-  </head>
-  <body data-page="team" data-root="..">
-    <header class="site-header">
-      <div class="shell nav-shell">
-        <a class="brand" href="../index.html" aria-label="MCP home">
-          <span class="brand-mark">MCP</span>
-          <span class="brand-text">
-            <strong>Mentoring for Careers in Physics</strong>
-            <small>William &amp; Mary</small>
-          </span>
-        </a>
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Leadership team for Mentoring for Careers in Physics." />
+  <title>Leadership | MCP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/mcp-shared.css" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<script type="text/babel">
+const { useState } = React;
 
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-nav"
-          data-nav-toggle
-        >
-          Menu
-        </button>
+const NAV_LINKS = [
+  { label:"Home", href:"../index.html" },
+  { label:"Mentors", href:"./mentors.html" },
+  { label:"Industry", href:"./industry.html" },
+  { label:"Leadership", href:"./team.html" },
+  { label:"News", href:"./news.html" },
+  { label:"Contact", href:"./contact.html" },
+];
 
-        <nav class="nav-links" id="site-nav" aria-label="Primary navigation">
-          <a href="../index.html" data-nav-page="home">Home</a>
-          <a href="./mentors.html" data-nav-page="mentors">Mentors</a>
-          <a href="./team.html" data-nav-page="team">Leadership</a>
-          <a href="./news.html" data-nav-page="news">News</a>
-          <a href="./contact.html" data-nav-page="contact">Contact</a>
-          <a class="nav-cta" href="#" data-mentee-link>Join us</a>
-        </nav>
-      </div>
-    </header>
+const EXTERNAL_LINKS = {
+  mentee: "https://forms.gle/zkuoy8HGdec81Y5o8",
+  mentor: "mailto:mcp.superuser@gmail.com?subject=MCP%20Mentor%20Interest",
+  giving: "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation",
+  linkedin: "https://www.linkedin.com/company/wmmcp",
+  instagram: "https://www.instagram.com/wm_mcp",
+};
+const CURRENT_YEAR = new Date().getFullYear();
 
-    <main>
-      <section class="page-hero">
-        <div class="shell page-hero__grid">
-          <div data-reveal>
-            <p class="section-kicker">Leadership &amp; Legacy</p>
-            <h1>The people caring for MCP.</h1>
-            <p class="hero-summary">
-              Meet the current team, Chris in his advisor role, and the former
-              team members who helped build the program.
-            </p>
+const TEAM = [
+  { name:"Ran Yang", role:"Co-Founder & Director", group:"leadership", bio:"Professor in the Physics Department and a co-founder and director of MCP. Ran leads the program's vision, mentor relationships, and long-term growth.", img:"../assets/images/live-site/clearweb/assets/ran-headshot.jpg" },
+  { name:"Julia Rodrigues", role:"Program Assistant", group:"leadership", bio:"Julia ('26) is studying Physics with an EPAD concentration and plans to pursue electrical engineering.", img:"../assets/images/live-site/clearweb/home/Julia_Rodrigues_pic.jpg" },
+  { name:"Kalea Wen", role:"Event Coordinator", group:"leadership", bio:"Kalea is a junior majoring in physics and minoring in CS. She coordinates MCP events and student programming.", img:"../assets/images/live-site/clearweb/assets/KaleaWen-headshot.jpeg" },
+  { name:"Erica Trindade", role:"Assistant Events Coordinator", group:"leadership", bio:"Erica is a sophomore majoring in physics who plans to pursue Mechanical Engineering. She supports event coordination across the program.", img:"../assets/images/live-site/clearweb/assets/ericaTrindade_headshot.jpg" },
+  { name:"Brielle Kirk", role:"Assistant PR Coordinator", group:"leadership", bio:"Brielle ('29) handles MCP's public relations and communications. She plans to major in Physics and pursue a PhD in Astrophysics.", img:"../assets/images/live-site/clearweb/assets/Brielle_Kirk.JPEG" },
+  { name:"Alan Gonzalez Osorio", role:"Web Developer", group:"leadership", bio:"Alan ('26) built and maintains the MCP website. He is a senior studying Computer Science and Applied Math.", img:"../assets/images/live-site/clearweb/assets/alan-headshot.jpg" },
+];
+
+const ADVISORS = [
+  { name:"Chris Monahan", role:"Co-Founder & Advisor", group:"advisor", bio:"Assistant Professor in the Physics Department and an MCP co-founder who now advises the program on research mentorship and faculty partnerships.", img:"../assets/images/live-site/clearweb/assets/monahan-headshot.jpg" },
+];
+
+function Nav() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <nav className="nav">
+        <div className="nav-inner">
+          <a className="brand" href="../index.html">
+            <div className="brand-mark">MCP</div>
+            <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
+          </a>
+          <div className="nav-links">
+            {NAV_LINKS.map(l => <a key={l.label} className={`nav-link${l.label==="Leadership"?" active":""}`} href={l.href}>{l.label}</a>)}
           </div>
-
-          <aside class="statement-card statement-card--page" data-reveal>
-            <p class="micro-label">Network overview</p>
-            <div class="metric-grid metric-grid--stacked">
-              <article class="metric">
-                <strong data-team-count>0</strong>
-                <span>Current team</span>
-              </article>
-              <article class="metric">
-                <strong data-advisor-count>0</strong>
-                <span>Advisors</span>
-              </article>
-              <article class="metric">
-                <strong data-retired-count>0</strong>
-                <span>Former team members</span>
-              </article>
-              <article class="metric">
-                <strong data-company-count>0</strong>
-                <span>Organizations represented</span>
-              </article>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="shell">
-          <div class="section-header between" data-reveal>
-            <div>
-              <p class="section-kicker">Current Team</p>
-              <h2>The faculty and students running the program now.</h2>
-            </div>
-            <a class="text-link" href="./contact.html">Contact leadership</a>
-          </div>
-
-          <div class="profile-grid" data-team-directory>
-            <div class="empty-state">Loading current team…</div>
+          <div className="nav-actions">
+            <a className="nav-join" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
+            <a className="nav-give" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
+            <button className="nav-hamburger" onClick={() => setOpen(o=>!o)} aria-label="Menu">
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="12" width="18" height="2" rx="1" fill="currentColor"/></svg>
+            </button>
           </div>
         </div>
-      </section>
-
-      <section class="section">
-        <div class="shell">
-          <div class="section-header between" data-reveal>
-            <div>
-              <p class="section-kicker">Founders &amp; Advisors</p>
-              <h2>The founding perspective still shaping MCP.</h2>
-            </div>
-            <a class="text-link" href="./contact.html">Reach the program</a>
-          </div>
-
-          <div class="profile-grid profile-grid--compact" data-advisor-directory>
-            <div class="empty-state">Loading advisors…</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--soft">
-        <div class="shell supporters-panel">
-          <div class="supporters-copy" data-reveal>
-            <p class="section-kicker">MCP Friends</p>
-            <h2>The partners behind the program.</h2>
-            <p data-supporters-text>
-              MCP is strengthened by faculty, collaborators, and institutional
-              champions who help sustain the program and extend its reach.
-            </p>
-          </div>
-
-          <div class="supporters-banner" data-reveal>
-            <img
-              src="../assets/images/live-site/clearweb/assets/So1918_banner.png"
-              data-supporters-banner-image
-              alt="Society of 1918 banner"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="shell">
-          <div class="section-header" data-reveal>
-            <p class="section-kicker">Organizational Footprint</p>
-            <h2>The network spans research, government, industry, and higher education.</h2>
-          </div>
-
-          <div class="logo-wall" data-company-grid>
-            <div class="empty-state">Loading organization logos…</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--soft">
-        <div class="shell">
-          <div class="section-header" data-reveal>
-            <p class="section-kicker">Former Team</p>
-            <h2>People who helped build MCP.</h2>
-          </div>
-
-          <div class="profile-grid profile-grid--compact" data-retired-team-directory>
-            <div class="empty-state">Loading previous team members…</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="shell">
-          <div class="section-header" data-reveal>
-            <p class="section-kicker">Event Archive</p>
-            <h2>Public materials from earlier MCP events.</h2>
-          </div>
-
-          <div class="event-grid" data-events-list>
-            <div class="empty-state">Loading archived event assets…</div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="shell footer-grid">
-        <div class="footer-brand-block">
-          <span class="brand-mark brand-mark--footer">MCP</span>
-          <p class="footer-summary">
-            Mentoring for Careers in Physics at William &amp; Mary.
-          </p>
-        </div>
-
-        <div>
-          <p class="footer-heading">Explore</p>
-          <div class="footer-links">
-            <a href="../index.html">Home</a>
-            <a href="./mentors.html">Mentors</a>
-            <a href="./team.html">Leadership</a>
-            <a href="./news.html">News</a>
-            <a href="./contact.html">Contact</a>
-          </div>
-        </div>
-
-        <div>
-          <p class="footer-heading">Connect</p>
-          <div class="footer-links">
-            <a class="footer-email" href="#" data-contact-email>mcp.superuser@gmail.com</a>
-            <a href="#" data-mentee-link>Join us</a>
-            <a href="#" data-mentor-link>Become a mentor</a>
-            <a href="#" data-donate-link>Give to MCP</a>
-          </div>
-        </div>
-
-        <div>
-          <p class="footer-heading">Follow MCP</p>
-          <div class="social-list social-list--footer" data-footer-social></div>
+      </nav>
+      <div className={`nav-mobile ${open?"open":""}`}>
+        {NAV_LINKS.map(l => <a key={l.label} href={l.href} onClick={() => setOpen(false)}>{l.label}</a>)}
+        <div className="nav-mobile-actions">
+          <a className="btn btn-ghost btn-sm" href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join</a>
+          <a className="btn btn-primary btn-sm" href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give</a>
         </div>
       </div>
+    </>
+  );
+}
 
-      <div class="shell footer-base">
-        <p>Mentoring for Careers in Physics</p>
-        <p>&copy; <span data-current-year></span> William &amp; Mary</p>
+function PersonCard({ person, wide }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <div className="profile-card" onClick={() => setOpen(true)} role="button" tabIndex={0} onKeyDown={e=>e.key==="Enter"&&setOpen(true)}>
+        <div className="profile-photo" style={{aspectRatio: wide ? "1.1" : "0.9"}}>
+          {person.img
+            ? <img src={person.img} alt={person.name} />
+            : <div style={{width:"100%",height:"100%",background:"linear-gradient(160deg,var(--blush),var(--rose))",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                <span style={{fontFamily:"var(--f-display)",fontSize:"3rem",color:"var(--wine)",opacity:0.25}}>{person.name[0]}</span>
+              </div>
+          }
+        </div>
+        <div className="profile-body">
+          <div className="profile-name">{person.name}</div>
+          <div className="profile-role">{person.role}</div>
+          <div className="profile-hint">Read bio →</div>
+        </div>
+      </div>
+      {open && (
+        <div className="modal-overlay" onClick={e=>e.target===e.currentTarget&&setOpen(false)}>
+          <div className="modal-box">
+            <div className="modal-close-row"><button className="modal-close-btn" onClick={()=>setOpen(false)}>Close ✕</button></div>
+            <div className="modal-header">
+              {person.img
+                ? <img className="modal-img" src={person.img} alt={person.name} />
+                : <div className="modal-img" style={{background:"var(--blush)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+                    <span style={{fontFamily:"var(--f-display)",fontSize:"3rem",color:"var(--wine)",opacity:0.3}}>{person.name[0]}</span>
+                  </div>
+              }
+              <div className="modal-header-info">
+                <h2 style={{fontSize:"clamp(1.4rem,3vw,2rem)"}}>{person.name}</h2>
+                <p style={{fontSize:"0.9rem",color:"var(--wine-mid)",fontWeight:500}}>{person.role}</p>
+              </div>
+            </div>
+            <div className="modal-body">
+              <p className="modal-bio">{person.bio}</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="shell">
+        <div className="footer-grid">
+          <div>
+            <a className="brand" href="../index.html" style={{marginBottom:"0.9rem",display:"inline-flex"}}>
+              <div className="brand-mark">MCP</div>
+              <div className="brand-text"><strong>Mentoring for Careers in Physics</strong><small>William &amp; Mary</small></div>
+            </a>
+            <p style={{fontSize:"0.88rem",color:"var(--muted)",lineHeight:1.65,maxWidth:"28ch",marginTop:"0.75rem"}}>Connecting undergraduate students with accomplished mentors across research, industry, and government.</p>
+          </div>
+          <div><div className="footer-heading">Explore</div><div className="footer-links">{NAV_LINKS.map(l=><a key={l.label} href={l.href}>{l.label}</a>)}</div></div>
+          <div><div className="footer-heading">Get involved</div><div className="footer-links"><a href={EXTERNAL_LINKS.mentee} target="_blank" rel="noreferrer">Join as a student</a><a href={EXTERNAL_LINKS.mentor}>Become a mentor</a><a href={EXTERNAL_LINKS.giving} target="_blank" rel="noreferrer">Give to MCP</a></div></div>
+          <div><div className="footer-heading">Connect</div><div className="footer-links"><a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer">Instagram</a><a href="mailto:mcp.superuser@gmail.com">mcp.superuser@gmail.com</a></div></div>
+        </div>
+        <div className="footer-base"><p>Mentoring for Careers in Physics · William &amp; Mary</p><p>© {CURRENT_YEAR} William &amp; Mary</p></div>
       </div>
     </footer>
+  );
+}
 
-    <script src="../js/main.js" defer></script>
-  </body>
+function App() {
+  return (
+    <>
+      <Nav />
+      <main>
+        <section className="page-hero">
+          <div className="shell">
+            <div className="page-hero-grid">
+              <div>
+                <span className="kicker">Leadership &amp; Team</span>
+                <h1>The people caring for MCP.</h1>
+                <p style={{fontSize:"1rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"46ch",marginTop:"1rem"}}>Meet the current student team, faculty director, and founding advisor who keep MCP running and growing.</p>
+              </div>
+              <div className="hero-stat-card">
+                <span className="kicker">Team</span>
+                <div className="metric"><strong>{TEAM.length}</strong><span>Current team members</span></div>
+                <div className="metric"><strong>{ADVISORS.length}</strong><span>Faculty advisors</span></div>
+                <div className="metric"><strong>2019</strong><span>Year founded</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="shell">
+            <div className="section-head">
+              <div><span className="kicker">Current Team</span><h2>Running the program now.</h2></div>
+              <a className="text-link" href="./contact.html">Contact leadership →</a>
+            </div>
+            <div className="profile-grid">
+              {TEAM.map(p => <PersonCard key={p.name} person={p} />)}
+            </div>
+          </div>
+        </section>
+
+        <section className="section section-soft">
+          <div className="shell">
+            <div className="section-head">
+              <div><span className="kicker">Founders &amp; Advisors</span><h2>The founding perspective.</h2></div>
+            </div>
+            <div style={{maxWidth:"600px"}}>
+              {ADVISORS.map(p => <PersonCard key={p.name} person={p} wide />)}
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="shell">
+            <div style={{borderRadius:"var(--r-xl)",background:"var(--snow)",border:"1px solid var(--border)",padding:"3rem",display:"grid",gridTemplateColumns:"1fr 1fr",gap:"3rem",alignItems:"center"}}>
+              <div>
+                <span className="kicker">Society of 1918</span>
+                <h2 style={{marginBottom:"1rem"}}>MCP Friends &amp; Supporters.</h2>
+                <p style={{fontSize:"0.95rem",color:"var(--muted)",lineHeight:1.7,maxWidth:"44ch"}}>MCP is strengthened by faculty, collaborators, and institutional champions — including the Society of 1918 — who help sustain the program and extend its reach to more students each year.</p>
+              </div>
+              <div>
+                <img src="../assets/images/live-site/clearweb/assets/So1918_banner.png" alt="Society of 1918"
+                  style={{borderRadius:"var(--r-lg)",objectFit:"cover",height:"160px",width:"100%"}} />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+<div id="root"></div>
+</body>
 </html>
