@@ -156,16 +156,26 @@ function websiteHost(value = "") {
   }
 }
 
-function mentorSummary(company) {
-  if (!company.mentors.length) {
-    return "This organization is part of the MCP network.";
+function companySummary(company) {
+  const description = String(company.description || "").trim();
+  if (description) {
+    return description;
   }
 
-  if (company.mentors.length === 1) {
-    return `1 MCP mentor works at ${company.name}.`;
+  if (company.sector === "Government") {
+    return "Public-sector science, engineering, and mission-driven technical work.";
+  }
+  if (company.sector === "National Lab") {
+    return "Research and technical work connected to advanced science and laboratory systems.";
+  }
+  if (company.sector === "Academia") {
+    return "Higher education, research, and student-centered science and engineering work.";
+  }
+  if (company.sector === "Independent") {
+    return "Independent technical, entrepreneurial, and advisory work connected to STEM careers.";
   }
 
-  return `${company.mentors.length} MCP mentors work across ${company.name}.`;
+  return "Industry work spanning engineering, technology, and applied problem-solving.";
 }
 
 function buildCompanyDirectory(companies = [], mentors = []) {
@@ -262,10 +272,7 @@ function CompanyCard({ company, linked }) {
         </div>
       </div>
       <div className="company-name">{company.name}</div>
-      <div className="company-desc">
-        {mentorSummary(company)}
-        {company.websiteHost ? ` Visit ${company.websiteHost} for the official homepage.` : " Official homepage not listed in the current MCP data."}
-      </div>
+      <div className="company-desc">{companySummary(company)}</div>
       <div style={{ marginTop:"auto" }}>
         <div style={{ fontSize:"0.72rem", fontWeight:600, color:"var(--wine-mid)", letterSpacing:"0.1em", textTransform:"uppercase", marginBottom:"0.4rem" }}>MCP Mentors</div>
         <div style={{ display:"flex", flexWrap:"wrap", gap:"0.4rem" }}>

@@ -158,8 +158,23 @@ function companyCategory(company = {}) {
 }
 
 function companySummary(company = {}) {
-  const category = companyCategory(company).toLowerCase();
-  return `Mentors from ${company.name} bring ${category} perspective into MCP conversations.`;
+  const description = String(company.description || "").trim();
+  if (description) {
+    return description;
+  }
+
+  const category = companyCategory(company);
+  if (category === "Research") {
+    return "Research and technical work connected to advanced science and laboratory systems.";
+  }
+  if (category === "Government") {
+    return "Public-sector science, engineering, and mission-driven technical work.";
+  }
+  if (category === "Academia") {
+    return "Higher education, research, and student-centered science and engineering work.";
+  }
+
+  return "Industry work spanning engineering, technology, and applied problem-solving.";
 }
 
 function setCompanyDirectory(companies = []) {

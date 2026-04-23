@@ -3,31 +3,36 @@
     "name": "Arcfield",
     "website": "https://www.arcfield.com/",
     "image": "/assets/images/live-site/clearweb/home/Arcfield.png",
-    "aliases": []
+    "aliases": [],
+    "description": "Advanced engineering and mission support across defense, intelligence, and space."
   },
   {
     "name": "Athena Theatrical",
     "website": "https://www.athenatheatrical.com/",
     "image": "/assets/images/live-site/clearweb/home/Athena_Theatrical.png",
-    "aliases": []
+    "aliases": [],
+    "description": "Project management and design services for productions in the performing arts."
   },
   {
     "name": "BAE Systems",
     "website": "https://www.baesystems.com/en/home",
     "image": "/assets/images/live-site/clearweb/home/BAE.png",
-    "aliases": []
+    "aliases": [],
+    "description": "Defense, aerospace, and security technology for military and government missions."
   },
   {
     "name": "Calspan",
     "website": "https://calspan.com/",
     "image": "/assets/images/live-site/clearweb/home/Calspan.png",
-    "aliases": []
+    "aliases": [],
+    "description": "Testing and technology development for aerospace, defense, and automotive systems."
   },
   {
     "name": "Capital One",
     "website": "https://www.capitalone.com/",
     "image": "/assets/images/company-logos/capital-one.svg",
-    "aliases": []
+    "aliases": [],
+    "description": "Banking, credit, and technology products with major teams in software, data, and analytics."
   },
   {
     "name": "Case Western University",
@@ -35,7 +40,8 @@
     "image": "/assets/images/live-site/clearweb/home/Case_western.png",
     "aliases": [
       "Case Western Reserve University"
-    ]
+    ],
+    "description": "A research university known for science, engineering, and health-related scholarship."
   },
   {
     "name": "Christopher Newport University",
@@ -43,7 +49,8 @@
     "image": "/assets/images/company-logos/christopher-newport-university.png",
     "aliases": [
       "CNU"
-    ]
+    ],
+    "description": "A public university focused on undergraduate education, research, and leadership development."
   },
   {
     "name": "Department of Defense",
@@ -51,19 +58,22 @@
     "image": "/assets/images/live-site/clearweb/home/DOD.jpg",
     "aliases": [
       "DoD"
-    ]
+    ],
+    "description": "The U.S. department responsible for national defense and military operations."
   },
   {
     "name": "Fannie Mae",
     "website": "https://www.fanniemae.com/",
     "image": "/assets/images/live-site/clearweb/home/FannieMae.png",
-    "aliases": []
+    "aliases": [],
+    "description": "A housing finance company that helps support mortgage access in the United States."
   },
   {
     "name": "Honeywell",
     "website": "https://www.honeywell.com/",
     "image": "/assets/images/live-site/clearweb/home/Honeywell.png",
-    "aliases": []
+    "aliases": [],
+    "description": "Engineering and technology products spanning aerospace, automation, energy, and advanced manufacturing."
   },
   {
     "name": "Independent AI/ML-at-Scale Expert",
@@ -71,7 +81,8 @@
     "image": "",
     "aliases": [
       "AI/ML-at-Scale Expert"
-    ]
+    ],
+    "description": "Independent expertise in building AI and machine learning systems that work at scale."
   },
   {
     "name": "Institute for Defense Analyses",
@@ -79,7 +90,8 @@
     "image": "/assets/images/live-site/clearweb/home/Defense_analysis.png",
     "aliases": [
       "Institute for Defense Analysis"
-    ]
+    ],
+    "description": "Independent research and analysis for national security and public sector decision-making."
   },
   {
     "name": "ivWatch LLC",
@@ -87,13 +99,15 @@
     "image": "/assets/images/live-site/clearweb/home/ivwatch.png",
     "aliases": [
       "ivWatch"
-    ]
+    ],
+    "description": "Medical monitoring technology that helps detect IV infiltrations and extravasations early."
   },
   {
     "name": "Jefferson Lab",
     "website": "https://www.jlab.org/",
     "image": "/assets/images/live-site/clearweb/home/Jefferson_Lab.png",
-    "aliases": []
+    "aliases": [],
+    "description": "A national laboratory for nuclear physics, accelerator science, and materials research."
   },
   {
     "name": "KLA Corporation",
@@ -101,13 +115,15 @@
     "image": "/assets/images/company-logos/kla-corporation.png",
     "aliases": [
       "KLA"
-    ]
+    ],
+    "description": "Process control, inspection, and metrology systems for semiconductor manufacturing."
   },
   {
     "name": "Klaco Ventures",
     "website": "",
     "image": "",
-    "aliases": []
+    "aliases": [],
+    "description": "Independent work in entrepreneurship, investing, and technology advising."
   },
   {
     "name": "Luna Innovations",
@@ -116,19 +132,22 @@
     "aliases": [
       "Luna Innovations Incorporated",
       "Luna Labs"
-    ]
+    ],
+    "description": "Fiber optic sensing and measurement systems for aerospace, energy, and industrial applications."
   },
   {
     "name": "Micron Technology",
     "website": "https://www.micron.com/",
     "image": "/assets/images/live-site/clearweb/home/Micron.png",
-    "aliases": []
+    "aliases": [],
+    "description": "Semiconductor memory and storage solutions used across computing and electronics."
   },
   {
     "name": "Microsoft",
     "website": "https://www.microsoft.com/en-us/",
     "image": "/assets/images/live-site/clearweb/home/Microsoft.png",
-    "aliases": []
+    "aliases": [],
+    "description": "Software, cloud, AI, and computing platforms for consumers, developers, and enterprises."
   },
   {
     "name": "MITRE",
@@ -137,7 +156,8 @@
     "aliases": [
       "The MITRE Corp",
       "The MITRE Corporation"
-    ]
+    ],
+    "description": "A not-for-profit organization delivering technical and policy solutions in the public interest."
   },
   {
     "name": "NASA",
@@ -146,7 +166,8 @@
     "aliases": [
       "NASA HQ Science Mission Directorate",
       "NASA Science Mission Directorate"
-    ]
+    ],
+    "description": "The U.S. civil space agency for space exploration, science, and aeronautics research."
   },
   {
     "name": "NASA Langley Research Center",
@@ -154,7 +175,8 @@
     "image": "/assets/images/live-site/clearweb/home/NASA.jpg",
     "aliases": [
       "Nasa Langley Research Center"
-    ]
+    ],
+    "description": "NASA research in aeronautics, atmospheric science, and next-generation flight technology."
   },
   {
     "name": "ProCure Treatment Centers",
@@ -162,13 +184,15 @@
     "image": "/assets/images/live-site/clearweb/home/Procure.png",
     "aliases": [
       "ProCure Treatment Centers, Inc"
-    ]
+    ],
+    "description": "Proton therapy centers focused on precise cancer treatment."
   },
   {
     "name": "Psionic Technologies",
     "website": "https://www.psionicnav.com/",
     "image": "/assets/images/live-site/clearweb/home/Psionic.jpg",
-    "aliases": []
+    "aliases": [],
+    "description": "Navigation technology for land, air, and space vehicles, including GPS-denied environments."
   },
   {
     "name": "Sandia National Laboratories",
@@ -176,7 +200,8 @@
     "image": "/assets/images/live-site/clearweb/home/Sandia.jpg",
     "aliases": [
       "Sandia National Lab"
-    ]
+    ],
+    "description": "Science and engineering for national security, energy, and complex technical systems."
   },
   {
     "name": "Savannah River National Laboratory",
@@ -184,7 +209,8 @@
     "image": "/assets/images/live-site/clearweb/home/SRNL.png",
     "aliases": [
       "Savannah River National Lab"
-    ]
+    ],
+    "description": "Applied science for clean energy, environmental stewardship, and nuclear security."
   },
   {
     "name": "Self-Employed",
@@ -192,7 +218,8 @@
     "image": "",
     "aliases": [
       "Independent Consultant"
-    ]
+    ],
+    "description": "Independent technical consulting and project work across STEM-focused careers."
   },
   {
     "name": "U.S. Army Research Laboratory",
@@ -202,7 +229,8 @@
       "US Army Research Laboratory",
       "Army Research Laboratory",
       "DEVCOM Army Research Laboratory"
-    ]
+    ],
+    "description": "The Army's fundamental research laboratory connecting military needs with science and engineering."
   },
   {
     "name": "U.S. Naval Research Laboratory",
@@ -212,7 +240,8 @@
       "US Naval Research Laboratory",
       "US Naval Research Lab",
       "Naval Research Laboratory"
-    ]
+    ],
+    "description": "The U.S. Navy's corporate laboratory for science, technology, and advanced defense research."
   },
   {
     "name": "Varda Space Industries",
@@ -220,7 +249,8 @@
     "image": "/assets/images/company-logos/varda-space-industries.svg",
     "aliases": [
       "Varda"
-    ]
+    ],
+    "description": "Space manufacturing and reentry systems designed to bring space-made products back to Earth."
   },
   {
     "name": "Whisker Labs",
@@ -229,6 +259,7 @@
     "aliases": [
       "TingFire, Whisker Labs",
       "Ting"
-    ]
+    ],
+    "description": "Home fire prevention technology, including sensor-based monitoring through Ting."
   }
 ]
