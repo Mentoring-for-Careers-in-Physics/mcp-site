@@ -6,11 +6,11 @@
     "assets": [
       {
         "label": "MCP program",
-        "image": "/assets/images/live-site/clearweb/events/dec_9_2022_mcp_programv2.png"
+        "image": "assets/images/live-site/clearweb/events/dec_9_2022_mcp_programv2.png"
       },
       {
         "label": "MCP seating arrangement",
-        "image": "/assets/images/live-site/clearweb/events/dec_9_2022_mcp_seating_arrangement_v2.png"
+        "image": "assets/images/live-site/clearweb/events/dec_9_2022_mcp_seating_arrangement_v2.png"
       }
     ]
   }

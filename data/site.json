@@ -17,14 +17,14 @@
       "subtitle": "William & Mary University Advancement",
       "description": "An early champion of MCP that invests in women through philanthropy, leadership, and community-building across William & Mary.",
       "website": "https://advancement.wm.edu/volunteer-leadership/society-of-1918/",
-      "image": "/assets/images/live-site/clearweb/assets/So1918_banner.png"
+      "image": "assets/images/live-site/clearweb/assets/So1918_banner.png"
     },
     {
       "name": "Department of Physics",
       "subtitle": "William & Mary",
       "description": "MCP was built in the William & Mary physics community, where students find faculty support, research context, and a strong home base.",
       "website": "https://www.wm.edu/as/physics/",
-      "image": "/assets/images/supporters/wm-vertical-single-line.svg",
+      "image": "assets/images/supporters/wm-vertical-single-line.svg",
       "mediaBackground": "#115740"
     },
     {
@@ -32,7 +32,7 @@
       "subtitle": "William & Mary",
       "description": "CDSP expands interdisciplinary STEM opportunity at W&M and strengthens the broader network around MCP students, mentors, and alumni.",
       "website": "https://www.wm.edu/cdsp/",
-      "image": "/assets/images/supporters/cdsp-stacked-green-gold.png"
+      "image": "assets/images/supporters/cdsp-stacked-green-gold.png"
     }
   ],
   "socialLinks": [
@@ -162,11 +162,11 @@
       "assets": [
         {
           "label": "MCP program",
-          "image": "/assets/images/live-site/clearweb/events/dec_9_2022_mcp_programv2.png"
+          "image": "assets/images/live-site/clearweb/events/dec_9_2022_mcp_programv2.png"
         },
         {
           "label": "MCP seating arrangement",
-          "image": "/assets/images/live-site/clearweb/events/dec_9_2022_mcp_seating_arrangement_v2.png"
+          "image": "assets/images/live-site/clearweb/events/dec_9_2022_mcp_seating_arrangement_v2.png"
         }
       ]
     }
@@ -174,23 +174,23 @@
   "downloadedIcons": [
     {
       "sourceUrl": "https://mcp.physics.wm.edu/manifest.json",
-      "localPath": "/assets/icons/live-site/manifest.json"
+      "localPath": "assets/icons/live-site/manifest.json"
     },
     {
       "sourceUrl": "https://mcp.physics.wm.edu/favicon.ico",
-      "localPath": "/assets/icons/live-site/favicon.ico"
+      "localPath": "assets/icons/live-site/favicon.ico"
     },
     {
       "sourceUrl": "https://mcp.physics.wm.edu/cypher_white-min.svg",
-      "localPath": "/assets/icons/live-site/cypher_white-min.svg"
+      "localPath": "assets/icons/live-site/cypher_white-min.svg"
     },
     {
       "sourceUrl": "https://mcp.physics.wm.edu/android-chrome-192x192.png",
-      "localPath": "/assets/icons/live-site/android-chrome-192x192.png"
+      "localPath": "assets/icons/live-site/android-chrome-192x192.png"
     },
     {
       "sourceUrl": "https://mcp.physics.wm.edu/android-chrome-512x512.png",
-      "localPath": "/assets/icons/live-site/android-chrome-512x512.png"
+      "localPath": "assets/icons/live-site/android-chrome-512x512.png"
     }
   ]
 }

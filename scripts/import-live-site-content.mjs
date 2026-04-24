@@ -73,13 +73,13 @@ function toWebAssetPath(sourcePath) {
   const eventAssetPrefix = "client/src/clearweb/pages/event_components/";
 
   if (relative.startsWith(clearwebAssetPrefix)) {
-    return `/assets/images/live-site/clearweb/assets/${relative.slice(clearwebAssetPrefix.length)}`;
+    return `assets/images/live-site/clearweb/assets/${relative.slice(clearwebAssetPrefix.length)}`;
   }
   if (relative.startsWith(homeAssetPrefix)) {
-    return `/assets/images/live-site/clearweb/home/${relative.slice(homeAssetPrefix.length)}`;
+    return `assets/images/live-site/clearweb/home/${relative.slice(homeAssetPrefix.length)}`;
   }
   if (relative.startsWith(eventAssetPrefix)) {
-    return `/assets/images/live-site/clearweb/events/${path.basename(relative)}`;
+    return `assets/images/live-site/clearweb/events/${path.basename(relative)}`;
   }
   return null;
 }
@@ -300,7 +300,7 @@ async function downloadSiteIcons() {
       await downloadFile(spec.url, destination);
       downloaded.push({
         sourceUrl: spec.url,
-        localPath: `/assets/icons/live-site/${spec.fileName}`,
+        localPath: `assets/icons/live-site/${spec.fileName}`,
       });
     } catch (error) {
       downloaded.push({
@@ -352,7 +352,7 @@ async function downloadNewsImage(article) {
     await fs.writeFile(finalPath, Buffer.from(arrayBuffer));
 
     return {
-      localImage: `/assets/images/live-site/news/${finalFileName}`,
+      localImage: `assets/images/live-site/news/${finalFileName}`,
       imageDownloadStatus: "downloaded",
     };
   } catch (error) {

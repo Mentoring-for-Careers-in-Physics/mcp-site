@@ -2,42 +2,42 @@
   {
     "name": "Arcfield",
     "website": "https://www.arcfield.com/",
-    "image": "/assets/images/live-site/clearweb/home/Arcfield.png",
+    "image": "assets/images/live-site/clearweb/home/Arcfield.png",
     "aliases": [],
     "description": "Advanced engineering and mission support across defense, intelligence, and space."
   },
   {
     "name": "Athena Theatrical",
     "website": "https://www.athenatheatrical.com/",
-    "image": "/assets/images/live-site/clearweb/home/Athena_Theatrical.png",
+    "image": "assets/images/live-site/clearweb/home/Athena_Theatrical.png",
     "aliases": [],
     "description": "Project management and design services for productions in the performing arts."
   },
   {
     "name": "BAE Systems",
     "website": "https://www.baesystems.com/en/home",
-    "image": "/assets/images/live-site/clearweb/home/BAE.png",
+    "image": "assets/images/live-site/clearweb/home/BAE.png",
     "aliases": [],
     "description": "Defense, aerospace, and security technology for military and government missions."
   },
   {
     "name": "Calspan",
     "website": "https://calspan.com/",
-    "image": "/assets/images/live-site/clearweb/home/Calspan.png",
+    "image": "assets/images/live-site/clearweb/home/Calspan.png",
     "aliases": [],
     "description": "Testing and technology development for aerospace, defense, and automotive systems."
   },
   {
     "name": "Capital One",
     "website": "https://www.capitalone.com/",
-    "image": "/assets/images/company-logos/capital-one.svg",
+    "image": "assets/images/company-logos/capital-one.svg",
     "aliases": [],
     "description": "Banking, credit, and technology products with major teams in software, data, and analytics."
   },
   {
     "name": "Case Western University",
     "website": "https://case.edu/",
-    "image": "/assets/images/live-site/clearweb/home/Case_western.png",
+    "image": "assets/images/live-site/clearweb/home/Case_western.png",
     "aliases": [
       "Case Western Reserve University"
     ],
@@ -46,7 +46,7 @@
   {
     "name": "Christopher Newport University",
     "website": "https://cnu.edu/",
-    "image": "/assets/images/company-logos/christopher-newport-university.png",
+    "image": "assets/images/company-logos/christopher-newport-university.png",
     "aliases": [
       "CNU"
     ],
@@ -55,7 +55,7 @@
   {
     "name": "Department of Defense",
     "website": "https://www.defense.gov/",
-    "image": "/assets/images/live-site/clearweb/home/DOD.jpg",
+    "image": "assets/images/live-site/clearweb/home/DOD.jpg",
     "aliases": [
       "DoD"
     ],
@@ -64,14 +64,14 @@
   {
     "name": "Fannie Mae",
     "website": "https://www.fanniemae.com/",
-    "image": "/assets/images/live-site/clearweb/home/FannieMae.png",
+    "image": "assets/images/live-site/clearweb/home/FannieMae.png",
     "aliases": [],
     "description": "A housing finance company that helps support mortgage access in the United States."
   },
   {
     "name": "Honeywell",
     "website": "https://www.honeywell.com/",
-    "image": "/assets/images/live-site/clearweb/home/Honeywell.png",
+    "image": "assets/images/live-site/clearweb/home/Honeywell.png",
     "aliases": [],
     "description": "Engineering and technology products spanning aerospace, automation, energy, and advanced manufacturing."
   },
@@ -87,7 +87,7 @@
   {
     "name": "Institute for Defense Analyses",
     "website": "https://www.ida.org/",
-    "image": "/assets/images/live-site/clearweb/home/Defense_analysis.png",
+    "image": "assets/images/live-site/clearweb/home/Defense_analysis.png",
     "aliases": [
       "Institute for Defense Analysis"
     ],
@@ -96,7 +96,7 @@
   {
     "name": "ivWatch LLC",
     "website": "https://www.ivwatch.com/",
-    "image": "/assets/images/live-site/clearweb/home/ivwatch.png",
+    "image": "assets/images/live-site/clearweb/home/ivwatch.png",
     "aliases": [
       "ivWatch"
     ],
@@ -105,14 +105,14 @@
   {
     "name": "Jefferson Lab",
     "website": "https://www.jlab.org/",
-    "image": "/assets/images/live-site/clearweb/home/Jefferson_Lab.png",
+    "image": "assets/images/live-site/clearweb/home/Jefferson_Lab.png",
     "aliases": [],
     "description": "A national laboratory for nuclear physics, accelerator science, and materials research."
   },
   {
     "name": "KLA Corporation",
     "website": "https://www.kla.com/",
-    "image": "/assets/images/company-logos/kla-corporation.png",
+    "image": "assets/images/company-logos/kla-corporation.png",
     "aliases": [
       "KLA"
     ],
@@ -128,7 +128,7 @@
   {
     "name": "Luna Innovations",
     "website": "https://lunainc.com/",
-    "image": "/assets/images/company-logos/luna-innovations.png",
+    "image": "assets/images/company-logos/luna-innovations.png",
     "aliases": [
       "Luna Innovations Incorporated",
       "Luna Labs"
@@ -138,21 +138,21 @@
   {
     "name": "Micron Technology",
     "website": "https://www.micron.com/",
-    "image": "/assets/images/live-site/clearweb/home/Micron.png",
+    "image": "assets/images/live-site/clearweb/home/Micron.png",
     "aliases": [],
     "description": "Semiconductor memory and storage solutions used across computing and electronics."
   },
   {
     "name": "Microsoft",
     "website": "https://www.microsoft.com/en-us/",
-    "image": "/assets/images/live-site/clearweb/home/Microsoft.png",
+    "image": "assets/images/live-site/clearweb/home/Microsoft.png",
     "aliases": [],
     "description": "Software, cloud, AI, and computing platforms for consumers, developers, and enterprises."
   },
   {
     "name": "MITRE",
     "website": "https://www.mitre.org/",
-    "image": "/assets/images/live-site/clearweb/home/Mitre.jpg",
+    "image": "assets/images/live-site/clearweb/home/Mitre.jpg",
     "aliases": [
       "The MITRE Corp",
       "The MITRE Corporation"
@@ -162,7 +162,7 @@
   {
     "name": "NASA",
     "website": "https://www.nasa.gov/",
-    "image": "/assets/images/live-site/clearweb/home/NASA.png",
+    "image": "assets/images/live-site/clearweb/home/NASA.png",
     "aliases": [
       "NASA HQ Science Mission Directorate",
       "NASA Science Mission Directorate"
@@ -172,7 +172,7 @@
   {
     "name": "NASA Langley Research Center",
     "website": "https://www.nasa.gov/langley/",
-    "image": "/assets/images/live-site/clearweb/home/NASA.jpg",
+    "image": "assets/images/live-site/clearweb/home/NASA.jpg",
     "aliases": [
       "Nasa Langley Research Center"
     ],
@@ -181,7 +181,7 @@
   {
     "name": "ProCure Treatment Centers",
     "website": "https://www.procure.com/",
-    "image": "/assets/images/live-site/clearweb/home/Procure.png",
+    "image": "assets/images/live-site/clearweb/home/Procure.png",
     "aliases": [
       "ProCure Treatment Centers, Inc"
     ],
@@ -190,14 +190,14 @@
   {
     "name": "Psionic Technologies",
     "website": "https://www.psionicnav.com/",
-    "image": "/assets/images/live-site/clearweb/home/Psionic.jpg",
+    "image": "assets/images/live-site/clearweb/home/Psionic.jpg",
     "aliases": [],
     "description": "Navigation technology for land, air, and space vehicles, including GPS-denied environments."
   },
   {
     "name": "Sandia National Laboratories",
     "website": "https://www.sandia.gov/",
-    "image": "/assets/images/live-site/clearweb/home/Sandia.jpg",
+    "image": "assets/images/live-site/clearweb/home/Sandia.jpg",
     "aliases": [
       "Sandia National Lab"
     ],
@@ -206,7 +206,7 @@
   {
     "name": "Savannah River National Laboratory",
     "website": "https://www.srnl.gov/",
-    "image": "/assets/images/live-site/clearweb/home/SRNL.png",
+    "image": "assets/images/live-site/clearweb/home/SRNL.png",
     "aliases": [
       "Savannah River National Lab"
     ],
@@ -224,7 +224,7 @@
   {
     "name": "U.S. Army Research Laboratory",
     "website": "https://www.army.mil/arl",
-    "image": "/assets/images/live-site/clearweb/home/Devcom.png",
+    "image": "assets/images/live-site/clearweb/home/Devcom.png",
     "aliases": [
       "US Army Research Laboratory",
       "Army Research Laboratory",
@@ -235,7 +235,7 @@
   {
     "name": "U.S. Naval Research Laboratory",
     "website": "https://www.nrl.navy.mil/",
-    "image": "/assets/images/live-site/clearweb/home/Naval_Research_Lab.png",
+    "image": "assets/images/live-site/clearweb/home/Naval_Research_Lab.png",
     "aliases": [
       "US Naval Research Laboratory",
       "US Naval Research Lab",
@@ -246,7 +246,7 @@
   {
     "name": "Varda Space Industries",
     "website": "https://www.varda.com/",
-    "image": "/assets/images/company-logos/varda-space-industries.svg",
+    "image": "assets/images/company-logos/varda-space-industries.svg",
     "aliases": [
       "Varda"
     ],
@@ -255,7 +255,7 @@
   {
     "name": "Whisker Labs",
     "website": "https://www.whiskerlabs.com/",
-    "image": "/assets/images/live-site/clearweb/home/Ting.png",
+    "image": "assets/images/live-site/clearweb/home/Ting.png",
     "aliases": [
       "TingFire, Whisker Labs",
       "Ting"

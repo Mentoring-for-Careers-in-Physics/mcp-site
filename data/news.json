@@ -28,7 +28,7 @@
       }
     ],
     "imageAlt": "Students pose for a picture at the Mentoring for Careers in Physics banquet (Photo courtesy of Steven Tobar)",
-    "localImage": "/assets/images/live-site/news/69c5e75df0aa1403f2ef581b-cdsp-mcp-group-photo.jpg",
+    "localImage": "assets/images/live-site/news/69c5e75df0aa1403f2ef581b-cdsp-mcp-group-photo.jpg",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -40,7 +40,7 @@
     "isClearweb": true,
     "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/69c1fe0980bb0df06c0c6c96",
     "links": [],
-    "localImage": "/assets/images/live-site/news/69c1fe0980bb0df06c0c6c96-mcp-annual-kickoff.png",
+    "localImage": "assets/images/live-site/news/69c1fe0980bb0df06c0c6c96-mcp-annual-kickoff.png",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -55,7 +55,7 @@
       "https://i.vimeocdn.com/video/2077807422-c5dc3ae0a78167625a7058ad3ffcda8e9aeb7830bfdd8476510cd108d808b043-d?mw=1920&mh=1090&q=70",
       "https://donate.wm.edu/mentoring-for-careers-in-physics-green-space-renovation"
     ],
-    "localImage": "/assets/images/live-site/news/691395bd217bfde734182f80-new-tribe-funding-initiative.jpg",
+    "localImage": "assets/images/live-site/news/691395bd217bfde734182f80-new-tribe-funding-initiative.jpg",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -71,7 +71,7 @@
       "https://info.aps.org/l/640833/2022-10-03/27cxyf/640833/1664823622NsCNcwAh/APSLogo_Tag_RGB.png",
       "https://apsphysics.fillout.com/t/qGVLyebwkHus"
     ],
-    "localImage": "/assets/images/live-site/news/687fa8350b331c3973be8289-aps-conference-for-graduate-women-gender-minorities-in-physics.png",
+    "localImage": "assets/images/live-site/news/687fa8350b331c3973be8289-aps-conference-for-graduate-women-gender-minorities-in-physics.png",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -118,7 +118,7 @@
         "url": "https://forms.gle/yvwspUKQEAZ5KqtZ7"
       }
     ],
-    "localImage": "/assets/images/live-site/news/680c1e3a2162b543d6d3469d-nasa-langley-yorktown-trip.png",
+    "localImage": "assets/images/live-site/news/680c1e3a2162b543d6d3469d-nasa-langley-yorktown-trip.png",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -134,7 +134,7 @@
       "https://i.imgur.com/hwabqSo.png",
       "https://i.imgur.com/7LbT1Mw.png"
     ],
-    "localImage": "/assets/images/live-site/news/670abcd4c97b090012ff92d9-october-updates.png",
+    "localImage": "assets/images/live-site/news/670abcd4c97b090012ff92d9-october-updates.png",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -155,7 +155,7 @@
       "https://i.imgur.com/9uoGDqr.jpeg",
       "https://i.imgur.com/CPFQFMu.jpeg"
     ],
-    "localImage": "/assets/images/live-site/news/66fef17178d9860012185642-mocktail-welcome-party.jpeg",
+    "localImage": "assets/images/live-site/news/66fef17178d9860012185642-mocktail-welcome-party.jpeg",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -181,7 +181,7 @@
     "links": [
       "https://news.wm.edu/2024/02/21/navigating-a-future-studying-stars-wm-student-co-authors-prestigious-astrophysics-study/?utm_source=wmdigest&utm_medium=email&utm_campaign=news/"
     ],
-    "localImage": "/assets/images/live-site/news/65de087edc27a90012db553d-w-m-student-co-authors-prestigious-astrophysics-study.jpg",
+    "localImage": "assets/images/live-site/news/65de087edc27a90012db553d-w-m-student-co-authors-prestigious-astrophysics-study.jpg",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -193,7 +193,7 @@
     "isClearweb": true,
     "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/6568f8cb8b32b7004935aa4e",
     "links": [],
-    "localImage": "/assets/images/live-site/news/6568f8cb8b32b7004935aa4e-mcp-launch-event.png",
+    "localImage": "assets/images/live-site/news/6568f8cb8b32b7004935aa4e-mcp-launch-event.png",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -205,7 +205,7 @@
     "isClearweb": true,
     "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/65638d268b32b7004935aa09",
     "links": [],
-    "localImage": "/assets/images/live-site/news/65638d268b32b7004935aa09-applications-opportunities-workshop.png",
+    "localImage": "assets/images/live-site/news/65638d268b32b7004935aa09-applications-opportunities-workshop.png",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -217,7 +217,7 @@
     "isClearweb": true,
     "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/6503c119e87fa833128e4ea7",
     "links": [],
-    "localImage": "/assets/images/live-site/news/6503c119e87fa833128e4ea7-w-m-mcp-program-flyer.png",
+    "localImage": "assets/images/live-site/news/6503c119e87fa833128e4ea7-w-m-mcp-program-flyer.png",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -231,7 +231,7 @@
     "links": [
       "https://news.wm.edu/2022/10/06/mentoring-for-careers-in-physics-matches-undergraduate-women-with-established-professionals/"
     ],
-    "localImage": "/assets/images/live-site/news/638b93baa0c518c75d02f19f-w-m-news-article.jpg",
+    "localImage": "assets/images/live-site/news/638b93baa0c518c75d02f19f-w-m-news-article.jpg",
     "imageDownloadStatus": "downloaded"
   },
   {
@@ -243,7 +243,7 @@
     "isClearweb": true,
     "sourceApi": "https://mcp.physics.wm.edu/api/v1/news/article/62bf1761c146ff8705094f4a",
     "links": [],
-    "localImage": "/assets/images/live-site/news/62bf1761c146ff8705094f4a-mcp-fall-kickoff-video.jpg",
+    "localImage": "assets/images/live-site/news/62bf1761c146ff8705094f4a-mcp-fall-kickoff-video.jpg",
     "imageDownloadStatus": "downloaded"
   }
 ]
