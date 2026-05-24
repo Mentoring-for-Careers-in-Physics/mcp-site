@@ -898,6 +898,67 @@ function renderFeaturedNews(article, options = {}) {
   `;
 }
 
+function renderVideoFrame(video = {}) {
+  const title = escapeHtml(video.title || "MCP video");
+  const embedUrl = escapeHtml(video.embedUrl || "");
+
+  if (!embedUrl) {
+    const thumbnail = video.thumbnail ? assetPath(video.thumbnail) : "";
+    return thumbnail
+      ? `<img src="${thumbnail}" alt="${title}" loading="lazy" />`
+      : `<div class="empty-state">Video preview coming soon.</div>`;
+  }
+
+  return `
+    <iframe
+      src="${embedUrl}"
+      title="${title}"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  `;
+}
+
+function renderHomeVideoFeature(video) {
+  if (!video) {
+    return `<div class="empty-state">MCP videos will appear here soon.</div>`;
+  }
+
+  const title = escapeHtml(video.title || "MCP video");
+  const description = escapeHtml(video.description || "Watch the latest MCP video.");
+  const dateLabel = escapeHtml(video.displayDate || formatDate(video.date));
+  const provider = escapeHtml(video.provider || "Video");
+  const category = video.category ? `<span class="chip chip--soft">${escapeHtml(video.category)}</span>` : "";
+  const watchUrl = video.watchUrl || "";
+
+  return `
+    <div class="video-feature" data-reveal>
+      <div class="video-copy">
+        <span class="kicker">Latest Video</span>
+        <h2>${title}</h2>
+        <p>${description}</p>
+        <div class="chip-row">
+          <span class="chip">${dateLabel}</span>
+          ${category}
+        </div>
+        <div class="section-actions">
+          ${
+            watchUrl
+              ? `<a class="btn btn-primary btn-sm" href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener">Watch on ${provider}</a>`
+              : ""
+          }
+          <a class="text-link" href="${rootPath("pages/videos.html")}">See all videos →</a>
+        </div>
+      </div>
+      <div class="video-frame" aria-label="${title}">
+        ${renderVideoFrame(video)}
+      </div>
+    </div>
+  `;
+}
+
 function renderEventCard(event) {
   const assets = (event.assets || [])
     .map((asset) => {
@@ -1113,7 +1174,7 @@ function renderModalArticle(article) {
   `;
 }
 
-function initHomePage({ site, mentors, team, news, companies }) {
+function initHomePage({ site, mentors, team, news, companies, videos }) {
   const visibleMentors = shuffleList(
     mentors.filter(
       (mentor) => mentor.bio && !getProfileImage(mentor).includes("blank-profile"),
@@ -1124,8 +1185,14 @@ function initHomePage({ site, mentors, team, news, companies }) {
     .filter((mentor) => mentor.name !== spotlightMentor?.name)
     .slice(0, 3);
   const featuredArticle = news[0];
+  const featuredVideo = videos[0];
 
   renderSpotlightMentor(spotlightMentor);
+
+  const featuredVideoContainer = document.querySelector("[data-home-featured-video]");
+  if (featuredVideoContainer) {
+    featuredVideoContainer.innerHTML = renderHomeVideoFeature(featuredVideo);
+  }
 
   const currentNewsContainer = document.querySelector("[data-home-current-news]");
   if (currentNewsContainer) {
@@ -1473,7 +1540,7 @@ async function init() {
   }
 
   try {
-    const [site, mentors, team, retiredTeam, news, companies, events] = await Promise.all([
+    const [site, mentors, team, retiredTeam, news, companies, events, videos] = await Promise.all([
       loadJson("site.json"),
       loadJson("mentors.json"),
       loadJson("team.json"),
@@ -1481,14 +1548,16 @@ async function init() {
       loadJson("news.json"),
       loadJson("companies.json"),
       loadJson("events.json"),
+      loadJson("videos.json"),
     ]);
     const newsByDate = sortByDateDesc(news);
+    const videosByDate = sortByDateDesc(videos);
     setCompanyDirectory(companies);
 
     populateGlobalContent(site);
 
     if (PAGE === "home") {
-      initHomePage({ site, mentors, team, news: newsByDate, companies });
+      initHomePage({ site, mentors, team, news: newsByDate, companies, videos: videosByDate });
     }
 
     if (PAGE === "mentors") {

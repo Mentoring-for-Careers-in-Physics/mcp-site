@@ -250,6 +250,45 @@ body.modal-open { overflow:hidden; }
 .featured-article__poster-card img { width:100%; height:auto; display:block; object-fit:contain; object-position:center; }
 .featured-article--poster .featured-article__body { flex:1 1 320px; padding:0; }
 
+/* FEATURED VIDEO */
+.section--video { background:white; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding-top:4rem; padding-bottom:4rem; }
+.video-feature {
+  display:grid;
+  grid-template-columns:minmax(260px,0.72fr) minmax(360px,1.28fr);
+  gap:2rem;
+  align-items:center;
+}
+.video-copy {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.video-copy h2 { max-width:14ch; margin-bottom:0.85rem; }
+.video-copy p {
+  font-size:0.95rem;
+  color:var(--muted);
+  line-height:1.75;
+  max-width:46ch;
+  margin-bottom:1.35rem;
+}
+.video-frame {
+  position:relative;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  border-radius:var(--r-xl);
+  border:1px solid var(--border);
+  background:var(--ink);
+  box-shadow:0 18px 48px rgba(74,53,64,0.12);
+}
+.video-frame iframe {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+
 /* ARTICLE BODY (modal) */
 .article-body { font-size:0.95rem; color:var(--ink); line-height:1.75; padding:1.75rem; }
 .article-body h1 { font-family:var(--f-display); font-size:2rem; margin-bottom:0.75rem; line-height:1.05; }
@@ -642,9 +681,11 @@ p { text-wrap: pretty; }
 
 /* ── Responsive overrides ──────────────────────────── */
 /* RESPONSIVE */
-@media (max-width:1024px) {
+@media (max-width:1120px) {
   .nav-links { display:none; }
   .nav-hamburger { display:flex; align-items:center; justify-content:center; }
+}
+@media (max-width:1024px) {
   .hero-grid { grid-template-columns:1fr; }
   .hero-copy { padding-left:0; }
   .pillar-grid { grid-template-columns:repeat(2,1fr); }
@@ -654,6 +695,7 @@ p { text-wrap: pretty; }
   .news-grid { grid-template-columns:repeat(2,1fr); }
   .supporter-grid { grid-template-columns:repeat(2,1fr); }
   .support-story-card { grid-template-columns:1fr; }
+  .video-feature { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr 1fr; }
   .cta-panel { grid-template-columns:1fr; }
   .info-grid { grid-template-columns:1fr; }

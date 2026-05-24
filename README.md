@@ -2,6 +2,8 @@
 
 Public website for `Mentoring for Careers in Physics` at William & Mary.
 
+Live site: `https://mentoring-for-careers-in-physics.github.io/mcp-site/`
+
 This repo hosts the current static MCP site from the repository root. It is designed to run on a simple static host such as GitHub Pages without a build step.
 
 This directory is meant to contain the production static site only. Design scratch files and alternate mock pages are intentionally kept out of the tracked site.
@@ -20,6 +22,8 @@ This directory is meant to contain the production static site only. Design scrat
   Leadership and advisor page
 - `pages/news.html`
   News and announcements
+- `pages/videos.html`
+  Video archive
 - `pages/contact.html`
   Contact and engagement page
 - `404.html`
@@ -32,7 +36,7 @@ Only these production pages should live in `mcp-site/`. Extra mockups or `*-desi
 The site is currently a hybrid static setup:
 
 - `index.html` uses plain HTML plus `js/main.js`
-- `js/main.js` loads JSON from `data/` and fills the homepage, footer links, news cards, company grids, and other shared content blocks
+- `js/main.js` loads JSON from `data/` and fills the homepage, latest video, footer links, news cards, company grids, and other shared content blocks
 - `css/styles.css` styles the homepage and shared home components
 - `pages/*.html` are redesigned inner pages that render self-contained React components in the browser
 - `css/mcp-shared.css` provides the shared design system used by those inner pages
@@ -40,7 +44,7 @@ The site is currently a hybrid static setup:
 Important note:
 
 - The homepage is data-driven from `data/`
-- The homepage currently surfaces `Current News`, then the `Friends helping MCP grow` section, then `How MCP Works`
+- The homepage currently surfaces the latest video from `data/videos.json`, `Current News`, then the `Friends helping MCP grow` section, then `How MCP Works`
 - The friends/supporters area includes a featured support story card plus supporter cards sourced from `data/site.json`
 - Social media links now render with platform icons across the homepage footer and redesigned inner pages
 - The redesigned inner pages currently keep their content directly inside each page file
@@ -64,6 +68,7 @@ mcp-site/
     industry.html
     team.html
     news.html
+    videos.html
     contact.html
   data/
     site.json
@@ -72,6 +77,7 @@ mcp-site/
     retired-team.json
     companies.json
     news.json
+    videos.json
     events.json
     routes.json
     link-inventory.json
@@ -101,6 +107,8 @@ Files in `data/` still matter, especially for the homepage and imported asset in
   Imported organization dataset and logo metadata
 - `data/news.json`
   Imported news archive
+- `data/videos.json`
+  Video archive used by the homepage latest-video feature and `pages/videos.html`
 - `data/events.json`
   Event materials and public archive content
 
@@ -111,6 +119,7 @@ For the current redesigned subpages, content edits usually happen directly in:
 - `pages/industry.html`
 - `pages/team.html`
 - `pages/news.html`
+- `pages/videos.html`
 - `pages/contact.html`
 
 ## Local preview
@@ -136,9 +145,10 @@ Recommended smoke test before pushing:
    `/pages/industry.html`
    `/pages/team.html`
    `/pages/news.html`
+   `/pages/videos.html`
    `/pages/contact.html`
 3. Confirm the mentor modal opens and closes on `pages/mentors.html`.
-4. Confirm the front-page `Current News` and `Friends helping MCP grow` sections render in the intended order and load their cards.
+4. Confirm the front-page latest video, `Current News`, and `Friends helping MCP grow` sections render in the intended order and load their cards.
 5. Confirm the contact form reaches its confirmation state on `pages/contact.html`.
 6. Check a phone-sized viewport to make sure there is no horizontal scrolling.
 
@@ -198,6 +208,8 @@ The current public actions point to:
 ## Recent content updates
 
 - The homepage news feature now highlights the newest news item from `data/news.json`
+- The homepage video feature now highlights the newest video from `data/videos.json`
+- The site includes a dedicated `Videos` page for the full MCP video archive
 - The front page includes a `Friends` anchor section and nav link for supporter content
 - The CDSP article about MCP links out to the original story and uses the MCP student group photo in the friends section
 - The NASA Langley + Yorktown article and flyer assets are included in the news data pack
