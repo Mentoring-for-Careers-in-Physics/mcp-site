@@ -1,0 +1,41 @@
+{
+  "name": "mcp-site",
+  "version": "1.0.0",
+  "description": "Public website for `Mentoring for Careers in Physics` at William & Mary.",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run sync:data && astro dev",
+    "build": "npm run sync:data && astro build",
+    "preview": "astro preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint astro.config.mjs eslint.config.mjs scripts/**/*.mjs src/**/*.js",
+    "check": "npm run validate:data && npm run lint && astro check && npm run build && npm run check:links",
+    "sync:data": "node scripts/sync-public-data.mjs",
+    "validate:data": "node scripts/validate-data.mjs",
+    "check:links": "node scripts/check-links.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mentoring-for-Careers-in-Physics/mcp-site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mentoring-for-Careers-in-Physics/mcp-site/issues"
+  },
+  "homepage": "https://mcp.physics.wm.edu",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.3.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@eslint/js": "^9.39.4",
+    "eslint": "^9.39.4",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^6.0.3"
+  }
+}

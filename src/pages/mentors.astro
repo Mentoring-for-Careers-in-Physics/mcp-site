@@ -1,0 +1,92 @@
+---
+import MentorCard from "../components/MentorCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import companies from "../data/companies.json";
+import mentors from "../data/mentors.json";
+import site from "../data/site.json";
+import { buildMentors } from "../utils/content.js";
+
+const directory = buildMentors(mentors, companies);
+const filters = [
+  "All",
+  "Industry",
+  "Government",
+  "National Lab",
+  "Academia",
+  "Independent",
+].filter(
+  (filter) =>
+    filter === "All" ||
+    directory.some((mentor) => mentor.sectors.includes(filter)),
+);
+const linkedInCount = directory.filter((mentor) => mentor.linkedin).length;
+const organizationCount = new Set(
+  directory.flatMap((mentor) => mentor.organizations),
+).size;
+---
+
+<BaseLayout
+  title="Mentors"
+  description="Browse the MCP mentor directory for Mentoring for Careers in Physics at William & Mary."
+  active="mentors"
+  site={site}
+>
+  <section class="page-hero">
+    <div class="shell">
+      <div class="page-hero-grid">
+        <div>
+          <span class="kicker">Mentor Directory</span>
+          <h1>Meet every mentor.</h1>
+          <p>
+            This page pulls from the full MCP mentor dataset, including
+            organization matches and every currently tracked mentor profile.
+          </p>
+        </div>
+        <div class="hero-stat-card" aria-label="Mentor directory statistics">
+          <span class="kicker">Directory</span>
+          <div class="metric">
+            <strong>{directory.length}</strong><span>Total mentors</span>
+          </div>
+          <div class="metric">
+            <strong>{linkedInCount}</strong><span>LinkedIn profiles</span>
+          </div>
+          <div class="metric">
+            <strong>{organizationCount}</strong><span
+              >Organizations represented</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-filter-group>
+    <div class="shell">
+      <label class="form-label" for="mentor-search">Search mentors</label>
+      <input
+        id="mentor-search"
+        class="search-bar"
+        type="search"
+        placeholder="Search by name, role, organization, or keyword..."
+        data-search
+      />
+      <div class="filter-row" aria-label="Filter mentors by sector">
+        {
+          filters.map((filter) => (
+            <button
+              class="filter-chip"
+              type="button"
+              data-filter={filter}
+              aria-pressed={filter === "All" ? "true" : "false"}
+            >
+              {filter}
+            </button>
+          ))
+        }
+      </div>
+      <div class="profile-grid">
+        {directory.map((mentor) => <MentorCard mentor={mentor} filterable />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "mentoring-for-careers-in-physics-2025-2026",
+    "title": "Mentoring for Careers in Physics 2025-2026",
+    "date": "2026-05-24T04:00:00.000Z",
+    "displayDate": "2025-2026",
+    "provider": "YouTube",
+    "category": "Program Overview",
+    "description": "The newest MCP program video introduces the 2025-2026 year and shares the people, purpose, and community behind Mentoring for Careers in Physics.",
+    "watchUrl": "https://youtu.be/DOgAv470r8A",
+    "embedUrl": "https://www.youtube.com/embed/DOgAv470r8A?rel=0&modestbranding=1",
+    "thumbnail": "https://i.ytimg.com/vi/DOgAv470r8A/hqdefault.jpg"
+  },
+  {
+    "id": "green-space-renovation",
+    "title": "Mentoring for Careers in Physics - Green Space Renovation",
+    "date": "2025-11-03T16:16:16.000Z",
+    "displayDate": "2025",
+    "provider": "Vimeo",
+    "category": "Giving",
+    "description": "A short campaign video introducing MCP's green space renovation initiative and the student-centered support behind the project.",
+    "watchUrl": "https://vimeo.com/1133269106",
+    "embedUrl": "https://player.vimeo.com/video/1133269106?title=0&byline=0&portrait=0",
+    "thumbnail": "https://i.vimeocdn.com/video/2077807422-c5dc3ae0a78167625a7058ad3ffcda8e9aeb7830bfdd8476510cd108d808b043-d_640x360?region=us"
+  },
+  {
+    "id": "mentoring-for-careers-in-physics-2024-2025",
+    "title": "Mentoring for Careers in Physics 2024-2025",
+    "date": "2025-01-01T00:00:00.000Z",
+    "displayDate": "2024-2025",
+    "provider": "YouTube",
+    "category": "Program Overview",
+    "description": "A program overview video for the 2024-2025 MCP year, highlighting the purpose and community behind mentoring at William & Mary.",
+    "watchUrl": "https://youtu.be/pC6lz-GJFQA",
+    "embedUrl": "https://www.youtube.com/embed/pC6lz-GJFQA?rel=0&modestbranding=1",
+    "thumbnail": "https://i.ytimg.com/vi/pC6lz-GJFQA/hqdefault.jpg"
+  },
+  {
+    "id": "mcp-fall-kickoff-video",
+    "title": "MCP Fall Kickoff Video",
+    "date": "2022-06-27T00:00:00.000Z",
+    "displayDate": "June 27, 2022",
+    "provider": "YouTube",
+    "category": "Event Highlights",
+    "description": "Highlights from an MCP kickoff event show students, mentors, and faculty coming together around practical career conversations, community, and futures in physics.",
+    "watchUrl": "https://youtu.be/TqgStDcsD7g",
+    "embedUrl": "https://www.youtube.com/embed/TqgStDcsD7g?rel=0&modestbranding=1",
+    "thumbnail": "assets/images/live-site/news/62bf1761c146ff8705094f4a-mcp-fall-kickoff-video.jpg",
+    "relatedPage": "pages/news.html#62bf1761c146ff8705094f4a"
+  },
+  {
+    "id": "mcp-launch-event",
+    "title": "MCP Launch Event",
+    "date": "2021-12-10T00:00:00.000Z",
+    "displayDate": "Launch Event",
+    "provider": "YouTube",
+    "category": "Launch",
+    "description": "A recording from the MCP launch event, marking the start of the program and its mission to connect students with career-facing mentorship.",
+    "watchUrl": "https://youtu.be/NavhhyamVLM",
+    "embedUrl": "https://www.youtube.com/embed/NavhhyamVLM?rel=0&modestbranding=1",
+    "thumbnail": "https://i.ytimg.com/vi/NavhhyamVLM/hqdefault.jpg"
+  }
+]

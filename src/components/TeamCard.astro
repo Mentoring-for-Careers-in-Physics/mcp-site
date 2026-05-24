@@ -1,0 +1,92 @@
+---
+import { BLANK_PROFILE, monogram } from "../utils/content.js";
+
+const { person, label = "Leadership" } = Astro.props;
+const modalId = person.id;
+const hasImage = Boolean(person.image);
+---
+
+<button
+  class="profile-card"
+  type="button"
+  data-modal-target={modalId}
+  aria-haspopup="dialog"
+>
+  <span class="profile-card__media">
+    {
+      hasImage ? (
+        <img
+          src={person.image || BLANK_PROFILE}
+          alt={`Portrait of ${person.name}`}
+          loading="lazy"
+        />
+      ) : (
+        <span class="profile-monogram" aria-hidden="true">
+          {monogram(person.name)}
+        </span>
+      )
+    }
+  </span>
+  <span class="profile-card__body">
+    <span class="profile-card__meta">{label}</span>
+    <span class="profile-card__title">{person.name}</span>
+    <span class="profile-card__role">{person.role}</span>
+    <span class="profile-card__excerpt"
+      >{person.excerpt || "Profile details coming soon."}</span
+    >
+    <span class="profile-card__hint">Read bio</span>
+  </span>
+</button>
+
+<div
+  class="modal-overlay"
+  id={modalId}
+  data-modal
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${modalId}-title`}
+>
+  <div class="modal-box">
+    <div class="modal-close-row">
+      <button class="modal-close-btn" type="button" data-modal-close
+        >Close</button
+      >
+    </div>
+    <div class="modal-header">
+      {
+        hasImage ? (
+          <img
+            class="modal-img"
+            src={person.image}
+            alt={`Portrait of ${person.name}`}
+          />
+        ) : (
+          <div class="modal-img profile-monogram" aria-hidden="true">
+            {monogram(person.name)}
+          </div>
+        )
+      }
+      <div class="modal-header-info">
+        <span class="kicker">{label}</span>
+        <h2 id={`${modalId}-title`}>{person.name}</h2>
+        <p class="profile-card__role">{person.role}</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-bio">{person.bio || "Profile details coming soon."}</p>
+      {
+        person.linkedin && (
+          <a
+            class="btn btn-primary btn-sm"
+            href={person.linkedin}
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn
+          </a>
+        )
+      }
+    </div>
+  </div>
+</div>

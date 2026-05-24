@@ -9,9 +9,22 @@ const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, "..");
 const BACKUP_ROOT = path.resolve(PROJECT_ROOT, "../MCP-Website-BACKUP");
 const CLEARWEB_ROOT = path.join(BACKUP_ROOT, "client", "src", "clearweb");
-const DATA_DIR = path.join(PROJECT_ROOT, "data");
-const LIVE_IMAGE_ROOT = path.join(PROJECT_ROOT, "assets", "images", "live-site");
-const LIVE_ICON_ROOT = path.join(PROJECT_ROOT, "assets", "icons", "live-site");
+const DATA_DIR = path.join(PROJECT_ROOT, "src", "data");
+const PUBLIC_DATA_DIR = path.join(PROJECT_ROOT, "public", "data");
+const LIVE_IMAGE_ROOT = path.join(
+  PROJECT_ROOT,
+  "public",
+  "assets",
+  "images",
+  "live-site",
+);
+const LIVE_ICON_ROOT = path.join(
+  PROJECT_ROOT,
+  "public",
+  "assets",
+  "icons",
+  "live-site",
+);
 const LIVE_NEWS_IMAGE_ROOT = path.join(LIVE_IMAGE_ROOT, "news");
 const LIVE_BASE_URL = "https://mcp.physics.wm.edu";
 
@@ -23,7 +36,14 @@ const SOURCE_FILES = {
   retired: path.join(CLEARWEB_ROOT, "pages", "RetiredMembers.js"),
   contact: path.join(CLEARWEB_ROOT, "pages", "Contact.js"),
   footer: path.join(CLEARWEB_ROOT, "components", "Footer.js"),
-  interest: path.join(BACKUP_ROOT, "client", "src", "interest", "pages", "Redirect.js"),
+  interest: path.join(
+    BACKUP_ROOT,
+    "client",
+    "src",
+    "interest",
+    "pages",
+    "Redirect.js",
+  ),
   event: path.join(CLEARWEB_ROOT, "pages", "event_components", "dec_9_2022.js"),
 };
 
@@ -166,7 +186,10 @@ function extractSection(sourceText, startMarker, endMarker) {
     ? sourceText.indexOf(endMarker, startIndex)
     : sourceText.length;
 
-  return sourceText.slice(startIndex, endIndex === -1 ? sourceText.length : endIndex);
+  return sourceText.slice(
+    startIndex,
+    endIndex === -1 ? sourceText.length : endIndex,
+  );
 }
 
 function cleanArray(items) {
@@ -218,15 +241,19 @@ async function readSourceFile(filePath) {
   return fs.readFile(filePath, "utf8");
 }
 
-async function writeJson(relativePath, value) {
-  const outputPath = path.join(PROJECT_ROOT, relativePath);
+async function writeJson(fileName, value) {
+  const outputPath = path.join(DATA_DIR, fileName);
   await fs.writeFile(outputPath, formatJson(value));
 }
 
 async function copyRecoveredAssets() {
   const clearwebAssetsSource = path.join(CLEARWEB_ROOT, "assets");
   const homeAssetsSource = path.join(CLEARWEB_ROOT, "pages", "home", "assets");
-  const eventAssetsSource = path.join(CLEARWEB_ROOT, "pages", "event_components");
+  const eventAssetsSource = path.join(
+    CLEARWEB_ROOT,
+    "pages",
+    "event_components",
+  );
 
   const clearwebAssetsDest = path.join(LIVE_IMAGE_ROOT, "clearweb", "assets");
   const homeAssetsDest = path.join(LIVE_IMAGE_ROOT, "clearweb", "home");
@@ -236,7 +263,10 @@ async function copyRecoveredAssets() {
   ensureDir(homeAssetsDest);
   ensureDir(eventAssetsDest);
 
-  cpSync(clearwebAssetsSource, clearwebAssetsDest, { recursive: true, force: true });
+  cpSync(clearwebAssetsSource, clearwebAssetsDest, {
+    recursive: true,
+    force: true,
+  });
   cpSync(homeAssetsSource, homeAssetsDest, { recursive: true, force: true });
 
   const eventEntries = await fs.readdir(eventAssetsSource);
@@ -288,9 +318,18 @@ async function downloadSiteIcons() {
   const iconSpecs = [
     { url: `${LIVE_BASE_URL}/manifest.json`, fileName: "manifest.json" },
     { url: `${LIVE_BASE_URL}/favicon.ico`, fileName: "favicon.ico" },
-    { url: `${LIVE_BASE_URL}/cypher_white-min.svg`, fileName: "cypher_white-min.svg" },
-    { url: `${LIVE_BASE_URL}/android-chrome-192x192.png`, fileName: "android-chrome-192x192.png" },
-    { url: `${LIVE_BASE_URL}/android-chrome-512x512.png`, fileName: "android-chrome-512x512.png" },
+    {
+      url: `${LIVE_BASE_URL}/cypher_white-min.svg`,
+      fileName: "cypher_white-min.svg",
+    },
+    {
+      url: `${LIVE_BASE_URL}/android-chrome-192x192.png`,
+      fileName: "android-chrome-192x192.png",
+    },
+    {
+      url: `${LIVE_BASE_URL}/android-chrome-512x512.png`,
+      fileName: "android-chrome-512x512.png",
+    },
   ];
 
   const downloaded = [];
@@ -377,7 +416,9 @@ async function fetchNewsArticles() {
   const articles = [];
 
   for (const item of titles) {
-    const articleResponse = await fetch(`${LIVE_BASE_URL}/api/v1/news/article/${item.id}`);
+    const articleResponse = await fetch(
+      `${LIVE_BASE_URL}/api/v1/news/article/${item.id}`,
+    );
     if (!articleResponse.ok) {
       articles.push({
         id: item.id,
@@ -437,7 +478,8 @@ async function buildMentorsData(mentorsText) {
     .map((block) => ({
       name: extractStringProp(block, "name") || "",
       website: extractStringProp(block, "linkedin") || null,
-      image: importMap.get(extractExpressionProp(block, "image"))?.webPath || null,
+      image:
+        importMap.get(extractExpressionProp(block, "image"))?.webPath || null,
     }))
     .filter((item) => item.name);
 
@@ -482,7 +524,10 @@ function inferTeamRole(member, fallbackRole) {
     [/assistant events coordinator/i, "Assistant Events Coordinator"],
     [/\bevent coordinator\b/i, "Event Coordinator"],
     [/assistant pr coordinator/i, "Assistant PR Coordinator"],
-    [/social media designer and pr coordinator/i, "PR Coordinator & Social Media Designer"],
+    [
+      /social media designer and pr coordinator/i,
+      "PR Coordinator & Social Media Designer",
+    ],
     [/director of public relations/i, "Director of Public Relations"],
     [/\bpr coordinator\b/i, "PR Coordinator"],
     [/\bweb developer(s)?\b/i, "Web Developer"],
@@ -543,9 +588,12 @@ function buildSiteData({
   const homepageLinks = extractLinksFromText(homepageText);
   const footerLinks = extractLinksFromText(footerText);
   const menteeLinks = extractLinksFromText(menteesText);
-  const contactEmail = contactEmailMatch ? contactEmailMatch[1] : "mcp.superuser@gmail.com";
+  const contactEmail = contactEmailMatch
+    ? contactEmailMatch[1]
+    : "mcp.superuser@gmail.com";
   const menteeInterestFormUrl = "https://forms.gle/zkuoy8HGdec81Y5o8";
-  const directGivingUrl = "https://give.wm.edu/?a=38ff2762-682c-497f-b540-f77eebc77831&d=5519";
+  const directGivingUrl =
+    "https://give.wm.edu/?a=38ff2762-682c-497f-b540-f77eebc77831&d=5519";
   const givingUrl = directGivingUrl;
 
   const socialLinks = cleanArray([
@@ -559,8 +607,12 @@ function buildSiteData({
     title: "Mentoring for Careers in Physics",
     summary:
       "A one-to-one professional mentorship program for undergraduate students in physics and related STEM pathways at William & Mary.",
-    mission: missionMatch ? normalizeWhitespace(missionMatch[1].replace(/<[^>]+>/g, " ")) : "",
-    story: storyMatch ? normalizeWhitespace(storyMatch[1].replace(/<[^>]+>/g, " ")) : "",
+    mission: missionMatch
+      ? normalizeWhitespace(missionMatch[1].replace(/<[^>]+>/g, " "))
+      : "",
+    story: storyMatch
+      ? normalizeWhitespace(storyMatch[1].replace(/<[^>]+>/g, " "))
+      : "",
     supportersText: friendsMatch
       ? normalizeWhitespace(friendsMatch[1].replace(/<[^>]+>/g, " "))
       : "",
@@ -593,8 +645,12 @@ function buildRoutesData(appText) {
     (match) => match[1],
   );
 
-  const publicRoutes = routeMatches.filter((route) => !route.startsWith("/portal"));
-  const portalRoutes = routeMatches.filter((route) => route.startsWith("/portal"));
+  const publicRoutes = routeMatches.filter(
+    (route) => !route.startsWith("/portal"),
+  );
+  const portalRoutes = routeMatches.filter((route) =>
+    route.startsWith("/portal"),
+  );
 
   if (!publicRoutes.includes("/interest")) {
     publicRoutes.push("/interest");
@@ -718,15 +774,18 @@ async function main() {
     sourceTexts,
   });
 
-  await writeJson("data/site.json", site);
-  await writeJson("data/mentors.json", mentors);
-  await writeJson("data/team.json", team);
-  await writeJson("data/retired-team.json", retiredTeam);
-  await writeJson("data/companies.json", companies);
-  await writeJson("data/news.json", news);
-  await writeJson("data/events.json", events);
-  await writeJson("data/routes.json", routes);
-  await writeJson("data/link-inventory.json", linkInventory);
+  await writeJson("site.json", site);
+  await writeJson("mentors.json", mentors);
+  await writeJson("team.json", team);
+  await writeJson("retired-team.json", retiredTeam);
+  await writeJson("companies.json", companies);
+  await writeJson("news.json", news);
+  await writeJson("events.json", events);
+  await writeJson("routes.json", routes);
+  await writeJson("link-inventory.json", linkInventory);
+
+  rmSync(PUBLIC_DATA_DIR, { force: true, recursive: true });
+  cpSync(DATA_DIR, PUBLIC_DATA_DIR, { recursive: true });
 
   console.log(
     `Imported ${mentors.length} mentors, ${team.length} current team members, ` +

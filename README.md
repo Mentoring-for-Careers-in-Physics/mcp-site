@@ -1,221 +1,171 @@
 # MCP Website
 
-Public website for `Mentoring for Careers in Physics` at William & Mary.
+Public website for Mentoring for Careers in Physics at William & Mary.
 
-Live site: `https://mentoring-for-careers-in-physics.github.io/mcp-site/`
+Production domain: `https://mcp.physics.wm.edu`
 
-This repo hosts the current static MCP site from the repository root. It is designed to run on a simple static host such as GitHub Pages without a build step.
+This repository now builds a fully static Astro site. The deployed output is HTML, CSS, JavaScript, JSON, images, and static assets only. There is no backend, database, authentication, server runtime, Docker setup, or container requirement.
 
-This directory is meant to contain the production static site only. Design scratch files and alternate mock pages are intentionally kept out of the tracked site.
+## Legacy Preservation
 
-## Public pages
+The pre-Astro static site is preserved with:
 
-- `index.html`
+- Branch: `legacy_static_site`
+- Tag: `pre_astro_static_site`
+
+Both were created locally before the rewrite at commit `31080c654d3056a4f78f8a9e0ca1479a2a79acba`.
+
+Push the preservation refs when ready:
+
+```bash
+git push origin legacy_static_site
+git push origin pre_astro_static_site
+```
+
+More detail is in `docs/migration.md`.
+
+## Public Pages
+
+- `/`
   Homepage
-- `pages/give.html`
-  Giving and support page
-- `pages/mentors.html`
+- `/mentors/`
   Mentor directory
-- `pages/industry.html`
-  Partner organization / industry page
-- `pages/team.html`
+- `/industry/`
+  Partner organization and industry page
+- `/team/`
   Leadership and advisor page
-- `pages/news.html`
+- `/news/`
   News and announcements
-- `pages/videos.html`
+- `/videos/`
   Video archive
-- `pages/contact.html`
+- `/contact/`
   Contact and engagement page
-- `404.html`
+- `/give/`
+  Giving and support page
+- `/404.html`
   Static not-found page
 
-Only these production pages should live in `mcp-site/`. Extra mockups or `*-design.html` drafts are not part of the shipped site.
-
-## How the site is built
-
-The site is currently a hybrid static setup:
-
-- `index.html` uses plain HTML plus `js/main.js`
-- `js/main.js` loads JSON from `data/` and fills the homepage, latest video, footer links, news cards, company grids, and other shared content blocks
-- `css/styles.css` styles the homepage and shared home components
-- `pages/*.html` are redesigned inner pages that render self-contained React components in the browser
-- `css/mcp-shared.css` provides the shared design system used by those inner pages
-
-Important note:
-
-- The homepage is data-driven from `data/`
-- The homepage currently surfaces the latest video from `data/videos.json`, `Current News`, then the `Friends helping MCP grow` section, then `How MCP Works`
-- The friends/supporters area includes a featured support story card plus supporter cards sourced from `data/site.json`
-- Social media links now render with platform icons across the homepage footer and redesigned inner pages
-- The redesigned inner pages currently keep their content directly inside each page file
-- Running the import script updates the JSON content pack and assets, but it does not automatically rewrite the React page content in `pages/*.html`
-
-## Repo structure
+## Project Structure
 
 ```text
 mcp-site/
-  index.html
-  404.html
-  README.md
-  css/
-    styles.css
-    mcp-shared.css
-  js/
-    main.js
-  pages/
-    give.html
-    mentors.html
-    industry.html
-    team.html
-    news.html
-    videos.html
-    contact.html
-  data/
-    site.json
-    mentors.json
-    team.json
-    retired-team.json
-    companies.json
-    news.json
-    videos.json
-    events.json
-    routes.json
-    link-inventory.json
-  assets/
-    images/
-    icons/
+  astro.config.mjs
+  package.json
+  src/
+    layouts/
+      BaseLayout.astro
+    components/
+      Nav.astro
+      Footer.astro
+      Hero.astro
+      MentorCard.astro
+      NewsCard.astro
+      VideoCard.astro
+      CompanyCard.astro
+    pages/
+      index.astro
+      mentors.astro
+      industry.astro
+      team.astro
+      news.astro
+      videos.astro
+      contact.astro
+      give.astro
+      404.astro
+    data/
+      site.json
+      mentors.json
+      team.json
+      retired-team.json
+      companies.json
+      news.json
+      videos.json
+      events.json
+      routes.json
+      link-inventory.json
+  public/
+    assets/
+    data/
+    CNAME
+    robots.txt
+    .nojekyll
   scripts/
     import-live-site-content.mjs
-  .nojekyll
+    sync-public-data.mjs
+    validate-data.mjs
+    check-links.mjs
+  docs/
+    migration.md
 ```
 
-There are no tracked design-reference pages in this repo layout anymore. The goal is to keep `mcp-site/` limited to the actual static website.
+## Local Development
 
-## Data and content
-
-Files in `data/` still matter, especially for the homepage and imported asset inventory:
-
-- `data/site.json`
-  Global summary text, supporters, public action links, social links, and event metadata
-- `data/mentors.json`
-  Imported mentor dataset used by the data-driven homepage flows
-- `data/team.json`
-  Current team dataset from the imported content pack
-- `data/retired-team.json`
-  Former team dataset
-- `data/companies.json`
-  Imported organization dataset and logo metadata
-- `data/news.json`
-  Imported news archive
-- `data/videos.json`
-  Video archive used by the homepage latest-video feature and `pages/videos.html`
-- `data/events.json`
-  Event materials and public archive content
-
-For the current redesigned subpages, content edits usually happen directly in:
-
-- `pages/give.html`
-- `pages/mentors.html`
-- `pages/industry.html`
-- `pages/team.html`
-- `pages/news.html`
-- `pages/videos.html`
-- `pages/contact.html`
-
-## Local preview
-
-Because the homepage fetches local JSON, serve the site from a local web server instead of opening the files directly.
+Install dependencies:
 
 ```bash
-cd mcp-site
-python3 -m http.server 8000
+npm install
 ```
 
-Then open `http://127.0.0.1:8000`.
-
-## Testing
-
-Recommended smoke test before pushing:
-
-1. Start the local server.
-2. Load:
-   `/`
-   `/pages/give.html`
-   `/pages/mentors.html`
-   `/pages/industry.html`
-   `/pages/team.html`
-   `/pages/news.html`
-   `/pages/videos.html`
-   `/pages/contact.html`
-3. Confirm the mentor modal opens and closes on `pages/mentors.html`.
-4. Confirm the front-page latest video, `Current News`, and `Friends helping MCP grow` sections render in the intended order and load their cards.
-5. Confirm the contact form reaches its confirmation state on `pages/contact.html`.
-6. Check a phone-sized viewport to make sure there is no horizontal scrolling.
-
-Latest verified locally on April 22, 2026:
-
-- Desktop smoke test passed for all public pages
-- Homepage news/friends ordering and support-story rendering updated
-- Mentor modal open/close interaction passed
-- Contact form confirmation flow passed
-- Mobile checks passed for home, mentors, and contact without horizontal overflow
-
-Current known implementation note:
-
-- The inner React pages use in-browser Babel from a CDN, which produces a console warning in development and static hosting. The pages still render correctly, but this is a future cleanup opportunity if the site moves to a build step
-
-## Reimporting content
-
-The import script pulls content from the live MCP site and recovered backup assets, then refreshes the local JSON and downloaded media used by this repo.
+Run the local dev server:
 
 ```bash
-node scripts/import-live-site-content.mjs
+npm run dev
 ```
 
-That refreshes:
+Build the static site:
 
-- `data/site.json`
-- `data/mentors.json`
-- `data/team.json`
-- `data/retired-team.json`
-- `data/companies.json`
-- `data/news.json`
-- `data/events.json`
-- `data/routes.json`
-- `data/link-inventory.json`
-- downloaded assets inside `assets/images/live-site/`
-- downloaded icons inside `assets/icons/live-site/`
+```bash
+npm run build
+```
 
-## External action links
+Preview the built site:
 
-The current public actions point to:
+```bash
+npm run preview
+```
 
-- student interest form:
-  `https://forms.gle/zkuoy8HGdec81Y5o8`
-- mentor interest:
-  `mailto:rxyan2@wm.edu?subject=MCP%20Mentor%20Inquiry`
-- giving page:
-  `https://give.wm.edu/?a=38ff2762-682c-497f-b540-f77eebc77831&d=5519`
-- Instagram:
-  `https://www.instagram.com/wm_mcp`
-- LinkedIn:
-  `https://www.linkedin.com/company/wmmcp`
-- X:
-  `https://twitter.com/wm_mcp`
-- YouTube:
-  `https://youtu.be/TqgStDcsD7g`
+## Quality Checks
 
-## Recent content updates
+```bash
+npm run format
+npm run format:check
+npm run lint
+npm run validate:data
+npm run check:links
+npm run check
+```
 
-- The homepage news feature now highlights the newest news item from `data/news.json`
-- The homepage video feature now highlights the newest video from `data/videos.json`
-- The site includes a dedicated `Videos` page for the full MCP video archive
-- The front page includes a `Friends` anchor section and nav link for supporter content
-- The CDSP article about MCP links out to the original story and uses the MCP student group photo in the friends section
-- The NASA Langley + Yorktown article and flyer assets are included in the news data pack
+`npm run check` validates data, lints JavaScript support files, runs `astro check`, builds `dist/`, and checks required built pages plus internal links.
+
+## Data and Assets
+
+Canonical JSON lives in `src/data/`. The build scripts mirror it to `public/data/` so the generated site still ships the content pack as static JSON.
+
+Public assets live in `public/assets/`, preserving the previous `/assets/...` URL shape used throughout the data files.
+
+The largest current assets are retained for content parity and should be optimized only after review:
+
+- `public/assets/images/live-site/news/69c5e75df0aa1403f2ef581b-cdsp-article-about-mcp.jpg`
+- `public/assets/images/live-site/clearweb/assets/graham-holtshausen-fUnfEz3VLv4-unsplash.jpeg`
+- `public/assets/images/live-site/clearweb/assets/CTFV--Janet86782.png`
 
 ## Deployment
 
-Deploy from the repository root as a static site.
+GitHub Pages deployment is handled by `.github/workflows/deploy.yml` using the official Astro GitHub Action.
 
-If a custom domain is used again, add the final value to `CNAME`.
+Deployment settings:
+
+- `public/CNAME`: `mcp.physics.wm.edu`
+- `astro.config.mjs`: `site: "https://mcp.physics.wm.edu"`
+- No `base` path, because the site is intended to run from the custom domain root
+- No server adapter, SSR, Dockerfile, or runtime environment variables
+
+Manual setup still needed in GitHub:
+
+1. Repository Settings -> Pages -> Source: GitHub Actions.
+2. DNS for `mcp.physics.wm.edu` must point to GitHub Pages.
+3. Push the legacy branch and tag listed above.
+
+## Content Notes
+
+The rewrite preserves public content meaning while removing browser React development builds and in-browser Babel from production pages. Contact remains static: the contact form uses `mailto:` and opens an email draft rather than claiming a message was submitted to a backend.

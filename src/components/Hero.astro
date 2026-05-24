@@ -1,0 +1,55 @@
+---
+const {
+  eyebrow = "MCP",
+  title,
+  summary,
+  actions = [],
+  stats = [],
+} = Astro.props;
+---
+
+<section class="hero-section">
+  <div class="shell">
+    <div class="hero-grid">
+      <slot name="media" />
+      <div class="hero-copy">
+        <div class="hero-eyebrow">{eyebrow}</div>
+        <h1 class="hero-h1" set:html={title} />
+        {summary && <p class="hero-summary">{summary}</p>}
+        {
+          actions.length > 0 && (
+            <div class="hero-actions">
+              {actions.map((action) => (
+                <a
+                  class:list={[
+                    "btn",
+                    action.variant === "secondary"
+                      ? "btn-secondary"
+                      : "btn-primary",
+                  ]}
+                  href={action.href}
+                  target={action.external ? "_blank" : undefined}
+                  rel={action.external ? "noopener" : undefined}
+                >
+                  {action.label}
+                </a>
+              ))}
+            </div>
+          )
+        }
+        {
+          stats.length > 0 && (
+            <div class="stat-strip">
+              {stats.map((stat) => (
+                <div class="stat-pill">
+                  <span class="stat-num">{stat.value}</span>
+                  <span class="stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+import { monogram } from "../utils/content.js";
+
+const {
+  company,
+  filterable = false,
+  linked = Boolean(company.website),
+} = Astro.props;
+const Wrapper = linked ? "a" : "article";
+const wrapperProps = linked
+  ? { href: company.website, target: "_blank", rel: "noopener" }
+  : {};
+---
+
+<Wrapper
+  class="company-card"
+  data-filter-item={filterable ? "" : undefined}
+  data-sectors={filterable ? company.sector : undefined}
+  data-search-text={filterable
+    ? `${company.name} ${company.sector} ${company.summary} ${company.mentors.join(" ")}`.toLowerCase()
+    : undefined}
+  {...wrapperProps}
+>
+  <div>
+    <span class="company-sector">{company.sector}</span>
+    <div class="company-logo-wrap">
+      {
+        company.image ? (
+          <img
+            src={company.image}
+            alt={`${company.name} logo`}
+            loading="lazy"
+          />
+        ) : (
+          <span class="company-monogram">{monogram(company.name)}</span>
+        )
+      }
+    </div>
+  </div>
+  <div class="company-name">{company.name}</div>
+  <p class="company-desc">{company.summary}</p>
+  <div>
+    <span class="micro-label">MCP Mentors</span>
+    <div class="chip-row">
+      {
+        company.mentors.length ? (
+          company.mentors.map((mentor) => (
+            <span class="mentor-pill">{mentor}</span>
+          ))
+        ) : (
+          <span class="company-desc">Mentor listing coming soon.</span>
+        )
+      }
+    </div>
+  </div>
+  <span class="text-link"
+    >{linked ? "Visit homepage" : "Official homepage unavailable"}</span
+  >
+</Wrapper>

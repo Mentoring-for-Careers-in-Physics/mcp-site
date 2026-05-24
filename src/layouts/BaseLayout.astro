@@ -1,0 +1,187 @@
+---
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+import { DEFAULT_OG_IMAGE } from "../utils/content.js";
+import "../styles/global.css";
+
+const {
+  title = "Mentoring for Careers in Physics",
+  description = "Mentoring for Careers in Physics at William & Mary.",
+  active = "home",
+  site,
+  ogImage = DEFAULT_OG_IMAGE,
+} = Astro.props;
+
+const pageTitle = title.includes("MCP") ? title : `${title} | MCP`;
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : Astro.url.toString();
+const resolvedOgImage = Astro.site
+  ? new URL(ogImage, Astro.site).toString()
+  : ogImage;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{pageTitle}</title>
+    <link rel="icon" href="/assets/icons/live-site/favicon.ico" sizes="any" />
+    <link rel="manifest" href="/assets/icons/live-site/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Nav site={site} active={active} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer site={site} />
+    <script>
+      const setNavState = () => {
+        const header = document.querySelector("[data-site-header]");
+        const button = document.querySelector("[data-nav-toggle]");
+        const menu = document.querySelector("[data-mobile-menu]");
+        if (
+          !(button instanceof HTMLButtonElement) ||
+          !(menu instanceof HTMLElement) ||
+          !(header instanceof HTMLElement)
+        )
+          return;
+
+        button.addEventListener("click", () => {
+          const open = button.getAttribute("aria-expanded") === "true";
+          button.setAttribute("aria-expanded", String(!open));
+          header.classList.toggle("is-open", !open);
+          menu.hidden = open;
+        });
+
+        menu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            button.setAttribute("aria-expanded", "false");
+            header.classList.remove("is-open");
+            menu.hidden = true;
+          });
+        });
+      };
+
+      const setFilters = () => {
+        document.querySelectorAll("[data-filter-group]").forEach((group) => {
+          const search = group.querySelector("[data-search]");
+          const buttons = [...group.querySelectorAll("[data-filter]")];
+          const items = [...group.querySelectorAll("[data-filter-item]")];
+          let activeFilter = "All";
+
+          const update = () => {
+            const query = (
+              search instanceof HTMLInputElement ? search.value : ""
+            )
+              .trim()
+              .toLowerCase();
+            items.forEach((item) => {
+              const sectors = (item.getAttribute("data-sectors") || "").split(
+                "|",
+              );
+              const text = item.getAttribute("data-search-text") || "";
+              const matchesFilter =
+                activeFilter === "All" || sectors.includes(activeFilter);
+              const matchesQuery = !query || text.includes(query);
+              item.classList.toggle(
+                "is-hidden",
+                !(matchesFilter && matchesQuery),
+              );
+            });
+
+            buttons.forEach((button) => {
+              const selected =
+                button.getAttribute("data-filter") === activeFilter;
+              button.classList.toggle("is-active", selected);
+              button.setAttribute("aria-pressed", String(selected));
+            });
+          };
+
+          buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+              activeFilter = button.getAttribute("data-filter") || "All";
+              update();
+            });
+          });
+          search?.addEventListener("input", update);
+          update();
+        });
+      };
+
+      const setModals = () => {
+        let lastFocused: HTMLElement | null = null;
+
+        const closeModal = (modal: HTMLElement) => {
+          modal.hidden = true;
+          document.body.classList.remove("modal-open");
+          if (lastFocused instanceof HTMLElement) lastFocused.focus();
+        };
+
+        const openModal = (modal: HTMLElement, updateHash = false) => {
+          lastFocused =
+            document.activeElement instanceof HTMLElement
+              ? document.activeElement
+              : null;
+          modal.hidden = false;
+          document.body.classList.add("modal-open");
+          const close = modal.querySelector("[data-modal-close]");
+          if (close instanceof HTMLElement) close.focus();
+          if (updateHash && modal.id)
+            history.replaceState(null, "", `#${modal.id}`);
+        };
+
+        document.querySelectorAll("[data-modal-target]").forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            const id = trigger.getAttribute("data-modal-target");
+            const modal = id ? document.getElementById(id) : null;
+            if (modal)
+              openModal(modal, trigger.hasAttribute("data-modal-hash"));
+          });
+        });
+
+        document.querySelectorAll("[data-modal]").forEach((modal) => {
+          if (!(modal instanceof HTMLElement)) return;
+          modal.addEventListener("click", (event) => {
+            if (event.target === modal) closeModal(modal);
+          });
+          modal.querySelectorAll("[data-modal-close]").forEach((button) => {
+            button.addEventListener("click", () => closeModal(modal));
+          });
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "Escape") return;
+          const open = document.querySelector("[data-modal]:not([hidden])");
+          if (open instanceof HTMLElement) closeModal(open);
+        });
+
+        const hash = window.location.hash.replace("#", "");
+        if (hash) {
+          const modal = document.getElementById(hash);
+          if (modal?.hasAttribute("data-modal")) openModal(modal);
+        }
+      };
+
+      setNavState();
+      setFilters();
+      setModals();
+    </script>
+  </body>
+</html>

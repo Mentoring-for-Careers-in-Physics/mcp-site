@@ -1,0 +1,143 @@
+---
+const { article, featured = false } = Astro.props;
+const modalId = `news-${article.id}`;
+const primaryUrl = article.primaryExternalUrl || "";
+const imageFit = article.imageFit === "contain" ? "contain" : "cover";
+const imageStyle = `object-fit:${imageFit};background:${article.imageBackground || "var(--blush)"};${imageFit === "contain" ? "padding:0.85rem;" : ""}`;
+---
+
+{
+  primaryUrl ? (
+    <a
+      class:list={["news-card", featured && "featured-article"]}
+      href={primaryUrl}
+      target="_blank"
+      rel="noopener"
+      id={article.id}
+    >
+      <span class={featured ? "featured-article__media" : "news-card__media"}>
+        {article.image ? (
+          <img
+            src={article.image}
+            alt={article.imageAlt || article.title}
+            loading="lazy"
+            style={imageStyle}
+          />
+        ) : (
+          <span class="profile-monogram">MCP</span>
+        )}
+      </span>
+      <span class={featured ? "featured-article__body" : "news-card__body"}>
+        <span class="news-card__eyebrow">{article.formattedDate}</span>
+        {featured ? (
+          <h2>{article.title}</h2>
+        ) : (
+          <span class="news-card__title">{article.title}</span>
+        )}
+        <span class="news-card__summary">{article.summary}</span>
+        <span class="profile-card__hint">Read original article</span>
+      </span>
+    </a>
+  ) : (
+    <>
+      <button
+        class:list={["news-card", featured && "featured-article"]}
+        type="button"
+        id={article.id}
+        data-modal-target={modalId}
+        data-modal-hash
+        aria-haspopup="dialog"
+      >
+        <span class={featured ? "featured-article__media" : "news-card__media"}>
+          {article.image ? (
+            <img
+              src={article.image}
+              alt={article.imageAlt || article.title}
+              loading="lazy"
+              style={imageStyle}
+            />
+          ) : (
+            <span class="profile-monogram">MCP</span>
+          )}
+        </span>
+        <span class={featured ? "featured-article__body" : "news-card__body"}>
+          <span class="news-card__eyebrow">{article.formattedDate}</span>
+          {featured ? (
+            <h2>{article.title}</h2>
+          ) : (
+            <span class="news-card__title">{article.title}</span>
+          )}
+          <span class="news-card__summary">{article.summary}</span>
+          <span class="profile-card__hint">
+            {featured ? "Read featured update" : "Read update"}
+          </span>
+        </span>
+      </button>
+      <div
+        class="modal-overlay"
+        id={modalId}
+        data-modal
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${modalId}-title`}
+      >
+        <div class="modal-box">
+          <div class="modal-close-row">
+            <button class="modal-close-btn" type="button" data-modal-close>
+              Close
+            </button>
+          </div>
+          <div class="modal-header" style="grid-template-columns:1fr">
+            {article.image && (
+              <img
+                class="modal-img"
+                src={article.image}
+                alt={article.imageAlt || article.title}
+                style={`aspect-ratio:1.8;object-fit:${imageFit};background:${article.imageBackground || "var(--blush)"};${imageFit === "contain" ? "padding:1rem;" : ""}`}
+              />
+            )}
+            <div class="modal-header-info">
+              <span class="kicker">Program Update</span>
+              <h2 id={`${modalId}-title`}>{article.title}</h2>
+              <p class="profile-card__role">{article.formattedDate}</p>
+            </div>
+          </div>
+          <div class="modal-body">
+            {article.embedUrl && (
+              <div class="article-embed-frame">
+                <iframe
+                  src={article.embedUrl}
+                  title={article.title}
+                  loading="lazy"
+                  allowfullscreen
+                />
+              </div>
+            )}
+            {article.paragraphs.length ? (
+              article.paragraphs.map((paragraph) => (
+                <p class="modal-bio">{paragraph}</p>
+              ))
+            ) : (
+              <p class="modal-bio">Full article text coming soon.</p>
+            )}
+            {article.resourceLinks.length > 0 && (
+              <div class="modal-actions">
+                {article.resourceLinks.map((link) => (
+                  <a
+                    class="btn btn-secondary btn-sm"
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}

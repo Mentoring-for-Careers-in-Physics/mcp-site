@@ -1,0 +1,122 @@
+---
+import { BLANK_PROFILE, monogram } from "../utils/content.js";
+
+const { mentor, filterable = false } = Astro.props;
+const modalId = mentor.id;
+const hasImage = Boolean(mentor.image);
+---
+
+<button
+  class="profile-card"
+  type="button"
+  data-modal-target={modalId}
+  data-filter-item={filterable ? "" : undefined}
+  data-sectors={filterable ? mentor.sectors.join("|") : undefined}
+  data-search-text={filterable ? mentor.searchText : undefined}
+  aria-haspopup="dialog"
+>
+  <span class="profile-card__media">
+    {
+      hasImage ? (
+        <img
+          src={mentor.image || BLANK_PROFILE}
+          alt={`Portrait of ${mentor.name}`}
+          loading="lazy"
+        />
+      ) : (
+        <span class="profile-monogram" aria-hidden="true">
+          {monogram(mentor.name)}
+        </span>
+      )
+    }
+  </span>
+  <span class="profile-card__body">
+    <span class="profile-card__meta"
+      >{mentor.sectorLabel} · {mentor.organizationLabel || "MCP mentor"}</span
+    >
+    <span class="profile-card__title">{mentor.name}</span>
+    <span class="profile-card__role">{mentor.title}</span>
+    <span class="profile-card__excerpt"
+      >{mentor.excerpt || "Full biography coming soon."}</span
+    >
+    <span class="profile-card__hint"
+      >View full profile{mentor.linkedin ? " and LinkedIn" : ""}</span
+    >
+  </span>
+</button>
+
+<div
+  class="modal-overlay"
+  id={modalId}
+  data-modal
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${modalId}-title`}
+>
+  <div class="modal-box">
+    <div class="modal-close-row">
+      <button class="modal-close-btn" type="button" data-modal-close
+        >Close</button
+      >
+    </div>
+    <div class="modal-header">
+      {
+        hasImage ? (
+          <img
+            class="modal-img"
+            src={mentor.image}
+            alt={`Portrait of ${mentor.name}`}
+          />
+        ) : (
+          <div class="modal-img profile-monogram" aria-hidden="true">
+            {monogram(mentor.name)}
+          </div>
+        )
+      }
+      <div class="modal-header-info">
+        <span class="kicker">{mentor.sectorLabel}</span>
+        <h2 id={`${modalId}-title`}>{mentor.name}</h2>
+        <p class="profile-card__role">{mentor.title}</p>
+        <div class="organization-pill-row">
+          {
+            mentor.organizations.map((organization) => (
+              <span class="organization-pill">{organization}</span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-bio">{mentor.bio || "Full biography coming soon."}</p>
+      <div class="modal-actions">
+        {
+          mentor.linkedin && (
+            <a
+              class="btn btn-primary btn-sm"
+              href={mentor.linkedin}
+              target="_blank"
+              rel="noopener"
+            >
+              LinkedIn
+            </a>
+          )
+        }
+        {
+          mentor.linkedCompanies
+            .filter((company) => company.website)
+            .map((company) => (
+              <a
+                class="btn btn-secondary btn-sm"
+                href={company.website}
+                target="_blank"
+                rel="noopener"
+              >
+                Visit {company.name}
+              </a>
+            ))
+        }
+      </div>
+    </div>
+  </div>
+</div>

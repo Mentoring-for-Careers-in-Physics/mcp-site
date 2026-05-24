@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import site from "../data/site.json";
+import { buildExternalLinks } from "../utils/content.js";
+
+const links = buildExternalLinks(site);
+---
+
+<BaseLayout
+  title="Support MCP"
+  description="Support Mentoring for Careers in Physics at William & Mary."
+  active="give"
+  site={site}
+>
+  <section class="page-hero">
+    <div class="shell">
+      <span class="kicker">Support MCP</span>
+      <h1>Give to MCP.</h1>
+      <p>Choose one of two ways to support Mentoring for Careers in Physics.</p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="shell">
+      <div class="give-options-grid">
+        <article class="info-panel give-option-card">
+          <span class="kicker">Online Gift</span>
+          <h2>Give through the William &amp; Mary Foundation.</h2>
+          <p>
+            This direct link opens the William & Mary giving form with the MCP
+            fund selected.
+          </p>
+          <a
+            class="btn btn-primary"
+            href={links.giving}
+            target="_blank"
+            rel="noopener">Give directly to MCP</a
+          >
+        </article>
+
+        <article class="info-panel give-option-card">
+          <span class="kicker">Mail a Check</span>
+          <h2>Write a check to Dr. Ran Yang for MCP.</h2>
+          <address class="give-check-address">
+            Dr. Ran Yang for MCP<br />
+            300 Ukrop Way<br />
+            Williamsburg, VA 23185
+          </address>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

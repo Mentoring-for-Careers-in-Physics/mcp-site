@@ -1,0 +1,74 @@
+---
+import NewsCard from "../components/NewsCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import newsItems from "../data/news.json";
+import site from "../data/site.json";
+import { buildNewsFeed } from "../utils/content.js";
+
+const news = buildNewsFeed(newsItems);
+const featured = news[0];
+const archive = news.slice(1);
+const yearRange = news.length
+  ? `${news[news.length - 1].year}-${news[0].year}`
+  : "";
+---
+
+<BaseLayout
+  title="News"
+  description="News and announcements from Mentoring for Careers in Physics."
+  active="news"
+  site={site}
+>
+  <section class="page-hero">
+    <div class="shell">
+      <div class="page-hero-grid">
+        <div>
+          <span class="kicker">Program Updates</span>
+          <h1>News &amp; announcements.</h1>
+          <p>
+            This page pulls from the full MCP news archive so the latest and
+            historical updates stay in sync with the shared data files.
+          </p>
+        </div>
+        <div class="hero-stat-card">
+          <span class="kicker">Archive</span>
+          <div class="metric">
+            <strong>{news.length}</strong><span>Total updates</span>
+          </div>
+          <div class="metric">
+            <strong>{yearRange || "-"}</strong><span>Archive range</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      {
+        featured ? (
+          <NewsCard article={featured} featured />
+        ) : (
+          <div class="empty-state">No news items are available yet.</div>
+        )
+      }
+      {
+        archive.length > 0 && (
+          <>
+            <div class="section-head">
+              <div>
+                <span class="kicker">Archive</span>
+                <h2>All MCP updates.</h2>
+              </div>
+            </div>
+            <div class="news-grid">
+              {archive.map((article) => (
+                <NewsCard article={article} />
+              ))}
+            </div>
+          </>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

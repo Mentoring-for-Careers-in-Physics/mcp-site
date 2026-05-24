@@ -1,0 +1,157 @@
+---
+import CompanyCard from "../components/CompanyCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import companies from "../data/companies.json";
+import mentors from "../data/mentors.json";
+import site from "../data/site.json";
+import { buildCompanies, buildExternalLinks } from "../utils/content.js";
+
+const links = buildExternalLinks(site);
+const directory = buildCompanies(companies, mentors);
+const linkedCompanies = directory.filter((company) => company.website);
+const independentCompanies = directory.filter((company) => !company.website);
+const filters = [
+  "All",
+  "Industry",
+  "Government",
+  "National Lab",
+  "Academia",
+].filter(
+  (filter) =>
+    filter === "All" ||
+    linkedCompanies.some((company) => company.sector === filter),
+);
+const representedSectors = new Set(
+  linkedCompanies.map((company) => company.sector),
+).size;
+const mentorCount = new Set(
+  linkedCompanies.flatMap((company) => company.mentors),
+).size;
+---
+
+<BaseLayout
+  title="Industry"
+  description="Explore organizations represented across the MCP mentor network."
+  active="industry"
+  site={site}
+>
+  <section class="page-hero">
+    <div class="shell">
+      <div class="page-hero-grid">
+        <div>
+          <span class="kicker">Partner Organizations</span>
+          <h1>Where mentors work.</h1>
+          <p>
+            This page pulls from the full MCP organization directory, including
+            labs, companies, agencies, and universities represented across the
+            mentor network.
+          </p>
+        </div>
+        <div class="hero-stat-card">
+          <span class="kicker">Network</span>
+          <div class="metric">
+            <strong>{linkedCompanies.length}</strong><span
+              >Organizations with homepage links</span
+            >
+          </div>
+          <div class="metric">
+            <strong>{representedSectors}</strong><span>Sectors represented</span
+            >
+          </div>
+          <div class="metric">
+            <strong>{mentorCount}</strong><span
+              >Mentors mapped to organizations</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-filter-group>
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Official Organization Directory</span>
+          <h2>All linked organizations in MCP.</h2>
+        </div>
+      </div>
+      <div class="filter-row" aria-label="Filter organizations by sector">
+        {
+          filters.map((filter) => (
+            <button
+              class="filter-chip"
+              type="button"
+              data-filter={filter}
+              aria-pressed={filter === "All" ? "true" : "false"}
+            >
+              {filter}
+            </button>
+          ))
+        }
+      </div>
+      <div class="company-grid">
+        {
+          linkedCompanies.map((company) => (
+            <CompanyCard company={company} filterable linked />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    independentCompanies.length > 0 && (
+      <section class="section section--soft">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <span class="kicker">Independent Practices</span>
+              <h2>Consulting and self-employed mentors.</h2>
+            </div>
+            <p class="section-copy" style="max-width:34ch">
+              These entries are part of the MCP network, but the current data
+              does not include an official company homepage or logo.
+            </p>
+          </div>
+          <div class="company-grid">
+            {independentCompanies.map((company) => (
+              <CompanyCard company={company} linked={false} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section section--soft">
+    <div class="shell">
+      <div class="cta-panel">
+        <div>
+          <span class="kicker kicker-light"
+            >Work at one of these organizations?</span
+          >
+          <h2>Become a mentor.</h2>
+          <p>
+            If you're an alumna or professional in physics or engineering, we'd
+            love to have you join the MCP mentor network.
+          </p>
+          <div class="cta-actions">
+            <a
+              class="btn"
+              href={links.mentor}
+              style="background:white;color:var(--wine);font-weight:700"
+              >Become a mentor</a
+            >
+            <a class="btn btn-outline-light" href="/mentors/">Browse mentors</a>
+          </div>
+        </div>
+        <img
+          src="/assets/images/live-site/clearweb/assets/annual_celebration.png"
+          alt="MCP celebration"
+          style="border-radius:var(--r-xl);width:220px;height:180px;object-fit:cover;box-shadow:0 24px 60px rgba(0,0,0,0.25);border:2px solid rgba(255,255,255,0.15)"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

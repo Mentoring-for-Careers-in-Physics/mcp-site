@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import site from "../data/site.json";
+---
+
+<BaseLayout
+  title="Page Not Found | MCP"
+  description="The requested MCP page could not be found."
+  active="not-found"
+  site={site}
+>
+  <section class="page-hero not-found">
+    <div class="shell not-found-shell">
+      <p class="section-kicker">404</p>
+      <h1>
+        The page you're looking for has moved outside the visible constellation.
+      </h1>
+      <p>Return to the homepage or continue into one of MCP's main sections.</p>
+      <div class="hero-actions" style="margin-top:1.5rem">
+        <a class="btn btn-primary" href="/">Back to home</a>
+        <a class="btn btn-secondary" href="/mentors/">View mentors</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

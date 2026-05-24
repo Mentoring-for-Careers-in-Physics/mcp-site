@@ -1,0 +1,101 @@
+---
+import VideoCard from "../components/VideoCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import site from "../data/site.json";
+import videoItems from "../data/videos.json";
+import { buildVideos } from "../utils/content.js";
+
+const videos = buildVideos(videoItems);
+const featured = videos[0];
+const archive = videos.slice(1);
+---
+
+<BaseLayout
+  title="Videos"
+  description="Videos from Mentoring for Careers in Physics."
+  active="videos"
+  site={site}
+>
+  <section class="page-hero">
+    <div class="shell page-hero-grid">
+      <div>
+        <span class="kicker">MCP Videos</span>
+        <h1>Stories, events, and program updates.</h1>
+        <p>
+          A home for MCP videos from launch moments, program highlights, events,
+          and giving initiatives.
+        </p>
+      </div>
+      <div class="hero-stat-card">
+        <div class="metric">
+          <strong>{videos.length}</strong><span>Videos</span>
+        </div>
+        <div class="metric">
+          <strong>{featured?.provider || "MCP"}</strong><span
+            >Latest source</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="shell">
+      {
+        featured ? (
+          <>
+            <div class="video-feature video-feature--page">
+              <div class="video-copy">
+                <span class="kicker">Latest Video</span>
+                <h2>{featured.title}</h2>
+                <p>{featured.description}</p>
+                <div class="chip-row">
+                  <span class="chip">{featured.dateLabel}</span>
+                  <span class="chip chip--soft">{featured.category}</span>
+                </div>
+                <div class="section-actions">
+                  <a
+                    class="btn btn-primary btn-sm"
+                    href={featured.watchUrl}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Watch on {featured.provider}
+                  </a>
+                  {featured.relatedHref && (
+                    <a class="text-link" href={featured.relatedHref}>
+                      Related news
+                    </a>
+                  )}
+                </div>
+              </div>
+              <div class="video-frame" aria-label={featured.title}>
+                <iframe
+                  src={featured.embedUrl}
+                  title={featured.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                />
+              </div>
+            </div>
+            <div class="section-head">
+              <div>
+                <span class="kicker">Archive</span>
+                <h2>All MCP videos.</h2>
+              </div>
+            </div>
+            <div class="video-grid">
+              {archive.map((video) => (
+                <VideoCard video={video} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div class="empty-state">Videos will appear here soon.</div>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

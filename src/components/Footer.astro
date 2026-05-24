@@ -1,0 +1,78 @@
+---
+import {
+  NAV_LINKS,
+  buildExternalLinks,
+  socialPlatform,
+} from "../utils/content.js";
+
+const { site = {} } = Astro.props;
+const links = buildExternalLinks(site);
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-main">
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="footer-brand-block">
+          <a class="brand" href="/" aria-label="MCP home">
+            <span class="brand-mark">MCP</span>
+            <span class="brand-text">
+              <strong>Mentoring for Careers in Physics</strong>
+              <small>William &amp; Mary</small>
+            </span>
+          </a>
+          <p class="footer-summary">
+            Connecting undergraduate students with accomplished mentors across
+            research, industry, and government.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Explore</p>
+          <div class="footer-links">
+            {
+              NAV_LINKS.filter((link) => link.key !== "friends").map((link) => (
+                <a href={link.href}>{link.label}</a>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Get Involved</p>
+          <div class="footer-links">
+            <a href={links.mentee} target="_blank" rel="noopener"
+              >Join as a student</a
+            >
+            <a href={links.mentor}>Become a mentor</a>
+            <a href="/give/">Give to MCP</a>
+            <a href={`mailto:${links.email}`}>{links.email}</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Follow MCP</p>
+          <div class="social-list social-list--footer">
+            {
+              links.socialLinks.map((url) => (
+                <a
+                  class="social-chip"
+                  href={url}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {socialPlatform(url)}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-base">
+    <p>Mentoring for Careers in Physics · William &amp; Mary</p>
+    <p>&copy; {year} William &amp; Mary</p>
+  </div>
+</footer>
