@@ -361,6 +361,7 @@ body.modal-open { overflow:hidden; }
 .give-quick-label { display:block; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--wine-mid); margin-bottom:0.45rem; }
 .give-quick-value { display:block; font-family:var(--f-display); font-size:2rem; color:var(--wine); line-height:1; }
 .give-quick-item p { margin-top:0.35rem; font-size:0.88rem; color:var(--muted); line-height:1.6; }
+.give-options-section { padding-bottom:6.5rem; }
 .give-options-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; align-items:stretch; }
 .give-option-card { display:flex; flex-direction:column; align-items:flex-start; gap:1rem; min-height:280px; }
 .give-option-card h2 { max-width:13ch; }
