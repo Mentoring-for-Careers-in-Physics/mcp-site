@@ -195,7 +195,7 @@ The current public actions point to:
 - mentor interest:
   `mailto:rxyan2@wm.edu?subject=MCP%20Mentor%20Inquiry`
 - giving page:
-  `https://donate.wm.edu/`
+  `https://give.wm.edu/?a=38ff2762-682c-497f-b540-f77eebc77831&d=5519`
 - Instagram:
   `https://www.instagram.com/wm_mcp`
 - LinkedIn:

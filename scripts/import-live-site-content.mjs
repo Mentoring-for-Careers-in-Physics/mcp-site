@@ -545,9 +545,8 @@ function buildSiteData({
   const menteeLinks = extractLinksFromText(menteesText);
   const contactEmail = contactEmailMatch ? contactEmailMatch[1] : "mcp.superuser@gmail.com";
   const menteeInterestFormUrl = "https://forms.gle/zkuoy8HGdec81Y5o8";
-  const givingUrl = [...homepageLinks, ...footerLinks].find((url) =>
-    url.includes("donate.wm.edu"),
-  );
+  const directGivingUrl = "https://give.wm.edu/?a=38ff2762-682c-497f-b540-f77eebc77831&d=5519";
+  const givingUrl = directGivingUrl;
 
   const socialLinks = cleanArray([
     footerText.match(/https:\/\/www\.instagram\.com\/[^\s"'`)<]+/)?.[0],

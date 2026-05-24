@@ -304,7 +304,7 @@ function linkMap(site) {
   const pageLinks = site.pageLinks || [];
   const donateLink =
     site.givingUrl ||
-    pageLinks.find((item) => item.url.includes("donate.wm.edu"))?.url ||
+    pageLinks.find((item) => /give\.wm\.edu|donate\.wm\.edu/.test(item.url))?.url ||
     "#";
   const givePageLink = site.givingPagePath ? rootPath(site.givingPagePath) : "#";
 
