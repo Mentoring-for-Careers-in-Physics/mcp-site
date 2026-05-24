@@ -349,6 +349,7 @@ body.modal-open { overflow:hidden; }
 
 /* GIVE PAGE */
 .give-hero { padding-bottom:4.5rem; }
+.give-hero-simple { padding-bottom:3.5rem; }
 .give-hero-grid { gap:2rem; align-items:center; }
 .give-hero-title { max-width:11ch; margin-bottom:1rem; }
 .give-hero-text { max-width:56ch; font-size:1rem; color:var(--muted); line-height:1.8; }
@@ -360,6 +361,12 @@ body.modal-open { overflow:hidden; }
 .give-quick-label { display:block; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--wine-mid); margin-bottom:0.45rem; }
 .give-quick-value { display:block; font-family:var(--f-display); font-size:2rem; color:var(--wine); line-height:1; }
 .give-quick-item p { margin-top:0.35rem; font-size:0.88rem; color:var(--muted); line-height:1.6; }
+.give-options-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; align-items:stretch; }
+.give-option-card { display:flex; flex-direction:column; align-items:flex-start; gap:1rem; min-height:280px; }
+.give-option-card h2 { max-width:13ch; }
+.give-option-card p { font-size:0.95rem; color:var(--muted); line-height:1.75; max-width:46ch; }
+.give-option-card .btn { margin-top:auto; }
+.give-check-address { margin-top:auto; font-style:normal; font-size:1rem; color:var(--wine); line-height:1.8; padding:1rem 1.1rem; border-radius:var(--r-lg); background:var(--snow); border:1px solid var(--border); width:100%; }
 .info-grid.give-info-grid { gap:1.4rem; }
 .info-grid { display:grid; grid-template-columns:1.1fr 0.9fr; gap:1.2rem; align-items:start; }
 .info-panel { padding:2rem; border-radius:var(--r-xl); border:1px solid var(--border); background:white; box-shadow:0 10px 28px rgba(74,53,64,0.06); }
@@ -706,6 +713,7 @@ p { text-wrap: pretty; }
   .featured-article { grid-template-columns:1fr; }
   .featured-article--poster { padding:1.25rem; }
   .featured-article--poster .featured-article__media { flex-basis:260px; width:min(100%,260px); }
+  .give-options-grid { grid-template-columns:1fr; }
   .spotlight-card { grid-template-columns:1fr; }
   .spotlight-card__media { min-height:360px; }
   .portrait-cluster { grid-template-columns:1fr 1fr; }
