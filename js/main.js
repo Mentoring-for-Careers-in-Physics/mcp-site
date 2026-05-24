@@ -3,6 +3,8 @@ const SUPPORTERS_BANNER = "assets/images/live-site/clearweb/assets/So1918_banner
 const PAGE = document.body.dataset.page || "home";
 const ROOT = document.body.dataset.root || ".";
 
+document.documentElement.classList.add("page-ready");
+
 let revealObserver = null;
 let activeModal = null;
 let companyDirectory = new Map();
