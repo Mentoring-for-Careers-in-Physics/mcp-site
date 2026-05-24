@@ -1,5 +1,30 @@
 [
   {
+    "id": "mcp-year-end-slideshow-2026",
+    "title": "MCP Year-End Slideshow",
+    "date": "2026-05-24T04:00:00.000Z",
+    "bodyMarkdown": "# MCP Year-End Slideshow\n\nA new MCP slideshow is available with highlights and materials from the program year. Open the slides to review updates, photos, and community moments from Mentoring for Careers in Physics.\n\n[Open the slideshow](https://docs.google.com/presentation/d/1dRLBiU-KsTfuzBvc_tSWD2MJ8PO70qyi/edit?usp=sharing&ouid=117215699910953240840&rtpof=true&sd=true)",
+    "imageUrl": "https://drive.google.com/thumbnail?id=1dRLBiU-KsTfuzBvc_tSWD2MJ8PO70qyi&sz=w1200",
+    "imageFit": "contain",
+    "imageBackground": "#f7eef2",
+    "embedUrl": "https://docs.google.com/presentation/d/1dRLBiU-KsTfuzBvc_tSWD2MJ8PO70qyi/embed?start=false&loop=false&delayms=3000",
+    "links": [
+      "https://docs.google.com/presentation/d/1dRLBiU-KsTfuzBvc_tSWD2MJ8PO70qyi/edit?usp=sharing&ouid=117215699910953240840&rtpof=true&sd=true",
+      "https://docs.google.com/presentation/d/1dRLBiU-KsTfuzBvc_tSWD2MJ8PO70qyi/preview"
+    ],
+    "resourceLinks": [
+      {
+        "label": "Open the slideshow",
+        "url": "https://docs.google.com/presentation/d/1dRLBiU-KsTfuzBvc_tSWD2MJ8PO70qyi/edit?usp=sharing&ouid=117215699910953240840&rtpof=true&sd=true"
+      },
+      {
+        "label": "Preview in Google Slides",
+        "url": "https://docs.google.com/presentation/d/1dRLBiU-KsTfuzBvc_tSWD2MJ8PO70qyi/preview"
+      }
+    ],
+    "imageAlt": "Preview thumbnail for the MCP year-end slideshow"
+  },
+  {
     "id": "69c5e75df0aa1403f2ef581b",
     "title": "You Belong Here: Mentorship Program Empowers Female Physics Students",
     "date": "2026-03-24T04:00:00.000Z",
