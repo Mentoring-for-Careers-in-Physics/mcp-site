@@ -23,25 +23,14 @@
   },
   {
     "name": "Julia Rodrigues",
-    "role": "Program Assistant",
-    "bio": "Julia ('26) is our Program Assistant. She is studying Physics with an EPAD concentration and plans to pursue electrical engineering.",
+    "role": "Program Advisor",
+    "bio": "Julia ('26) is a current Society of 1918 member and advisor to MCP. She studied Physics with an EPAD concentration and plans to pursue electrical engineering.",
     "linkedin": null,
     "imageAlias": "julia_rodrigues_headshot",
     "image": "assets/images/live-site/clearweb/home/Julia_Rodrigues_pic.jpg",
     "hasBio": true,
     "hasLongBio": false,
-    "group": "leadership"
-  },
-  {
-    "name": "Kalea Wen",
-    "role": "Event Coordinator",
-    "bio": "Kalea is a junior majoring in physics and minoring in CS. She is our new event coordinator.",
-    "linkedin": null,
-    "imageAlias": "kalea_wen_headshot",
-    "image": "assets/images/live-site/clearweb/assets/KaleaWen-headshot.jpeg",
-    "hasBio": true,
-    "hasLongBio": false,
-    "group": "leadership"
+    "group": "advisor"
   },
   {
     "name": "Erica Trindade",
@@ -61,17 +50,6 @@
     "linkedin": null,
     "imageAlias": "brielle_kirk_headshot",
     "image": "assets/images/live-site/clearweb/assets/Brielle_Kirk.JPEG",
-    "hasBio": true,
-    "hasLongBio": false,
-    "group": "leadership"
-  },
-  {
-    "name": "Alan Gonzalez Osorio",
-    "role": "Web Developer",
-    "bio": "Alan ('26) is the MCP web developer. He is a senior studying Computer Science and Applied Math",
-    "linkedin": null,
-    "imageAlias": "alanheadshot",
-    "image": "assets/images/live-site/clearweb/assets/alan-headshot.jpg",
     "hasBio": true,
     "hasLongBio": false,
     "group": "leadership"
