@@ -270,9 +270,14 @@ export function buildMentors(mentors = [], companies = []) {
       ];
       const sectorLabel =
         sectors.length > 1 ? "Cross-sector" : sectors[0] || "Mentor";
+      const rawImage = String(mentor.image || "").trim();
+      const hasPhoto = Boolean(
+        rawImage && !/blank[-_]profile|blank[-_]background/i.test(rawImage),
+      );
       return {
         ...mentor,
         image: assetPath(mentor.image || BLANK_PROFILE),
+        hasPhoto,
         title: mentor.title || roleTitle(mentor.role),
         organizations,
         linkedCompanies: linkedCompanies.map((company) => ({

@@ -42,28 +42,27 @@ const mentorCount = new Set(
 >
   <section class="page-hero">
     <div class="shell">
-      <div class="page-hero-grid">
-        <div>
+      <div class="industry-hero">
+        <div class="industry-hero__heading">
           <span class="kicker">Partner Organizations</span>
           <h1>Where mentors work.</h1>
-          <p>
-            This page pulls from the full MCP organization directory, including
-            labs, companies, agencies, and universities represented across the
-            mentor network.
-          </p>
         </div>
-        <div class="hero-stat-card">
-          <span class="kicker">Network</span>
-          <div class="metric">
+        <p class="industry-hero__copy">
+          This page pulls from the full MCP organization directory, including
+          labs, companies, agencies, and universities represented across the
+          mentor network.
+        </p>
+        <div class="industry-hero__stats" aria-label="MCP network overview">
+          <div class="industry-stat">
             <strong>{linkedCompanies.length}</strong><span
               >Organizations with homepage links</span
             >
           </div>
-          <div class="metric">
+          <div class="industry-stat">
             <strong>{representedSectors}</strong><span>Sectors represented</span
             >
           </div>
-          <div class="metric">
+          <div class="industry-stat">
             <strong>{mentorCount}</strong><span
               >Mentors mapped to organizations</span
             >
