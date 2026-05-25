@@ -1557,3 +1557,194 @@ button.news-card {
     text-align: center;
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   LUXURY MOTION SYSTEM
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Scroll reveal: individual blocks ──────────────────── */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.85s var(--ease),
+    transform 0.85s var(--ease);
+}
+.reveal-done {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.85s var(--ease),
+    transform 0.85s var(--ease);
+}
+
+/* ── Stagger grid reveal ────────────────────────────────── */
+.stagger-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.65s var(--ease),
+    transform 0.65s var(--ease);
+  transition-delay: calc(var(--i, 0) * 72ms);
+}
+.stagger-reveal .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Footer link hover line sweep ───────────────────────── */
+.footer-links a {
+  position: relative;
+}
+.footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--wine);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.38s var(--ease);
+}
+.footer-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Nav link underline sweep ───────────────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 7px;
+  left: 0.72rem;
+  right: 0.72rem;
+  height: 1px;
+  background: var(--wine-mid);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s var(--ease);
+  border-radius: 1px;
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* ── Nav scroll progress bar ────────────────────────────── */
+.nav {
+  position: relative;
+}
+.nav-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--wine), var(--rose-mid));
+  pointer-events: none;
+  z-index: 2;
+  transition: width 0.08s linear;
+}
+
+/* ── Enhanced card hover depth ──────────────────────────── */
+.profile-card,
+.company-card,
+.news-card,
+.video-card,
+.supporter-card {
+  transition:
+    transform 0.42s var(--ease),
+    box-shadow 0.42s var(--ease),
+    border-color 0.32s;
+  will-change: transform;
+}
+.profile-card:hover,
+.news-card:hover {
+  transform: translateY(-7px) scale(1.016);
+  box-shadow: 0 28px 60px rgba(74, 53, 64, 0.14);
+  border-color: var(--rose);
+}
+.company-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 52px rgba(74, 53, 64, 0.12);
+  border-color: var(--rose);
+}
+.supporter-card:hover {
+  transform: translateY(-5px) scale(1.012);
+  box-shadow: 0 22px 48px rgba(74, 53, 64, 0.11);
+  border-color: var(--rose);
+}
+
+/* ── Works card number float on hover ───────────────────── */
+.works-card {
+  transition: transform 0.38s var(--ease), box-shadow 0.38s var(--ease);
+}
+.works-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(74, 53, 64, 0.09);
+}
+.works-num {
+  transition: transform 0.42s var(--ease), color 0.28s;
+}
+.works-card:hover .works-num {
+  transform: translateY(-5px) scale(1.1);
+  color: var(--wine);
+}
+
+/* ── Spotlight card image pan ───────────────────────────── */
+.spotlight-card__media {
+  overflow: hidden;
+}
+.spotlight-card__media img {
+  transition: transform 0.75s var(--ease);
+}
+.spotlight-card:hover .spotlight-card__media img {
+  transform: scale(1.05);
+}
+
+/* ── Social chip playful hover ──────────────────────────── */
+.social-chip {
+  transition: background 0.18s, color 0.18s, transform 0.28s var(--ease), box-shadow 0.28s;
+}
+.social-chip:hover {
+  background: var(--blush);
+  transform: translateY(-3px) rotate(6deg);
+  box-shadow: 0 8px 20px rgba(74, 53, 64, 0.12);
+}
+
+/* ── Button press depth ─────────────────────────────────── */
+.btn:active,
+.button:active {
+  transform: translateY(0) scale(0.97) !important;
+  transition-duration: 0.08s !important;
+}
+
+/* ── CTA/dark panel subtle sheen ────────────────────────── */
+.works-dark-panel::before,
+.cta-panel::before,
+.give-cta-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 65%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Brand mark pulse on load ───────────────────────────── */
+@keyframes brandPulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(74, 53, 64, 0.08); }
+  50%       { box-shadow: 0 4px 24px rgba(74, 53, 64, 0.18); }
+}
+.brand-mark {
+  animation: brandPulse 3.5s ease-in-out infinite;
+}
