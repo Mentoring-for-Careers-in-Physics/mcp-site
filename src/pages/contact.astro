@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 import site from "../data/site.json";
-import { BASE, buildExternalLinks, socialPlatform } from "../utils/content.js";
+import { BASE, buildExternalLinks } from "../utils/content.js";
 
 const links = buildExternalLinks(site);
 const mailtoAction = `mailto:${links.email}?subject=MCP%20Website%20Inquiry`;
@@ -146,57 +147,30 @@ const ways = [
           >
         </form>
 
-        <div style="display:flex;flex-direction:column;gap:1.1rem">
-          <div class="contact-info">
-            <div>
-              <div class="contact-item-label">Email</div>
-              <a class="contact-item-value" href={`mailto:${links.email}`}
-                >{links.email}</a
-              >
-            </div>
-            <div>
-              <div class="contact-item-label">Program</div>
-              <div class="contact-item-value">
-                Mentoring for Careers in Physics
-              </div>
-              <p class="section-copy">William &amp; Mary Physics Department</p>
-            </div>
-            <div>
-              <div class="contact-item-label">Location</div>
-              <div class="contact-item-value">Williamsburg, Virginia</div>
-            </div>
-            <div>
-              <div class="contact-item-label">Social</div>
-              <div class="social-list" style="margin-top:0.5rem">
-                {
-                  links.socialLinks.map((url) => (
-                    <a
-                      class="social-chip"
-                      href={url}
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      {socialPlatform(url)}
-                    </a>
-                  ))
-                }
-              </div>
-            </div>
-          </div>
-
-          <div class="give-cta-panel" style="margin-top:0">
-            <span class="kicker kicker-light">Ready to give to MCP?</span>
-            <h3>Support the program.</h3>
-            <p style="margin-top:0.75rem">
-              Your support helps fund events, program operations, and expanded
-              mentorship access.
-            </p>
-            <a
-              class="btn btn-full"
-              href={`${BASE}give/`}
-              style="margin-top:1.25rem;background:white;color:var(--wine);font-weight:700"
-              >Give to MCP</a
+        <div class="contact-info">
+          <div>
+            <div class="contact-item-label">Email</div>
+            <a class="contact-item-value" href={`mailto:${links.email}`}
+              >{links.email}</a
             >
+          </div>
+          <div>
+            <div class="contact-item-label">Program</div>
+            <div class="contact-item-value">
+              Mentoring for Careers in Physics
+            </div>
+            <p class="section-copy">William &amp; Mary Physics Department</p>
+          </div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <address class="contact-item-value contact-address">
+              <span>300 Ukrop Way</span>
+              <span>Williamsburg, VA 23185</span>
+            </address>
+          </div>
+          <div>
+            <div class="contact-item-label">Social</div>
+            <SocialLinks urls={links.socialLinks} />
           </div>
         </div>
       </div>

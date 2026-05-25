@@ -1,21 +1,10 @@
 ---
-import {
-  BASE,
-  NAV_LINKS,
-  buildExternalLinks,
-  socialPlatform,
-} from "../utils/content.js";
+import SocialLinks from "./SocialLinks.astro";
+import { BASE, NAV_LINKS, buildExternalLinks } from "../utils/content.js";
 
 const { site = {} } = Astro.props;
 const links = buildExternalLinks(site);
 const year = new Date().getFullYear();
-
-const SOCIAL_ICONS: Record<string, string> = {
-  Instagram: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="3"/></svg>`,
-  LinkedIn: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
-  X: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L2.25 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
-  YouTube: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45a2.78 2.78 0 0 0-1.95 1.97A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>`,
-};
 ---
 
 <footer class="footer">
@@ -61,25 +50,7 @@ const SOCIAL_ICONS: Record<string, string> = {
 
         <div>
           <p class="footer-heading">Follow MCP</p>
-          <div class="social-list social-list--footer">
-            {
-              links.socialLinks.map((url) => {
-                const platform = socialPlatform(url);
-                const icon =
-                  SOCIAL_ICONS[platform] ?? SOCIAL_ICONS["Instagram"];
-                return (
-                  <a
-                    class="social-chip"
-                    href={url}
-                    target="_blank"
-                    rel="noopener"
-                    aria-label={platform}
-                    set:html={icon}
-                  />
-                );
-              })
-            }
-          </div>
+          <SocialLinks urls={links.socialLinks} class="social-list--footer" />
         </div>
       </div>
     </div>

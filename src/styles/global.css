@@ -1249,6 +1249,14 @@ button.news-card {
   font-weight: 700;
 }
 
+.contact-address {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-style: normal;
+  line-height: 1.55;
+}
+
 .event-card {
   display: flex;
   flex-direction: column;
