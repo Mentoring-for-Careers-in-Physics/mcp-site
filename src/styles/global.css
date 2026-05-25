@@ -1423,14 +1423,21 @@ button.news-card {
 
 .social-chip {
   display: inline-flex;
-  padding: 0.58rem 0.92rem;
-  border-radius: var(--r-pill);
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--r-md);
   border: 1px solid var(--border);
   background: white;
   color: var(--wine);
-  font-size: 0.82rem;
-  font-weight: 700;
   box-shadow: 0 4px 12px rgba(74, 53, 64, 0.04);
+  transition: background 0.15s, color 0.15s, transform 0.18s var(--ease);
+}
+
+.social-chip:hover {
+  background: var(--blush);
+  transform: translateY(-2px);
 }
 
 .footer-base {
