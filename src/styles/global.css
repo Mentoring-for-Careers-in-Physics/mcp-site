@@ -600,32 +600,54 @@ h3 {
 }
 
 .hero-stat-card {
-  min-width: 230px;
-  padding: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.85rem 1.4rem;
   border-radius: var(--r-xl);
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.86);
   box-shadow: 0 16px 40px rgba(74, 53, 64, 0.07);
 }
 
-.metric {
-  padding: 1rem 1.1rem;
-  border-radius: var(--r-lg);
-  margin-bottom: 0.75rem;
+.hero-stat-card > .kicker {
+  margin-bottom: 0;
+  padding-right: 1.1rem;
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+  align-self: center;
 }
 
-.metric:last-child {
+.metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.25rem 1.1rem;
+  border-radius: 0;
   margin-bottom: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.metric + .metric {
+  border-left: 1px solid var(--border);
 }
 
 .metric strong {
   display: block;
-  font-size: 2rem;
+  font-family: var(--f-display);
+  font-size: 1.55rem;
+  line-height: 1;
+  color: var(--wine);
 }
 
 .metric span {
   display: block;
   margin-top: 0.2rem;
+  font-size: 0.7rem;
+  white-space: nowrap;
 }
 
 .profile-grid,
