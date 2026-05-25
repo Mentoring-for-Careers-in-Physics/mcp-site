@@ -7,6 +7,10 @@ const root = dirname(
 );
 const distDir = join(root, "dist");
 
+// Must match astro.config.mjs `base`. When migrating to the custom domain
+// (no base path), set this to "" and remove it from astro.config.mjs too.
+const BASE_PATH = "/mcp-site";
+
 const requiredPages = [
   "index.html",
   "mentors/index.html",
@@ -42,7 +46,23 @@ function pathExistsForUrl(urlPath) {
     return existsSync(join(distDir, "index.html"));
   }
 
-  const withoutSlash = clean.replace(/^\/+/, "");
+  // Strip the base prefix so the path maps to the actual dist/ layout.
+  // A link without the base prefix is an absolute URL that won't resolve on
+  // the GitHub Pages deployment, so treat it as broken.
+  let distPath = clean;
+  if (BASE_PATH) {
+    if (distPath === BASE_PATH || distPath.startsWith(BASE_PATH + "/")) {
+      distPath = distPath.slice(BASE_PATH.length) || "/";
+    } else if (distPath.startsWith("/")) {
+      return false;
+    }
+  }
+
+  if (!distPath || distPath === "/") {
+    return existsSync(join(distDir, "index.html"));
+  }
+
+  const withoutSlash = distPath.replace(/^\/+/, "");
   const direct = join(distDir, withoutSlash);
   const asHtml = join(distDir, `${withoutSlash}.html`);
   const asIndex = join(distDir, withoutSlash, "index.html");
@@ -52,7 +72,10 @@ function pathExistsForUrl(urlPath) {
 
 function resolveRelative(baseFile, value) {
   const relativeFrom = dirname(`/${relative(distDir, baseFile)}`);
-  return new URL(value, `https://mcp.physics.wm.edu${relativeFrom}/`).pathname;
+  // Resolve against the base-aware URL so relative paths from dist files
+  // produce the same absolute paths that Astro generates with BASE_PATH.
+  return new URL(value, `https://site.local${BASE_PATH}${relativeFrom}/`)
+    .pathname;
 }
 
 if (!existsSync(distDir)) {

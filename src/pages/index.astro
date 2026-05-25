@@ -53,7 +53,7 @@ const featuredSupporter = supporters[0];
     title={"See your future in<br><em>physics &amp; engineering.</em>"}
     summary="MCP connects undergraduate students with accomplished mentors across research, industry, government, and alumni leadership."
     actions={[
-      { label: "Meet all mentors", href: "/mentors/" },
+      { label: "Meet all mentors", href: `${BASE}mentors/` },
       {
         label: "Join the program",
         href: links.mentee,
@@ -69,7 +69,12 @@ const featuredSupporter = supporters[0];
   >
     <div class="spotlight-card" slot="media">
       <div class="spotlight-card__media">
-        <img src={spotlight.image} alt={`Portrait of ${spotlight.name}`} />
+        <img
+          src={spotlight.image}
+          alt={`Portrait of ${spotlight.name}`}
+          loading="eager"
+          fetchpriority="high"
+        />
       </div>
       <div class="spotlight-card__body">
         <span class="kicker">Mentor Spotlight</span>
@@ -85,7 +90,9 @@ const featuredSupporter = supporters[0];
           }
         </div>
         <p class="spotlight-card__summary">{spotlight.excerpt}</p>
-        <a class="text-link" href={`${BASE}mentors/`}>Explore the mentor directory</a>
+        <a class="text-link" href={`${BASE}mentors/`}
+          >Explore the mentor directory</a
+        >
       </div>
     </div>
   </Hero>
@@ -127,7 +134,9 @@ const featuredSupporter = supporters[0];
           <span class="kicker">Current News</span>
           <h2>The latest from MCP.</h2>
         </div>
-        <a class="btn btn-secondary btn-sm" href={`${BASE}news/`}>See all news</a>
+        <a class="btn btn-secondary btn-sm" href={`${BASE}news/`}
+          >See all news</a
+        >
       </div>
       <div class="news-grid">
         {newsFeed.slice(0, 3).map((article) => <NewsCard article={article} />)}
@@ -151,6 +160,7 @@ const featuredSupporter = supporters[0];
             alt={featuredSupporter
               ? `${featuredSupporter.name} banner`
               : "MCP supporters"}
+            loading="lazy"
           />
         </div>
         <div class="support-story-card__body">
@@ -321,7 +331,9 @@ const featuredSupporter = supporters[0];
           <h2>Meet the women widening what a physics future can look like.</h2>
         </div>
         <div class="section-actions">
-          <a class="text-link" href={`${BASE}mentors/`}>Browse the full directory</a>
+          <a class="text-link" href={`${BASE}mentors/`}
+            >Browse the full directory</a
+          >
           <a class="btn btn-secondary btn-sm" href={links.mentor}
             >Become a mentor</a
           >
@@ -340,7 +352,9 @@ const featuredSupporter = supporters[0];
           <span class="kicker">Where Mentors Work</span>
           <h2>Across industry, research, and government.</h2>
         </div>
-        <a class="text-link" href={`${BASE}industry/`}>See all partner organizations</a>
+        <a class="text-link" href={`${BASE}industry/`}
+          >See all partner organizations</a
+        >
       </div>
       <div class="company-grid">
         {companyHighlights.map((company) => <CompanyCard company={company} />)}
@@ -372,7 +386,9 @@ const featuredSupporter = supporters[0];
             <a class="btn btn-outline-light" href={links.mentor}
               >Become a mentor</a
             >
-            <a class="btn btn-outline-light" href={`${BASE}give/`}>Give to MCP</a>
+            <a class="btn btn-outline-light" href={`${BASE}give/`}
+              >Give to MCP</a
+            >
           </div>
         </div>
       </div>

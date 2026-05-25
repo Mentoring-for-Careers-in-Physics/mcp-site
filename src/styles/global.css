@@ -932,7 +932,6 @@ button.news-card {
   display: none !important;
 }
 
-
 .news-card__media,
 .news-thumb {
   aspect-ratio: 1.6;
@@ -1432,7 +1431,10 @@ button.news-card {
   background: white;
   color: var(--wine);
   box-shadow: 0 4px 12px rgba(74, 53, 64, 0.04);
-  transition: background 0.15s, color 0.15s, transform 0.18s var(--ease);
+  transition:
+    background 0.15s,
+    color 0.15s,
+    transform 0.18s var(--ease);
 }
 
 .social-chip:hover {
@@ -1559,6 +1561,62 @@ button.news-card {
 }
 
 /* ═══════════════════════════════════════════════════════
+   FOCUS VISIBILITY
+   Consistent, accessible focus rings for keyboard and
+   assistive-technology navigation.
+   ═══════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid var(--wine-mid);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.btn:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+  border-radius: var(--r-pill);
+}
+
+.nav-join:focus-visible,
+.nav-give:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+
+.filter-chip:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+
+.profile-card:focus-visible,
+.news-card:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+
+.modal-close-btn:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+
+.social-chip:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+
+.skip-link:focus {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════
    LUXURY MOTION SYSTEM
    ═══════════════════════════════════════════════════════ */
 
@@ -1597,7 +1655,7 @@ button.news-card {
   position: relative;
 }
 .footer-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -1617,7 +1675,7 @@ button.news-card {
   position: relative;
 }
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 7px;
   left: 0.72rem;
@@ -1681,14 +1739,18 @@ button.news-card {
 
 /* ── Works card number float on hover ───────────────────── */
 .works-card {
-  transition: transform 0.38s var(--ease), box-shadow 0.38s var(--ease);
+  transition:
+    transform 0.38s var(--ease),
+    box-shadow 0.38s var(--ease);
 }
 .works-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 44px rgba(74, 53, 64, 0.09);
 }
 .works-num {
-  transition: transform 0.42s var(--ease), color 0.28s;
+  transition:
+    transform 0.42s var(--ease),
+    color 0.28s;
 }
 .works-card:hover .works-num {
   transform: translateY(-5px) scale(1.1);
@@ -1708,7 +1770,11 @@ button.news-card {
 
 /* ── Social chip playful hover ──────────────────────────── */
 .social-chip {
-  transition: background 0.18s, color 0.18s, transform 0.28s var(--ease), box-shadow 0.28s;
+  transition:
+    background 0.18s,
+    color 0.18s,
+    transform 0.28s var(--ease),
+    box-shadow 0.28s;
 }
 .social-chip:hover {
   background: var(--blush);
@@ -1727,7 +1793,7 @@ button.news-card {
 .works-dark-panel::before,
 .cta-panel::before,
 .give-cta-panel::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -1742,8 +1808,13 @@ button.news-card {
 
 /* ── Brand mark pulse on load ───────────────────────────── */
 @keyframes brandPulse {
-  0%, 100% { box-shadow: 0 4px 16px rgba(74, 53, 64, 0.08); }
-  50%       { box-shadow: 0 4px 24px rgba(74, 53, 64, 0.18); }
+  0%,
+  100% {
+    box-shadow: 0 4px 16px rgba(74, 53, 64, 0.08);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(74, 53, 64, 0.18);
+  }
 }
 .brand-mark {
   animation: brandPulse 3.5s ease-in-out infinite;

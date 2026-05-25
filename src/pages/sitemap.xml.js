@@ -8,14 +8,19 @@ const routes = [
   "/contact/",
   "/give/",
 ];
-const site = "https://mcp.physics.wm.edu";
+
+// Build the canonical site root from Astro config values so this file stays
+// correct after the custom domain migration (just update astro.config.mjs).
+const siteOrigin = (import.meta.env.SITE || "").replace(/\/$/, "");
+const basePath = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+const siteRoot = siteOrigin + basePath;
 
 export function GET() {
   const urls = routes
     .map(
       (route) => `
   <url>
-    <loc>${site}${route}</loc>
+    <loc>${siteRoot}${route}</loc>
   </url>`,
     )
     .join("");

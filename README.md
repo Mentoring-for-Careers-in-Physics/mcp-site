@@ -2,7 +2,9 @@
 
 Public website for Mentoring for Careers in Physics at William & Mary.
 
-Production domain: `https://mcp.physics.wm.edu`
+**Current live URL (temporary):** `https://mentoring-for-careers-in-physics.github.io/mcp-site/`
+
+**Future production domain (pending W&M IT DNS):** `https://mcp.physics.wm.edu`
 
 This repository now builds a fully static Astro site. The deployed output is HTML, CSS, JavaScript, JSON, images, and static assets only. There is no backend, database, authentication, server runtime, Docker setup, or container requirement.
 
@@ -153,18 +155,48 @@ The largest current assets are retained for content parity and should be optimiz
 
 GitHub Pages deployment is handled by `.github/workflows/deploy.yml` using the official Astro GitHub Action.
 
-Deployment settings:
+### Current deployment (GitHub Pages project URL)
 
-- `public/CNAME`: `mcp.physics.wm.edu`
-- `astro.config.mjs`: `site: "https://mcp.physics.wm.edu"`
-- No `base` path, because the site is intended to run from the custom domain root
-- No server adapter, SSR, Dockerfile, or runtime environment variables
+```
+https://mentoring-for-careers-in-physics.github.io/mcp-site/
+```
+
+Current `astro.config.mjs` settings:
+
+```js
+site: "https://mentoring-for-careers-in-physics.github.io",
+base: "/mcp-site",
+```
+
+- No `public/CNAME` file — leave it absent while the custom domain is not yet active.
+- `scripts/check-links.mjs` uses `BASE_PATH = "/mcp-site"` to validate built links correctly.
+- `public/robots.txt` points the sitemap at the GitHub Pages URL.
 
 Manual setup still needed in GitHub:
 
-1. Repository Settings -> Pages -> Source: GitHub Actions.
-2. DNS for `mcp.physics.wm.edu` must point to GitHub Pages.
-3. Push the legacy branch and tag listed above.
+1. Repository Settings → Pages → Source: GitHub Actions.
+2. Push the legacy branch and tag listed in [Legacy Preservation](#legacy-preservation).
+
+### Migrating to the custom domain (mcp.physics.wm.edu)
+
+When W&M IT DNS for `mcp.physics.wm.edu` is confirmed live, make these four changes together:
+
+1. **`astro.config.mjs`** — remove `base` and update `site`:
+   ```js
+   site: "https://mcp.physics.wm.edu",
+   // base line removed
+   ```
+2. **`public/CNAME`** — create with content:
+   ```
+   mcp.physics.wm.edu
+   ```
+3. **`public/robots.txt`** — update the `Sitemap:` line:
+   ```
+   Sitemap: https://mcp.physics.wm.edu/sitemap.xml
+   ```
+4. **`scripts/check-links.mjs`** — set `BASE_PATH = ""`.
+
+The rest of the codebase (all internal hrefs, canonical URLs, OG image URLs, sitemap.xml.js) derives paths from `import.meta.env.BASE_URL` and `import.meta.env.SITE`, so those four changes are all that is needed.
 
 ## Content Notes
 

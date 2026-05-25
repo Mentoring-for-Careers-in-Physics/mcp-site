@@ -54,11 +54,12 @@ export function assetPath(value = "") {
   if (!value) return "";
   if (
     /^(https?:)?\/\//i.test(value) ||
-    /^(mailto:|tel:|#|data:)/i.test(value)
+    /^(mailto:|tel:|#|data:)/i.test(value) ||
+    value.startsWith("/")
   ) {
     return value;
   }
-  const normalizedPath = String(value).replace(/^\/+/, "").replace(/^\.\//, "");
+  const normalizedPath = String(value).replace(/^\.\//, "");
   return `${base}${normalizedPath}`;
 }
 

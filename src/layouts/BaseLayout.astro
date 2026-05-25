@@ -36,7 +36,11 @@ const resolvedOgImage = Astro.site
     <meta property="og:image" content={resolvedOgImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{pageTitle}</title>
-    <link rel="icon" href={`${BASE}assets/icons/live-site/favicon.ico`} sizes="any" />
+    <link
+      rel="icon"
+      href={`${BASE}assets/icons/live-site/favicon.ico`}
+      sizes="any"
+    />
     <link rel="manifest" href={`${BASE}assets/icons/live-site/manifest.json`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,6 +70,7 @@ const resolvedOgImage = Astro.site
         button.addEventListener("click", () => {
           const open = button.getAttribute("aria-expanded") === "true";
           button.setAttribute("aria-expanded", String(!open));
+          button.setAttribute("aria-label", open ? "Open menu" : "Close menu");
           header.classList.toggle("is-open", !open);
           menu.hidden = open;
         });
@@ -182,37 +187,50 @@ const resolvedOgImage = Astro.site
       // ── Luxury scroll reveal + stagger ──────────────────────────────────
       const setRevealAnimations = () => {
         const STAGGER_GRIDS = [
-          '.profile-grid', '.company-grid', '.news-grid',
-          '.supporter-grid', '.works-grid', '.works-dark-grid',
-          '.video-grid', '.give-options-grid', '.engagement-grid',
-          '.stat-strip', '.footer-grid',
+          ".profile-grid",
+          ".company-grid",
+          ".news-grid",
+          ".supporter-grid",
+          ".works-grid",
+          ".works-dark-grid",
+          ".video-grid",
+          ".give-options-grid",
+          ".engagement-grid",
+          ".stat-strip",
+          ".footer-grid",
         ];
         const REVEAL_BLOCKS = [
-          '.section-head', '.section-header',
-          '.hero-copy', '.spotlight-card',
-          '.video-feature', '.support-story-card',
-          '.featured-article', '.works-dark-panel',
-          '.cta-panel', '.give-cta-panel',
-          '.hero-stat-card', '.contact-grid',
-          '.page-hero .shell > *',
+          ".section-head",
+          ".section-header",
+          ".hero-copy",
+          ".spotlight-card",
+          ".video-feature",
+          ".support-story-card",
+          ".featured-article",
+          ".works-dark-panel",
+          ".cta-panel",
+          ".give-cta-panel",
+          ".hero-stat-card",
+          ".contact-grid",
+          ".page-hero .shell > *",
         ];
 
         const observeTargets: Element[] = [];
 
-        STAGGER_GRIDS.forEach(sel => {
-          document.querySelectorAll(sel).forEach(grid => {
+        STAGGER_GRIDS.forEach((sel) => {
+          document.querySelectorAll(sel).forEach((grid) => {
             [...grid.children].forEach((child, i) => {
-              (child as HTMLElement).style.setProperty('--i', String(i));
-              child.classList.add('stagger-child');
+              (child as HTMLElement).style.setProperty("--i", String(i));
+              child.classList.add("stagger-child");
             });
             observeTargets.push(grid);
           });
         });
 
-        REVEAL_BLOCKS.forEach(sel => {
-          document.querySelectorAll(sel).forEach(el => {
-            if (!el.classList.contains('stagger-child')) {
-              el.classList.add('reveal-pending');
+        REVEAL_BLOCKS.forEach((sel) => {
+          document.querySelectorAll(sel).forEach((el) => {
+            if (!el.classList.contains("stagger-child")) {
+              el.classList.add("reveal-pending");
               observeTargets.push(el);
             }
           });
@@ -220,61 +238,79 @@ const resolvedOgImage = Astro.site
 
         if (!observeTargets.length) return;
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target;
-            if (el.classList.contains('stagger-child')) return;
-            if ([...el.children].some(c => c.classList.contains('stagger-child'))) {
-              el.classList.add('stagger-reveal');
-            } else {
-              el.classList.remove('reveal-pending');
-              el.classList.add('reveal-done');
-            }
-            observer.unobserve(el);
-          });
-        }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target;
+              if (el.classList.contains("stagger-child")) return;
+              if (
+                [...el.children].some((c) =>
+                  c.classList.contains("stagger-child"),
+                )
+              ) {
+                el.classList.add("stagger-reveal");
+              } else {
+                el.classList.remove("reveal-pending");
+                el.classList.add("reveal-done");
+              }
+              observer.unobserve(el);
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -28px 0px" },
+        );
 
-        observeTargets.forEach(el => observer.observe(el));
+        observeTargets.forEach((el) => observer.observe(el));
       };
 
       // ── Nav scroll progress bar ──────────────────────────────────────────
       const setScrollProgress = () => {
-        const nav = document.querySelector('.nav');
+        const nav = document.querySelector(".nav");
         if (!nav) return;
-        const bar = document.createElement('div');
-        bar.className = 'nav-progress';
+        const bar = document.createElement("div");
+        bar.className = "nav-progress";
         nav.appendChild(bar);
-        window.addEventListener('scroll', () => {
-          const max = document.documentElement.scrollHeight - window.innerHeight;
-          if (max > 0) bar.style.width = (window.scrollY / max * 100) + '%';
-        }, { passive: true });
+        window.addEventListener(
+          "scroll",
+          () => {
+            const max =
+              document.documentElement.scrollHeight - window.innerHeight;
+            if (max > 0) bar.style.width = (window.scrollY / max) * 100 + "%";
+          },
+          { passive: true },
+        );
       };
 
       // ── Animated number counters ─────────────────────────────────────────
       const setCounters = () => {
-        document.querySelectorAll('.stat-num, .metric strong').forEach(el => {
-          const raw = el.textContent?.trim() ?? '';
-          const num = parseInt(raw.replace(/[^0-9]/g, ''), 10);
+        document.querySelectorAll(".stat-num, .metric strong").forEach((el) => {
+          const raw = el.textContent?.trim() ?? "";
+          const num = parseInt(raw.replace(/[^0-9]/g, ""), 10);
           if (!num || num < 2 || num > 999) return;
           (el as HTMLElement).dataset.countTarget = String(num);
-          el.textContent = '0';
-          const obs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (!entry.isIntersecting) return;
-              const target = parseInt((entry.target as HTMLElement).dataset.countTarget ?? '0', 10);
-              const dur = 1300;
-              const t0 = performance.now();
-              const tick = (now: number) => {
-                const p = Math.min((now - t0) / dur, 1);
-                const eased = 1 - Math.pow(1 - p, 3);
-                entry.target.textContent = String(Math.round(eased * target));
-                if (p < 1) requestAnimationFrame(tick);
-              };
-              requestAnimationFrame(tick);
-              obs.unobserve(entry.target);
-            });
-          }, { threshold: 0.5 });
+          el.textContent = "0";
+          const obs = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const target = parseInt(
+                  (entry.target as HTMLElement).dataset.countTarget ?? "0",
+                  10,
+                );
+                const dur = 1300;
+                const t0 = performance.now();
+                const tick = (now: number) => {
+                  const p = Math.min((now - t0) / dur, 1);
+                  const eased = 1 - Math.pow(1 - p, 3);
+                  entry.target.textContent = String(Math.round(eased * target));
+                  if (p < 1) requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+                obs.unobserve(entry.target);
+              });
+            },
+            { threshold: 0.5 },
+          );
           obs.observe(el);
         });
       };
