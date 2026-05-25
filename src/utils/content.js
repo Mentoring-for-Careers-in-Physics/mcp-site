@@ -303,7 +303,11 @@ export function buildTeamDirectory(team = [], retired = []) {
   const current = team
     .filter((person) => person.group !== "advisor")
     .map(normalizePerson)
-    .sort((left, right) => left.name.localeCompare(right.name));
+    .sort((left, right) => {
+      if (left.name === "Ran Yang") return -1;
+      if (right.name === "Ran Yang") return 1;
+      return left.name.localeCompare(right.name);
+    });
   const advisors = team
     .filter((person) => person.group === "advisor")
     .map(normalizePerson)
