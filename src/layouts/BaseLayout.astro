@@ -1,7 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
-import { DEFAULT_OG_IMAGE } from "../utils/content.js";
+import { BASE, DEFAULT_OG_IMAGE } from "../utils/content.js";
 import "../styles/global.css";
 
 const {
@@ -36,8 +36,8 @@ const resolvedOgImage = Astro.site
     <meta property="og:image" content={resolvedOgImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <title>{pageTitle}</title>
-    <link rel="icon" href="/assets/icons/live-site/favicon.ico" sizes="any" />
-    <link rel="manifest" href="/assets/icons/live-site/manifest.json" />
+    <link rel="icon" href={`${BASE}assets/icons/live-site/favicon.ico`} sizes="any" />
+    <link rel="manifest" href={`${BASE}assets/icons/live-site/manifest.json`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

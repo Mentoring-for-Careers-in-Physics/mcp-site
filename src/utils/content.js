@@ -1,19 +1,19 @@
-export const BLANK_PROFILE =
-  "/assets/images/live-site/clearweb/assets/blank-profile.jpeg";
-export const SUPPORTERS_BANNER =
-  "/assets/images/live-site/clearweb/assets/So1918_banner.png";
-export const DEFAULT_OG_IMAGE =
-  "/assets/images/live-site/clearweb/assets/annual_celebration.png";
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+export const BASE = base;
+
+export const BLANK_PROFILE = `${base}assets/images/live-site/clearweb/assets/blank-profile.jpeg`;
+export const SUPPORTERS_BANNER = `${base}assets/images/live-site/clearweb/assets/So1918_banner.png`;
+export const DEFAULT_OG_IMAGE = `${base}assets/images/live-site/clearweb/assets/annual_celebration.png`;
 
 export const NAV_LINKS = [
-  { label: "Home", href: "/", key: "home" },
-  { label: "Mentors", href: "/mentors/", key: "mentors" },
-  { label: "Industry", href: "/industry/", key: "industry" },
-  { label: "Leadership", href: "/team/", key: "team" },
-  { label: "News", href: "/news/", key: "news" },
-  { label: "Videos", href: "/videos/", key: "videos" },
-  { label: "Friends", href: "/#friends", key: "friends" },
-  { label: "Contact", href: "/contact/", key: "contact" },
+  { label: "Home", href: base, key: "home" },
+  { label: "Mentors", href: `${base}mentors/`, key: "mentors" },
+  { label: "Industry", href: `${base}industry/`, key: "industry" },
+  { label: "Leadership", href: `${base}team/`, key: "team" },
+  { label: "News", href: `${base}news/`, key: "news" },
+  { label: "Videos", href: `${base}videos/`, key: "videos" },
+  { label: "Friends", href: `${base}#friends`, key: "friends" },
+  { label: "Contact", href: `${base}contact/`, key: "contact" },
 ];
 
 export const SECTOR_OVERRIDES = {
@@ -58,7 +58,8 @@ export function assetPath(value = "") {
   ) {
     return value;
   }
-  return `/${String(value).replace(/^\/+/, "").replace(/^\.\//, "")}`;
+  const normalizedPath = String(value).replace(/^\/+/, "").replace(/^\.\//, "");
+  return `${base}${normalizedPath}`;
 }
 
 export function buildExternalLinks(site = {}) {
@@ -337,7 +338,7 @@ export function buildVideos(videos = []) {
       thumbnail: assetPath(video.thumbnail),
       dateLabel: video.displayDate || formatDate(video.date),
       relatedHref: video.relatedPage
-        ? `/${video.relatedPage.replace(/^pages\//, "").replace(/\.html/, "/")}`
+        ? `${base}${video.relatedPage.replace(/^pages\//, "").replace(/\.html/, "/")}`
         : "",
     }));
 }

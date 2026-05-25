@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import site from "../data/site.json";
-import { buildExternalLinks, socialPlatform } from "../utils/content.js";
+import { BASE, buildExternalLinks, socialPlatform } from "../utils/content.js";
 
 const links = buildExternalLinks(site);
 const mailtoAction = `mailto:${links.email}?subject=MCP%20Website%20Inquiry`;
@@ -193,7 +193,7 @@ const ways = [
             </p>
             <a
               class="btn btn-full"
-              href="/give/"
+              href={`${BASE}give/`}
               style="margin-top:1.25rem;background:white;color:var(--wine);font-weight:700"
               >Give to MCP</a
             >

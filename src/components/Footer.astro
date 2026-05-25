@@ -1,5 +1,6 @@
 ---
 import {
+  BASE,
   NAV_LINKS,
   buildExternalLinks,
   socialPlatform,
@@ -15,7 +16,7 @@ const year = new Date().getFullYear();
     <div class="shell">
       <div class="footer-grid">
         <div class="footer-brand-block">
-          <a class="brand" href="/" aria-label="MCP home">
+          <a class="brand" href={BASE} aria-label="MCP home">
             <span class="brand-mark">MCP</span>
             <span class="brand-text">
               <strong>Mentoring for Careers in Physics</strong>
@@ -46,7 +47,7 @@ const year = new Date().getFullYear();
               >Join as a student</a
             >
             <a href={links.mentor}>Become a mentor</a>
-            <a href="/give/">Give to MCP</a>
+            <a href={`${BASE}give/`}>Give to MCP</a>
             <a href={`mailto:${links.email}`}>{links.email}</a>
           </div>
         </div>

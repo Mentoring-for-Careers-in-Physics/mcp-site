@@ -10,6 +10,7 @@ import newsItems from "../data/news.json";
 import site from "../data/site.json";
 import videos from "../data/videos.json";
 import {
+  BASE,
   SUPPORTERS_BANNER,
   assetPath,
   buildCompanies,
@@ -84,7 +85,7 @@ const featuredSupporter = supporters[0];
           }
         </div>
         <p class="spotlight-card__summary">{spotlight.excerpt}</p>
-        <a class="text-link" href="/mentors/">Explore the mentor directory</a>
+        <a class="text-link" href={`${BASE}mentors/`}>Explore the mentor directory</a>
       </div>
     </div>
   </Hero>
@@ -103,7 +104,7 @@ const featuredSupporter = supporters[0];
               target="_blank"
               rel="noopener">Watch on {featuredVideo.provider}</a
             >
-            <a class="text-link" href="/videos/">See all videos</a>
+            <a class="text-link" href={`${BASE}videos/`}>See all videos</a>
           </div>
         </div>
         <div class="video-frame" aria-label={featuredVideo.title}>
@@ -126,7 +127,7 @@ const featuredSupporter = supporters[0];
           <span class="kicker">Current News</span>
           <h2>The latest from MCP.</h2>
         </div>
-        <a class="btn btn-secondary btn-sm" href="/news/">See all news</a>
+        <a class="btn btn-secondary btn-sm" href={`${BASE}news/`}>See all news</a>
       </div>
       <div class="news-grid">
         {newsFeed.slice(0, 3).map((article) => <NewsCard article={article} />)}
@@ -171,7 +172,7 @@ const featuredSupporter = supporters[0];
                 </a>
               )
             }
-            <a class="text-link" href="/give/">Support MCP</a>
+            <a class="text-link" href={`${BASE}give/`}>Support MCP</a>
           </div>
         </div>
       </div>
@@ -320,7 +321,7 @@ const featuredSupporter = supporters[0];
           <h2>Meet the women widening what a physics future can look like.</h2>
         </div>
         <div class="section-actions">
-          <a class="text-link" href="/mentors/">Browse the full directory</a>
+          <a class="text-link" href={`${BASE}mentors/`}>Browse the full directory</a>
           <a class="btn btn-secondary btn-sm" href={links.mentor}
             >Become a mentor</a
           >
@@ -339,7 +340,7 @@ const featuredSupporter = supporters[0];
           <span class="kicker">Where Mentors Work</span>
           <h2>Across industry, research, and government.</h2>
         </div>
-        <a class="text-link" href="/industry/">See all partner organizations</a>
+        <a class="text-link" href={`${BASE}industry/`}>See all partner organizations</a>
       </div>
       <div class="company-grid">
         {companyHighlights.map((company) => <CompanyCard company={company} />)}
@@ -371,7 +372,7 @@ const featuredSupporter = supporters[0];
             <a class="btn btn-outline-light" href={links.mentor}
               >Become a mentor</a
             >
-            <a class="btn btn-outline-light" href="/give/">Give to MCP</a>
+            <a class="btn btn-outline-light" href={`${BASE}give/`}>Give to MCP</a>
           </div>
         </div>
       </div>

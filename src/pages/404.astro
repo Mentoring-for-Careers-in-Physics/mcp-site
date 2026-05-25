@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { BASE } from "../utils/content.js";
 import site from "../data/site.json";
 ---
 
@@ -17,8 +18,8 @@ import site from "../data/site.json";
       </h1>
       <p>Return to the homepage or continue into one of MCP's main sections.</p>
       <div class="hero-actions" style="margin-top:1.5rem">
-        <a class="btn btn-primary" href="/">Back to home</a>
-        <a class="btn btn-secondary" href="/mentors/">View mentors</a>
+        <a class="btn btn-primary" href={BASE}>Back to home</a>
+        <a class="btn btn-secondary" href={`${BASE}mentors/`}>View mentors</a>
       </div>
     </div>
   </section>

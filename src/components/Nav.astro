@@ -1,5 +1,5 @@
 ---
-import { NAV_LINKS, buildExternalLinks } from "../utils/content.js";
+import { BASE, NAV_LINKS, buildExternalLinks } from "../utils/content.js";
 
 const { site = {}, active = "home" } = Astro.props;
 const links = buildExternalLinks(site);
@@ -9,7 +9,7 @@ const links = buildExternalLinks(site);
   <a class="skip-link" href="#main-content">Skip to content</a>
   <nav class="nav" aria-label="Primary navigation">
     <div class="nav-inner">
-      <a class="brand" href="/" aria-label="MCP home">
+      <a class="brand" href={BASE} aria-label="MCP home">
         <span class="brand-mark">MCP</span>
         <span class="brand-text">
           <strong>Mentoring for Careers in Physics</strong>
@@ -35,7 +35,7 @@ const links = buildExternalLinks(site);
         <a class="nav-join" href={links.mentee} target="_blank" rel="noopener"
           >Join us</a
         >
-        <a class="nav-give" href="/give/">Give</a>
+        <a class="nav-give" href={`${BASE}give/`}>Give</a>
         <button
           class="nav-hamburger"
           type="button"
@@ -79,7 +79,7 @@ const links = buildExternalLinks(site);
         target="_blank"
         rel="noopener">Join us</a
       >
-      <a class="btn btn-primary btn-sm" href="/give/">Give</a>
+      <a class="btn btn-primary btn-sm" href={`${BASE}give/`}>Give</a>
     </div>
   </div>
 </header>
