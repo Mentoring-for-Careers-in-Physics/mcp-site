@@ -678,6 +678,8 @@ h3 {
 .profile-card,
 .news-card,
 .modal-trigger-card {
+  display: flex;
+  flex-direction: column;
   padding: 0;
   color: inherit;
   text-align: left;
@@ -717,6 +719,9 @@ button.news-card {
 .profile-card__body,
 .news-card__body,
 .video-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 1.15rem 1.25rem 1.35rem;
 }
 
@@ -905,9 +910,6 @@ button.news-card {
   display: none !important;
 }
 
-.news-card {
-  display: block;
-}
 
 .news-card__media,
 .news-thumb {

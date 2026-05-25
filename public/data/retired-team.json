@@ -1,5 +1,25 @@
 [
   {
+    "name": "Alan Gonzalez Osorio",
+    "role": "Web Developer",
+    "bio": "Alan ('26) was the MCP web developer. He studied Computer Science and Applied Math at W&M.",
+    "linkedin": null,
+    "imageAlias": "alanheadshot",
+    "image": "assets/images/live-site/clearweb/assets/alan-headshot.jpg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
+    "name": "Kalea Wen",
+    "role": "Event Coordinator",
+    "bio": "Kalea was the MCP Event Coordinator. She majored in physics and minored in CS.",
+    "linkedin": null,
+    "imageAlias": "kalea_wen_headshot",
+    "image": "assets/images/live-site/clearweb/assets/KaleaWen-headshot.jpeg",
+    "hasBio": true,
+    "hasLongBio": false
+  },
+  {
     "name": "Julia Merti",
     "role": "Program Assistant",
     "bio": "Julia ('24) was the Program Assistant for MCP and graduated with a Bachelor of Science in Physics-EPAD.",
