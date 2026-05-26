@@ -6,14 +6,20 @@
   "scripts": {
     "dev": "npm run sync:data && astro dev",
     "build": "npm run sync:data && astro build",
+    "build:github": "MCP_DEPLOY_TARGET=github npm run build",
+    "build:gitlab": "MCP_DEPLOY_TARGET=gitlab npm run build",
     "preview": "astro preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint astro.config.mjs eslint.config.mjs scripts/**/*.mjs src/**/*.js",
-    "check": "npm run validate:data && npm run lint && astro check && npm run build && npm run check:links",
+    "check": "npm run check:github",
+    "check:github": "npm run validate:data && npm run lint && astro check && npm run build:github && npm run check:links:github",
+    "check:gitlab": "npm run validate:data && npm run lint && astro check && npm run build:gitlab && npm run check:links:gitlab",
     "sync:data": "node scripts/sync-public-data.mjs",
     "validate:data": "node scripts/validate-data.mjs",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "check:links:github": "MCP_DEPLOY_TARGET=github node scripts/check-links.mjs",
+    "check:links:gitlab": "MCP_DEPLOY_TARGET=gitlab node scripts/check-links.mjs"
   },
   "repository": {
     "type": "git",

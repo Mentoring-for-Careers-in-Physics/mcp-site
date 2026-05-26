@@ -37,15 +37,20 @@ Data is canonical in `src/data/` and mirrored to `public/data/` before developme
 
 ## Deployment Model
 
-The deployment target is GitHub Pages with a custom domain:
+The current source tree supports two static deployment targets:
 
-- `public/CNAME` contains `mcp.physics.wm.edu`
-- `astro.config.mjs` sets `site: "https://mcp.physics.wm.edu"`
-- No `base` path is configured
-- `.github/workflows/deploy.yml` builds and deploys `dist/` through GitHub Actions
+- GitHub Pages: `https://mentoring-for-careers-in-physics.github.io/mcp-site/`
+- WM GitLab Pages: `https://mcp.physics.wm.edu/`
 
-Manual GitHub setup still required:
+`astro.config.mjs` reads `MCP_DEPLOY_TARGET` to choose the correct `site` and `base` values. GitHub builds with `/mcp-site`; GitLab builds at `/`.
 
-1. In repository settings, set Pages source to GitHub Actions.
-2. Configure DNS for `mcp.physics.wm.edu` to point at GitHub Pages according to William & Mary DNS policy.
-3. Push the `legacy_static_site` branch and `pre_astro_static_site` tag to origin.
+Deployment is handled by:
+
+- `.github/workflows/deploy.yml` for GitHub Pages
+- `.gitlab-ci.yml` for WM GitLab Pages
+
+Manual setup still required:
+
+1. In GitHub repository settings, set Pages source to GitHub Actions.
+2. In WM GitLab, configure Pages and the custom domain `mcp.physics.wm.edu` according to William & Mary DNS policy.
+3. Push the `legacy_static_site` branch and `pre_astro_static_site` tag to origin if archival refs are needed there.

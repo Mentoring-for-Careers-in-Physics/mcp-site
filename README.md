@@ -2,9 +2,9 @@
 
 Public website for Mentoring for Careers in Physics at William & Mary.
 
-**Current live URL (temporary):** `https://mentoring-for-careers-in-physics.github.io/mcp-site/`
+**GitHub Pages URL:** `https://mentoring-for-careers-in-physics.github.io/mcp-site/`
 
-**Future production domain (pending W&M IT DNS):** `https://mcp.physics.wm.edu`
+**William & Mary production URL:** `https://mcp.physics.wm.edu`
 
 This repository now builds a fully static Astro site. The deployed output is HTML, CSS, JavaScript, JSON, images, and static assets only. There is no backend, database, authentication, server runtime, Docker setup, or container requirement.
 
@@ -88,8 +88,6 @@ mcp-site/
   public/
     assets/
     data/
-    CNAME
-    robots.txt
     .nojekyll
   scripts/
     import-live-site-content.mjs
@@ -114,10 +112,16 @@ Run the local dev server:
 npm run dev
 ```
 
-Build the static site:
+Build the static site for GitHub Pages:
 
 ```bash
-npm run build
+npm run build:github
+```
+
+Build the static site for WM GitLab Pages:
+
+```bash
+npm run build:gitlab
 ```
 
 Preview the built site:
@@ -135,9 +139,10 @@ npm run lint
 npm run validate:data
 npm run check:links
 npm run check
+npm run check:gitlab
 ```
 
-`npm run check` validates data, lints JavaScript support files, runs `astro check`, builds `dist/`, and checks required built pages plus internal links.
+`npm run check` validates the GitHub Pages build. `npm run check:gitlab` runs the same validation with the root-domain GitLab build.
 
 ## Data and Assets
 
@@ -153,50 +158,33 @@ The largest current assets are retained for content parity and should be optimiz
 
 ## Deployment
 
-GitHub Pages deployment is handled by `.github/workflows/deploy.yml` using the official Astro GitHub Action.
+The same source tree builds two static outputs:
 
-### Current deployment (GitHub Pages project URL)
+- GitHub Pages uses `MCP_DEPLOY_TARGET=github`, with `site` set to `https://mentoring-for-careers-in-physics.github.io` and `base` set to `/mcp-site`.
+- WM GitLab Pages uses `MCP_DEPLOY_TARGET=gitlab`, with `site` set to `https://mcp.physics.wm.edu` and `base` set to `/`.
+
+Internal navigation, asset URLs, canonical URLs, `robots.txt`, and `sitemap.xml` derive from the active build target.
+
+### GitHub Pages
 
 ```
 https://mentoring-for-careers-in-physics.github.io/mcp-site/
 ```
 
-Current `astro.config.mjs` settings:
-
-```js
-site: "https://mentoring-for-careers-in-physics.github.io",
-base: "/mcp-site",
-```
-
-- No `public/CNAME` file — leave it absent while the custom domain is not yet active.
-- `scripts/check-links.mjs` uses `BASE_PATH = "/mcp-site"` to validate built links correctly.
-- `public/robots.txt` points the sitemap at the GitHub Pages URL.
+GitHub Pages deployment is handled by `.github/workflows/deploy.yml` using the official Astro GitHub Action.
 
 Manual setup still needed in GitHub:
 
 1. Repository Settings → Pages → Source: GitHub Actions.
 2. Push the legacy branch and tag listed in [Legacy Preservation](#legacy-preservation).
 
-### Migrating to the custom domain (mcp.physics.wm.edu)
+### WM GitLab Pages
 
-When W&M IT DNS for `mcp.physics.wm.edu` is confirmed live, make these four changes together:
+```
+https://mcp.physics.wm.edu/
+```
 
-1. **`astro.config.mjs`** — remove `base` and update `site`:
-   ```js
-   site: "https://mcp.physics.wm.edu",
-   // base line removed
-   ```
-2. **`public/CNAME`** — create with content:
-   ```
-   mcp.physics.wm.edu
-   ```
-3. **`public/robots.txt`** — update the `Sitemap:` line:
-   ```
-   Sitemap: https://mcp.physics.wm.edu/sitemap.xml
-   ```
-4. **`scripts/check-links.mjs`** — set `BASE_PATH = ""`.
-
-The rest of the codebase (all internal hrefs, canonical URLs, OG image URLs, sitemap.xml.js) derives paths from `import.meta.env.BASE_URL` and `import.meta.env.SITE`, so those four changes are all that is needed.
+GitLab Pages deployment is handled by `.gitlab-ci.yml`. The CI job builds the Astro site with `npm run build:gitlab`, validates root-domain internal links, then publishes the generated `dist/` directory as the GitLab Pages `public/` artifact.
 
 ## Content Notes
 

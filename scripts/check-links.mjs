@@ -7,9 +7,15 @@ const root = dirname(
 );
 const distDir = join(root, "dist");
 
-// Must match astro.config.mjs `base`. When migrating to the custom domain
-// (no base path), set this to "" and remove it from astro.config.mjs too.
-const BASE_PATH = "/mcp-site";
+function normalizeBasePath(value) {
+  if (!value || value === "/") return "";
+  const withLeadingSlash = value.startsWith("/") ? value : `/${value}`;
+  return withLeadingSlash.replace(/\/$/, "");
+}
+
+const defaultBasePath =
+  process.env.MCP_DEPLOY_TARGET === "gitlab" ? "" : "/mcp-site";
+const BASE_PATH = normalizeBasePath(process.env.MCP_BASE || defaultBasePath);
 
 const requiredPages = [
   "index.html",
@@ -121,4 +127,6 @@ if (problems.length) {
   throw new Error(`Broken internal links found:\n${problems.join("\n")}`);
 }
 
-console.log(`Checked ${htmlFiles.length} HTML files. Internal links passed.`);
+console.log(
+  `Checked ${htmlFiles.length} HTML files. Internal links passed for base "${BASE_PATH || "/"}".`,
+);

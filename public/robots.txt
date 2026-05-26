@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://mentoring-for-careers-in-physics.github.io/mcp-site/sitemap.xml

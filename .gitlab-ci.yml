@@ -1,0 +1,15 @@
+image: node:24
+
+pages:
+  stage: deploy
+  script:
+    - npm ci
+    - npm run build:gitlab
+    - npm run check:links:gitlab
+    - rm -rf public
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

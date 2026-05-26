@@ -23,6 +23,8 @@ jobs:
 
       - name: Install, build, and upload static site
         uses: withastro/action@v6
+        env:
+          MCP_DEPLOY_TARGET: github
         with:
           node-version: 24
 

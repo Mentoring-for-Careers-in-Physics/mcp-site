@@ -160,7 +160,7 @@ const featuredSupporter = supporters[0];
           "[data-mentor-spotlight-summary]",
         );
 
-        if (image) {
+        if (image instanceof HTMLImageElement) {
           image.src = selected.image;
           image.alt = `Portrait of ${selected.name}`;
         }
