@@ -56,12 +56,12 @@
   },
   {
     "name": "Lauren Lo",
-    "role": "Assistant Program Coordinator",
-    "bio": "Bio coming soon.",
+    "role": "Assistant Events Coordinator",
+    "bio": "Lauren ('28) is the MCP Assistant Events Coordinator. She is majoring in physics, with an EPAD concentration, and minoring in math. She plans to go to graduate school to pursue a master's degree in mechanical engineering post-grad!",
     "linkedin": null,
     "imageAlias": "lauren_lo_headshot",
-    "image": null,
-    "hasBio": false,
+    "image": "assets/images/live-site/clearweb/assets/Lauren_Lo_headshot.jpg",
+    "hasBio": true,
     "hasLongBio": false,
     "group": "leadership"
   },
