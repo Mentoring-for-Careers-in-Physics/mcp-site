@@ -19,6 +19,7 @@ const BASE_PATH = normalizeBasePath(process.env.MCP_BASE || defaultBasePath);
 
 const requiredPages = [
   "index.html",
+  "about/index.html",
   "mentors/index.html",
   "industry/index.html",
   "team/index.html",

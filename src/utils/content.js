@@ -7,6 +7,7 @@ export const DEFAULT_OG_IMAGE = `${base}assets/images/live-site/clearweb/assets/
 
 export const NAV_LINKS = [
   { label: "Home", href: base, key: "home" },
+  { label: "About", href: `${base}about/`, key: "about" },
   { label: "Mentors", href: `${base}mentors/`, key: "mentors" },
   { label: "Industry", href: `${base}industry/`, key: "industry" },
   { label: "Leadership", href: `${base}team/`, key: "team" },

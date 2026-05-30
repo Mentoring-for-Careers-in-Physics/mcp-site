@@ -1,6 +1,7 @@
 {
   "publicRoutes": [
     "/",
+    "/about",
     "/contact",
     "/events/:eventName",
     "/give",
@@ -14,6 +15,7 @@
   ],
   "publicPages": [
     "/",
+    "/about",
     "/contact",
     "/events/12-9-22",
     "/events/:eventName",

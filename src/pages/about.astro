@@ -1,0 +1,231 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import companies from "../data/companies.json";
+import mentors from "../data/mentors.json";
+import site from "../data/site.json";
+import {
+  BASE,
+  assetPath,
+  buildCompanies,
+  buildExternalLinks,
+  buildMentors,
+} from "../utils/content.js";
+
+const links = buildExternalLinks(site);
+const mentorDirectory = buildMentors(mentors, companies);
+const companyDirectory = buildCompanies(companies, mentors);
+const essentials = [
+  {
+    kicker: "What It Is",
+    title: "A career mentoring program for W&M physics students.",
+    desc: "MCP connects students with accomplished mentors who can talk honestly about graduate school, technical roles, research, engineering, leadership, and life after the major.",
+  },
+  {
+    kicker: "Who It Serves",
+    title: "Students building confidence, direction, and community.",
+    desc: "The program centers women and gender minorities in physics while creating a stronger, more visible pathway into STEM careers.",
+  },
+  {
+    kicker: "The Goal",
+    title: "Turn curiosity into next steps.",
+    desc: "MCP helps students see the full range of physics-powered futures and leave each conversation with sharper questions, useful connections, and real momentum.",
+  },
+];
+---
+
+<BaseLayout
+  title="About MCP"
+  description="Learn the essentials of Mentoring for Careers in Physics at William & Mary: what MCP is, how it works, and why it matters."
+  active="about"
+  site={site}
+>
+  <section class="page-hero">
+    <div class="shell">
+      <div class="page-hero-grid">
+        <div>
+          <span class="kicker">About MCP</span>
+          <h1>Career mentoring that makes physics futures visible.</h1>
+          <p>
+            Mentoring for Careers in Physics connects William &amp; Mary
+            students with accomplished mentors across research, industry,
+            government, engineering, and alumni leadership.
+          </p>
+          <p class="about-pitch-line">
+            The short pitch: MCP turns "What can I do with physics?" into real
+            people, clear options, and confident next steps.
+          </p>
+        </div>
+        <div class="hero-stat-card">
+          <span class="kicker">At a Glance</span>
+          <div class="metric">
+            <strong>{mentorDirectory.length}</strong><span>Mentors</span>
+          </div>
+          <div class="metric">
+            <strong>{companyDirectory.length}</strong><span>Organizations</span>
+          </div>
+          <div class="metric">
+            <strong>2021</strong><span>Established</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <span class="kicker">MCP Essentials</span>
+          <h2>New to MCP? Start here.</h2>
+        </div>
+      </div>
+      <div class="engagement-grid">
+        {
+          essentials.map((item) => (
+            <article class="info-panel">
+              <span class="kicker">{item.kicker}</span>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <div>
+          <span class="kicker">How MCP Works</span>
+          <h2>What students gain fast.</h2>
+        </div>
+        <a
+          class="btn btn-primary btn-sm"
+          href={links.mentee}
+          target="_blank"
+          rel="noopener">Join MCP</a
+        >
+      </div>
+
+      <div class="works-grid">
+        <article class="works-card works-card--accent">
+          <div class="works-num">01</div>
+          <div>
+            <h3>1:1 Mentor Matching</h3>
+            <p>
+              Students get paired for practical, personal conversations shaped
+              around the choices they are making right now.
+            </p>
+          </div>
+        </article>
+        <article class="works-card">
+          <div class="works-num">02</div>
+          <div>
+            <h3>Career Fluency</h3>
+            <p>
+              Mentors translate physics training into real roles across labs,
+              startups, agencies, engineering teams, and public service.
+            </p>
+          </div>
+        </article>
+        <article class="works-card">
+          <div class="works-num">03</div>
+          <div>
+            <h3>Belonging and Momentum</h3>
+            <p>
+              Seeing women and gender minorities thriving in STEM expands what
+              feels possible, then turns that possibility into action.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="works-dark-panel">
+        <div class="works-dark-header">
+          <div>
+            <span class="kicker kicker-light">Shared Value</span>
+            <h2>Why mentors and organizations plug in.</h2>
+          </div>
+          <div class="section-actions">
+            <a class="btn btn-outline-light btn-sm" href={links.mentor}
+              >Become a mentor</a
+            >
+            <a class="btn btn-outline-light btn-sm" href={links.director}
+              >Contact director</a
+            >
+          </div>
+        </div>
+        <div class="works-dark-grid">
+          <article class="works-dark-card">
+            <div class="works-dark-num">01</div>
+            <h3>Stronger Talent Pipelines</h3>
+            <p>
+              Organizations build early relationships with thoughtful physics
+              students exploring research, engineering, data, and technical
+              careers.
+            </p>
+          </article>
+          <article class="works-dark-card">
+            <div class="works-dark-num">02</div>
+            <h3>Real Community Impact</h3>
+            <p>
+              Mentors invest in the next generation while staying connected to a
+              mission grounded in access, visibility, and belonging.
+            </p>
+          </article>
+          <article class="works-dark-card">
+            <div class="works-dark-num">03</div>
+            <h3>Closer W&amp;M Connections</h3>
+            <p>
+              Participating entities deepen ties with William &amp; Mary through
+              alumni engagement, student conversations, and future
+              collaboration.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="shell">
+      <div class="cta-panel">
+        <div class="cta-panel__content">
+          <span class="kicker kicker-light">Ready to Connect?</span>
+          <h2>Find your next MCP conversation.</h2>
+          <p>
+            Students, mentors, supporters, and partners all move the mission
+            forward. Pick the path that fits where you are today.
+          </p>
+          <div class="cta-actions">
+            <a
+              class="btn"
+              href={links.mentee}
+              target="_blank"
+              rel="noopener"
+              style="background:white;color:var(--wine);font-weight:700"
+              >Join as a student</a
+            >
+            <a class="btn btn-outline-light" href={links.mentor}
+              >Become a mentor</a
+            >
+            <a class="btn btn-outline-light" href={`${BASE}contact/`}
+              >Contact MCP</a
+            >
+          </div>
+        </div>
+        <img
+          src={assetPath(
+            "assets/images/live-site/clearweb/assets/annual_celebration.png",
+          )}
+          class="about-cta-image"
+          alt="MCP annual celebration"
+          loading="lazy"
+          width="220"
+          height="180"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

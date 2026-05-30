@@ -1,5 +1,6 @@
 const routes = [
   "/",
+  "/about/",
   "/mentors/",
   "/industry/",
   "/team/",
