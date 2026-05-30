@@ -3,7 +3,7 @@ import { BLANK_PROFILE, monogram } from "../utils/content.js";
 
 const { mentor, filterable = false } = Astro.props;
 const modalId = mentor.id;
-const hasImage = Boolean(mentor.image);
+const hasImage = Boolean(mentor.hasPhoto && mentor.image);
 ---
 
 <button

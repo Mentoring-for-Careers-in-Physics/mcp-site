@@ -272,13 +272,10 @@ export function buildMentors(mentors = [], companies = []) {
       const sectorLabel =
         sectors.length > 1 ? "Cross-sector" : sectors[0] || "Mentor";
       const rawImage = String(mentor.image || "").trim();
-      const hasPhoto = Boolean(
-        rawImage && !/blank[-_]profile|blank[-_]background/i.test(rawImage),
-      );
       return {
         ...mentor,
         image: assetPath(mentor.image || BLANK_PROFILE),
-        hasPhoto,
+        hasPhoto: hasRealPhoto(rawImage),
         title: mentor.title || roleTitle(mentor.role),
         organizations,
         linkedCompanies: linkedCompanies.map((company) => ({
@@ -365,12 +362,20 @@ export function normalizeEventArchive(events = []) {
 }
 
 function normalizePerson(person = {}) {
+  const rawImage = String(person.image || "").trim();
   return {
     ...person,
     image: assetPath(person.image || BLANK_PROFILE),
+    hasPhoto: hasRealPhoto(rawImage),
     excerpt: excerpt(person.bio || "", 160),
     id: `person-${slugify(person.name)}`,
   };
+}
+
+function hasRealPhoto(value = "") {
+  return Boolean(
+    value && !/blank[-_]profile|blank[-_]background/i.test(String(value)),
+  );
 }
 
 function roleTitle(role = "") {
